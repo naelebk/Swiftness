@@ -41,13 +41,13 @@
   >
 ]>
 <requests version="1.0">
-  <internal package="biblatex" priority="9" active="0">
+  <internal package="biblatex" priority="9" active="1">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>main.bcf</file>
+      <file>EMBARKI_GAUTHIER_HUMBERT.bcf</file>
     </provides>
     <requires type="dynamic">
-      <file>main.bbl</file>
+      <file>EMBARKI_GAUTHIER_HUMBERT.bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -63,23 +63,23 @@
       <file>french.lbx</file>
     </requires>
   </internal>
-  <external package="biblatex" priority="5" active="0">
+  <external package="biblatex" priority="5" active="1">
     <generic>biber</generic>
     <cmdline>
       <binary>biber</binary>
-      <infile>main</infile>
+      <infile>EMBARKI_GAUTHIER_HUMBERT</infile>
     </cmdline>
     <input>
-      <file>main.bcf</file>
+      <file>EMBARKI_GAUTHIER_HUMBERT.bcf</file>
     </input>
     <output>
-      <file>main.bbl</file>
+      <file>EMBARKI_GAUTHIER_HUMBERT.bbl</file>
     </output>
     <provides type="dynamic">
-      <file>main.bbl</file>
+      <file>EMBARKI_GAUTHIER_HUMBERT.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>main.bcf</file>
+      <file>EMBARKI_GAUTHIER_HUMBERT.bcf</file>
     </requires>
   </external>
 </requests>
