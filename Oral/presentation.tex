@@ -1,0 +1,146 @@
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc}
+\usepackage{amsfonts,amsmath,oldgerm}
+\usepackage[T1]{fontenc}
+%\usepackage{lmodern} 
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage[french]{babel}
+\usepackage{etoolbox, tikz, geometry}
+\usepackage{hyperref}
+\usepackage{xcolor} %Package pour les couleurs
+\usepackage{epsfig} %Package pour insérer des images faites avec Xfig
+\usepackage{fancyhdr} %Package pour créer des en-têtes et pieds de page
+\usepackage{listings}
+\lstset{
+language=C,                  % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=2,                   % the step between two line-numbers. If it's 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,	                % adds a frame around the code
+tabsize=2	                % sets default tabsize to 2 spaces
+}
+\usepackage{fancyhdr}
+\date{}
+% -------------------------- THEME ----------------------------------
+\usetheme{Singapore}
+\usecolortheme{orchid}
+\useinnertheme[shadow]{rounded}
+%\useoutertheme{infolines}
+\newcommand{\testcolor}[1]{\colorbox{#1}{\textcolor{#1}{test}}~\texttt{#1}}
+\newcommand{\hrefcol}[2]{\textcolor{cyan}{\href{#1}{#2}}}
+
+
+% -------------------------- THEME ----------------------------------
+
+
+\DeclareMathOperator {\argmin}{argmin}
+\title{Swiftness}
+\subtitle{Soutenance de projet de Licence \\ \medskip Licence 3 Informatique, 2023-2024 \\ \medskip (jour de semaine) 27/28/29 Mars 2024}
+\author{EMBARKI Naël - GAUTHIER Julien - HUMBERT Théo}
+\AtBeginSubsection{%
+  \begin{frame}
+  	\frametitle{Plan}
+  	\tableofcontents[currentsection, currentsubsection]
+  \end{frame}
+}
+
+\AtBeginSection{%
+  \begin{frame}
+  	\frametitle{Plan}
+  	\tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+\setbeamertemplate{navigation symbols}{} 
+\begin{frame}
+\thispagestyle{empty}
+\begin{figure}
+\begin{flushleft}
+\begin{minipage}{10cm}
+\hspace*{-1cm}
+\vspace*{-14cm}
+\includegraphics[width=0.25\linewidth]{logo_st.png}
+\end{minipage}
+\end{flushleft}
+\end{figure}
+
+\titlepage
+\end{frame}
+
+\setbeamertemplate{navigation symbols}{\tiny {\insertframenumber /\inserttotalframenumber}}
+\begin{frame}{Plan}
+\tableofcontents
+\end{frame}
+\section{Introduction}
+\begin{frame}
+\frametitle{Remerciements}
+\begin{tcolorbox}[colback=yellow!20!white,colframe=yellow!60!black]
+Avant toute chose, nous tenons à sincèrement remercier \textbf{M. BERNARD}, enseignant référent de ce projet, pour : 
+\begin{itemize}
+\item suivi très régulier du projet ;
+\item conseils, \textit{trucs et astuces}, techniques de développement (\textit{de jeux vidéos});
+\item accessibilité, réactivité
+\item ... 
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+\begin{frame}
+\frametitle{Organisation de la soutenance}
+\framesubtitle{Découpage}
+Dans l'absolu, cette soutenance sera découpée en 3 grandes parties :
+\begin{itemize}
+\item \textit{Preludio} (conception - technologies utilisées - systèmes utilisés)
+\item \textit{Korpo} (développement - techniques - physique du jeu)
+\item \textit{Postludio} (résultats - conclusion - bilan)
+\end{itemize}
+\end{frame}
+\section{Analyse - Conception}
+\subsection{Technologies (langages - API)}
+\begin{frame}
+\frametitle{Langages de programmation utilisés}
+\begin{itemize}
+\item C++ (majoritairement) $\Rightarrow$ le jeu
+\item Shell $\Rightarrow$ lancement du jeu (compilations et liaisons automatisées par scripts)
+\item à repréciser (peut-être C, XML à voir par la suite)
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{API utilisées}
+\begin{itemize}
+\item C++ $\Rightarrow$ \textbf{GF} (\textit{Gamedev Framework})
+\end{itemize}
+\end{frame}
+\subsection{Modélisation}
+\begin{frame}
+\frametitle{Use case}
+\end{frame}
+\begin{frame}
+\frametitle{Classes}
+\end{frame}
+\section{Développement}
+\section{Résultats}
+\section{Bilan}
+\begin{frame}
+\frametitle{The end !}
+\framesubtitle{\textit{C'est tout pour le moment...}}
+\begin{tcolorbox}[colback=purple!20!white,colframe=purple!60!black]
+\begin{center}
+Merci pour votre attention ! Des questions ?
+\end{center}
+\end{tcolorbox}
+\end{frame}
+\end{document}
