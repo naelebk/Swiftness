@@ -9,3 +9,8 @@ Création du projet GitHub, accord du projet
 Modification du support pour l'oral du projet
 PowerPoint ==> Beamer (LaTeX)
 Raison ==> flemme grandissante de booter sur windows uniquement pour faire le powerpoint pour l'oral du projet
+
+# Makefile - 13/10/2023
+Ajout d'un Makefile pour compiler les sources de l'oral et du rapport
+Prochaine étape : développement d'une interface graphique simple en C++
+Prochainement : modélisation du projet (diagrammes UML)
