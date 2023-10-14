@@ -15,7 +15,9 @@ fi
 MOI=$LOGNAME
 
 apt-get install libsdl2-dev libboost-dev libfreetype6-dev zlib1g-dev libpugixml-dev cmake
-git clone git@github.com:GamedevFramework/gf.git
+if [ ! -d gf ]; then
+	git clone git@github.com:GamedevFramework/gf.git
+fi
 cd gf
 git submodule update --init
 mkdir build
