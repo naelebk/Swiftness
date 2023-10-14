@@ -1,3 +1,6 @@
 [submodule "gf"]
 	path = gf
 	url = git@github.com:GamedevFramework/gf.git
+[submodule "Sources/gf"]
+	path = Sources/gf
+	url = https://github.com/GamedevFramework/gf
