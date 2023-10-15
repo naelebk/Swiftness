@@ -6,7 +6,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 
 # SCRIPT À EXÉCUTER EN TANT QUE ROOT DANS LE RÉPERTOIRE "Sources" du projet
-
+# SCRIPT À NE PAS EXÉCUTER DANS LE DÉPÔT GIT DE CE PROJET !
 ME=$(whoami)
 if [ "$ME" != "root" ]; then
     echo "${RED}Erreur : le script doit être exécuté en tant que superutilisateur (root).${NC}" 2>&1
