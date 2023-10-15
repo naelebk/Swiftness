@@ -18,3 +18,4 @@ Prochainement : modélisation du projet (diagrammes UML)
 # Première petite interface graphique - 15/10/2023
 Installation de GF (Gamedev Framework) sur machines personnels.
 Compilation d'un tutoriel exemple et voir que l'interface graphique fonctionne
+Scripts ajouté pour recompiler toutes les sources du projet depuis son PC.
