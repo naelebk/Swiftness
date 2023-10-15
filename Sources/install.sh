@@ -19,6 +19,8 @@ if [ ! -d "gf" ]; then
 	sudo -u "$MOI" chmod -R 755 gf
 	sudo -u "$MOI" chmod -R 755 gf/*
 fi
+sudo -u "$MOI" git submodule add git@github.com:nothings/stb.git Sources/gf/library/vendor/stb
+sudo -u "$MOI" git submodule add git@github.com:google/googletest.git Sources/gf/tests/googletest/
 cd gf
 sudo -u "$MOI" git submodule update --init
 sudo -u "$MOI" mkdir build

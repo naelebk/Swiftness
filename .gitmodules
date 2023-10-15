@@ -7,3 +7,6 @@
 [submodule "Sources/Sources/gf/library/vendor/stb"]
 	path = Sources/Sources/gf/library/vendor/stb
 	url = git@github.com:nothings/stb.git
+[submodule "Sources/Sources/gf/tests/googletest"]
+	path = Sources/Sources/gf/tests/googletest
+	url = git@github.com:google/googletest.git
