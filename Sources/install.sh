@@ -13,15 +13,16 @@ if [ "$ME" != "root" ]; then
     exit 1
 fi
 MOI=$LOGNAME
-
 apt-get install libsdl2-dev libboost-dev libfreetype6-dev zlib1g-dev libpugixml-dev cmake
-if [ ! -d gf ]; then
-	git clone git@github.com:GamedevFramework/gf.git
+if [ ! -d "gf" ]; then
+	sudo -u "$MOI" git clone https://github.com/GamedevFramework/gf.git
+	sudo -u "$MOI" chmod -R 755 gf
+	sudo -u "$MOI" chmod -R 755 gf/*
 fi
 cd gf
-git submodule update --init
-mkdir build
+sudo -u "$MOI" git submodule update --init
+sudo -u "$MOI" mkdir build
 cd build
-cmake ../ -DGF_BUILD_GAMES=ON -DGF_BUILD_TOOLS=ON
-make
+sudo -u "$MOI" cmake ../ -DGF_BUILD_GAMES=ON -DGF_BUILD_TOOLS=ON
+sudo -u "$MOI" make
 make install
