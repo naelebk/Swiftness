@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/76328C97328C5E4D/Naël PERSO/Cours Informatique/PROJET_LICENCE/Swiftness/tutorial/tutorial.cc" "CMakeFiles/tutorial.dir/tutorial.cc.o" "gcc" "CMakeFiles/tutorial.dir/tutorial.cc.o.d"
+  "/mnt/76328C97328C5E4D/Naël PERSO/Cours Informatique/PROJET_LICENCE/Swiftness/Sources/Game/tutorial.cc" "CMakeFiles/tutorial.dir/tutorial.cc.o" "gcc" "CMakeFiles/tutorial.dir/tutorial.cc.o.d"
   )
 
 # Targets to which this target links.

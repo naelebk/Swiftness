@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/76328C97328C5E4D/Naël PERSO/Cours Informatique/PROJET_LICENCE/Swiftness/tutorial
+# Install script for directory: /mnt/76328C97328C5E4D/Naël PERSO/Cours Informatique/PROJET_LICENCE/Swiftness/Sources/Game
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/76328C97328C5E4D/Naël PERSO/Cours Informatique/PROJET_LICENCE/Swiftness/tutorial/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/76328C97328C5E4D/Naël PERSO/Cours Informatique/PROJET_LICENCE/Swiftness/Sources/Game/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
