@@ -1,0 +1,72 @@
+/**
+@page devel Developper documentation
+
+@tableofcontents
+
+@section devel_git_workflow Git workflow
+
+Gamedev Framework (gf) follows the [successful Git branching model from Vincent Driessen](http://nvie.com/posts/a-successful-git-branching-model/).
+
+@section devel_versioning Versioning
+
+gf uses [Semantic Versioning 2.0.0](http://semver.org/).
+
+@section devel_coding_style Coding style and guidelines
+
+1. Follow the existing style.
+2. See 1.
+
+@section devel_namespaces Namespaces
+
+The library is put inside a `gf` namespace. Additionally, the classes are put in an [inline namespace](http://en.cppreference.com/w/cpp/language/namespace#Inline_namespaces) called `v1` (or `v2` or ...) to preserve ABI compatibility.
+
+~~~{.cc}
+namespace gf {
+inline namespace v1 {
+
+  // can be accessed with gf::Foo
+  class Foo {
+
+  };
+
+}
+}
+~~~
+
+If an ABI-breaking change occurs, then the old class is put in a non-inline namespace called `v1` and the new one in an inline namespace called `v2` so that the old class still exist and old code that uses it do not need to be recompiled.
+
+~~~{.cc}
+namespace gf {
+
+inline namespace v2 {
+
+  // new version of Foo
+  class Foo {
+
+  };
+
+}
+
+namespace v1 {
+
+  // old version of Foo
+  class Foo {
+
+  };
+
+}
+
+}
+~~~
+
+@section devel_gl_loader OpenGL loader
+
+gf uses [glad](https://github.com/Dav1dde/glad) as its OpenGL loader. The loader is generated with the following command in the `library/vendor` directory.
+
+~~~{.sh}
+glad --api gles2=2.0 --profile core --generator c --spec gl --out-path glad --generator c --no-loader
+~~~
+
+The resulting file `src/glad.c` is then renamed to `src/glad.cc`.
+
+*/
