@@ -14,3 +14,7 @@ Raison ==> flemme grandissante de booter sur windows uniquement pour faire le po
 Ajout d'un Makefile pour compiler les sources de l'oral et du rapport
 Prochaine étape : développement d'une interface graphique simple en C++
 Prochainement : modélisation du projet (diagrammes UML)
+
+# Première petite interface graphique - 15/10/2023
+Installation de GF (Gamedev Framework) sur machines personnels.
+Compilation d'un tutoriel exemple et voir que l'interface graphique fonctionne
