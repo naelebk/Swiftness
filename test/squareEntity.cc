@@ -6,7 +6,7 @@
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
 
-#define GRAVITY 100.0f
+#define GRAVITY 700.0f
 
 namespace hg
 {
@@ -30,7 +30,7 @@ namespace hg
         m_position += dt * m_velocity;
 
         // Appliquez la gravité
-        // setVelocity(m_velocity + gf::Vector2f(0, GRAVITY * dt));
+        setVelocity(m_velocity + gf::Vector2f(0, GRAVITY * dt));
 
         // Vérifiez les collisions avec la plateforme
         collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength());
