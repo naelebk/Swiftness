@@ -1,0 +1,44 @@
+# Fichiers objets et binaires
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+
+# Fichiers de build et de compilation
+Debug/
+Release/
+*.sdf
+*.suo
+*.user
+*.ncb
+*.vcxproj.user
+*.vcxproj.filters
+*.vcxproj
+*.vcproj
+*.pdb
+*.ilk
+*.aps
+*.pch
+
+# Fichiers générés par CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+*.cmake
+Makefile
+
+# Fichiers de configuration de Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Autres fichiers et dossiers à ignorer
+*.log
+*.swp
+*.bak
+*.tmp
+Thumbs.db
+.DS_Store
+
