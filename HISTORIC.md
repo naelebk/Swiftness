@@ -29,3 +29,7 @@ Scripts ajouté pour recompiler toutes les sources du projet depuis son PC.
 - le README à été effacé pour ne mettre que le nom du projet, une breve description et comment lancer le jeux
 - création du dossier game pour placer le code
 - création de data pour placer les assets, sons, musique du jeu
+
+# Ajout d'un .gitignore - 24/10/2023
+le .gitignore sert à référencer des fichier à ignorer lors des add, commit et remove
+voir le fichier pour savoir ce qui est ignoré lors des command git
