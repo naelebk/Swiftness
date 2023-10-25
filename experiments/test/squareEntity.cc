@@ -5,13 +5,12 @@
 #include <gf/Color.h>
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
-
-#define GRAVITY 700.0f
+#include <map>
 
 namespace hg
 {
-    Square::Square(gf::Vector2f position, float size, gf::Color4f color)
-        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color)
+    Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
+        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(gravity)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -24,16 +23,34 @@ namespace hg
         m_velocity = velocity;
     }
 
+    void Square::updateWithMap(float dt, std::map<int, StaticPlateform> plateforms)
+    {
+        // Mettez à jour la position du carré
+        m_position += dt * m_velocity;
+
+        // Appliquez la gravité
+        setVelocity(m_velocity + gf::Vector2f(0, gravity * dt));
+
+        // Vérifiez les collisions avec la plateforme
+        for (auto &plateform : plateforms)
+        {
+            collideWithPlateform(plateform.second.getPosition(), plateform.second.getHeight(), plateform.second.getLength());
+        }
+
+        
+    }
+
     void Square::update(float dt, StaticPlateform plateform)
     {
         // Mettez à jour la position du carré
         m_position += dt * m_velocity;
 
         // Appliquez la gravité
-        setVelocity(m_velocity + gf::Vector2f(0, GRAVITY * dt));
+        setVelocity(m_velocity + gf::Vector2f(0, gravity * dt));
 
         // Vérifiez les collisions avec la plateforme
         collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength());
+        
     }
 
     void Square::render(gf::RenderTarget &target)
@@ -98,7 +115,7 @@ namespace hg
             }
 
             // Optionnellement, arrêtez le mouvement du carré lors de la collision
-            m_velocity = gf::Vector2f(0, 0);
+            m_velocity.y += -gravity;
         }
     }
 

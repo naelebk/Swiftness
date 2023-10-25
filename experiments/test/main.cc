@@ -13,6 +13,7 @@
 #include <stdlib.h>
 
 #define GRAVITY 100.0f
+#define SPEED 200.0f
 
 int main()
 {
@@ -26,20 +27,24 @@ int main()
     gf::Vector2i ScreenSize = window.getSize();
 
     // create a square
-    hg::Square square({100.0f, 100.0f}, 20.0f, gf::Color::Red);
+    hg::Square square({100.0f, 100.0f}, 20.0f, gf::Color::Red, GRAVITY);
 
     // create a list of plateform using the ScreenSize
+    std::map<int, hg::StaticPlateform> plateform;
     hg::StaticPlateform plateformUp({static_cast<float>(ScreenSize.width) / 2.0f, 0.0f}, 20.0f, static_cast<float>(ScreenSize.width), gf::Color::Blue);
     hg::StaticPlateform plateformDown({static_cast<float>(ScreenSize.width) / 2.0f, static_cast<float>(ScreenSize.height)}, 20.0f, static_cast<float>(ScreenSize.width), gf::Color::Blue);
     hg::StaticPlateform plateformLeft({0.0f, static_cast<float>(ScreenSize.height) / 2.0f}, static_cast<float>(ScreenSize.height), 20.0f, gf::Color::Blue);
     hg::StaticPlateform plateformRight({static_cast<float>(ScreenSize.width), static_cast<float>(ScreenSize.height) / 2.0f}, static_cast<float>(ScreenSize.height), 20.0f, gf::Color::Blue);
+    plateform.insert(std::pair<int, hg::StaticPlateform>(0, plateformUp));
+    plateform.insert(std::pair<int, hg::StaticPlateform>(1, plateformDown));
+    plateform.insert(std::pair<int, hg::StaticPlateform>(2, plateformLeft));
+    plateform.insert(std::pair<int, hg::StaticPlateform>(3, plateformRight));
 
     // game loop
     gf::Clock clock;
     renderer.clear(gf::Color::White);
 
-    static constexpr float Speed = 100.0f;
-    gf::Vector2f velocity(0, 0);
+    gf::Vector2f velocity(0, GRAVITY);
 
     while (window.isOpen())
     {
@@ -62,19 +67,19 @@ int main()
                     break;
                 case gf::Keycode::Up:
                 case gf::Keycode::Z:
-                    velocity.y -= Speed;
+                    velocity.y -= SPEED;
                     break;
                 case gf::Keycode::Down:
                 case gf::Keycode::S:
-                    velocity.y = Speed;
+                    velocity.y += SPEED;
                     break;
                 case gf::Keycode::Left:
                 case gf::Keycode::Q:
-                    velocity.x -= Speed;
+                    velocity.x -= SPEED;
                     break;
                 case gf::Keycode::Right:
                 case gf::Keycode::D:
-                    velocity.x += Speed;
+                    velocity.x += SPEED;
                     break;
                 default:
                     break;
@@ -86,19 +91,19 @@ int main()
                 {
                 case gf::Keycode::Up:
                 case gf::Keycode::Z:
-                    velocity.y += Speed;
+                    velocity.y += SPEED;
                     break;
                 case gf::Keycode::Down:
                 case gf::Keycode::S:
-                    velocity.y -= Speed;
+                    velocity.y -= SPEED;
                     break;
                 case gf::Keycode::Left:
                 case gf::Keycode::Q:
-                    velocity.x += Speed;
+                    velocity.x += SPEED;
                     break;
                 case gf::Keycode::Right:
                 case gf::Keycode::D:
-                    velocity.x -= Speed;
+                    velocity.x -= SPEED;
                     break;
                 default:
                     break;
@@ -113,10 +118,11 @@ int main()
         // update the square
         float dt = clock.restart().asSeconds();
         square.setVelocity(velocity);
-        square.update(dt, plateformUp);
-        square.update(dt, plateformDown);
-        square.update(dt, plateformLeft);
-        square.update(dt, plateformRight);
+        // square.update(dt, plateformUp);
+        // square.update(dt, plateformDown);
+        // square.update(dt, plateformLeft);
+        // square.update(dt, plateformRight);
+        square.updateWithMap(dt, plateform);
 
         // render
         renderer.clear(gf::Color::White);

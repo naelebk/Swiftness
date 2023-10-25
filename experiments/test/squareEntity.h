@@ -5,6 +5,7 @@
 #include <gf/Color.h>
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
+#include <map>
 #include "plateforme.h"
 
 namespace hg
@@ -12,7 +13,7 @@ namespace hg
     class Square
     {
     public:
-        Square(gf::Vector2f position, float size, gf::Color4f color);
+        Square(gf::Vector2f position, float size, gf::Color4f color, float gravity);
 
         /**
          * @brief Récupère la position du carré
@@ -27,6 +28,8 @@ namespace hg
         /**
          * @brief Met à jour la position du carré
         */
+        void updateWithMap(float dt, std::map<int, StaticPlateform> plateforms);
+
         void update(float dt, StaticPlateform plateform);
 
         /**
@@ -45,6 +48,7 @@ namespace hg
         gf::Vector2f m_velocity;
         float m_size;
         gf::Color4f m_color;
+        float gravity;
     };
 }
 
