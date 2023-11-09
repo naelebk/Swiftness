@@ -33,3 +33,9 @@ Scripts ajouté pour recompiler toutes les sources du projet depuis son PC.
 # Ajout d'un .gitignore - 24/10/2023
 le .gitignore sert à référencer des fichier à ignorer lors des add, commit et remove
 voir le fichier pour savoir ce qui est ignoré lors des command git
+
+# début projet finale - 09/11/2023
+- Suppression de asset
+- ajout des fichier tester fonctionnel (à peu près) dans game bin
+- création du dossier build
+- création d'un tile set pour le niveau 1 avec un asset trouver sur itch.io
