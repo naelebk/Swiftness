@@ -10,5 +10,8 @@ TODO
 
 
 # how to launch the game
-TODO
+on a terminal in game/build folder :
+- cmake ..
+- make
+- ./game
 
