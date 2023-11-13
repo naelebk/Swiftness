@@ -1,5 +1,6 @@
 #include "squareEntity.h"
 #include "staticPlateforme.h"
+#include "level.h"
 
 #include <gf/Clock.h>
 #include <gf/Views.h>
@@ -33,22 +34,11 @@ int main()
     std::vector<Input> enumVector;
 
     // create a square (ps : camera on 100.0f ; 100.0f to center the camera on the square)
-    //hg::Square square({100.0f, 100.0f}, 20.0f, gf::Color::Red, GRAVITY);
+    hg::Square square({100.0f, 100.0f}, 20.0f, gf::Color::Red, GRAVITY);
 
-    // create a list of wall
-    std::map<int, hg::StaticPlateform> wall;
-    hg::StaticPlateform wallUp({240.0f, 0.0f}, 10.0f, 480.0f, gf::Color::Blue);
-    hg::StaticPlateform wallDown({240.0f, 320.0f}, 10.0f, 480.0f, gf::Color::Blue);
-    hg::StaticPlateform wallLeft({0.0f, 160.0f}, 320.0f, 10.0f, gf::Color::Blue);
-    hg::StaticPlateform wallRight({480.0f, 160.0f}, 320.0f, 10.0f, gf::Color::Blue);
-    wall.insert(std::pair<int, hg::StaticPlateform>(0, wallUp));
-    wall.insert(std::pair<int, hg::StaticPlateform>(1, wallDown));
-    wall.insert(std::pair<int, hg::StaticPlateform>(2, wallLeft));
-    wall.insert(std::pair<int, hg::StaticPlateform>(3, wallRight));
-
-    // create a list of plateform
-    std::map<int, hg::StaticPlateform> plateform;
-    hg::StaticPlateform plateformOneVertical({240.0f, 270.0f}, 5.0f, 50.0f, gf::Color::Green);
+    // initialisation of the level
+    std::map<int, hg::StaticPlateform> plateform = hg::Level::initializeLevel0();
+    
 
 
     gf::ExtendView camera({240.0f, 160.0f}, {480.0f, 320.0f});
@@ -74,24 +64,6 @@ int main()
             
             case gf::EventType::Resized:
                 enumVector.push_back(Input::Resized);
-                /*isresize = true;
-                ScreenSize = window.getSize();
-                plateformUp.setPosition({static_cast<float>(ScreenSize.width) / 2.0f, 0.0f});
-                plateformUp.setLength(static_cast<float>(ScreenSize.width));
-                plateformDown.setPosition({static_cast<float>(ScreenSize.width) / 2.0f, static_cast<float>(ScreenSize.height)});
-                plateformDown.setLength(static_cast<float>(ScreenSize.width));
-                plateformLeft.setPosition({0.0f, static_cast<float>(ScreenSize.height) / 2.0f});
-                plateformLeft.setHeight(static_cast<float>(ScreenSize.height));
-                plateformRight.setPosition({static_cast<float>(ScreenSize.width), static_cast<float>(ScreenSize.height) / 2.0f});
-                plateformRight.setHeight(static_cast<float>(ScreenSize.height));
-                plateform.erase(0);
-                plateform.erase(1);
-                plateform.erase(2);
-                plateform.erase(3);
-                plateform.insert(std::pair<int, hg::StaticPlateform>(0, plateformUp));
-                plateform.insert(std::pair<int, hg::StaticPlateform>(1, plateformDown));
-                plateform.insert(std::pair<int, hg::StaticPlateform>(2, plateformLeft));
-                plateform.insert(std::pair<int, hg::StaticPlateform>(3, plateformRight));*/
                 break;
             case gf::EventType::KeyPressed:
                 switch (event.key.keycode)
@@ -193,7 +165,8 @@ int main()
         // square.update(dt, plateformDown);
         // square.update(dt, plateformLeft);
         // square.update(dt, plateformRight);
-        // square.updateWithMap(dt, plateform, enumVector);
+        square.updateWithMap(dt, plateform, enumVector);
+        
         enumVector.clear();
         if (isresize) {
             isresize = false;
@@ -202,12 +175,11 @@ int main()
         // render
         renderer.clear(gf::Color::White);
         renderer.setView(camera);
-        // square.render(renderer);
-        wallUp.render(renderer);
-        wallDown.render(renderer);
-        wallLeft.render(renderer);
-        wallRight.render(renderer);
-        plateformOneVertical.render(renderer);
+        square.render(renderer);
+        for (auto &plateform : plateform)
+        {
+            plateform.second.render(renderer);
+        }
         renderer.display();
     }
     return 0;

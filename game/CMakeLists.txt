@@ -7,9 +7,10 @@ project(SWIFTNESS_TEST_ONE
 find_package(gf REQUIRED)
 
 add_executable(game
-  ./bin/main.cc
-  ./bin/squareEntity.cc
-  ./bin/staticPlateforme.cc)
+  ./code/main.cc
+  ./code/level.cc
+  ./code/squareEntity.cc
+  ./code/staticPlateforme.cc)
 
 target_include_directories(game
 PRIVATE
