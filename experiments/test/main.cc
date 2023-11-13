@@ -1,5 +1,6 @@
 #include "squareEntity.h"
 #include "plateforme.h"
+#include "level0.cc"
 
 #include <gf/Clock.h>
 #include <gf/Color.h>
@@ -29,16 +30,8 @@ int main()
     // create a square
     hg::Square square({100.0f, 100.0f}, 20.0f, gf::Color::Red, GRAVITY);
 
-    // create a list of plateform using the ScreenSize
-    std::map<int, hg::StaticPlateform> plateform;
-    hg::StaticPlateform plateformUp({static_cast<float>(ScreenSize.width) / 2.0f, 0.0f}, 20.0f, static_cast<float>(ScreenSize.width), gf::Color::Blue);
-    hg::StaticPlateform plateformDown({static_cast<float>(ScreenSize.width) / 2.0f, static_cast<float>(ScreenSize.height)}, 20.0f, static_cast<float>(ScreenSize.width), gf::Color::Blue);
-    hg::StaticPlateform plateformLeft({0.0f, static_cast<float>(ScreenSize.height) / 2.0f}, static_cast<float>(ScreenSize.height), 20.0f, gf::Color::Blue);
-    hg::StaticPlateform plateformRight({static_cast<float>(ScreenSize.width), static_cast<float>(ScreenSize.height) / 2.0f}, static_cast<float>(ScreenSize.height), 20.0f, gf::Color::Blue);
-    plateform.insert(std::pair<int, hg::StaticPlateform>(0, plateformUp));
-    plateform.insert(std::pair<int, hg::StaticPlateform>(1, plateformDown));
-    plateform.insert(std::pair<int, hg::StaticPlateform>(2, plateformLeft));
-    plateform.insert(std::pair<int, hg::StaticPlateform>(3, plateformRight));
+    // create a list of plateform using the ScreenSize using level0
+    std::map<int, hg::StaticPlateform> plateform = hg::initializeLevel0(ScreenSize);
 
     // game loop
     gf::Clock clock;
@@ -127,10 +120,10 @@ int main()
         // render
         renderer.clear(gf::Color::White);
         square.render(renderer);
-        plateformUp.render(renderer);
-        plateformDown.render(renderer);
-        plateformLeft.render(renderer);
-        plateformRight.render(renderer);
+        for (auto &p : plateform)
+        {
+            p.second.render(renderer);
+        }
         renderer.display();
     }
     return 0;
