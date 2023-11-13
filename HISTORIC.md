@@ -39,3 +39,10 @@ voir le fichier pour savoir ce qui est ignoré lors des command git
 - ajout des fichier tester fonctionnel (à peu près) dans game bin
 - création du dossier build
 - création d'un tile set pour le niveau 1 avec un asset trouver sur itch.io
+
+# debut de gestion de niveau - 13/11/2023
+- création de level.cc et level.h
+- modification en conséquence de main.cc et CMakeLists.txt
+- level permet d'initialiser toute les plateforme d'un niveau
+- l'idée derrière level est de générer une fonction par niveau qui crée les plateformes
+- c'est une classe temporaire pour simplifier main.cc le temps que l'on implémente les tiles
