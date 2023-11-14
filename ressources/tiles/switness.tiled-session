@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level/level_1.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
         ".",
         "level"
@@ -36,8 +36,8 @@
             "scale": 0.9,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 478.88888888888886,
-                "y": 438.8888888888889
+                "x": 477.77777777777777,
+                "y": 437.7777777777778
             }
         },
         "niveau_1.tmx": {
@@ -72,7 +72,6 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "level/level_1.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
