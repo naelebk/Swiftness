@@ -10,13 +10,14 @@
 #include <vector>
 #include <iostream>
 
-#define GRAVITY 100.0f
-#define SPEED 200.0f
+#define GRAVITY 350.0f
+#define JUMP -250.0f
+#define SPEED 100.0f
 
 namespace hg
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(gravity), m_jump(false)
+        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -40,7 +41,7 @@ namespace hg
         std::vector<Input>::iterator Up = std::find(inputs.begin(), inputs.end(), Input::Up);        
         if (Z != inputs.end() || Up != inputs.end()) {
             if(canJump(plateforms)){
-                m_velocity.y -= SPEED;
+                m_velocity.y = JUMP;
             }
             m_jump=false;
         }
@@ -62,9 +63,9 @@ namespace hg
         // Évènements released
         std::vector<Input>::iterator Z_Released = std::find(inputs.begin(), inputs.end(), Input::Z_Released);
         std::vector<Input>::iterator UpReleased = std::find(inputs.begin(), inputs.end(), Input::UpReleased);
-        if (Z_Released != inputs.end() || UpReleased != inputs.end()) {
+        /*if (Z_Released != inputs.end() || UpReleased != inputs.end()) {
             m_velocity.y += SPEED;
-        }
+        }*/
         std::vector<Input>::iterator D_Released = std::find(inputs.begin(), inputs.end(), Input::D_Released);
         std::vector<Input>::iterator RightReleased = std::find(inputs.begin(), inputs.end(), Input::RightReleased);
         if (D_Released != inputs.end() || RightReleased != inputs.end()) {
@@ -79,7 +80,7 @@ namespace hg
         std::vector<Input>::iterator LeftReleased = std::find(inputs.begin(), inputs.end(), Input::LeftReleased);
         if (Q_Released != inputs.end() || LeftReleased != inputs.end()) {
             m_velocity.x += SPEED;
-        }        
+        }     
     }
 
     void Square::updateWithMap(float dt, std::map<int, StaticPlateform> plateforms, std::vector<Input> inputs)

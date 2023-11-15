@@ -19,7 +19,7 @@ namespace hg
         plateform.insert(std::pair<int, hg::StaticPlateform>(3, wallRight));
 
         // Initialize platforms
-        hg::StaticPlateform plateform_h_1({240.0f,  265.0f}, 100.0f, 60.0f, gf::Color::Green);
+        hg::StaticPlateform plateform_h_1({240.0f,  275.0f}, 80.0f, 60.0f, gf::Color::Green);
         plateform.insert(std::pair<int, hg::StaticPlateform>(4, plateform_h_1));
         
 
