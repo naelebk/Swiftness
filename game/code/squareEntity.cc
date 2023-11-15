@@ -16,7 +16,7 @@
 namespace hg
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(gravity)
+        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(gravity), m_jump(false)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -39,7 +39,10 @@ namespace hg
         std::vector<Input>::iterator Z = std::find(inputs.begin(), inputs.end(), Input::Z);
         std::vector<Input>::iterator Up = std::find(inputs.begin(), inputs.end(), Input::Up);        
         if (Z != inputs.end() || Up != inputs.end()) {
-            m_velocity.y -= SPEED;
+            if(m_jump){
+                m_velocity.y -= SPEED;
+            }
+            m_jump=false;
         }
         std::vector<Input>::iterator D = std::find(inputs.begin(), inputs.end(), Input::D);
         std::vector<Input>::iterator Right = std::find(inputs.begin(), inputs.end(), Input::Right);
@@ -69,9 +72,9 @@ namespace hg
         }
         std::vector<Input>::iterator S_Released = std::find(inputs.begin(), inputs.end(), Input::S_Released);
         std::vector<Input>::iterator DownReleased = std::find(inputs.begin(), inputs.end(), Input::DownReleased);
-        if (S_Released != inputs.end() || DownReleased != inputs.end()) {
+        /*if (S_Released != inputs.end() || DownReleased != inputs.end()) {
             m_velocity.y -= SPEED;
-        }
+        }*/
         std::vector<Input>::iterator Q_Released = std::find(inputs.begin(), inputs.end(), Input::Q_Released);
         std::vector<Input>::iterator LeftReleased = std::find(inputs.begin(), inputs.end(), Input::LeftReleased);
         if (Q_Released != inputs.end() || LeftReleased != inputs.end()) {
@@ -84,18 +87,6 @@ namespace hg
         actionWithInputs(inputs);
         // Mettez à jour la position du carré
         m_position += dt * m_velocity;
-        if (m_position.y < 0.0f) {
-            m_position.y = 15.0f;
-        }
-        if (m_position.x < 0.0f) {
-            m_position.x = 15.0f;
-        }
-        if (m_position.y > 200.0f) {
-            m_position.y = 185.0f;
-        }
-        if (m_position.x > 200.0f) {
-            m_position.x = 185.0f;
-        }
         // Appliquez la gravité
         setVelocity(m_velocity + gf::Vector2f(0, gravity * dt));
 
@@ -175,12 +166,16 @@ namespace hg
             }
             else if (minOverlap == overlapTop)
             {
+                m_velocity.y*=0;
+                m_jump=true;
                 m_position.y -= overlapTop;
             }
             else if (minOverlap == overlapBottom)
             {
                 m_position.y += overlapBottom;
             }
+            
+            
 
             // Optionnellement, arrêtez le mouvement du carré lors de la collision
             //m_velocity.y += -gravity;

@@ -59,6 +59,7 @@ namespace hg
         float m_size;
         gf::Color4f m_color;
         float gravity;
+        bool m_jump;
     };
 }
 
