@@ -12,7 +12,7 @@ namespace hg
         hg::StaticPlateform wallUp({240.0f, 0.0f}, 10.0f, 480.0f, gf::Color::Blue);
         hg::StaticPlateform wallDown({240.0f, 320.0f}, 10.0f, 480.0f, gf::Color::Blue);
         hg::StaticPlateform wallLeft({0.0f, 160.0f}, 320.0f, 10.0f, gf::Color::Blue);
-        hg::StaticPlateform wallRight({480.0f, 150.0f}, 300.0f, 10.0f, gf::Color::Blue);
+        hg::StaticPlateform wallRight({480.0f, 160.0f}, 320.0f, 10.0f, gf::Color::Blue);
         plateform.insert(std::pair<int, hg::StaticPlateform>(0, wallUp));
         plateform.insert(std::pair<int, hg::StaticPlateform>(1, wallDown));
         plateform.insert(std::pair<int, hg::StaticPlateform>(2, wallLeft));

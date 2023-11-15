@@ -35,7 +35,12 @@ namespace hg
         /**
         * Méthode permettant de faire les actions que l'on souhaite avec les inputs
         */
-        void actionWithInputs(std::vector<Input> inputs);
+        void actionWithInputs(std::vector<Input> inputs,std::map<int, StaticPlateform> plateforms);
+
+        /**
+        * Méthode permettant de savoir si on peut sauter
+        */
+        bool canJump(std::map<int, StaticPlateform> plateforms);
 
         /*
         * Update the square
