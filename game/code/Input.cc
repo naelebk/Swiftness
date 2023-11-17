@@ -7,6 +7,7 @@ enum class Input{
 	Q,
 	S,
 	D,
+	Space,
 	Closed,
 	Resized,
 	Escape,
@@ -17,5 +18,6 @@ enum class Input{
 	Z_Released,
 	Q_Released,
 	S_Released,
-	D_Released
+	D_Released,
+	Space_Released
 };

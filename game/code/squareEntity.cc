@@ -38,8 +38,9 @@ namespace hg
 
         // Évènement non released
         std::vector<Input>::iterator Z = std::find(inputs.begin(), inputs.end(), Input::Z);
-        std::vector<Input>::iterator Up = std::find(inputs.begin(), inputs.end(), Input::Up);        
-        if (Z != inputs.end() || Up != inputs.end()) {
+        std::vector<Input>::iterator Up = std::find(inputs.begin(), inputs.end(), Input::Up);  
+        std::vector<Input>::iterator Space = std::find(inputs.begin(), inputs.end(), Input::Space);      
+        if (Z != inputs.end() || Up != inputs.end() || Space != inputs.end()) {
             if(canJump(plateforms)){
                 m_velocity.y = JUMP;
             }
@@ -61,8 +62,9 @@ namespace hg
             m_velocity.x -= SPEED;
         }
         // Évènements released
-        std::vector<Input>::iterator Z_Released = std::find(inputs.begin(), inputs.end(), Input::Z_Released);
-        std::vector<Input>::iterator UpReleased = std::find(inputs.begin(), inputs.end(), Input::UpReleased);
+        // std::vector<Input>::iterator Z_Released = std::find(inputs.begin(), inputs.end(), Input::Z_Released);
+        // std::vector<Input>::iterator UpReleased = std::find(inputs.begin(), inputs.end(), Input::UpReleased);
+        // std::vector<Input>::iterator SpaceReleased = std::find(inputs.begin(), inputs.end(), Input::Space_Released);
         /*if (Z_Released != inputs.end() || UpReleased != inputs.end()) {
             m_velocity.y += SPEED;
         }*/
@@ -71,8 +73,8 @@ namespace hg
         if (D_Released != inputs.end() || RightReleased != inputs.end()) {
             m_velocity.x -= SPEED;
         }
-        std::vector<Input>::iterator S_Released = std::find(inputs.begin(), inputs.end(), Input::S_Released);
-        std::vector<Input>::iterator DownReleased = std::find(inputs.begin(), inputs.end(), Input::DownReleased);
+        // std::vector<Input>::iterator S_Released = std::find(inputs.begin(), inputs.end(), Input::S_Released);
+        // std::vector<Input>::iterator DownReleased = std::find(inputs.begin(), inputs.end(), Input::DownReleased);
         /*if (S_Released != inputs.end() || DownReleased != inputs.end()) {
             m_velocity.y -= SPEED;
         }*/

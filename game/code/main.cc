@@ -80,6 +80,10 @@ int main()
                     enumVector.push_back(Input::Z);
                     //velocity.y -= SPEED;
                     break;
+                case gf::Keycode::Space:
+                    enumVector.push_back(Input::Space);
+                    //velocity.y -= SPEED;
+                    break;
                 case gf::Keycode::Down:
                     enumVector.push_back(Input::Down);
                     //velocity.y += SPEED;
@@ -118,6 +122,10 @@ int main()
                     break;
                 case gf::Keycode::Z:
                     enumVector.push_back(Input::Z_Released);
+                    //velocity.y += SPEED;
+                    break;
+                case gf::Keycode::Space:
+                    enumVector.push_back(Input::Space_Released);
                     //velocity.y += SPEED;
                     break;
                 case gf::Keycode::Down:
