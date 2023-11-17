@@ -1,6 +1,7 @@
 #include "squareEntity.h"
 #include "staticPlateforme.h"
 #include "level.h"
+#include "constants.h"
 
 #include <gf/Clock.h>
 #include <gf/Views.h>
@@ -16,8 +17,7 @@
 #include <stdlib.h>
 #include <vector>
 
-#define GRAVITY 100.0f
-#define SPEED 200.0f
+using namespace hg;
 
 int main()
 {

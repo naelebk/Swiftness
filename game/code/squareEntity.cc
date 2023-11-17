@@ -1,5 +1,6 @@
 #include "squareEntity.h"
 #include "staticPlateforme.h"
+#include "constants.h"
 
 #include <gf/Vector.h>
 #include <gf/Views.h>
@@ -10,14 +11,11 @@
 #include <vector>
 #include <iostream>
 
-#define GRAVITY 350.0f
-#define JUMP -250.0f
-#define SPEED 100.0f
 
 namespace hg
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false)
+        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -49,17 +47,17 @@ namespace hg
         std::vector<Input>::iterator D = std::find(inputs.begin(), inputs.end(), Input::D);
         std::vector<Input>::iterator Right = std::find(inputs.begin(), inputs.end(), Input::Right);
         if (D != inputs.end() || Right != inputs.end()) {
-            m_velocity.x += SPEED;
+            m_velocity.x += SPEED_SQUARE;
         }
         std::vector<Input>::iterator S = std::find(inputs.begin(), inputs.end(), Input::S);
         std::vector<Input>::iterator Down = std::find(inputs.begin(), inputs.end(), Input::Down);
         if (S != inputs.end() || Down != inputs.end()) {
-            m_velocity.y += SPEED;
+            m_velocity.y += SPEED_SQUARE;
         }
         std::vector<Input>::iterator Q = std::find(inputs.begin(), inputs.end(), Input::Q);
         std::vector<Input>::iterator Left = std::find(inputs.begin(), inputs.end(), Input::Left);
         if (Q != inputs.end() || Left != inputs.end()) { 
-            m_velocity.x -= SPEED;
+            m_velocity.x -= SPEED_SQUARE;
         }
         // Évènements released
         // std::vector<Input>::iterator Z_Released = std::find(inputs.begin(), inputs.end(), Input::Z_Released);
@@ -71,7 +69,7 @@ namespace hg
         std::vector<Input>::iterator D_Released = std::find(inputs.begin(), inputs.end(), Input::D_Released);
         std::vector<Input>::iterator RightReleased = std::find(inputs.begin(), inputs.end(), Input::RightReleased);
         if (D_Released != inputs.end() || RightReleased != inputs.end()) {
-            m_velocity.x -= SPEED;
+            m_velocity.x -= SPEED_SQUARE;
         }
         // std::vector<Input>::iterator S_Released = std::find(inputs.begin(), inputs.end(), Input::S_Released);
         // std::vector<Input>::iterator DownReleased = std::find(inputs.begin(), inputs.end(), Input::DownReleased);
@@ -81,7 +79,7 @@ namespace hg
         std::vector<Input>::iterator Q_Released = std::find(inputs.begin(), inputs.end(), Input::Q_Released);
         std::vector<Input>::iterator LeftReleased = std::find(inputs.begin(), inputs.end(), Input::LeftReleased);
         if (Q_Released != inputs.end() || LeftReleased != inputs.end()) {
-            m_velocity.x += SPEED;
+            m_velocity.x += SPEED_SQUARE;
         }     
     }
 
