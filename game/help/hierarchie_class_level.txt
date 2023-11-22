@@ -1,0 +1,8 @@
+LayersEntity -> charge un .tmx et traduit les différentes info (nb couche, nb C_objet, ...)
+	|
+	v
+LevelData -> info sur un niveau (nom, LayersEntity)
+	|
+	v
+LevelEntity -> création du niveau (en fct de LevelData et de règle définie)
+

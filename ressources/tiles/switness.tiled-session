@@ -3,10 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "levels/level01.tmx",
     "expandedProjectPaths": [
+        "level",
         ".",
-        "level"
+        "levels"
     ],
     "fileStates": {
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -40,6 +41,14 @@
                 "y": 437.7777777777778
             }
         },
+        "levels/level01.tmx": {
+            "scale": 2,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 179.25,
+                "y": 377.5
+            }
+        },
         "niveau_1.tmx": {
             "scale": 2.2107291666666664,
             "selectedLayer": 3,
@@ -53,8 +62,11 @@
             "scaleInEditor": 1
         },
         "tileset/TILESET_FUTURISTIC_CITY.tsx": {
-            "scaleInDock": 4,
+            "scaleInDock": 1.5,
             "scaleInEditor": 1
+        },
+        "tileset/background.tsx": {
+            "scaleInDock": 1
         },
         "tileset/font.tsx": {
             "dynamicWrapping": false,
@@ -72,9 +84,11 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
+        "levels/level01.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
+        "levels/level01.tmx",
         "level/level_1.tmx",
         "tileset/TILESET_FUTURISTIC_CITY.tsx",
         "tileset/font.tsx",

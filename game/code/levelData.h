@@ -1,8 +1,12 @@
 #ifndef LEVEL_DATA_H
 #define LEVEL_DATA_H
 
+#include "layerEntity.h"
+#include "tilesEnumData.h"
+
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
 #include <gf/Event.h>
 #include <gf/Log.h>
@@ -19,67 +23,61 @@
 #include <gf/ViewContainer.h>
 #include <gf/Window.h>
 
+/**
+ * this class is used to organise information about a level
+ */
+
 namespace hg
 {
-    enum class PlateformType
+
+    class LevelData
     {
-        Plateform_solo = 4,
+    public:
+        LevelData(std::string nameFile);
 
-        Plateform_neutral = 7,
-        Plateform_left = 8,
-        Plateform_right = 6,
+        /**
+         * @brief Load a tmx file
+         *
+         * @return gf::TmxLayers the layers of the tmx file
+         */
+        gf::TmxLayers getLayers();
 
-        Plateform_solo_left = 0,
-        Plateform_solo_neutral = 1,
-        Plateform_solo_right = 2,
+        /**
+         * @brief Get the entrance of the level
+         *
+         * @return gf::Vector2i the entrance of the level
+         */
+        gf::Vector2i getEntrance();
 
-        Wall_ceiling_left = 18,
-        Wall_ceiling_neutral = 19,
-        Wall_ceiling_right = 20,
+        /**
+         * @brief Get the exit of the level
+         *
+         * @return gf::Vector2i the exit of the level
+         */
+        gf::Vector2i getExit();
 
-        Wall_left = 12,
-        Wall_neutral = 13,
-        Wall_right = 14,
+        /**
+         * @brief Get the name of the tmx file
+         *
+         * @return std::string the name of the tmx file
+         */
+        std::string getNameFile();
 
-        Plateform_levitate_up = 9,
-        Plateform_levitate_middle = 21,
-        Plateform_levitate_down = 15,
+        /**
+         * @brief Get the layer by its name
+         * 
+         * @param name the name of the layer
+         * 
+         * @return gf::TileLayer the layer
+         */
+        gf::TileLayer getLayerByName(std::string name);
 
-        Deco_blue_up = 10,
-        Deco_blue_middle = 16,
-        Deco_blue_down = 22,
-
-        Deco_green_up = 11,
-        Deco_green_middle = 17,
-        Deco_green_down = 23
+    private:
+        std::string m_nameFile;    // name of the tmx file and the level
+        LayerEntity m_layerEntity; // entity of the layer
+        gf::Vector2i m_entrance;   // entrance of the level
+        gf::Vector2i m_exit;       // exit of the level
     };
-
-    enum class LayerName
-    {
-        Collision,
-        CollisionWallWalk,
-        Filling,
-        Decoration,
-        Power,
-        Button
-    };
-
-    /**
-     * @brief Load a tmx file
-     *
-     * @param path the path of the tmx file
-     * @return gf::TmxLayers the layers of the tmx file
-     */
-    gf::TmxLayers loadLayers(std::string path);
-
-    /**
-     * @brief Convert a string to a LayerName
-     * 
-     * @param name the string to convert
-     * @return hg::LayerName the LayerName
-     */
-    hg::LayerName toLayerName(std::string name);
-
-} // namespace hg
+}
 
 #endif // LEVEL_DATA_H
