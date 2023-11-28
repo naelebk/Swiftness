@@ -46,3 +46,7 @@ voir le fichier pour savoir ce qui est ignoré lors des command git
 - level permet d'initialiser toute les plateforme d'un niveau
 - l'idée derrière level est de générer une fonction par niveau qui crée les plateformes
 - c'est une classe temporaire pour simplifier main.cc le temps que l'on implémente les tiles
+
+# gestion tmx - 28/11/2023
+- en difficulté depuis 2 semaine
+- création de la branche tmx pour modifié en profondeur les classes liée au tmx
