@@ -19,15 +19,20 @@
 #include <gf/ViewContainer.h>
 #include <gf/Window.h>
 
-
 /**
  * This class is used to load the layers of a tmx file
-*/
+ */
 namespace hg
 {
     class LayerEntity
     {
     public:
+        struct LayersMaker : public gf::TmxVisitor
+        {
+
+            virtual void visitTileLayer(const gf::TmxLayers &map, const gf::TmxTileLayer &layer) override;
+        };
+
         LayerEntity(std::string nameFile);
 
         /**
@@ -44,10 +49,33 @@ namespace hg
          */
         gf::TileLayer getLayerByName(std::string name);
 
+        /**
+         * @brief Get a layer by its id
+         * 
+         * @return gf::TileLayer the layer
+        */
+        gf::TileLayer getLayerByID(int id);
 
-        private:
-            gf::TmxLayers m_layers; // map of layers
+        /**
+         * @brief Get the entrance of the level
+         *
+         * @return gf::Vector2i the entrance of the level
+         */
+        gf::Vector2i getEntrance();
+
+        /**
+         * @brief Get the exit of the level
+         *
+         * @return gf::Vector2i the exit of the level
+         */
+        gf::Vector2i getExit();
+
+    private:
+        gf::ResourceManager m_resources;
+        gf::TmxLayers m_layers;
+        gf::Vector2i m_entrance;
+        gf::Vector2i m_exit;
     };
-}
+}; // namespace hg
 
 #endif // LAYER_ENTITY_H

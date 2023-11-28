@@ -5,9 +5,9 @@
     },
     "activeFile": "levels/level01.tmx",
     "expandedProjectPaths": [
+        "levels",
         "level",
-        ".",
-        "levels"
+        "."
     ],
     "fileStates": {
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -45,8 +45,8 @@
             "scale": 2,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 178.75,
-                "y": 468.5
+                "x": 272.25,
+                "y": 308.5
             }
         },
         "niveau_1.tmx": {
