@@ -15,7 +15,7 @@
 namespace hg
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false)
+        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), nb_jumps(0)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -39,27 +39,28 @@ namespace hg
         std::vector<Input>::iterator Up = std::find(inputs.begin(), inputs.end(), Input::Up);  
         std::vector<Input>::iterator Space = std::find(inputs.begin(), inputs.end(), Input::Space);      
         if (Z != inputs.end() || Up != inputs.end() || Space != inputs.end()) {
-            if(canJump(plateforms) || nb_jumps==1){
+            m_jump=canJump(plateforms);
+            bool walljumpRight=canWallJumpRight(plateforms);
+            bool walljumpLeft=canWallJumpLeft(plateforms);
+            if(m_jump || (nb_jumps==1 && !walljumpRight && !walljumpLeft)){
                 m_velocity.y = JUMP;
                 nb_jumps+=1;
+            }else{
+                if(walljumpRight){
+                    m_velocity.y=WALL_JUMP_HEIGHT;
+                    nb_jumps=0;
+                    m_velocity.x=-WALL_JUMP_SPEED;
+                }else{
+                    if(walljumpLeft){
+                        m_velocity.y=WALL_JUMP_HEIGHT;
+                        nb_jumps=0;
+                        m_velocity.x=WALL_JUMP_SPEED;
+                    }
+                }
             }
             m_jump=false;
         }
-        std::vector<Input>::iterator D = std::find(inputs.begin(), inputs.end(), Input::D);
-        std::vector<Input>::iterator Right = std::find(inputs.begin(), inputs.end(), Input::Right);
-        if (D != inputs.end() || Right != inputs.end()) {
-            m_velocity.x += SPEED_SQUARE;
-        }
-        std::vector<Input>::iterator S = std::find(inputs.begin(), inputs.end(), Input::S);
-        std::vector<Input>::iterator Down = std::find(inputs.begin(), inputs.end(), Input::Down);
-        if (S != inputs.end() || Down != inputs.end()) {
-            m_velocity.y += SPEED_SQUARE;
-        }
-        std::vector<Input>::iterator Q = std::find(inputs.begin(), inputs.end(), Input::Q);
-        std::vector<Input>::iterator Left = std::find(inputs.begin(), inputs.end(), Input::Left);
-        if (Q != inputs.end() || Left != inputs.end()) { 
-            m_velocity.x -= SPEED_SQUARE;
-        }
+        
         // Évènements released
         // std::vector<Input>::iterator Z_Released = std::find(inputs.begin(), inputs.end(), Input::Z_Released);
         // std::vector<Input>::iterator UpReleased = std::find(inputs.begin(), inputs.end(), Input::UpReleased);
@@ -70,7 +71,9 @@ namespace hg
         std::vector<Input>::iterator D_Released = std::find(inputs.begin(), inputs.end(), Input::D_Released);
         std::vector<Input>::iterator RightReleased = std::find(inputs.begin(), inputs.end(), Input::RightReleased);
         if (D_Released != inputs.end() || RightReleased != inputs.end()) {
-            m_velocity.x -= SPEED_SQUARE;
+            if(m_velocity.x>0){
+                m_velocity.x = 0;
+            }
         }
         // std::vector<Input>::iterator S_Released = std::find(inputs.begin(), inputs.end(), Input::S_Released);
         // std::vector<Input>::iterator DownReleased = std::find(inputs.begin(), inputs.end(), Input::DownReleased);
@@ -80,8 +83,26 @@ namespace hg
         std::vector<Input>::iterator Q_Released = std::find(inputs.begin(), inputs.end(), Input::Q_Released);
         std::vector<Input>::iterator LeftReleased = std::find(inputs.begin(), inputs.end(), Input::LeftReleased);
         if (Q_Released != inputs.end() || LeftReleased != inputs.end()) {
-            m_velocity.x += SPEED_SQUARE;
-        }     
+            if(m_velocity.x<0){
+                m_velocity.x = 0;
+            }
+        } 
+
+        std::vector<Input>::iterator D = std::find(inputs.begin(), inputs.end(), Input::D);
+        std::vector<Input>::iterator Right = std::find(inputs.begin(), inputs.end(), Input::Right);
+        if (D != inputs.end() || Right != inputs.end()) {
+            m_velocity.x = SPEED_SQUARE;
+        }
+        std::vector<Input>::iterator S = std::find(inputs.begin(), inputs.end(), Input::S);
+        std::vector<Input>::iterator Down = std::find(inputs.begin(), inputs.end(), Input::Down);
+        if (S != inputs.end() || Down != inputs.end()) {
+            m_velocity.y += SPEED_SQUARE;
+        }
+        std::vector<Input>::iterator Q = std::find(inputs.begin(), inputs.end(), Input::Q);
+        std::vector<Input>::iterator Left = std::find(inputs.begin(), inputs.end(), Input::Left);
+        if (Q != inputs.end() || Left != inputs.end()) { 
+            m_velocity.x = -SPEED_SQUARE;
+        }    
     }
 
     void Square::updateWithMap(float dt, std::map<int, StaticPlateform> plateforms, std::vector<Input> inputs)
@@ -133,6 +154,102 @@ namespace hg
                 float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
 
                 if (minOverlap == overlapTop)
+                {
+                    return true;
+                }
+                
+                
+
+                // Optionnellement, arrêtez le mouvement du carré lors de la collision
+                //m_velocity.y += -gravity;
+            }
+    
+        }
+        
+        return false;
+
+    }
+
+    bool Square::canWallJumpRight(std::map<int, StaticPlateform> plateforms){
+        for (auto &plateform : plateforms)
+        {
+            gf::Vector2f plateformPosition=plateform.second.getPosition();
+            float plateformHeight=plateform.second.getHeight();
+            float plateformLength=plateform.second.getLength();
+            float squareLeft = m_position.x - m_size / 2;
+            float squareRight = m_position.x + m_size / 2 +1;
+            float squareTop = m_position.y - m_size / 2;
+            float squareBottom = m_position.y + m_size / 2;
+
+            // Calculez les limites de la plateforme en utilisant sa position centrale
+            float plateformLeft = plateformPosition.x - plateformLength / 2;
+            float plateformRight = plateformPosition.x + plateformLength / 2;
+            float plateformTop = plateformPosition.y - plateformHeight / 2;
+            float plateformBottom = plateformPosition.y + plateformHeight / 2;
+            if (squareRight > plateformLeft && squareLeft < plateformRight &&
+            squareBottom > plateformTop && squareTop < plateformBottom)
+            {
+
+                // Collision détectée. Maintenant, nous devons ajuster la position du carré.
+
+                // Vérifiez de quel côté le carré entre en collision
+                float overlapLeft = squareRight - plateformLeft;
+                float overlapRight = plateformRight - squareLeft;
+                float overlapTop = squareBottom - plateformTop;
+                float overlapBottom = plateformBottom - squareTop;
+
+                // Trouvez le chevauchement le plus petit
+                float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
+
+                if (minOverlap == overlapLeft)
+                {
+                    return true;
+                }
+                
+                
+
+                // Optionnellement, arrêtez le mouvement du carré lors de la collision
+                //m_velocity.y += -gravity;
+            }
+    
+        }
+        
+        return false;
+
+    }
+
+    bool Square::canWallJumpLeft(std::map<int, StaticPlateform> plateforms){
+        for (auto &plateform : plateforms)
+        {
+            gf::Vector2f plateformPosition=plateform.second.getPosition();
+            float plateformHeight=plateform.second.getHeight();
+            float plateformLength=plateform.second.getLength();
+            float squareLeft = m_position.x - m_size / 2 -1;
+            float squareRight = m_position.x + m_size / 2;
+            float squareTop = m_position.y - m_size / 2;
+            float squareBottom = m_position.y + m_size / 2;
+
+            // Calculez les limites de la plateforme en utilisant sa position centrale
+            float plateformLeft = plateformPosition.x - plateformLength / 2;
+            float plateformRight = plateformPosition.x + plateformLength / 2;
+            float plateformTop = plateformPosition.y - plateformHeight / 2;
+            float plateformBottom = plateformPosition.y + plateformHeight / 2;
+            if (squareRight > plateformLeft && squareLeft < plateformRight &&
+            squareBottom > plateformTop && squareTop < plateformBottom)
+            {
+
+                // Collision détectée. Maintenant, nous devons ajuster la position du carré.
+
+                // Vérifiez de quel côté le carré entre en collision
+                float overlapLeft = squareRight - plateformLeft;
+                float overlapRight = plateformRight - squareLeft;
+                float overlapTop = squareBottom - plateformTop;
+                float overlapBottom = plateformBottom - squareTop;
+
+                // Trouvez le chevauchement le plus petit
+                float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
+
+                if (minOverlap == overlapRight)
                 {
                     return true;
                 }
@@ -216,13 +333,16 @@ namespace hg
             }
             else if (minOverlap == overlapTop)
             {
-                m_velocity.y*=0;
+                m_velocity.y=0;
                 m_position.y -= overlapTop;
                 nb_jumps=0;
+                if(m_velocity.x==WALL_JUMP_SPEED || m_velocity.x==-WALL_JUMP_SPEED){
+                    m_velocity.x=0;
+                }
             }
             else if (minOverlap == overlapBottom)
             {
-                m_velocity.y*=0;
+                m_velocity.y=0;
                 m_position.y += overlapBottom;
             }
             

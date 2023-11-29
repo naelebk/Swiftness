@@ -42,6 +42,10 @@ namespace hg
         */
         bool canJump(std::map<int, StaticPlateform> plateforms);
 
+        bool canWallJumpRight(std::map<int, StaticPlateform> plateforms);
+
+        bool canWallJumpLeft(std::map<int, StaticPlateform> plateforms);
+
         /*
         * Update the square
         */
