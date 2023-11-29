@@ -42,6 +42,10 @@ namespace hg
         */
         bool canJump(std::map<int, StaticPlateform> plateforms);
 
+        bool canWallJumpRight(std::map<int, StaticPlateform> plateforms);
+
+        bool canWallJumpLeft(std::map<int, StaticPlateform> plateforms);
+
         /*
         * Update the square
         */
@@ -65,6 +69,7 @@ namespace hg
         gf::Color4f m_color;
         float gravity;
         bool m_jump;
+        int nb_jumps;
     };
 }
 
