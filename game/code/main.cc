@@ -37,7 +37,7 @@ int main()
     hg::Square square({100.0f, 100.0f}, 20.0f, gf::Color::Red, GRAVITY);
 
     // initialisation of the level
-    std::map<int, hg::StaticPlateform> plateform = hg::Level::initializeLevel0();
+    std::map<int, hg::StaticPlateform> plateform = hg::Level::initializeLevel1();
     
 
 
