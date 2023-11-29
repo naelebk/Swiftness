@@ -39,8 +39,9 @@ namespace hg
         std::vector<Input>::iterator Up = std::find(inputs.begin(), inputs.end(), Input::Up);  
         std::vector<Input>::iterator Space = std::find(inputs.begin(), inputs.end(), Input::Space);      
         if (Z != inputs.end() || Up != inputs.end() || Space != inputs.end()) {
-            if(canJump(plateforms)){
+            if(canJump(plateforms) || nb_jumps==1){
                 m_velocity.y = JUMP;
+                nb_jumps+=1;
             }
             m_jump=false;
         }
@@ -217,9 +218,11 @@ namespace hg
             {
                 m_velocity.y*=0;
                 m_position.y -= overlapTop;
+                nb_jumps=0;
             }
             else if (minOverlap == overlapBottom)
             {
+                m_velocity.y*=0;
                 m_position.y += overlapBottom;
             }
             
