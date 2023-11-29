@@ -41,7 +41,6 @@ int main()
     
 
 
-    gf::ExtendView camera({240.0f, 160.0f}, {480.0f, 320.0f});
 
     // game loop
     gf::Clock clock;
@@ -174,7 +173,7 @@ int main()
         // square.update(dt, plateformLeft);
         // square.update(dt, plateformRight);
         square.updateWithMap(dt, plateform, enumVector);
-        
+        gf::ExtendView camera(square.getPosition(), {480.0f, 320.0f});
         enumVector.clear();
         if (isresize) {
             isresize = false;

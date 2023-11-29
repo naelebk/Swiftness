@@ -10,6 +10,7 @@ namespace hg {
 class Level {
 public:
     static std::map<int, StaticPlateform> initializeLevel0();
+    static std::map<int, StaticPlateform> initializeLevel1();
 };
 
 } // namespace hg
