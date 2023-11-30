@@ -8,27 +8,7 @@
 *.dll
 
 # Fichiers de build et de compilation
-Debug/
-Release/
-*.sdf
-*.suo
-*.user
-*.ncb
-*.vcxproj.user
-*.vcxproj.filters
-*.vcxproj
-*.vcproj
-*.pdb
-*.ilk
-*.aps
-*.pch
-
-# Fichiers générés par CMake
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-*.cmake
-Makefile
+game/build/*
 
 # Fichiers de configuration de Visual Studio Code
 .vscode/
