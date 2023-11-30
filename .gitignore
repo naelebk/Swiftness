@@ -9,7 +9,7 @@
 
 # Fichiers de build et de compilation
 game/build/*
-
+!game/build/.gitkeep
 # Fichiers de configuration de Visual Studio Code
 .vscode/
 *.code-workspace
