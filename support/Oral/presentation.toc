@@ -1,8 +1,0 @@
-\babel@toc {french}{}\relax 
-\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Analyse - Conception}{6}{0}{2}
-\beamer@subsectionintoc {2}{1}{Technologies (langages - API)}{7}{0}{2}
-\beamer@subsectionintoc {2}{2}{Modélisation}{10}{0}{2}
-\beamer@sectionintoc {3}{Développement}{13}{0}{3}
-\beamer@sectionintoc {4}{Résultats}{14}{0}{4}
-\beamer@sectionintoc {5}{Bilan}{15}{0}{5}

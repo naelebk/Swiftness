@@ -1,4 +1,0 @@
-/home/nael/Documents/Cours Informatique/PROJET_LICENCE/Swiftness/Sources/Game/CMakeFiles/template.dir
-/home/nael/Documents/Cours Informatique/PROJET_LICENCE/Swiftness/Sources/Game/CMakeFiles/tutorial.dir
-/home/nael/Documents/Cours Informatique/PROJET_LICENCE/Swiftness/Sources/Game/CMakeFiles/edit_cache.dir
-/home/nael/Documents/Cours Informatique/PROJET_LICENCE/Swiftness/Sources/Game/CMakeFiles/rebuild_cache.dir

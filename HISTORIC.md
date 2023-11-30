@@ -50,3 +50,8 @@ voir le fichier pour savoir ce qui est ignoré lors des command git
 # gestion tmx - 28/11/2023
 - en difficulté depuis 2 semaine
 - création de la branche tmx pour modifié en profondeur les classes liée au tmx
+
+# amélioration du saut - 29/11/2023
+- ajout d'un double saut
+- ajout du wall-jump (pas encore terminé)
+
