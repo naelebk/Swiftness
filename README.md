@@ -15,3 +15,5 @@ on a terminal in game/build folder :
 - make
 - ./game
 
+# drive for more information
+[ ... ]
