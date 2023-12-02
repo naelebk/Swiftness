@@ -5,7 +5,7 @@
 #include "staticPlateforme.h"
 #include <map>
 
-namespace hg {
+namespace swiftness {
 
 class Level {
 public:
@@ -13,6 +13,6 @@ public:
     static std::map<int, StaticPlateform> initializeLevel1();
 };
 
-} // namespace hg
+} // namespace swiftness
 
 #endif // LEVEL0_H

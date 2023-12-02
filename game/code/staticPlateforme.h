@@ -6,7 +6,7 @@
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
 
-namespace hg
+namespace swiftness
 {
     class StaticPlateform
     {

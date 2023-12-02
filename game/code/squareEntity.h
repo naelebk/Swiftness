@@ -10,7 +10,7 @@
 #include "Input.cc"
 #include <vector>
 
-namespace hg
+namespace swiftness
 {
     class Square
     {

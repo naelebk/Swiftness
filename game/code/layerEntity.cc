@@ -2,7 +2,7 @@
 #include "constants.h"
 #include "tilesEnumData.h"
 
-namespace hg
+namespace swiftness
 {
 
         void LayerEntity::LayersMaker::visitTileLayer(const gf::TmxLayers &map, const gf::TmxTileLayer &layer) override
@@ -54,39 +54,39 @@ namespace hg
                 */
                 if (name == "IO")
                 {
-                        id = static_cast<int>(hg::LayerName::IO);
+                        id = static_cast<int>(swiftness::LayerName::IO);
                 }
                 else if (name == "Button")
                 {
-                        id = static_cast<int>(hg::LayerName::Button);
+                        id = static_cast<int>(swiftness::LayerName::Button);
                 }
                 else if (name == "Power")
                 {
-                        id = static_cast<int>(hg::LayerName::Power);
+                        id = static_cast<int>(swiftness::LayerName::Power);
                 }
                 else if (name == "Decoration")
                 {
-                        id = static_cast<int>(hg::LayerName::Decoration);
+                        id = static_cast<int>(swiftness::LayerName::Decoration);
                 }
                 else if (name == "Filling")
                 {
-                        id = static_cast<int>(hg::LayerName::Filling);
+                        id = static_cast<int>(swiftness::LayerName::Filling);
                 }
                 else if (name == "CollisionWallWalk")
                 {
-                        id = static_cast<int>(hg::LayerName::CollisionWallWalk);
+                        id = static_cast<int>(swiftness::LayerName::CollisionWallWalk);
                 }
                 else if (name == "Collision_bloc")
                 {
-                        id = static_cast<int>(hg::LayerName::Collision_bloc);
+                        id = static_cast<int>(swiftness::LayerName::Collision_bloc);
                 }
                 else if (name == "Collision_h")
                 {
-                        id = static_cast<int>(hg::LayerName::Collision_h);
+                        id = static_cast<int>(swiftness::LayerName::Collision_h);
                 }
                 else if (name == "Collision_v")
                 {
-                        id = static_cast<int>(hg::LayerName::Collision_v);
+                        id = static_cast<int>(swiftness::LayerName::Collision_v);
                 }
                 else
                 {
@@ -100,4 +100,4 @@ namespace hg
         {       
         }
 
-} // namespace hg
+} // namespace swiftness

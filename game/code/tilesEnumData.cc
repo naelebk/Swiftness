@@ -1,5 +1,5 @@
 #include "tilesEnumData.h"
 
-namespace hg
+namespace swiftness
 {
 }

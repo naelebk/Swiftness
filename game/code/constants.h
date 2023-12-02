@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace hg
+namespace swiftness
 {
     constexpr float GRAVITY = 100.0f;
     constexpr float SPEED = 200.0f;
@@ -15,6 +15,6 @@ namespace hg
 
     const std::string LEVELS_TMX_PATH = "../../ressources/tiles/levels/";
 
-} // namespace hg
+} // namespace swiftness
 
 #endif // CONSTANTS_H

@@ -12,7 +12,7 @@
 #include <iostream>
 
 
-namespace hg
+namespace swiftness
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
         : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), nb_jumps(0)
@@ -353,4 +353,4 @@ namespace hg
         }
     }
 
-} // namespace hg
+} // namespace swiftness

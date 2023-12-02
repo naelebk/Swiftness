@@ -1,6 +1,6 @@
 #include "staticPlateforme.h"
 
-namespace hg
+namespace swiftness
 {
 
     StaticPlateform::StaticPlateform(gf::Vector2f position, float height, float length, gf::Color4f color)
@@ -44,4 +44,4 @@ namespace hg
         m_length = self;
     }
 
-} // namespace hg
+} // namespace swiftness

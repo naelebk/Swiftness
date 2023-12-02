@@ -22,7 +22,7 @@
 /**
  * This class is used to load the layers of a tmx file
  */
-namespace hg
+namespace swiftness
 {
     class LayerEntity
     {
@@ -76,6 +76,6 @@ namespace hg
         gf::Vector2i m_entrance;
         gf::Vector2i m_exit;
     };
-}; // namespace hg
+}; // namespace swiftness
 
 #endif // LAYER_ENTITY_H

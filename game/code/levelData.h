@@ -27,7 +27,7 @@
  * this class is used to organise information about a level
  */
 
-namespace hg
+namespace swiftness
 {
 
     class LevelData

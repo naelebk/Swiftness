@@ -1,7 +1,7 @@
 #ifndef TILES_ENUM_DATA_H
 #define TILES_ENUM_DATA_H
 
-namespace hg {
+namespace swiftness {
 
     enum class PlateformType
         {

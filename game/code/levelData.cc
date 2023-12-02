@@ -1,6 +1,6 @@
 #include "levelData.h"
 
-namespace hg
+namespace swiftness
 {
 
     LevelData::LevelData(std::string nameFile)

@@ -1,5 +1,5 @@
 #include "constants.h"
 
-namespace hg
+namespace swiftness
 {
 }
