@@ -3,12 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "levels/level01.tmx",
+    "activeFile": "levels/level00.tmx",
     "expandedProjectPaths": [
         "level",
-        "tileset",
         "levels",
-        "."
+        ".",
+        "tileset"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -56,18 +56,18 @@
         },
         "levels/level00.tmx": {
             "scale": 1.9197916666666668,
-            "selectedLayer": 4,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 266.9560499186109,
-                "y": 159.39229517091698
+                "x": 132.56646771568097,
+                "y": 203.1470428648942
             }
         },
         "levels/level01.tmx": {
             "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 303.5,
-                "y": 327
+                "x": 264.5,
+                "y": 400
             }
         },
         "niveau_1.tmx": {
@@ -114,13 +114,13 @@
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
-        "levels/level00.tmx",
-        "tileset/font.tsx",
         "levels/level01.tmx",
+        "tileset/font.tsx",
+        "levels/level00.tmx",
+        "tileset/hero.tsx",
         "/home/juliengauthier410/game/ggj2022-main/data/hag/level00.tmx",
         "level/level_1.tmx",
         "tileset/TILESET_FUTURISTIC_CITY.tsx",
-        "tileset/hero.tsx",
         "level/font.tsx",
         "niveau_1.tmx",
         "font.tsx",
