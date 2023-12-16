@@ -27,9 +27,9 @@
 >
 > On a terminal in game/build folder :
 >
->- cmake ..
->- make
->- ./game
+>> **\>** cmake ..
+>> **\>** make
+>> **\>** ./game
 >
 
 ## drive for more information
