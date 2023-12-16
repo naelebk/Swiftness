@@ -18,7 +18,9 @@
 
 >
 > Swiftness is a plateform game made in C++
+>
 > In this game, you can slow down the time to make some cool action like run on walls
+>
 > ***TODO***
 >
 
@@ -27,9 +29,13 @@
 >
 > On a terminal in game/build folder :
 >
+>>
 >> **\>** cmake ..
+>>
 >> **\>** make
+>>
 >> **\>** ./game
+>>
 >
 
 ## drive for more information
