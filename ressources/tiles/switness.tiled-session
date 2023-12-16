@@ -56,18 +56,18 @@
         },
         "levels/level00.tmx": {
             "scale": 1.9197916666666668,
-            "selectedLayer": 2,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 226.32664134563214,
-                "y": 160.43407487791643
+                "x": 266.9560499186109,
+                "y": 159.39229517091698
             }
         },
         "levels/level01.tmx": {
             "scale": 1,
-            "selectedLayer": 0,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 289.5,
-                "y": 380
+                "x": 303.5,
+                "y": 327
             }
         },
         "niveau_1.tmx": {
@@ -83,6 +83,7 @@
             "scaleInEditor": 1
         },
         "tileset/TILESET_FUTURISTIC_CITY.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1.5,
             "scaleInEditor": 1
         },

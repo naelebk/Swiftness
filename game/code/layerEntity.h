@@ -47,34 +47,17 @@ namespace swiftness
          *
          * @return gf::TileLayer the layer
          */
-        gf::TileLayer getLayerByName(std::string name);
+        gf::TmxLayer* getLayerByName(LayerName name);
 
-        /**
-         * @brief Get a layer by its id
-         * 
-         * @return gf::TileLayer the layer
-        */
-        gf::TileLayer getLayerByID(int id);
+        gf::Vector2i getMapSize() { return m_mapSize; }
 
-        /**
-         * @brief Get the entrance of the level
-         *
-         * @return gf::Vector2i the entrance of the level
-         */
-        gf::Vector2i getEntrance();
-
-        /**
-         * @brief Get the exit of the level
-         *
-         * @return gf::Vector2i the exit of the level
-         */
-        gf::Vector2i getExit();
+        gf::Vector2i getTileSize() { return m_tileSize; }
 
     private:
         gf::ResourceManager m_resources;
         gf::TmxLayers m_layers;
-        gf::Vector2i m_entrance;
-        gf::Vector2i m_exit;
+        gf::Vector2i m_mapSize;
+        gf::Vector2i m_tileSize;
     };
 }; // namespace swiftness
 

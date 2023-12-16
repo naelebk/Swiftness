@@ -5,7 +5,7 @@
 namespace swiftness
 {
 
-        void LayerEntity::LayersMaker::visitTileLayer(const gf::TmxLayers &map, const gf::TmxTileLayer &layer) override
+        void LayerEntity::LayersMaker::visitTileLayer(const gf::TmxLayers &map, const gf::TmxTileLayer &layer)
         {
                 if (!layer.visible)
                 {
@@ -15,12 +15,13 @@ namespace swiftness
                 std::cout << "Parsing layer '" << layer.name << "'\n";
         }
 
-        LayerEntity::LayerEntity(std::string nameFile) : m_layers(loadLayers(nameFile)), m_entrance(0, 0), m_exit(0, 0)
+        LayerEntity::LayerEntity(std::string nameFile)
         {
-
-                m_layers.visitLayers(LayersMaker());
-                m_entrance = m_layers.getLayerByName("IO").getTilePosition(1, 0);
-                m_exit = m_layers.getLayerByName("IO").getTilePosition(2, 0);
+                m_layers = loadLayers(nameFile);
+                m_resources.addSearchDir(LEVELS_TMX_PATH);
+                m_resources.getTexture("TILESET_FUTURISTIC_CITY.png");
+                m_mapSize = m_layers.mapSize;
+                m_tileSize = m_layers.tileSize;
         }
 
         gf::TmxLayers LayerEntity::loadLayers(std::string nameFile)
@@ -38,66 +39,21 @@ namespace swiftness
                 return layers;
         }
 
-        gf::TileLayer LayerEntity::getLayerByName(std::string name)
+        gf::TmxLayer* LayerEntity::getLayerByName(LayerName layerName)
         {
-                int id = 0;
-                /*
-                Collision_v = 20,
-                Collision_h = 1,
-                Collision_bloc = 25,
-                CollisionWallWalk = 17,
-                Filling = 16,
-                Decoration = 3,
-                Power = 18,
-                Button = 19,
-                IO = 26
-                */
-                if (name == "IO")
-                {
-                        id = static_cast<int>(swiftness::LayerName::IO);
-                }
-                else if (name == "Button")
-                {
-                        id = static_cast<int>(swiftness::LayerName::Button);
-                }
-                else if (name == "Power")
-                {
-                        id = static_cast<int>(swiftness::LayerName::Power);
-                }
-                else if (name == "Decoration")
-                {
-                        id = static_cast<int>(swiftness::LayerName::Decoration);
-                }
-                else if (name == "Filling")
-                {
-                        id = static_cast<int>(swiftness::LayerName::Filling);
-                }
-                else if (name == "CollisionWallWalk")
-                {
-                        id = static_cast<int>(swiftness::LayerName::CollisionWallWalk);
-                }
-                else if (name == "Collision_bloc")
-                {
-                        id = static_cast<int>(swiftness::LayerName::Collision_bloc);
-                }
-                else if (name == "Collision_h")
-                {
-                        id = static_cast<int>(swiftness::LayerName::Collision_h);
-                }
-                else if (name == "Collision_v")
-                {
-                        id = static_cast<int>(swiftness::LayerName::Collision_v);
-                }
-                else
-                {
-                        gf::Log::error("Failed to get layer: %s\n", name.c_str());
-                }
+                std::string name = getLayerName(layerName);
+                if (name == "Error") return nullptr;
 
-                return getLayerByID(id);
-        }
-
-        gf::TileLayer LayerEntity::getLayerByID(int id)
-        {       
+                gf::TmxLayer* layerIT = nullptr;
+                for (auto &layer : m_layers.layers)
+                {
+                        layerIT = layer.get();
+                        if (layer->name == name)
+                        {
+                                return layerIT;
+                        }
+                }
+                return layerIT;
         }
 
 } // namespace swiftness

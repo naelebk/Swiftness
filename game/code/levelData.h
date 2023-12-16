@@ -40,40 +40,31 @@ namespace swiftness
          *
          * @return gf::TmxLayers the layers of the tmx file
          */
-        gf::TmxLayers getLayers();
+        LayerEntity& getLayersEntity() { return m_layerEntity; };
 
         /**
          * @brief Get the entrance of the level
          *
          * @return gf::Vector2i the entrance of the level
          */
-        gf::Vector2i getEntrance();
+        gf::Vector2i getEntrance() { return m_entrance; };
 
         /**
          * @brief Get the exit of the level
          *
          * @return gf::Vector2i the exit of the level
          */
-        gf::Vector2i getExit();
+        gf::Vector2i getExit() { return m_exit; };
 
         /**
          * @brief Get the name of the tmx file
          *
          * @return std::string the name of the tmx file
          */
-        std::string getNameFile();
-
-        /**
-         * @brief Get the layer by its name
-         * 
-         * @param name the name of the layer
-         * 
-         * @return gf::TileLayer the layer
-         */
-        gf::TileLayer getLayerByName(std::string name);
+        std::string getName() { return m_name; };
 
     private:
-        std::string m_nameFile;    // name of the tmx file and the level
+        std::string m_name;        // name of the tmx file and the level
         LayerEntity m_layerEntity; // entity of the layer
         gf::Vector2i m_entrance;   // entrance of the level
         gf::Vector2i m_exit;       // exit of the level

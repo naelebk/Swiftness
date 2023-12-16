@@ -2,7 +2,7 @@
 
 namespace swiftness
 {
-
+    
     std::map<int, StaticPlateform> Level::initializeLevel0()
     {
 
@@ -60,5 +60,6 @@ namespace swiftness
 
         return plateform;
     }
+    
 
 } // namespace swiftness
