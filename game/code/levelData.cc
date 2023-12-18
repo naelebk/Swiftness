@@ -16,6 +16,7 @@ namespace swiftness
             int stop = 0;
             for (int x = 0; x < mapSize.width; x++) {
                 for (int y = 0; y < mapSize.height; y++) {
+                    // 
                     gf::TmxCell& cell = tileLayer->cells[x + y * mapSize.width];
                     if (cell.gid == entrance) {
                         m_entrance = gf::Vector2i(x, y);

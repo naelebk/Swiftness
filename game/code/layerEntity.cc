@@ -19,7 +19,6 @@ namespace swiftness
         {
                 m_layers = loadLayers(nameFile);
                 m_resources.addSearchDir(LEVELS_TMX_PATH);
-                m_resources.getTexture("TILESET_FUTURISTIC_CITY.png");
                 m_mapSize = m_layers.mapSize;
                 m_tileSize = m_layers.tileSize;
         }
@@ -39,15 +38,15 @@ namespace swiftness
                 return layers;
         }
 
-        gf::TmxLayer* LayerEntity::getLayerByName(LayerName layerName)
+        gf::TmxTileLayer *LayerEntity::getLayerByName(LayerName layerName)
         {
                 std::string name = getLayerName(layerName);
-                if (name == "Error") return nullptr;
+                if (name == "Error")
+                        return nullptr;
 
-                gf::TmxLayer* layerIT = nullptr;
+                gf::TmxTileLayer *layerIT = nullptr;
                 for (auto &layer : m_layers.layers)
                 {
-                        layerIT = layer.get();
                         if (layer->name == name)
                         {
                                 return layerIT;

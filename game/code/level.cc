@@ -60,6 +60,33 @@ namespace swiftness
 
         return plateform;
     }
+
+    std::map<int, StaticPlateform> Level::initializeLevel2(std::string nameFile)
+    {
+
+        std::map<int, swiftness::StaticPlateform> plateform;
+
+        swiftness::LevelEntity levelEntity(nameFile);
+
+        // ajout des plateformes verticales
+        plateform = levelEntity.generateVerticalPlateform();
+
+        // ajoute des plateformes horizontales
+        std::map<int, swiftness::StaticPlateform> plateform_h = levelEntity.generateHorizontalPlateform();
+
+        plateform.insert(plateform_h.begin(), plateform_h.end());
+
+        return plateform;
+    }
+
+    swiftness::Square Level::initializeSquare(std::string nameFile)
+    {
+        swiftness::LevelEntity levelEntity(nameFile);
+        swiftness::Square square = levelEntity.getSquareEntity();
+        return square;
+    }
+        
+        
     
 
 } // namespace swiftness

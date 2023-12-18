@@ -63,6 +63,20 @@ namespace swiftness
          */
         std::string getName() { return m_name; };
 
+        /**
+         * @brief get the size of the map
+         * 
+         * @return gf::Vector2i the size of the map
+        */
+        gf::Vector2i getMapSize() { return m_layerEntity.getMapSize(); }
+
+        /**
+         * @brief get the size of the tiles
+         * 
+         * @return gf::Vector2i the size of the tiles
+        */
+        gf::Vector2i getTileSize() { return m_layerEntity.getTileSize(); }
+
     private:
         std::string m_name;        // name of the tmx file and the level
         LayerEntity m_layerEntity; // entity of the layer

@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <iostream>
 
+#include "tilesEnumData.h"
+
 #include <gf/Event.h>
 #include <gf/Log.h>
 #include <gf/Math.h>
@@ -18,6 +20,8 @@
 #include <gf/Views.h>
 #include <gf/ViewContainer.h>
 #include <gf/Window.h>
+#include <gf/Matrix.h>
+
 
 /**
  * This class is used to load the layers of a tmx file
@@ -47,11 +51,13 @@ namespace swiftness
          *
          * @return gf::TileLayer the layer
          */
-        gf::TmxLayer* getLayerByName(LayerName name);
+        gf::TmxTileLayer* getLayerByName(LayerName name);
 
-        gf::Vector2i getMapSize() { return m_mapSize; }
+        gf::Vector2i getMapSize() { return m_mapSize; };
 
-        gf::Vector2i getTileSize() { return m_tileSize; }
+        gf::Vector2i getTileSize() { return m_tileSize; };
+
+        std::vector<gf::TmxCell> getCellsOfaLayer(LayerName name) {return getLayerByName(name)->cells; };
 
     private:
         gf::ResourceManager m_resources;

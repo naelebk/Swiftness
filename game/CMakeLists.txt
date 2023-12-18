@@ -10,7 +10,12 @@ add_executable(game
   ./code/main.cc
   ./code/level.cc
   ./code/squareEntity.cc
-  ./code/staticPlateforme.cc)
+  ./code/staticPlateforme.cc
+  ./code/layerEntity.cc
+  ./code/levelData.cc
+  ./code/levelEntity.cc
+  ./code/constants.cc
+  ./code/tilesEnumData.cc)
 
 target_include_directories(game
 PRIVATE

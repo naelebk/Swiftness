@@ -34,10 +34,10 @@ int main()
     std::vector<Input> enumVector;
 
     // create a square (ps : camera on 100.0f ; 100.0f to center the camera on the square)
-    swiftness::Square square({100.0f, 100.0f}, 20.0f, gf::Color::Red, GRAVITY);
+    swiftness::Square square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
 
     // initialisation of the level
-    std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel1();
+    std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel2("level00.tmx");
     
 
 
