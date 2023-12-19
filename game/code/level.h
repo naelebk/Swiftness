@@ -14,6 +14,7 @@ public:
     static std::map<int, StaticPlateform> initializeLevel0();
     static std::map<int, StaticPlateform> initializeLevel1();
     static std::map<int, StaticPlateform> initializeLevel2(std::string nameFile);
+    static std::map<int, StaticPlateform> initializeLevel3();
 };
 
 } // namespace swiftness

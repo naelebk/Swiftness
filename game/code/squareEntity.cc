@@ -325,6 +325,9 @@ namespace swiftness
             else if(color==gf::Color::Cyan){
                 m_gravity=-1;
             }
+            else if(color==gf::Color::Rose){
+                m_gravity=1;
+            }
             else{
                 float overlapLeft = squareRight - plateformLeft;
                 float overlapRight = plateformRight - squareLeft;
