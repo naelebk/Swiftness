@@ -16,7 +16,7 @@ if [[ -z "$1" || "$1" =~ ^[[:space:]]+$ ]]; then
 	echo -e "${RED}Le message de commit ne doit pas être vide.${NC}${YELLOW} Synopsis : $0 \"MESSAGE DE COMMIT\" BRANCHE${NC}"
 	exit 2
 fi
-cd game
+cd game/
 make clean
 cd ..
 git add *
