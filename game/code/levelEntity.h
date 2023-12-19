@@ -42,14 +42,14 @@ namespace swiftness
          *
          * @return std::map<int, StaticPlateform> the vertical plateform
          */
-        std::map<int, StaticPlateform> generateVerticalPlateform();
+        std::map<int, StaticPlateform> generateVerticalPlateform(int index);
 
         /**
          * @brief generate the horizontal plateform
          *
          * @return std::map<int, StaticPlateform> the horizontal plateform
          */
-        std::map<int, StaticPlateform> generateHorizontalPlateform();
+        std::map<int, StaticPlateform> generateHorizontalPlateform(int index);
 
     private:
         std::string m_name;

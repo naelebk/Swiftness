@@ -73,11 +73,11 @@ namespace swiftness
         swiftness::LevelEntity levelEntity(nameFile);
 
         // ajout des plateformes verticales
-        plateform = levelEntity.generateVerticalPlateform();
+        plateform = levelEntity.generateVerticalPlateform(0);
         std::cout << "Vertical plateform generated" << std::endl;
 
         // ajoute des plateformes horizontales
-        std::map<int, swiftness::StaticPlateform> plateform_h = levelEntity.generateHorizontalPlateform();
+        std::map<int, swiftness::StaticPlateform> plateform_h = levelEntity.generateHorizontalPlateform(plateform.size());
         std::cout << "Horizontal plateform generated" << std::endl;
 
         plateform.insert(plateform_h.begin(), plateform_h.end());

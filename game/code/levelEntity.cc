@@ -10,7 +10,7 @@ namespace swiftness {
         std::cout << "LevelEntity created for file: " << nameFile << std::endl;
     }
 
-    std::map<int, StaticPlateform> LevelEntity::generateVerticalPlateform() {
+    std::map<int, StaticPlateform> LevelEntity::generateVerticalPlateform(int index) {
         std::map<int, StaticPlateform> verticalPlateforms;
         gf::TmxTileLayer* layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Collision_v);
         std::cout << ":)layer" << std::endl;
@@ -22,6 +22,7 @@ namespace swiftness {
         std::cout << ":)" << std::endl;
 
         if (layer) {
+            int platformIndex = index; // Ajout de la variable d'indice
             for (int x = 0; x < mapSize.width; x++) {
                 int y = 0;
                 while (y < mapSize.height) {
@@ -37,8 +38,9 @@ namespace swiftness {
                             height += tileSize.height;
                         }
 
-                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Red);
-                        verticalPlateforms.insert(std::pair<int, StaticPlateform>(cell.gid, plateform));
+                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
+                        verticalPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform)); // Utilisation de platformIndex comme clé
+                        platformIndex++; // Incrémentation de l'indice
                     }
                     y++;
                 }
@@ -47,7 +49,7 @@ namespace swiftness {
         return verticalPlateforms;
     }
 
-    std::map<int, StaticPlateform> LevelEntity::generateHorizontalPlateform() {
+    std::map<int, StaticPlateform> LevelEntity::generateHorizontalPlateform(int index) {
         std::map<int, StaticPlateform> horizontalPlateforms;
         gf::TmxTileLayer* layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Collision_h);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(LayerName::Collision_h);
@@ -55,6 +57,7 @@ namespace swiftness {
         gf::Vector2i tileSize = m_levelData.getTileSize();
 
         if (layer) {
+            int platformIndex = index; // Ajout de la variable d'indice
             for (int y = 0; y < mapSize.height; y++) {
                 int x = 0;
                 while (x < mapSize.width) {
@@ -70,8 +73,9 @@ namespace swiftness {
                             length += tileSize.width;
                         }
 
-                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Red);
-                        horizontalPlateforms.insert(std::pair<int, StaticPlateform>(cell.gid, plateform));
+                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
+                        horizontalPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform)); // Utilisation de platformIndex comme clé
+                        platformIndex++; // Incrémentation de l'indice
                     }
                     x++;
                 }

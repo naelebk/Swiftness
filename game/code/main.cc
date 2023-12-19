@@ -23,7 +23,7 @@ using namespace swiftness;
 int main()
 {
     // initialize the window
-    gf::Window window("Swiftness", {480, 320});
+    gf::Window window("Swiftness", {30*16, 20*16});
     
     // set the window in fullscreen mode
     gf::RenderWindow renderer(window);
@@ -35,12 +35,18 @@ int main()
     std::vector<Input> enumVector;
 
     // create a square (ps : camera on 100.0f ; 100.0f to center the camera on the square)
-    swiftness::Square square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
+    // swiftness::Square square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
+    swiftness::Square square = swiftness::Level::initializeSquare("level00.tmx");
 
     // initialisation of the level
     std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel2("level00.tmx");
 
-    // std::cout << "plateform size : " << plateform.size() << std::endl;
+    std::cout << "plateform size : " << plateform.size() << std::endl;
+    // affiche les coordonnées des plateformes de la map
+    for (auto &plateform : plateform)
+    {
+        std::cout << plateform.first << " : " << plateform.second.getPosition().x << " " << plateform.second.getPosition().y << std::endl;
+    }
     
 
 
