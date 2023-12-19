@@ -85,7 +85,7 @@ namespace swiftness
         return plateform;
     }
 
-    std::map<int, StaticPlateform> Level::initializeLevel2("level00.tmx")
+    std::map<int, StaticPlateform> Level::initializeLevel3()
     {
 
         std::map<int, swiftness::StaticPlateform> plateform;
