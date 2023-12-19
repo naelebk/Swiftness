@@ -1,7 +1,7 @@
 CMakeFiles/game.dir/code/staticPlateforme.cc.o: \
- /home/htheogame/Documents/Swiftness/game/code/staticPlateforme.cc \
+ /mnt/76328C97328C5E4D/Naël\ PERSO/Cours\ Informatique/PROJET_LICENCE/Swiftness/game/code/staticPlateforme.cc \
  /usr/include/stdc-predef.h \
- /home/htheogame/Documents/Swiftness/game/code/staticPlateforme.h \
+ /mnt/76328C97328C5E4D/Naël\ PERSO/Cours\ Informatique/PROJET_LICENCE/Swiftness/game/code/staticPlateforme.h \
  /usr/local/include/gf/Vector.h /usr/include/c++/12/cstddef \
  /usr/include/x86_64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/12/bits/os_defines.h \

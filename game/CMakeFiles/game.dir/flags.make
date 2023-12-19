@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DBOOST_ALL_NO_LIB -D_POSIX_C_SOURCE=200809L
 
-CXX_INCLUDES = -I/home/htheogame/Documents/Swiftness/game
+CXX_INCLUDES = -I"/mnt/76328C97328C5E4D/Naël PERSO/Cours Informatique/PROJET_LICENCE/Swiftness/game"
 
 CXX_FLAGS = 
 
