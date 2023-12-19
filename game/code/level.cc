@@ -56,8 +56,10 @@ namespace swiftness
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(9, plateform_h_6));
         swiftness::StaticPlateform plateform_h_7({725.0f, 77.5f}, 155.0f, 10.0f, gf::Color::Blue);
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(10, plateform_h_7));
-        
-
+        swiftness::StaticPlateform plateform_h_8({500.0f, 77.5f}, 75.0f, 10.0f, gf::Color::Yellow);
+        plateform.insert(std::pair<int, swiftness::StaticPlateform>(11, plateform_h_8));
+        swiftness::StaticPlateform plateform_h_9({710.0f, 385.0f}, 10.0f, 10.0f, gf::Color::Cyan);
+        plateform.insert(std::pair<int, swiftness::StaticPlateform>(12, plateform_h_9));
         return plateform;
     }
 

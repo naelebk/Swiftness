@@ -60,16 +60,17 @@ namespace swiftness
         /**
          * @brief Gère les collisions avec la plateforme
         */
-        void collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength);
+        void collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color);
 
     private:
-        gf::Vector2f m_position; // Centre du carré
+        gf::Vector2f m_position, m_position_start; // Centre du carré
         gf::Vector2f m_velocity;
         float m_size;
         gf::Color4f m_color;
         float gravity;
         bool m_jump;
         int nb_jumps;
+        int m_gravity;
     };
 }
 

@@ -15,7 +15,7 @@
 namespace swiftness
 {
     Square::Square(gf::Vector2i position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), nb_jumps(0)
+        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), nb_jumps(0), m_gravity(1)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -43,16 +43,16 @@ namespace swiftness
             bool walljumpRight=canWallJumpRight(plateforms);
             bool walljumpLeft=canWallJumpLeft(plateforms);
             if(m_jump || (nb_jumps==1 && !walljumpRight && !walljumpLeft)){
-                m_velocity.y = JUMP;
+                m_velocity.y = JUMP*m_gravity;
                 nb_jumps+=1;
             }else{
                 if(walljumpRight){
-                    m_velocity.y=WALL_JUMP_HEIGHT;
+                    m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                     nb_jumps=0;
                     m_velocity.x=-WALL_JUMP_SPEED;
                 }else{
                     if(walljumpLeft){
-                        m_velocity.y=WALL_JUMP_HEIGHT;
+                        m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=0;
                         m_velocity.x=WALL_JUMP_SPEED;
                     }
@@ -96,7 +96,6 @@ namespace swiftness
         std::vector<Input>::iterator S = std::find(inputs.begin(), inputs.end(), Input::S);
         std::vector<Input>::iterator Down = std::find(inputs.begin(), inputs.end(), Input::Down);
         if (S != inputs.end() || Down != inputs.end()) {
-            m_velocity.y += SPEED_SQUARE;
         }
         std::vector<Input>::iterator Q = std::find(inputs.begin(), inputs.end(), Input::Q);
         std::vector<Input>::iterator Left = std::find(inputs.begin(), inputs.end(), Input::Left);
@@ -111,12 +110,12 @@ namespace swiftness
         // Mettez à jour la position du carré
         m_position += dt * m_velocity;
         // Appliquez la gravité
-        setVelocity(m_velocity + gf::Vector2f(0, gravity * dt));
+        setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
 
         // Vérifiez les collisions avec la plateforme
         for (auto &plateform : plateforms)
         {
-            collideWithPlateform(plateform.second.getPosition(), plateform.second.getHeight(), plateform.second.getLength());
+            collideWithPlateform(plateform.second.getPosition(), plateform.second.getHeight(), plateform.second.getLength(),plateform.second.getColor());
         }
 
         
@@ -130,7 +129,7 @@ namespace swiftness
             float plateformLength=plateform.second.getLength();
             float squareLeft = m_position.x - m_size / 2;
             float squareRight = m_position.x + m_size / 2;
-            float squareTop = m_position.y - m_size / 2;
+            float squareTop = m_position.y - m_size / 2 -1;
             float squareBottom = m_position.y + m_size / 2 +1;
 
             // Calculez les limites de la plateforme en utilisant sa position centrale
@@ -153,12 +152,15 @@ namespace swiftness
                 // Trouvez le chevauchement le plus petit
                 float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
 
-                if (minOverlap == overlapTop)
+                if (minOverlap == overlapTop && m_gravity>0)
                 {
                     return true;
                 }
                 
-                
+                if (minOverlap == overlapBottom && m_gravity<0)
+                {
+                    return true;
+                }
 
                 // Optionnellement, arrêtez le mouvement du carré lors de la collision
                 //m_velocity.y += -gravity;
@@ -275,7 +277,7 @@ namespace swiftness
         setVelocity(m_velocity + gf::Vector2f(0, gravity * dt));
 
         // Vérifiez les collisions avec la plateforme
-        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength());
+        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(),plateform.getColor());
         
     }
 
@@ -289,7 +291,7 @@ namespace swiftness
     }
 
     // empeche le carré de traverser une plateforme
-    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength)
+    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color)
     {
         // Supposons que la classe Square ait des membres m_position (position centrale du carré),
         // m_size (longueur d'un côté du carré), et m_velocity (vecteur de mouvement du carré)
@@ -310,40 +312,59 @@ namespace swiftness
         if (squareRight > plateformLeft && squareLeft < plateformRight &&
             squareBottom > plateformTop && squareTop < plateformBottom)
         {
-
+            if(color==gf::Color::Yellow){
+                m_position=m_position_start;
+                m_jump=0;
+                m_velocity=gf::Vector2f(0,0);
+                m_gravity=1;
+                return;
+            }
             // Collision détectée. Maintenant, nous devons ajuster la position du carré.
 
             // Vérifiez de quel côté le carré entre en collision
-            float overlapLeft = squareRight - plateformLeft;
-            float overlapRight = plateformRight - squareLeft;
-            float overlapTop = squareBottom - plateformTop;
-            float overlapBottom = plateformBottom - squareTop;
-
-            // Trouvez le chevauchement le plus petit
-            float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
-
-            // Ajustez la position du carré en fonction du plus petit chevauchement
-            if (minOverlap == overlapLeft)
-            {
-                m_position.x -= overlapLeft;
+            else if(color==gf::Color::Cyan){
+                m_gravity=-1;
             }
-            else if (minOverlap == overlapRight)
-            {
-                m_position.x += overlapRight;
-            }
-            else if (minOverlap == overlapTop)
-            {
-                m_velocity.y=0;
-                m_position.y -= overlapTop;
-                nb_jumps=0;
-                if(m_velocity.x==WALL_JUMP_SPEED || m_velocity.x==-WALL_JUMP_SPEED){
-                    m_velocity.x=0;
+            else{
+                float overlapLeft = squareRight - plateformLeft;
+                float overlapRight = plateformRight - squareLeft;
+                float overlapTop = squareBottom - plateformTop;
+                float overlapBottom = plateformBottom - squareTop;
+
+                // Trouvez le chevauchement le plus petit
+                float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
+
+                // Ajustez la position du carré en fonction du plus petit chevauchement
+                if (minOverlap == overlapLeft)
+                {
+                    m_position.x -= overlapLeft;
                 }
-            }
-            else if (minOverlap == overlapBottom)
-            {
-                m_velocity.y=0;
-                m_position.y += overlapBottom;
+                else if (minOverlap == overlapRight)
+                {
+                    m_position.x += overlapRight;
+                }
+                else if (minOverlap == overlapTop)
+                {
+                    m_velocity.y=0;
+                    m_position.y -= overlapTop;
+                    if (m_gravity>0){
+                        nb_jumps=0;
+                        if(m_velocity.x==WALL_JUMP_SPEED || m_velocity.x==-WALL_JUMP_SPEED){
+                            m_velocity.x=0;
+                        }
+                    }
+                }
+                else if (minOverlap == overlapBottom)
+                {
+                    m_velocity.y=0;
+                    m_position.y += overlapBottom;
+                    if (m_gravity<0){
+                        nb_jumps=0;
+                        if(m_velocity.x==WALL_JUMP_SPEED || m_velocity.x==-WALL_JUMP_SPEED){
+                            m_velocity.x=0;
+                        }
+                    }
+                }
             }
             
             

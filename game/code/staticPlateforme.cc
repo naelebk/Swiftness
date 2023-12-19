@@ -32,6 +32,11 @@ namespace swiftness
         return m_length;
     }
 
+    gf::Color4f StaticPlateform::getColor() const
+    {
+        return m_color;
+    }
+
     void StaticPlateform::setPosition (gf::Vector2f self) {
         m_position = self;
     }
