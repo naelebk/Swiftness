@@ -10,6 +10,7 @@
 # Fichiers de build et de compilation
 game/build/*
 !game/build/.gitkeep
+game/CMakeCache.txt
 # Fichiers de configuration de Visual Studio Code
 .vscode/
 *.code-workspace
