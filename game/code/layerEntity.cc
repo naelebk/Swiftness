@@ -41,17 +41,20 @@ namespace swiftness
         gf::TmxTileLayer *LayerEntity::getLayerByName(LayerName layerName)
         {
                 std::string name = getLayerName(layerName);
+                std::cout << "cells1" << std::endl;
                 if (name == "Error")
                         return nullptr;
-
+                std::cout << "cells2" << std::endl;
                 gf::TmxTileLayer *layerIT = nullptr;
                 for (auto &layer : m_layers.layers)
                 {
                         if (layer->name == name)
-                        {
+                        {       
+                                std::cout << "cells3" << std::endl;
                                 return layerIT;
                         }
                 }
+                std::cout << ":(cells" << std::endl;
                 return layerIT;
         }
 

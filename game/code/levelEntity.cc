@@ -13,9 +13,13 @@ namespace swiftness {
     std::map<int, StaticPlateform> LevelEntity::generateVerticalPlateform() {
         std::map<int, StaticPlateform> verticalPlateforms;
         gf::TmxTileLayer* layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Collision_v);
+        std::cout << ":)layer" << std::endl;
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(LayerName::Collision_v);
+        std::cout << ":)cells" << std::endl;
         gf::Vector2i mapSize = m_levelData.getMapSize();
+        std::cout << ":)mapSize" << std::endl;
         gf::Vector2i tileSize = m_levelData.getTileSize();
+        std::cout << ":)" << std::endl;
 
         if (layer) {
             for (int x = 0; x < mapSize.width; x++) {

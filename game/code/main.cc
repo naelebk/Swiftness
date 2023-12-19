@@ -37,7 +37,7 @@ int main()
     swiftness::Square square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
 
     // initialisation of the level
-    std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel2("level00.tmx");
+    std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel1();
     
 
 

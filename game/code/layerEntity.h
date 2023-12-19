@@ -57,7 +57,7 @@ namespace swiftness
 
         gf::Vector2i getTileSize() { return m_tileSize; };
 
-        std::vector<gf::TmxCell> getCellsOfaLayer(LayerName name) {return getLayerByName(name)->cells; };
+        std::vector<gf::TmxCell> getCellsOfaLayer(LayerName name) {auto t=getLayerByName(name); return t->cells; };
 
     private:
         gf::ResourceManager m_resources;
