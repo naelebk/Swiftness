@@ -16,6 +16,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
+#include <stdio.h>
 
 using namespace swiftness;
 
@@ -38,6 +39,8 @@ int main()
 
     // initialisation of the level
     std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel2("level00.tmx");
+
+    // std::cout << "plateform size : " << plateform.size() << std::endl;
     
 
 
