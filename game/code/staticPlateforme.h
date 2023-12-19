@@ -21,6 +21,8 @@ namespace swiftness
 
         float getLength() const;
 
+        gf::Color4f getColor() const;
+
         void setPosition (gf::Vector2f self);
 
         void setHeight(float self);
