@@ -13,13 +13,15 @@ namespace swiftness {
     std::map<int, StaticPlateform> LevelEntity::generateVerticalPlateform(int index) {
         std::map<int, StaticPlateform> verticalPlateforms;
         gf::TmxTileLayer* layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Collision_v);
-        std::cout << ":)layer" << std::endl;
+        std::cout << "layer: " << layer << std::endl;
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(LayerName::Collision_v);
-        std::cout << ":)cells" << std::endl;
-        gf::Vector2i mapSize = m_levelData.getMapSize();
-        std::cout << ":)mapSize" << std::endl;
-        gf::Vector2i tileSize = m_levelData.getTileSize();
-        std::cout << ":)" << std::endl;
+        std::cout << "cells: " << cells.size() << std::endl;
+        gf::Vector2f mapSize = m_levelData.getMapSize();
+        std::cout << "mapSize: " << mapSize.x << " , " << mapSize.y << std::endl;
+        gf::Vector2f tileSize = m_levelData.getTileSize();
+        std::cout << "tileSize: " << tileSize.x << " , " << tileSize.y << std::endl;
+        gf::Vector2f mapCenter = m_levelData.getMapCenter();
+        std::cout << "mapCenter: " << mapCenter.x << " , " << mapCenter.y << std::endl; 
 
         if (layer) {
             int platformIndex = index; // Ajout de la variable d'indice
@@ -53,8 +55,8 @@ namespace swiftness {
         std::map<int, StaticPlateform> horizontalPlateforms;
         gf::TmxTileLayer* layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Collision_h);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(LayerName::Collision_h);
-        gf::Vector2i mapSize = m_levelData.getMapSize();
-        gf::Vector2i tileSize = m_levelData.getTileSize();
+        gf::Vector2f mapSize = m_levelData.getMapSize();
+        gf::Vector2f tileSize = m_levelData.getTileSize();
 
         if (layer) {
             int platformIndex = index; // Ajout de la variable d'indice

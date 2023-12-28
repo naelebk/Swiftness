@@ -15,12 +15,14 @@ namespace swiftness
     class Square
     {
     public:
-        Square(gf::Vector2i position, float size, gf::Color4f color, float gravity);
+        Square(gf::Vector2f position, float size, gf::Color4f color, float gravity);
 
         /**
          * @brief Récupère la position du carré
         */
         gf::Vector2f getPosition() const;
+
+        float getSize() const { return m_size; };
 
         /**
          * @brief Définit la vitesse du carré

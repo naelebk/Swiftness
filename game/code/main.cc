@@ -23,7 +23,7 @@ using namespace swiftness;
 int main()
 {
     // initialize the window
-    gf::Window window("Swiftness", {30*16, 20*16});
+    gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
     
     // set the window in fullscreen mode
     gf::RenderWindow renderer(window);
@@ -176,13 +176,8 @@ int main()
         // Si on a pressé une de ces deux touches, on ferme la fenêtre de jeux
         if (it1 != enumVector.end() || it2 != enumVector.end()) window.close();
         float dt = clock.restart().asSeconds();
-        // square.setVelocity(velocity);
-        // square.update(dt, plateformUp);
-        // square.update(dt, plateformDown);
-        // square.update(dt, plateformLeft);
-        // square.update(dt, plateformRight);
         square.updateWithMap(dt, plateform, enumVector);
-        gf::ExtendView camera(square.getPosition(), {480.0f, 320.0f});
+        gf::ExtendView camera(square.getPosition(), {SCREEN_WIDTH, SCREEN_HEIGHT});
         enumVector.clear();
         if (isresize) {
             isresize = false;

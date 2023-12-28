@@ -47,14 +47,19 @@ namespace swiftness
          *
          * @return gf::Vector2i the entrance of the level
          */
-        gf::Vector2i getEntrance() { return m_entrance; };
+        gf::Vector2f getEntrance() { return m_entrance; };
 
         /**
          * @brief Get the exit of the level
          *
          * @return gf::Vector2i the exit of the level
          */
-        gf::Vector2i getExit() { return m_exit; };
+        gf::Vector2f getExit() { return m_exit; };
+
+        /**
+         * @brief
+        */
+       gf::Vector2f getMapCenter() { return gf::Vector2f(m_mapCenter); };
 
         /**
          * @brief Get the name of the tmx file
@@ -68,20 +73,21 @@ namespace swiftness
          * 
          * @return gf::Vector2i the size of the map
         */
-        gf::Vector2i getMapSize() { return m_layerEntity.getMapSize(); }
+        gf::Vector2f getMapSize() { return m_layerEntity.getMapSize(); }
 
         /**
          * @brief get the size of the tiles
          * 
          * @return gf::Vector2i the size of the tiles
         */
-        gf::Vector2i getTileSize() { return m_layerEntity.getTileSize(); }
+        gf::Vector2f getTileSize() { return m_layerEntity.getTileSize(); }
 
     private:
         std::string m_name;        // name of the tmx file and the level
         LayerEntity m_layerEntity; // entity of the layer
-        gf::Vector2i m_entrance;   // entrance of the level
-        gf::Vector2i m_exit;       // exit of the level
+        gf::Vector2f m_mapCenter;  // center of the map
+        gf::Vector2f m_entrance;   // entrance of the level
+        gf::Vector2f m_exit;       // exit of the level
     };
 }
 
