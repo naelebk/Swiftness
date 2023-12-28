@@ -58,16 +58,16 @@
             "scale": 1.9197916666666668,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 201.8448182311449,
-                "y": 190.124796527401
+                "x": 201.8448182311448,
+                "y": 190.12479652740097
             }
         },
         "levels/level01.tmx": {
             "scale": 1,
-            "selectedLayer": 6,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 469.5,
-                "y": 332
+                "x": 468.5,
+                "y": 330
             }
         },
         "niveau_1.tmx": {
@@ -114,8 +114,8 @@
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
-        "levels/level01.tmx",
         "tileset/font.tsx",
+        "levels/level01.tmx",
         "levels/level00.tmx",
         "tileset/hero.tsx",
         "/home/juliengauthier410/game/ggj2022-main/data/hag/level00.tmx",

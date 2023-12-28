@@ -1,7 +1,6 @@
 #include "levelData.h"
 
-namespace swiftness
-{
+namespace swiftness {
 
     LevelData::LevelData(std::string nameFile)
         : m_layerEntity(nameFile), m_name(nameFile)
@@ -20,22 +19,23 @@ namespace swiftness
             int stop = 0;
             for (int x = 0; x < mapSize.width; x++) {
                 for (int y = 0; y < mapSize.height; y++) {
-                    // 
                     gf::TmxCell& cell = tileLayer->cells[x + y * mapSize.width];
-                    if (cell.gid == entrance) {
-                        m_entrance = gf::Vector2f(x, y);
-                        stop++;
+                    if (cell.gid == entrance || cell.gid == exit) {
+                        gf::Vector2f position = gf::Vector2f(x * tileSize.width + tileSize.width / 2, y * tileSize.height + tileSize.height / 2);
+                        if (cell.gid == entrance) {
+                            m_entrance = position;
+                            stop++;
+                        } else if (cell.gid == exit) {
+                            m_exit = position;
+                            stop++;
+                        }
                         if (stop == 2) {
                             break;
                         }
                     }
-                    if (cell.gid == exit) {
-                        m_exit = gf::Vector2f(x, y);
-                        stop++;
-                        if (stop == 2) {
-                            break;
-                        }
-                    }
+                }
+                if (stop == 2) {
+                    break;
                 }
             }
         }

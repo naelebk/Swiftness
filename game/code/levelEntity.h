@@ -51,6 +51,15 @@ namespace swiftness
          */
         std::map<int, StaticPlateform> generateHorizontalPlateform(int index);
 
+        /**
+         * @brief generate the bloc plateform
+         * 
+         * @param index 
+         * 
+         * @return std::map<int, StaticPlateform> the bloc plateform
+         */
+        std::map<int, StaticPlateform> generateBlocPlateforms(int index);
+
     private:
         std::string m_name;
         LevelData m_levelData;

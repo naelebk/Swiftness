@@ -36,10 +36,13 @@ int main()
 
     // create a square (ps : camera on 100.0f ; 100.0f to center the camera on the square)
     // swiftness::Square square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
-    swiftness::Square square = swiftness::Level::initializeSquare("level00.tmx");
+
+    swiftness::Level::level level01 = Level::initializeLevel("level01.tmx", true);
+
+    swiftness::Square square = level01.square;
 
     // initialisation of the level
-    std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel2("level00.tmx");
+    std::map<int, swiftness::StaticPlateform> plateform = level01.plateform;
 
     std::cout << "plateform size : " << plateform.size() << std::endl;
     // affiche les coordonnées des plateformes de la map

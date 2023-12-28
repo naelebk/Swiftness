@@ -15,6 +15,19 @@ namespace swiftness
     class Square
     {
     public:
+        /**
+         * default constructor
+        */
+        Square() = default;
+        
+        /**
+         * @brief Construct a new Square object
+         *
+         * @param position
+         * @param size
+         * @param color
+         * @param gravity
+         */
         Square(gf::Vector2f position, float size, gf::Color4f color, float gravity);
 
         /**
