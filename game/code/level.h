@@ -58,6 +58,15 @@ namespace swiftness
          * @return level all the plateforms and the square
          */
         static level initializeLevel(std::string nameFile, bool bloc);
+
+        /**
+         * @brief render the texture of the level
+         * 
+         * @param level
+         * 
+         * @return void
+         */
+        static void render(level level);
     };
 
 } // namespace swiftness
