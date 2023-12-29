@@ -37,7 +37,7 @@ int main()
     // create a square (ps : camera on 100.0f ; 100.0f to center the camera on the square)
     // swiftness::Square square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
 
-    swiftness::Level::level level01 = Level::initializeLevel("level01.tmx", true);
+    swiftness::Level::level level01 = Level::initializeLevel("level00.tmx", false);
 
     swiftness::Square square = level01.square;
 

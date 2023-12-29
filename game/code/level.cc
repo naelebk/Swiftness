@@ -22,7 +22,7 @@ namespace swiftness
         return plateform;
     }
 
-    std::map<int, StaticPlateform> Level::initializeLevel(std::string nameFile)
+    std::map<int, StaticPlateform> Level::initializeLevelWithBloc(std::string nameFile)
     {
         std::map<int, StaticPlateform> plateform;
 
@@ -58,7 +58,7 @@ namespace swiftness
         newLevel.square = initializeSquare(nameFile);
         if (bloc)
         {
-            newLevel.plateform = initializeLevel(nameFile);
+            newLevel.plateform = initializeLevelWithBloc(nameFile);
         }
         else
         {

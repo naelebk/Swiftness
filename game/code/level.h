@@ -38,7 +38,7 @@ namespace swiftness
          *
          * @return std::map<int, StaticPlateform> the plateforms
          */
-        static std::map<int, StaticPlateform> initializeLevel(std::string nameFile);
+        static std::map<int, StaticPlateform> initializeLevelWithBloc(std::string nameFile);
 
     public:
         struct level
