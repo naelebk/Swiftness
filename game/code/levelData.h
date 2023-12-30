@@ -84,6 +84,7 @@ namespace swiftness
 
     private:
         std::string m_name;        // name of the tmx file and the level
+        std::string m_name_background; // path of the background
         LayerEntity m_layerEntity; // entity of the layer
         gf::Vector2f m_mapCenter;  // center of the map
         gf::Vector2f m_entrance;   // entrance of the level

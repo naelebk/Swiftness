@@ -60,6 +60,15 @@ namespace swiftness
          */
         std::map<int, StaticPlateform> generateBlocPlateforms(int index);
 
+        /**
+         * @brief generate invisible plateform
+         * 
+         * @param index
+         * 
+         * @return std::map<int, StaticPlateform> the invisible plateform
+         */
+        std::map<int, StaticPlateform> generateInvisiblePlateforms(int index);
+
     private:
         std::string m_name;
         LevelData m_levelData;

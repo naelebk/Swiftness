@@ -150,4 +150,64 @@ namespace swiftness
         return blocPlateforms;
     }
 
+    std::map<int, StaticPlateform> LevelEntity::generateInvisiblePlateforms(int index)
+    {
+        std::map<int, StaticPlateform> invisiblePlateforms;
+        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Border);
+        std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(LayerName::Border);
+        gf::Vector2f mapSize = m_levelData.getMapSize();
+        gf::Vector2f tileSize = m_levelData.getTileSize();
+
+        if (layer)
+        {
+            int platformIndex = index;
+            for (int y = 0; y < mapSize.height; y++)
+            {
+                for (int x = 0; x < mapSize.width; x++)
+                {
+                    gf::TmxCell &cell = cells[x + y * mapSize.width];
+                    if (cell.gid != 0)
+                    {
+                        float height = tileSize.height;
+                        float length = tileSize.width;
+
+                        // Étendre vers la droite
+                        int xEnd = x;
+                        while (xEnd + 1 < mapSize.width && cells[(xEnd + 1) + y * mapSize.width].gid == cell.gid)
+                        {
+                            xEnd++;
+                            length += tileSize.width;
+                        }
+
+                        // Étendre vers le bas
+                        int yEnd = y;
+                        while (yEnd + 1 < mapSize.height && cells[x + (yEnd + 1) * mapSize.width].gid == cell.gid)
+                        {
+                            yEnd++;
+                            height += tileSize.height;
+                        }
+
+                        // Calculer la position centrée de la plateforme
+                        gf::Vector2f position = gf::Vector2f((x + xEnd) * tileSize.width / 2 + tileSize.width / 2,
+                                                             (y + yEnd) * tileSize.height / 2 + tileSize.height / 2);
+                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Transparent);
+                        invisiblePlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
+
+                        // Marquer les cellules déjà traitées
+                        for (int ix = x; ix <= xEnd; ix++)
+                        {
+                            for (int iy = y; iy <= yEnd; iy++)
+                            {
+                                cells[ix + iy * mapSize.width].gid = 0;
+                            }
+                        }
+
+                        platformIndex++;
+                    }
+                }
+            }
+        }
+        return invisiblePlateforms;
+    }
+
 } // namespace swiftness

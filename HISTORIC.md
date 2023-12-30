@@ -148,5 +148,5 @@
 >> **Julien**
 >
 >- ajout dans constants.h des taille de screen et de windows
->- début du debogage du problème de positions des plateformes
+>- plateforme positionner au bon endroit
 >

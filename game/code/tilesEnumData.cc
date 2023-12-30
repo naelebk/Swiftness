@@ -23,14 +23,11 @@ namespace swiftness
             case LayerName::Decoration:
                 return "Decoration";
                 break;
-            case LayerName::Power:
-                return "Power";
-                break;
-            case LayerName::Button:
-                return "Button";
-                break;
             case LayerName::IO:
                 return "IO";
+                break;
+            case LayerName::Border:
+                return "Border";
                 break;
             default:
                 return "Error";

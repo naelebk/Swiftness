@@ -17,7 +17,12 @@ namespace swiftness
         std::map<int, StaticPlateform> plateform_h = levelEntity.generateHorizontalPlateform(plateform.size());
         std::cout << "Horizontal plateform generated" << std::endl;
 
+        // ajout des murs invisible
+        std::map<int, StaticPlateform> plateform_invisible = levelEntity.generateInvisiblePlateforms(plateform.size() + plateform_h.size());
+        std::cout << "Invisible plateform generated" << std::endl;
+
         plateform.insert(plateform_h.begin(), plateform_h.end());
+        plateform.insert(plateform_invisible.begin(), plateform_invisible.end());
 
         return plateform;
     }
@@ -40,8 +45,12 @@ namespace swiftness
         std::map<int, StaticPlateform> plateform_bloc = levelEntity.generateBlocPlateforms(plateform.size() + plateform_h.size());
         std::cout << "Bloc plateform generated" << std::endl;
 
+        // ajout des murs invisible
+        std::map<int, StaticPlateform> plateform_invisible = levelEntity.generateInvisiblePlateforms(plateform.size() + plateform_h.size() + plateform_bloc.size());
+
         plateform.insert(plateform_h.begin(), plateform_h.end());
         plateform.insert(plateform_bloc.begin(), plateform_bloc.end());
+        plateform.insert(plateform_invisible.begin(), plateform_invisible.end());
 
         return plateform;
     }
