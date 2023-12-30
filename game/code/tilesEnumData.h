@@ -36,22 +36,22 @@ namespace swiftness {
             deco_green_3 = 23,
 
             entrance = 25,
-            exit = 26
+            exit = 26,
+            invisible = 27
 
 
         };
 
         enum class LayerName
         {
+            IO,
+            Border,
             Collision_v,
             Collision_h,
             Collision_bloc,
             CollisionWallWalk,
             Filling,
-            Decoration,
-            Power,
-            Button,
-            IO
+            Decoration
         };
 
         std::string getLayerName(LayerName layerName);

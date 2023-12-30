@@ -42,14 +42,32 @@ namespace swiftness
          *
          * @return std::map<int, StaticPlateform> the vertical plateform
          */
-        std::map<int, StaticPlateform> generateVerticalPlateform();
+        std::map<int, StaticPlateform> generateVerticalPlateform(int index);
 
         /**
          * @brief generate the horizontal plateform
          *
          * @return std::map<int, StaticPlateform> the horizontal plateform
          */
-        std::map<int, StaticPlateform> generateHorizontalPlateform();
+        std::map<int, StaticPlateform> generateHorizontalPlateform(int index);
+
+        /**
+         * @brief generate the bloc plateform
+         * 
+         * @param index 
+         * 
+         * @return std::map<int, StaticPlateform> the bloc plateform
+         */
+        std::map<int, StaticPlateform> generateBlocPlateforms(int index);
+
+        /**
+         * @brief generate invisible plateform
+         * 
+         * @param index
+         * 
+         * @return std::map<int, StaticPlateform> the invisible plateform
+         */
+        std::map<int, StaticPlateform> generateInvisiblePlateforms(int index);
 
     private:
         std::string m_name;

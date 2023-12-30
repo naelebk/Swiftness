@@ -1,3 +1,0 @@
-/home/htheogame/Documents/Swiftness/test/CMakeFiles/game.dir
-/home/htheogame/Documents/Swiftness/test/CMakeFiles/edit_cache.dir
-/home/htheogame/Documents/Swiftness/test/CMakeFiles/rebuild_cache.dir

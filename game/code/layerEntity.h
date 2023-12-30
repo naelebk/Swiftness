@@ -53,17 +53,17 @@ namespace swiftness
          */
         gf::TmxTileLayer* getLayerByName(LayerName name);
 
-        gf::Vector2i getMapSize() { return m_mapSize; };
+        gf::Vector2f getMapSize() { return m_mapSize; };
 
-        gf::Vector2i getTileSize() { return m_tileSize; };
+        gf::Vector2f getTileSize() { return m_tileSize; };
 
         std::vector<gf::TmxCell> getCellsOfaLayer(LayerName name) {auto t=getLayerByName(name); return t->cells; };
 
     private:
         gf::ResourceManager m_resources;
         gf::TmxLayers m_layers;
-        gf::Vector2i m_mapSize;
-        gf::Vector2i m_tileSize;
+        gf::Vector2f m_mapSize;
+        gf::Vector2f m_tileSize;
     };
 }; // namespace swiftness
 

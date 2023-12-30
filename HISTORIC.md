@@ -120,3 +120,33 @@
 >- ajout d'un double saut
 >- ajout du wall-jump (pas encore terminé)
 >
+
+## ajout d'obstacle et d'un bouton inverseur de gravité
+
+>
+>> *20/12/2023*
+>> **Théo**
+>
+>- création de plateforme qui tue le joueur si il les touches
+>- création d'un objet qui une fois touché, change la gravité pour nous attiré vers le haut
+>
+
+## tmx loader et plateforme générer
+
+>
+>> *20/12/2023*
+>> **Julien**
+>
+>- le fichier tmx renvoie les information demander
+>- il génère toute les plateforme mais pas à la bonne position
+>
+
+## refactoring pour mieux gérer les écrans et les positions
+
+>
+>> *28/12/2023*
+>> **Julien**
+>
+>- ajout dans constants.h des taille de screen et de windows
+>- plateforme positionner au bon endroit
+>

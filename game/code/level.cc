@@ -2,90 +2,60 @@
 
 namespace swiftness
 {
-    
-    std::map<int, StaticPlateform> Level::initializeLevel0()
+
+    std::map<int, StaticPlateform> Level::initializeLevelNoBloc(std::string nameFile)
     {
+        std::map<int, StaticPlateform> plateform;
 
-        std::map<int, swiftness::StaticPlateform> plateform;
+        LevelEntity levelEntity(nameFile);
 
-        // create a list of wall
-        swiftness::StaticPlateform wallUp({240.0f, 0.0f}, 10.0f, 480.0f, gf::Color::Blue);
-        swiftness::StaticPlateform wallDown({240.0f, 320.0f}, 10.0f, 480.0f, gf::Color::Blue);
-        swiftness::StaticPlateform wallLeft({0.0f, 160.0f}, 320.0f, 10.0f, gf::Color::Blue);
-        swiftness::StaticPlateform wallRight({480.0f, 160.0f}, 320.0f, 10.0f, gf::Color::Blue);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(0, wallUp));
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(1, wallDown));
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(2, wallLeft));
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(3, wallRight));
-
-        // Initialize platforms
-        swiftness::StaticPlateform plateform_h_1({240.0f,  275.0f}, 80.0f, 60.0f, gf::Color::Green);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(4, plateform_h_1));
-        
-
-        return plateform;
-    }
-
-    std::map<int, StaticPlateform> Level::initializeLevel1()
-    {
-
-        std::map<int, swiftness::StaticPlateform> plateform;
-
-        // create a list of wall
-        swiftness::StaticPlateform wallUp({500.0f, 0.0f}, 10.0f, 1020.0f, gf::Color::Blue);
-        swiftness::StaticPlateform wallDown({240.0f, 320.0f}, 10.0f, 500.0f, gf::Color::Blue);
-        swiftness::StaticPlateform wallLeft({0.0f, 160.0f}, 320.0f, 10.0f, gf::Color::Blue);
-        swiftness::StaticPlateform wallRight({480.0f, 240.0f}, 160.0f, 10.0f, gf::Color::Blue);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(0, wallUp));
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(1, wallDown));
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(2, wallLeft));
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(3, wallRight));
-
-        // Initialize platforms
-        swiftness::StaticPlateform plateform_h_1({240.0f,  275.0f}, 80.0f, 60.0f, gf::Color::Green);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(4, plateform_h_1));
-        swiftness::StaticPlateform plateform_h_2({380.0f,  270.0f}, 90.0f, 60.0f, gf::Color::Green);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(5, plateform_h_2));
-        swiftness::StaticPlateform plateform_h_3({500.0f, 160.0f}, 10.0f, 250.0f, gf::Color::Blue);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(6, plateform_h_3));
-        swiftness::StaticPlateform plateform_h_4({625.0f, 275.0f}, 240.0f, 10.0f, gf::Color::Blue);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(7, plateform_h_4));
-        swiftness::StaticPlateform plateform_h_5({725.0f, 275.0f}, 240.0f, 10.0f, gf::Color::Blue);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(8, plateform_h_5));
-        swiftness::StaticPlateform plateform_h_6({675.0f, 395.0f}, 10.0f, 110.0f, gf::Color::Blue);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(9, plateform_h_6));
-        swiftness::StaticPlateform plateform_h_7({725.0f, 77.5f}, 155.0f, 10.0f, gf::Color::Blue);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(10, plateform_h_7));
-        swiftness::StaticPlateform plateform_h_8({500.0f, 77.5f}, 75.0f, 10.0f, gf::Color::Yellow);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(11, plateform_h_8));
-        swiftness::StaticPlateform plateform_h_9({710.0f, 385.0f}, 10.0f, 10.0f, gf::Color::Cyan);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(12, plateform_h_9));
-        swiftness::StaticPlateform plateform_h_10({20.0f, 20.0f}, 10.0f, 10.0f, gf::Color::Rose);
-        plateform.insert(std::pair<int, swiftness::StaticPlateform>(13, plateform_h_10));
-        return plateform;
-    }
-
-    std::map<int, StaticPlateform> Level::initializeLevel2(std::string nameFile)
-    {
-
-        std::map<int, swiftness::StaticPlateform> plateform;
-
-        swiftness::LevelEntity levelEntity(nameFile);
-
-        // ajout des plateformes verticales
-        plateform = levelEntity.generateVerticalPlateform();
+        // Ajout des plateformes verticales
+        plateform = levelEntity.generateVerticalPlateform(0);
         std::cout << "Vertical plateform generated" << std::endl;
 
-        // ajoute des plateformes horizontales
-        std::map<int, swiftness::StaticPlateform> plateform_h = levelEntity.generateHorizontalPlateform();
+        // Ajout des plateformes horizontales
+        std::map<int, StaticPlateform> plateform_h = levelEntity.generateHorizontalPlateform(plateform.size());
         std::cout << "Horizontal plateform generated" << std::endl;
 
+        // ajout des murs invisible
+        std::map<int, StaticPlateform> plateform_invisible = levelEntity.generateInvisiblePlateforms(plateform.size() + plateform_h.size());
+        std::cout << "Invisible plateform generated" << std::endl;
+
         plateform.insert(plateform_h.begin(), plateform_h.end());
+        plateform.insert(plateform_invisible.begin(), plateform_invisible.end());
 
         return plateform;
     }
 
-    std::map<int, StaticPlateform> Level::initializeLevel3()
+    std::map<int, StaticPlateform> Level::initializeLevelWithBloc(std::string nameFile)
+    {
+        std::map<int, StaticPlateform> plateform;
+
+        LevelEntity levelEntity(nameFile);
+
+        // Ajout des plateformes verticales
+        plateform = levelEntity.generateVerticalPlateform(0);
+        std::cout << "Vertical plateform generated" << std::endl;
+
+        // Ajout des plateformes horizontales
+        std::map<int, StaticPlateform> plateform_h = levelEntity.generateHorizontalPlateform(plateform.size());
+        std::cout << "Horizontal plateform generated" << std::endl;
+
+        // Ajout des plateformes bloc
+        std::map<int, StaticPlateform> plateform_bloc = levelEntity.generateBlocPlateforms(plateform.size() + plateform_h.size());
+        std::cout << "Bloc plateform generated" << std::endl;
+
+        // ajout des murs invisible
+        std::map<int, StaticPlateform> plateform_invisible = levelEntity.generateInvisiblePlateforms(plateform.size() + plateform_h.size() + plateform_bloc.size());
+
+        plateform.insert(plateform_h.begin(), plateform_h.end());
+        plateform.insert(plateform_bloc.begin(), plateform_bloc.end());
+        plateform.insert(plateform_invisible.begin(), plateform_invisible.end());
+
+        return plateform;
+    }
+
+    std::map<int, StaticPlateform> Level::initializeLevel03()
     {
 
         std::map<int, swiftness::StaticPlateform> plateform;
@@ -134,12 +104,23 @@ namespace swiftness
 
     swiftness::Square Level::initializeSquare(std::string nameFile)
     {
-        swiftness::LevelEntity levelEntity(nameFile);
-        swiftness::Square square = levelEntity.getSquareEntity();
-        return square;
+        LevelEntity levelEntity(nameFile);
+        return levelEntity.getSquareEntity();
     }
-        
-        
-    
+
+    Level::level Level::initializeLevel(std::string nameFile, bool bloc)
+    {
+        level newLevel;
+        newLevel.square = initializeSquare(nameFile);
+        if (bloc)
+        {
+            newLevel.plateform = initializeLevelWithBloc(nameFile);
+        }
+        else
+        {
+            newLevel.plateform = initializeLevelNoBloc(nameFile);
+        }
+        return newLevel;
+    }
 
 } // namespace swiftness

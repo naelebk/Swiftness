@@ -23,7 +23,7 @@ using namespace swiftness;
 int main()
 {
     // initialize the window
-    gf::Window window("Swiftness", {480, 320});
+    gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
     
     // set the window in fullscreen mode
     gf::RenderWindow renderer(window);
@@ -34,11 +34,29 @@ int main()
     // create a vector of Input
     std::vector<Input> enumVector;
 
-    // create a square (ps : camera on 100.0f ; 100.0f to center the camera on the square)
+    std::cout << "level03 - Théo" << std::endl;
     swiftness::Square square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
+    std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel03();
+    
+
+    /*
+    std::cout << "level00.tmx - Julien" << std::endl;
+
+    swiftness::Level::level level01 = Level::initializeLevel("level00.tmx", false);
+
+    swiftness::Square square = level01.square;
+    
 
     // initialisation of the level
-    std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel3();
+    std::map<int, swiftness::StaticPlateform> plateform = level01.plateform;
+    */
+
+    std::cout << "plateform size : " << plateform.size() << std::endl;
+    // affiche les coordonnées des plateformes de la map
+    for (auto &plateform : plateform)
+    {
+        std::cout << plateform.first << " : " << plateform.second.getPosition().x << " " << plateform.second.getPosition().y << std::endl;
+    }
     
 
 
@@ -168,13 +186,8 @@ int main()
         // Si on a pressé une de ces deux touches, on ferme la fenêtre de jeux
         if (it1 != enumVector.end() || it2 != enumVector.end()) window.close();
         float dt = clock.restart().asSeconds();
-        // square.setVelocity(velocity);
-        // square.update(dt, plateformUp);
-        // square.update(dt, plateformDown);
-        // square.update(dt, plateformLeft);
-        // square.update(dt, plateformRight);
         square.updateWithMap(dt, plateform, enumVector);
-        gf::ExtendView camera(square.getPosition(), {480.0f, 320.0f});
+        gf::ExtendView camera(square.getPosition(), {SCREEN_WIDTH, SCREEN_HEIGHT});
         enumVector.clear();
         if (isresize) {
             isresize = false;
