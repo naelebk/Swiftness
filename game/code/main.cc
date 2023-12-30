@@ -33,23 +33,22 @@ int main()
 
     // create a vector of Input
     std::vector<Input> enumVector;
-
+    /*
     std::cout << "level03 - Théo" << std::endl;
     swiftness::Square square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
     std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel03();
+    */
+
     
-
-    /*
     std::cout << "level00.tmx - Julien" << std::endl;
-
-    swiftness::Level::level level01 = Level::initializeLevel("level00.tmx", false);
-
+    // swiftness::Level::level level00 = Level::initializeLevel("level00.tmx", false);
+    swiftness::Level::level level01 = Level::initializeLevel("level01.tmx", true);
     swiftness::Square square = level01.square;
     
 
     // initialisation of the level
     std::map<int, swiftness::StaticPlateform> plateform = level01.plateform;
-    */
+    
 
     std::cout << "plateform size : " << plateform.size() << std::endl;
     // affiche les coordonnées des plateformes de la map

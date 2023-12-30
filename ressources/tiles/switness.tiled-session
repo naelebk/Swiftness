@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "levels/level01.tmx",
     "expandedProjectPaths": [
+        ".",
         "levels",
         "tileset",
-        ".",
         "level"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -58,16 +58,16 @@
             "scale": 2.5372916666666665,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 142.86887264964284,
-                "y": 120.60103456769852
+                "x": 84.53896050578867,
+                "y": 176.17209951555958
             }
         },
         "levels/level01.tmx": {
             "scale": 1,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 301.5,
-                "y": 328
+                "x": 431.5,
+                "y": 348
             }
         },
         "levels/level02.tmx": {
@@ -117,13 +117,15 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
+        "levels/level00.tmx",
+        "levels/level01.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
-        "levels/level02.tmx",
         "levels/level00.tmx",
-        "tileset/font.tsx",
         "levels/level01.tmx",
+        "levels/level02.tmx",
+        "tileset/font.tsx",
         "tileset/hero.tsx",
         "/home/juliengauthier410/game/ggj2022-main/data/hag/level00.tmx",
         "level/level_1.tmx",
