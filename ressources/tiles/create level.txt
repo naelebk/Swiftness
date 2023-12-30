@@ -1,0 +1,5 @@
+bonne pratique de création de niveau
+
+lorsqu'une plateforme verticale rejoint une plateforme horizontale dans un angle, toujours privilégié la plateforme verticale
+
+n'utiliser le tileset utilities que dans des tile invisible (Border et IO)
