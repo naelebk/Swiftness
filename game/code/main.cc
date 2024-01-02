@@ -41,8 +41,9 @@ int main()
 
     
     std::cout << "level00.tmx - Julien" << std::endl;
-    // swiftness::Level::level level00 = Level::initializeLevel("level00.tmx", false);
-    swiftness::Level::level level01 = Level::initializeLevel("level01.tmx", true);
+    // swiftness::Level::level level00 = Level::initializeLevel("level00.tmx");
+    // swiftness::Level::level level01 = Level::initializeLevel("level01.tmx");
+    swiftness::Level::level level01 = Level::initializeLevel("level02.tmx");
     swiftness::Square square = level01.square;
     
 

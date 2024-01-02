@@ -23,22 +23,13 @@ namespace swiftness
         static swiftness::Square initializeSquare(std::string nameFile);
 
         /**
-         * @brief initialization of the level without bloc
+         * @brief initialization of the level
          *
          * @param nameFile
          *
          * @return std::map<int, StaticPlateform> the plateforms
          */
-        static std::map<int, StaticPlateform> initializeLevelNoBloc(std::string nameFile);
-
-        /**
-         * @brief initialization of the level with bloc
-         *
-         * @param nameFile
-         *
-         * @return std::map<int, StaticPlateform> the plateforms
-         */
-        static std::map<int, StaticPlateform> initializeLevelWithBloc(std::string nameFile);
+        static std::map<int, StaticPlateform> initializePlateforms(std::string nameFile);
 
     public:
         struct level
@@ -53,20 +44,18 @@ namespace swiftness
          * @brief initialization of the level
          *
          * @param nameFile
-         * @param bloc
          *
-         * @return level all the plateforms and the square
+         * @return level the level
          */
-        static level initializeLevel(std::string nameFile, bool bloc);
+        static level initializeLevel(std::string nameFile);
 
-        /** temp*/
         static std::map<int, StaticPlateform> initializeLevel03();
 
         /**
          * @brief render the texture of the level
-         * 
+         *
          * @param level
-         * 
+         *
          * @return void
          */
         static void render(level level);
