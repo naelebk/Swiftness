@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="61" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="31" nextobjectid="6">
- <tileset firstgid="1" source="../tileset/TILESET_FUTURISTIC_CITY.tsx"/>
- <tileset firstgid="25" source="../tileset/font.tsx"/>
+ <tileset firstgid="1" source="../Tilesets/TILESET_FUTURISTIC_CITY.tsx"/>
+ <tileset firstgid="25" source="../Tilesets/font.tsx"/>
  <layer id="2" name="Decoration" class="visible" width="61" height="40">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

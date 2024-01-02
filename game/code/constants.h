@@ -26,9 +26,9 @@ namespace swiftness
     constexpr float SCREEN_WIDTH = 800.0f;
     constexpr float SCREEN_HEIGHT = 600.0f;
 
-    const std::string LEVELS_TMX_PATH = "../../ressources/tiles/levels/";
-    const std::string TEXTURE_BACKGROUND_PATH = "../../ressources/tiles/image/background/";
-    const std::string TEXTURE_SKIN_PATH = "../../ressources/tiles/image/skin/";
+    const std::string LEVELS_TMX_PATH = "../../ressources/Levels/Maps/";
+    const std::string TEXTURE_BACKGROUND_PATH = "../../ressources/tiles/Images/background/";
+    const std::string TEXTURE_SKIN_PATH = "../../ressources/Levels/Images/skin/";
 
 } // namespace swiftness
 
