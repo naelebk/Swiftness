@@ -8,10 +8,14 @@
 ***Pour faire un niveau swiftness ne faite pas les étapes marqué d'une " \* " mais faite les étapes marqué par un " # "***
 
 >- **\*** crée cette arboresccence et placez dans **Levels** :
-  Levels/
-  ├── Images
-  ├── Maps
-  └── Tilesets
+> 
+>  Levels/
+>
+>  ├── Images
+>
+>  ├── Maps
+> 
+>  └── Tilesets
 >- **#** depuis la racine de swiftness, allez dans **ressources/Levels**
 >- **\*** Trouver ou créer des tilesets de ***16x16*** en png et rangez les dans **Images**
 >- **\*** Avoir un tileset Special avec au moins 2 tuile que l'on nomme ***utilities*** pour plus de clarté
@@ -34,12 +38,19 @@
 
 **noms et ordre des layers :**
 > [t] - IO
+> 
 > [t] - Border
+>
 > [t] - Collision_bloc
+>
 > [t] - Collision_v
+> 
 > [t] - Collision_h
+> 
 > [o] - Gravity_switch
+> 
 > [t] - Filling
+> 
 > [t] - Decoration
 
 ### IO
@@ -57,23 +68,34 @@
 
   > **Exemple :**
   >> ||
+  >> 
   >> ||
+  >> 
   >> ||
+  >> 
   >> est un bloc
   >>
   > <!---->
   >> \---
+  >> 
   >> \---
+  >> 
   >> est un bloc
   > <!---->
   >> \|-|
+  >> 
   >> \|-|
+  >> 
   >> \|-|
+  >> 
   >> n'est pas un bloc
   > <!---->
   >> \---
+  >> 
   >> |||
+  >> 
   >> \---
+  >> 
   >> n'est pas un bloc
 
 ### Collision_v
@@ -105,13 +127,19 @@
 lorsqu'une plateforme verticale rejoint une plateforme horizontale dans un angle, toujours privilégié la plateforme verticale
 
 > faire :
+> 
 > |--
+> 
 > |
+> 
 > |
 >
 > plutôt que :
+> 
 > \---
+> 
 > |
+> 
 > |
 
 ---
