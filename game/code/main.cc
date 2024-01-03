@@ -21,11 +21,19 @@
 
 using namespace swiftness;
 
-int main()
+int main(int argc, char *argv[])
 {
+
+    if (argc < 2)
+    {
+        std::cerr << "Usage: " << argv[0] << " [level number]" << std::endl;
+        return 1;
+    }
+
+    std::string level = argv[1];
     // initialize the window
     gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
-    
+
     // set the window in fullscreen mode
     gf::RenderWindow renderer(window);
 
@@ -34,24 +42,41 @@ int main()
 
     // create a vector of Input
     std::vector<Input> enumVector;
-    /*
-    std::cout << "level03 - Théo" << std::endl;
-    swiftness::Square square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
-    std::map<int, swiftness::StaticPlateform> plateform = swiftness::Level::initializeLevel03();
-    */
 
-    
-    std::cout << "level00.tmx - Julien" << std::endl;
-    // swiftness::Level::level level00 = Level::initializeLevel("level00.tmx");
-    // swiftness::Level::level level01 = Level::initializeLevel("level01.tmx");
-    swiftness::Level::level level01 = Level::initializeLevel("level02.tmx");
-    swiftness::Square square = level01.square;
+    std::map<int, swiftness::StaticPlateform> plateform;
+    swiftness::Square square;
+
+    if (level == "0")
+    {
+        std::cout << "level00.tmx - Julien" << std::endl;
+        swiftness::Level::level level00 = Level::initializeLevel("level00.tmx");
+        square = level00.square;
+        plateform = level00.plateform;
+    }
+    if (level == "1")
+    {
+        std::cout << "level01.tmx - Julien" << std::endl;
+        swiftness::Level::level level01 = Level::initializeLevel("level01.tmx");
+        square = level01.square;
+        plateform = level01.plateform;
+    }
+    if (level == "2")
+    {
+        std::cout << "level02.tmx - Julien" << std::endl;
+        swiftness::Level::level level02 = Level::initializeLevel("level02.tmx");
+        square = level02.square;
+        plateform = level02.plateform;
+    }
+    if (level == "3")
+    {
+        std::cout << "level03 - Théo" << std::endl;
+        square = swiftness::Square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
+        plateform = swiftness::Level::initializeLevel03();
+    }
+
     swiftness::CommandsManager commandManager;
-    
 
     // initialisation of the level
-    std::map<int, swiftness::StaticPlateform> plateform = level01.plateform;
-    
 
     std::cout << "plateform size : " << plateform.size() << std::endl;
     // affiche les coordonnées des plateformes de la map
@@ -63,7 +88,7 @@ int main()
     gf::Clock clock;
     renderer.clear(gf::Color::White);
 
-    //gf::Vector2f velocity(0, GRAVITY);
+    // gf::Vector2f velocity(0, GRAVITY);
     bool isresize = false;
     while (window.isOpen())
     {
@@ -78,12 +103,14 @@ int main()
         std::vector<Input>::iterator it1 = std::find(enumVector.begin(), enumVector.end(), Input::Escape);
         std::vector<Input>::iterator it2 = std::find(enumVector.begin(), enumVector.end(), Input::Closed);
         // Si on a pressé une de ces deux touches, on ferme la fenêtre de jeux
-        if (it1 != enumVector.end() || it2 != enumVector.end()) window.close();
+        if (it1 != enumVector.end() || it2 != enumVector.end())
+            window.close();
         float dt = clock.restart().asSeconds();
         square.updateWithMap(dt, plateform, enumVector);
         gf::ExtendView camera(square.getPosition(), {SCREEN_WIDTH, SCREEN_HEIGHT});
         enumVector.clear();
-        if (isresize) {
+        if (isresize)
+        {
             isresize = false;
             gf::RenderWindow renderer(window);
         }
