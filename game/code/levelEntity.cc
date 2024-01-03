@@ -1,5 +1,4 @@
 #include "levelEntity.h"
-#include <iostream>
 
 namespace swiftness
 {

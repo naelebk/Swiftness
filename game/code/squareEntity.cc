@@ -2,15 +2,6 @@
 #include "staticPlateforme.h"
 #include "constants.h"
 
-#include <gf/Vector.h>
-#include <gf/Views.h>
-#include <gf/Color.h>
-#include <gf/RenderTarget.h>
-#include <gf/Shapes.h>
-#include <map>
-#include <vector>
-#include <iostream>
-
 
 namespace swiftness
 {

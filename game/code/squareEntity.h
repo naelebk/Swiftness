@@ -9,6 +9,8 @@
 #include "staticPlateforme.h"
 #include "Input.cc"
 #include <vector>
+#include <gf/Views.h>
+#include <iostream>
 
 namespace swiftness
 {

@@ -5,7 +5,7 @@
 #include "levelData.h"
 #include "squareEntity.h"
 #include "constants.h"
-
+#include <iostream>
 namespace swiftness
 {
 
