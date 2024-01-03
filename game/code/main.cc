@@ -2,6 +2,7 @@
 #include "staticPlateforme.h"
 #include "level.h"
 #include "constants.h"
+#include "commands.h"
 
 #include <gf/Clock.h>
 #include <gf/Views.h>
@@ -45,6 +46,7 @@ int main()
     // swiftness::Level::level level01 = Level::initializeLevel("level01.tmx");
     swiftness::Level::level level01 = Level::initializeLevel("level02.tmx");
     swiftness::Square square = level01.square;
+    swiftness::CommandsManager commandManager;
     
 
     // initialisation of the level
@@ -57,10 +59,6 @@ int main()
     {
         std::cout << plateform.first << " : " << plateform.second.getPosition().x << " " << plateform.second.getPosition().y << std::endl;
     }
-    
-
-
-
     // game loop
     gf::Clock clock;
     renderer.clear(gf::Color::White);
@@ -73,111 +71,7 @@ int main()
         gf::Event event;
         while (window.pollEvent(event))
         {
-            switch (event.type)
-            {
-            case gf::EventType::Closed:
-                enumVector.push_back(Input::Closed);
-                //window.close();
-                break;
-            
-            case gf::EventType::Resized:
-                enumVector.push_back(Input::Resized);
-                break;
-            case gf::EventType::KeyPressed:
-                switch (event.key.keycode)
-                {
-                case gf::Keycode::Escape:
-                    enumVector.push_back(Input::Escape);
-                    //window.close();
-                    break;
-                case gf::Keycode::Up:
-                    enumVector.push_back(Input::Up);
-                    //velocity.y -= SPEED;
-                    break;
-                case gf::Keycode::Z:
-                    enumVector.push_back(Input::Z);
-                    //velocity.y -= SPEED;
-                    break;
-                case gf::Keycode::Space:
-                    enumVector.push_back(Input::Space);
-                    //velocity.y -= SPEED;
-                    break;
-                case gf::Keycode::Down:
-                    enumVector.push_back(Input::Down);
-                    //velocity.y += SPEED;
-                    break;
-                case gf::Keycode::S:
-                    enumVector.push_back(Input::S);
-                    //velocity.y += SPEED;
-                    break;
-                case gf::Keycode::Left:
-                    enumVector.push_back(Input::Left);
-                    //velocity.x -= SPEED;
-                    break;
-                case gf::Keycode::Q:
-                    enumVector.push_back(Input::Q);
-                    //velocity.x -= SPEED;
-                    break;
-                case gf::Keycode::Right:
-                    enumVector.push_back(Input::Right);
-                    //velocity.x += SPEED;
-                    break;
-                case gf::Keycode::D:
-                    enumVector.push_back(Input::D);
-                    //velocity.x += SPEED;
-                    break;
-                default:
-                    break;
-                }
-                break;
-
-            case gf::EventType::KeyReleased:
-                switch (event.key.keycode)
-                {
-                case gf::Keycode::Up:
-                    enumVector.push_back(Input::UpReleased);
-                    //velocity.y += SPEED;
-                    break;
-                case gf::Keycode::Z:
-                    enumVector.push_back(Input::Z_Released);
-                    //velocity.y += SPEED;
-                    break;
-                case gf::Keycode::Space:
-                    enumVector.push_back(Input::Space_Released);
-                    //velocity.y += SPEED;
-                    break;
-                case gf::Keycode::Down:
-                    enumVector.push_back(Input::DownReleased);
-                    //velocity.y -= SPEED;
-                    break;
-                case gf::Keycode::S:
-                    enumVector.push_back(Input::S_Released);
-                    //velocity.y -= SPEED;
-                    break;
-                case gf::Keycode::Left:
-                    enumVector.push_back(Input::LeftReleased);
-                    //velocity.x += SPEED;
-                    break;
-                case gf::Keycode::Q:
-                    enumVector.push_back(Input::Q_Released);
-                    //velocity.x += SPEED;
-                    break;
-                case gf::Keycode::Right:
-                    enumVector.push_back(Input::RightReleased);
-                    //velocity.x -= SPEED;
-                    break;
-                case gf::Keycode::D:
-                    enumVector.push_back(Input::D_Released);
-                    //velocity.x -= SPEED;
-                    break;
-                default:
-                    break;
-                }
-                break;
-
-            default:
-                break;
-            }
+            commandManager.manageCommands(enumVector, event);
         }
 
         // update the square

@@ -2,7 +2,6 @@
 #include "staticPlateforme.h"
 #include "constants.h"
 
-
 namespace swiftness
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)

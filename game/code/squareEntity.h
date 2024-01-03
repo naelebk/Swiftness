@@ -7,7 +7,7 @@
 #include <gf/Shapes.h>
 #include <map>
 #include "staticPlateforme.h"
-#include "Input.cc"
+#include "Input.h"
 #include <vector>
 #include <gf/Views.h>
 #include <iostream>
