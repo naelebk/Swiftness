@@ -331,10 +331,16 @@ namespace swiftness
                 if (minOverlap == overlapLeft)
                 {
                     m_position.x -= overlapLeft;
+                    if(m_velocity.x==WALL_JUMP_SPEED){
+                        m_velocity.x=0;
+                    }
                 }
                 else if (minOverlap == overlapRight)
                 {
                     m_position.x += overlapRight;
+                    if(m_velocity.x==-WALL_JUMP_SPEED){
+                        m_velocity.x=0;
+                    }
                 }
                 else if (minOverlap == overlapTop)
                 {
