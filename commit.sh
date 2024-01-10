@@ -19,4 +19,5 @@ fi
 git add *
 git commit -m "$1"
 git push origin main
-# Coucou test bot
+# Coucou petit test pour voir si ça marche !
+# Test number 2
