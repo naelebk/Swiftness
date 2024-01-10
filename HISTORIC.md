@@ -150,3 +150,11 @@
 >- ajout dans constants.h des taille de screen et de windows
 >- plateforme positionner au bon endroit
 >
+
+## Correction du bug du Wall Jump
+
+>
+>> *09/01/2024*
+>> **Théo**
+>
+>- Correction du bug sur le Wall Jump, modification de squareEntity.cc
