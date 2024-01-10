@@ -171,7 +171,7 @@
 </data>
  </layer>
  <objectgroup id="9" name="gravity_switch" locked="1">
-  <object id="1" type="up" x="240" y="1240"/>
+  <object id="1" type="up" x="232" y="1232" width="16" height="16"/>
  </objectgroup>
  <layer id="4" name="Collision_bloc" width="30" height="80" locked="1">
   <data encoding="csv">

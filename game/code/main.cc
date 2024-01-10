@@ -66,10 +66,17 @@ int main(int argc, char *argv[])
         swiftness::Level::level level02 = Level::initializeLevel("level02.tmx");
         square = level02.square;
         plateform = level02.plateform;
-    }
+    }   
     if (level == "3")
     {
-        std::cout << "level03 - Théo" << std::endl;
+        std::cout << "level03.tmx - Julien" << std::endl;
+        swiftness::Level::level level03 = Level::initializeLevel("level03.tmx");
+        square = level03.square;
+        plateform = level03.plateform;
+    }
+    if (level == "4")
+    {
+        std::cout << "level04 - Théo" << std::endl;
         square = swiftness::Square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
         plateform = swiftness::Level::initializeLevel03();
     }
