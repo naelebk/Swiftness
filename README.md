@@ -41,5 +41,5 @@
 ## drive for more information
 
 >
->[ ... ]
+>[...]
 >
