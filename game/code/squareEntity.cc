@@ -111,8 +111,8 @@ namespace swiftness
             }
             
         }
-        if (m_velocity.y>0){
-            m_bullet_bar+=m_velocity.y*dt/10;
+        if ((m_gravity==1 && m_velocity.y>0) || (m_gravity==-1 && m_velocity.y<0)){
+            m_bullet_bar+=m_gravity*m_velocity.y*dt/10;
             if (m_bullet_bar>100.0f){
                 m_bullet_bar=100.0f;
             }
@@ -331,6 +331,8 @@ namespace swiftness
                 m_jump=0;
                 m_velocity=gf::Vector2f(0,0);
                 m_gravity=1;
+                m_bullet=false;
+                m_bullet_bar=0.0f;
                 return;
             }
             // Collision détectée. Maintenant, nous devons ajuster la position du carré.
