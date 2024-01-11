@@ -86,6 +86,7 @@ namespace swiftness
         gf::Color4f m_color;
         float gravity;
         bool m_jump;
+        bool m_bullet;
         int nb_jumps;
         int m_gravity;
     };

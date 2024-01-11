@@ -5,7 +5,7 @@
 namespace swiftness
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), nb_jumps(0), m_gravity(1)
+        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), m_bullet(false), nb_jumps(0), m_gravity(1)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -32,16 +32,16 @@ namespace swiftness
             m_jump=canJump(plateforms);
             bool walljumpRight=canWallJumpRight(plateforms);
             bool walljumpLeft=canWallJumpLeft(plateforms);
-            if(m_jump || (nb_jumps==1 && !walljumpRight && !walljumpLeft)){
+            if(m_jump || (nb_jumps==1 && m_bullet && !walljumpRight && !walljumpLeft)){
                 m_velocity.y = JUMP*m_gravity;
                 nb_jumps+=1;
             }else{
-                if(walljumpRight){
+                if(m_bullet && walljumpRight){
                     m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                     nb_jumps=0;
                     m_velocity.x=-WALL_JUMP_SPEED;
                 }else{
-                    if(walljumpLeft){
+                    if(m_bullet && walljumpLeft){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=0;
                         m_velocity.x=WALL_JUMP_SPEED;
@@ -49,6 +49,10 @@ namespace swiftness
                 }
             }
             m_jump=false;
+        }
+        std::vector<Input>::iterator B = std::find(inputs.begin(), inputs.end(), Input::B);      
+        if (B != inputs.end()) {
+            m_bullet=!m_bullet;
         }
         
         // Évènements released
