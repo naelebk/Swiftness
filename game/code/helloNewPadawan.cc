@@ -22,11 +22,12 @@ namespace swiftness {
 
     void Hello::loadLevelWithOrWithoutTMX(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square) {
         int level = askLevel();
-        if ((level < MIN_LEVEL || level > MAX_LEVEL) && level != -1) {
+        while ((level < MIN_LEVEL || level > MAX_LEVEL) && level != -1) {
             std::cout << RED << "Erreur : le choix du niveau est incorrect" << NC << std::endl;
             std::cout << YELLOW << "Le niveau doit être compris entre " << MIN_LEVEL << " et " << MAX_LEVEL << NC << '\n';
-            return;
-        } else if (level == -1) {
+            level = askLevel();
+        } 
+        if (level == -1) {
             std::cout << PURPLE << "Aurevoir....." << NC << '\n';
             exit(0);
         }
