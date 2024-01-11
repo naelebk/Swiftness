@@ -189,7 +189,7 @@ namespace swiftness
                         // Calculer la position centrée de la plateforme
                         gf::Vector2f position = gf::Vector2f((x + xEnd) * tileSize.width / 2 + tileSize.width / 2,
                                                              (y + yEnd) * tileSize.height / 2 + tileSize.height / 2);
-                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Transparent);
+                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Green);
                         invisiblePlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
 
                         // Marquer les cellules déjà traitées
