@@ -17,6 +17,9 @@ namespace swiftness {
                     case gf::Keycode::Escape:
                         enumVector.push_back(Input::Escape);
                         break;
+                    case gf::Keycode::B:
+                        enumVector.push_back(Input::B);
+                        break;
                     case gf::Keycode::Up:
                         enumVector.push_back(Input::Up);
                         break;

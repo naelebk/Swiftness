@@ -8,6 +8,7 @@ enum class Input{
     Q,
     S,
     D,
+    B,
     Space,
     Closed,
     Resized,
