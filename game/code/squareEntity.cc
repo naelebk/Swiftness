@@ -279,7 +279,11 @@ namespace swiftness
     {
         gf::RectangleShape shape({m_size, m_size});
         shape.setPosition(m_position);
-        shape.setColor(m_color);
+        if(m_bullet){
+            shape.setColor(gf::Color::Green);
+        }else{
+            shape.setColor(m_color);
+        }
         shape.setAnchor(gf::Anchor::Center);
         target.draw(shape);
     }
