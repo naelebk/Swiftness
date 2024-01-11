@@ -3,6 +3,7 @@
 #include "level.h"
 #include "constants.h"
 #include "commands.h"
+#include "helloNewPadawan.h"
 
 #include <gf/Clock.h>
 #include <gf/Views.h>
@@ -24,14 +25,14 @@ using namespace swiftness;
 int main(int argc, char *argv[])
 {
 
-    if (argc < 2)
-    {
-        std::cerr << "Usage: " << argv[0] << " [level number]" << std::endl;
-        return 1;
-    }
-
-    std::string level = argv[1];
+    //std::string level = argv[1];
     // initialize the window
+    std::map<int, swiftness::StaticPlateform> plateform;
+    swiftness::Square square;
+
+    // Welcome displays
+    swiftness::Hello helloWorld;
+    helloWorld.displayWelcomeMenu(plateform, square);
     gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
 
     // set the window in fullscreen mode
@@ -42,44 +43,6 @@ int main(int argc, char *argv[])
 
     // create a vector of Input
     std::vector<Input> enumVector;
-
-    std::map<int, swiftness::StaticPlateform> plateform;
-    swiftness::Square square;
-
-    if (level == "0")
-    {
-        std::cout << "level00.tmx - Julien" << std::endl;
-        swiftness::Level::level level00 = Level::initializeLevel("level00.tmx");
-        square = level00.square;
-        plateform = level00.plateform;
-    }
-    if (level == "1")
-    {
-        std::cout << "level01.tmx - Julien" << std::endl;
-        swiftness::Level::level level01 = Level::initializeLevel("level01.tmx");
-        square = level01.square;
-        plateform = level01.plateform;
-    }
-    if (level == "2")
-    {
-        std::cout << "level02.tmx - Julien" << std::endl;
-        swiftness::Level::level level02 = Level::initializeLevel("level02.tmx");
-        square = level02.square;
-        plateform = level02.plateform;
-    }   
-    if (level == "3")
-    {
-        std::cout << "level03.tmx - Julien" << std::endl;
-        swiftness::Level::level level03 = Level::initializeLevel("level03.tmx");
-        square = level03.square;
-        plateform = level03.plateform;
-    }
-    if (level == "4")
-    {
-        std::cout << "level04 - Théo" << std::endl;
-        square = swiftness::Square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
-        plateform = swiftness::Level::initializeLevel03();
-    }
 
     swiftness::CommandsManager commandManager;
 

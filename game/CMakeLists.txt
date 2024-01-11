@@ -16,7 +16,8 @@ add_executable(game
   ./code/levelEntity.cc
   ./code/constants.cc
   ./code/tilesEnumData.cc
-  ./code/commands.cc)
+  ./code/commands.cc
+  ./code/helloNewPadawan.cc)
 target_include_directories(game
 PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR})
