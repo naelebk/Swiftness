@@ -9,16 +9,21 @@ namespace swiftness
         std::cout << "LevelEntity created for file: " << nameFile << std::endl;
     }
 
-    std::map<int, StaticPlateform> LevelEntity::generateVerticalPlateform(int index)
+    std::map<int, StaticPlateform> LevelEntity::generateVerticalPlateform(int index, LayerName layerName)
     {
         std::map<int, StaticPlateform> verticalPlateforms;
-        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Collision_v);
-        std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(LayerName::Collision_v);
+        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(layerName);
+        std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
         gf::Vector2f mapSize = m_levelData.getMapSize();
         gf::Vector2f tileSize = m_levelData.getTileSize();
 
         if (layer)
         {
+            bool color = false;
+            if (layerName == LayerName::Wall_of_death_v)
+            {
+                color = true;
+            }
             int platformIndex = index;
             for (int x = 0; x < mapSize.width; x++)
             {
@@ -39,6 +44,9 @@ namespace swiftness
 
                         gf::Vector2f position = gf::Vector2f(x * tileSize.width + tileSize.width / 2, y * tileSize.height - height / 2 + tileSize.height);
                         StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
+                        if (color){
+                            plateform = StaticPlateform(position, height, length, gf::Color::Red);
+                        }
                         verticalPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
                         platformIndex++;
                     }
@@ -49,16 +57,21 @@ namespace swiftness
         return verticalPlateforms;
     }
 
-    std::map<int, StaticPlateform> LevelEntity::generateHorizontalPlateform(int index)
+    std::map<int, StaticPlateform> LevelEntity::generateHorizontalPlateform(int index, LayerName layerName)
     {
         std::map<int, StaticPlateform> horizontalPlateforms;
-        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Collision_h);
-        std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(LayerName::Collision_h);
+        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(layerName);
+        std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
         gf::Vector2f mapSize = m_levelData.getMapSize();
         gf::Vector2f tileSize = m_levelData.getTileSize();
 
         if (layer)
         {
+            bool color = false;
+            if (layerName == LayerName::Wall_of_death_h)
+            {
+                color = true;
+            }
             int platformIndex = index;
             for (int y = 0; y < mapSize.height; y++)
             {
@@ -79,6 +92,9 @@ namespace swiftness
 
                         gf::Vector2f position = gf::Vector2f(x * tileSize.width - length / 2 + tileSize.width, y * tileSize.height + tileSize.height / 2);
                         StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
+                        if (color){
+                            plateform = StaticPlateform(position, height, length, gf::Color::Red);
+                        }
                         horizontalPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
                         platformIndex++;
                     }
@@ -89,16 +105,22 @@ namespace swiftness
         return horizontalPlateforms;
     }
 
-    std::map<int, StaticPlateform> LevelEntity::generateBlocPlateforms(int index)
+    std::map<int, StaticPlateform> LevelEntity::generateBlocPlateforms(int index, LayerName layerName)
     {
         std::map<int, StaticPlateform> blocPlateforms;
-        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Collision_bloc);
-        std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(LayerName::Collision_bloc);
+        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(layerName);
+        std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
         gf::Vector2f mapSize = m_levelData.getMapSize();
         gf::Vector2f tileSize = m_levelData.getTileSize();
 
         if (layer)
         {
+            bool color = false;
+            if (layerName == LayerName::Wall_of_death_bloc)
+            {
+                color = true;
+            }
+            std::cout << "color : " << color << std::endl;
             int platformIndex = index;
             for (int y = 0; y < mapSize.height; y++)
             {
@@ -129,7 +151,11 @@ namespace swiftness
                         // Calculer la position centrée de la plateforme
                         gf::Vector2f position = gf::Vector2f((x + xEnd) * tileSize.width / 2 + tileSize.width / 2,
                                                              (y + yEnd) * tileSize.height / 2 + tileSize.height / 2);
+                        
                         StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
+                        if (color){
+                            plateform = StaticPlateform(position, height, length, gf::Color::Red);
+                        }
                         blocPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
 
                         // Marquer les cellules déjà traitées
@@ -149,7 +175,7 @@ namespace swiftness
         return blocPlateforms;
     }
 
-    std::map<int, StaticPlateform> LevelEntity::generateInvisiblePlateforms(int index)
+    std::map<int, StaticPlateform> LevelEntity::generateBorder(int index)
     {
         std::map<int, StaticPlateform> invisiblePlateforms;
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Border);
@@ -189,7 +215,7 @@ namespace swiftness
                         // Calculer la position centrée de la plateforme
                         gf::Vector2f position = gf::Vector2f((x + xEnd) * tileSize.width / 2 + tileSize.width / 2,
                                                              (y + yEnd) * tileSize.height / 2 + tileSize.height / 2);
-                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Green);
+                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Transparent);
                         invisiblePlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
 
                         // Marquer les cellules déjà traitées

@@ -22,9 +22,9 @@ namespace swiftness
         LevelData& getLevelData() { return m_levelData; };
 
         /**
-         * @brief Get the entrance of the level
+         * @brief Get the square of the level
          *
-         * @return gf::Vector2i the entrance of the level
+         * @return Square the square of the level
          */
         Square getSquareEntity() { return m_squareEntity; };
 
@@ -42,14 +42,14 @@ namespace swiftness
          *
          * @return std::map<int, StaticPlateform> the vertical plateform
          */
-        std::map<int, StaticPlateform> generateVerticalPlateform(int index);
+        std::map<int, StaticPlateform> generateVerticalPlateform(int index, LayerName layerName);
 
         /**
          * @brief generate the horizontal plateform
          *
          * @return std::map<int, StaticPlateform> the horizontal plateform
          */
-        std::map<int, StaticPlateform> generateHorizontalPlateform(int index);
+        std::map<int, StaticPlateform> generateHorizontalPlateform(int index, LayerName layerName);
 
         /**
          * @brief generate the bloc plateform
@@ -58,16 +58,16 @@ namespace swiftness
          * 
          * @return std::map<int, StaticPlateform> the bloc plateform
          */
-        std::map<int, StaticPlateform> generateBlocPlateforms(int index);
+        std::map<int, StaticPlateform> generateBlocPlateforms(int index, LayerName layerName);
 
         /**
-         * @brief generate invisible plateform
+         * @brief generate Border of the map
          * 
          * @param index
          * 
-         * @return std::map<int, StaticPlateform> the invisible plateform
+         * @return std::map<int, StaticPlateform> the Border of the map
          */
-        std::map<int, StaticPlateform> generateInvisiblePlateforms(int index);
+        std::map<int, StaticPlateform> generateBorder(int index);
 
     private:
         std::string m_name;

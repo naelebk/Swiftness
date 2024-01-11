@@ -5,6 +5,21 @@ namespace swiftness
     std::string getLayerName(LayerName name) {
             switch (name)
             {
+            case LayerName::IO:
+                return "IO";
+                break;
+            case LayerName::Border:
+                return "Border";
+                break;
+            case LayerName::Wall_of_death_v:
+                return "Wall_of_death_v";
+                break;
+            case LayerName::Wall_of_death_h:
+                return "Wall_of_death_h";
+                break;
+            case LayerName::Wall_of_death_bloc:
+                return "Wall_of_death_bloc";
+                break;
             case LayerName::Collision_v:
                 return "Collision_v";
                 break;
@@ -14,20 +29,14 @@ namespace swiftness
             case LayerName::Collision_bloc:
                 return "Collision_bloc";
                 break;
-            case LayerName::CollisionWallWalk:
-                return "CollisionWallWalk";
+            case LayerName::gravity_switch:
+                return "gravity_switch";
                 break;
             case LayerName::Filling:
                 return "Filling";
                 break;
             case LayerName::Decoration:
                 return "Decoration";
-                break;
-            case LayerName::IO:
-                return "IO";
-                break;
-            case LayerName::Border:
-                return "Border";
                 break;
             default:
                 return "Error";
@@ -109,6 +118,54 @@ namespace swiftness
                 break;
             case PlateformType::exit:
                 return 26;
+                break;
+            case PlateformType::deathG_solo_left:
+                return 27;
+                break;
+            case PlateformType::deathG_solo_middle:
+                return 28;
+                break;
+            case PlateformType::deathG_solo_right:          
+                return 29;
+                break;
+            case PlateformType::deathG_solo_left_right:
+                return 30;
+                break;
+            case PlateformType::deathG_bloc_left:
+                return 31;
+                break;
+            case PlateformType::deathG_bloc_middle:
+                return 32;
+                break;
+            case PlateformType::deathG_bloc_right:
+                return 33;
+                break;
+            case PlateformType::deathG_bloc_left_right:
+                return 34;
+                break;
+            case PlateformType::deathM_bloc_left:
+                return 35;
+                break;
+            case PlateformType::deathM_bloc_middle:
+                return 36;
+                break;
+            case PlateformType::deathM_bloc_right:
+                return 37;
+                break;
+            case PlateformType::deathM_bloc_left_right:
+                return 38;
+                break;
+            case PlateformType::deathT_bloc_left:   
+                return 39;
+                break;
+            case PlateformType::deathT_bloc_middle:
+                return 40;
+                break;
+            case PlateformType::deathT_bloc_right:
+                return 41;
+                break;
+            case PlateformType::deathT_bloc_left_right:
+                return 42;
                 break;
             default:
                 return -1;

@@ -37,18 +37,18 @@
         },
         "Maps/level00.tmx": {
             "scale": 1.7626953125,
-            "selectedLayer": 4,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 255.29085872576178,
+                "x": 254.7235457063712,
                 "y": 159.98227146814406
             }
         },
         "Maps/level01.tmx": {
             "scale": 1,
-            "selectedLayer": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 487.5,
-                "y": 320
+                "x": 414,
+                "y": 307
             }
         },
         "Maps/level02.tmx": {
@@ -56,18 +56,21 @@
                 9
             ],
             "scale": 0.75,
-            "selectedLayer": 7,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 240.66666666666663,
-                "y": 640
+                "x": 217.33333333333337,
+                "y": 466.66666666666674
             }
         },
         "Maps/level03.tmx": {
+            "expandedObjectLayers": [
+                8
+            ],
             "scale": 0.75,
-            "selectedLayer": 4,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 377.3333333333333,
-                "y": 293.33333333333326
+                "x": 373.3333333333333,
+                "y": 478.66666666666674
             }
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -76,6 +79,9 @@
         },
         "Tilesets/TILESET_FUTURISTIC_CITY.tsx": {
             "scaleInDock": 8
+        },
+        "Tilesets/WallOfDeath.tsx": {
+            "scaleInEditor": 1
         },
         "Tilesets/font.tsx": {
             "scaleInDock": 8
@@ -182,6 +188,7 @@
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
+        "Tilesets/WallOfDeath.tsx",
         "Maps/level00.tmx",
         "Maps/level01.tmx",
         "Maps/level02.tmx",
@@ -192,8 +199,7 @@
         "levels/level01.tmx",
         "levels/level00.tmx",
         "tileset/font.tsx",
-        "tileset/hero.tsx",
-        "/home/juliengauthier410/game/ggj2022-main/data/hag/level00.tmx"
+        "tileset/hero.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

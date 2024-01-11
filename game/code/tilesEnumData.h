@@ -37,7 +37,26 @@ namespace swiftness {
 
             entrance = 25,
             exit = 26,
-            invisible = 27
+            
+            deathG_solo_left = 27,
+            deathG_solo_middle = 28,
+            deathG_solo_right = 29,
+            deathG_solo_left_right = 30,
+
+            deathG_bloc_left = 31,
+            deathG_bloc_middle = 32,
+            deathG_bloc_right = 33,
+            deathG_bloc_left_right = 34,
+
+            deathM_bloc_left = 35,
+            deathM_bloc_middle = 36,
+            deathM_bloc_right = 37,
+            deathM_bloc_left_right = 38,
+
+            deathT_bloc_left = 39,
+            deathT_bloc_middle = 40,
+            deathT_bloc_right = 41,
+            deathT_bloc_left_right = 42
 
 
         };
@@ -46,10 +65,13 @@ namespace swiftness {
         {
             IO,
             Border,
+            Wall_of_death_v,
+            Wall_of_death_h,
+            Wall_of_death_bloc,
             Collision_v,
             Collision_h,
             Collision_bloc,
-            CollisionWallWalk,
+            gravity_switch,
             Filling,
             Decoration
         };

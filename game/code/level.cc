@@ -9,24 +9,48 @@ namespace swiftness
 
         LevelEntity levelEntity(nameFile);
 
+        int index = 0;
+
         // Ajout des plateformes verticales
-        plateform = levelEntity.generateVerticalPlateform(0);
+        plateform = levelEntity.generateVerticalPlateform(index, LayerName::Collision_v);
         std::cout << "Vertical plateform generated" << std::endl;
+        index += plateform.size();
 
         // Ajout des plateformes horizontales
-        std::map<int, StaticPlateform> plateform_h = levelEntity.generateHorizontalPlateform(plateform.size());
+        std::map<int, StaticPlateform> plateform_h = levelEntity.generateHorizontalPlateform(index, LayerName::Collision_h);
         std::cout << "Horizontal plateform generated" << std::endl;
+        index += plateform_h.size();
 
         // Ajout des plateformes bloc
-        std::map<int, StaticPlateform> plateform_bloc = levelEntity.generateBlocPlateforms(plateform.size() + plateform_h.size());
+        std::map<int, StaticPlateform> plateform_bloc = levelEntity.generateBlocPlateforms(index, LayerName::Collision_bloc);
         std::cout << "Bloc plateform generated" << std::endl;
+        index += plateform_bloc.size();
+        // Ajout des plateformes tueuses !!
+
+        // Ajout des plateformes verticales
+        std::map<int, StaticPlateform> Death_v = levelEntity.generateVerticalPlateform(index, LayerName::Wall_of_death_v);
+        std::cout << "Vertical death generated" << std::endl;
+        index += Death_v.size();
+
+        // Ajout des plateformes horizontales
+        std::map<int, StaticPlateform> Death_h = levelEntity.generateHorizontalPlateform(index, LayerName::Wall_of_death_h);
+        std::cout << "Horizontal death generated" << std::endl;
+        index += Death_h.size();
+
+        // Ajout des plateformes bloc
+        std::map<int, StaticPlateform> Death_bloc = levelEntity.generateBlocPlateforms(index, LayerName::Wall_of_death_bloc);
+        std::cout << "Bloc death generated" << std::endl;
+        index += Death_bloc.size();
 
         // ajout des murs invisible
-        std::map<int, StaticPlateform> plateform_invisible = levelEntity.generateInvisiblePlateforms(plateform.size() + plateform_h.size() + plateform_bloc.size());
+        std::map<int, StaticPlateform> border = levelEntity.generateBorder(index);
 
         plateform.insert(plateform_h.begin(), plateform_h.end());
         plateform.insert(plateform_bloc.begin(), plateform_bloc.end());
-        plateform.insert(plateform_invisible.begin(), plateform_invisible.end());
+        plateform.insert(Death_v.begin(), Death_v.end());
+        plateform.insert(Death_h.begin(), Death_h.end());
+        plateform.insert(Death_bloc.begin(), Death_bloc.end());
+        plateform.insert(border.begin(), border.end());
 
         return plateform;
     }
