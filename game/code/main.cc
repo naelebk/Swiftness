@@ -19,8 +19,11 @@
 #include <stdlib.h>
 #include <vector>
 #include <stdio.h>
+#include <thread>
+#include <chrono>
 
 using namespace swiftness;
+using std::this_thread::sleep_for;
 
 int main(int argc, char *argv[])
 {
@@ -32,10 +35,15 @@ int main(int argc, char *argv[])
 
     // Welcome displays
     swiftness::Hello helloWorld;
+    gf::Font font;
+    //gf::Window win1("Welcome to Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
+    //swiftness::MenuHello helloWorld (font, win1);
     helloWorld.displayWelcomeMenu(plateform, square);
-    gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
-
+    /*while(win1.isActive()) {
+        sleep_for(std::chrono::milliseconds(1000));
+    }*/
     // set the window in fullscreen mode
+    gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
     gf::RenderWindow renderer(window);
 
     // Get the screen size after setting fullscreen mode
