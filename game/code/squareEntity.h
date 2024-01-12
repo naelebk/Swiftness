@@ -73,6 +73,11 @@ namespace swiftness
         */
         void render(gf::RenderTarget &target);
 
+        /**
+         * @brief Affiche le HUD du carré
+        */
+        void renderHUD(gf::RenderTarget &target,float width,float height);
+
 
         /**
          * @brief Gère les collisions avec la plateforme

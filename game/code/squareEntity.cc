@@ -304,6 +304,20 @@ namespace swiftness
         target.draw(shape);
     }
 
+    void Square::renderHUD(gf::RenderTarget &target,float width,float height)
+    {
+        gf::RectangleShape shape_bullet_bar({100.0f, 20.0f});
+        shape_bullet_bar.setPosition(m_position - gf::Vector2f(width/2-55.0f, height/2-15.0f));
+        shape_bullet_bar.setColor(gf::Color::Black);
+        shape_bullet_bar.setAnchor(gf::Anchor::Center);
+        target.draw(shape_bullet_bar);
+        gf::RectangleShape shape_bullet_bar2({m_bullet_bar, 20.0f});
+        shape_bullet_bar2.setPosition(m_position - gf::Vector2f(width/2-m_bullet_bar/2-5.0f, height/2-15.0f));
+        shape_bullet_bar2.setColor(gf::Color::Cyan);
+        shape_bullet_bar2.setAnchor(gf::Anchor::Center);
+        target.draw(shape_bullet_bar2);
+    }
+
     // empeche le carré de traverser une plateforme
     void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color)
     {

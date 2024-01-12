@@ -92,6 +92,7 @@ int main(int argc, char *argv[])
         {
             plateform.second.render(renderer);
         }
+        square.renderHUD(renderer,SCREEN_WIDTH,SCREEN_HEIGHT);
         renderer.display();
     }
     return 0;
