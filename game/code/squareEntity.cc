@@ -5,7 +5,7 @@
 namespace swiftness
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), m_bullet(false), m_bullet_bar(0.0f), nb_jumps(0), m_gravity(1)
+        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), m_bullet(false), m_bullet_bar(0.0f), nb_jumps(0), m_gravity(1), goLeft(false), goRight(false)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -70,6 +70,7 @@ namespace swiftness
             if(m_velocity.x>0){
                 m_velocity.x = 0;
             }
+            goRight=false;
         }
         // std::vector<Input>::iterator S_Released = std::find(inputs.begin(), inputs.end(), Input::S_Released);
         // std::vector<Input>::iterator DownReleased = std::find(inputs.begin(), inputs.end(), Input::DownReleased);
@@ -82,12 +83,14 @@ namespace swiftness
             if(m_velocity.x<0){
                 m_velocity.x = 0;
             }
+            goLeft=false;
         } 
 
         std::vector<Input>::iterator D = std::find(inputs.begin(), inputs.end(), Input::D);
         std::vector<Input>::iterator Right = std::find(inputs.begin(), inputs.end(), Input::Right);
         if (D != inputs.end() || Right != inputs.end()) {
             m_velocity.x = SPEED_SQUARE;
+            goRight=true;
         }
         std::vector<Input>::iterator S = std::find(inputs.begin(), inputs.end(), Input::S);
         std::vector<Input>::iterator Down = std::find(inputs.begin(), inputs.end(), Input::Down);
@@ -97,13 +100,19 @@ namespace swiftness
         std::vector<Input>::iterator Left = std::find(inputs.begin(), inputs.end(), Input::Left);
         if (Q != inputs.end() || Left != inputs.end()) { 
             m_velocity.x = -SPEED_SQUARE;
+            goLeft=true;
         }    
     }
 
     void Square::updateWithMap(float dt, std::map<int, StaticPlateform> plateforms, std::vector<Input> inputs)
     {
         actionWithInputs(inputs,plateforms);
+        bool walljumpRight=canWallJumpRight(plateforms);
+        bool walljumpLeft=canWallJumpLeft(plateforms);
         if (m_bullet){
+            if ((goLeft && walljumpLeft) || (goRight && walljumpRight)){
+                m_velocity.y=-SPEED_SQUARE*m_gravity;
+            }
             m_bullet_bar-=dt*10;
             if(m_bullet_bar<=0.0f){
                 m_bullet_bar=0.0f;
@@ -117,8 +126,6 @@ namespace swiftness
                 m_bullet_bar=100.0f;
             }
         }
-        bool walljumpRight=canWallJumpRight(plateforms);
-        bool walljumpLeft=canWallJumpLeft(plateforms);
         // Appliquez la gravité
         setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
         // Mettez à jour la position du carré
@@ -393,6 +400,12 @@ namespace swiftness
                         nb_jumps=0;
                         if(m_velocity.x==WALL_JUMP_SPEED || m_velocity.x==-WALL_JUMP_SPEED){
                             m_velocity.x=0;
+                            if (goLeft){
+                                m_velocity.x=-SPEED_SQUARE;
+                            }
+                            if (goRight){
+                                m_velocity.x=SPEED_SQUARE;
+                            }
                         }
                     }
                 }
@@ -404,6 +417,12 @@ namespace swiftness
                         nb_jumps=0;
                         if(m_velocity.x==WALL_JUMP_SPEED || m_velocity.x==-WALL_JUMP_SPEED){
                             m_velocity.x=0;
+                            if (goLeft){
+                                m_velocity.x=-SPEED_SQUARE;
+                            }
+                            if (goRight){
+                                m_velocity.x=SPEED_SQUARE;
+                            }
                         }
                     }
                 }
