@@ -45,7 +45,7 @@ namespace swiftness
                         gf::Vector2f position = gf::Vector2f(x * tileSize.width + tileSize.width / 2, y * tileSize.height - height / 2 + tileSize.height);
                         StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
                         if (color){
-                            plateform = StaticPlateform(position, height, length, gf::Color::Red);
+                            plateform = StaticPlateform(position, height, length, gf::Color::Yellow);
                         }
                         verticalPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
                         platformIndex++;
@@ -93,7 +93,7 @@ namespace swiftness
                         gf::Vector2f position = gf::Vector2f(x * tileSize.width - length / 2 + tileSize.width, y * tileSize.height + tileSize.height / 2);
                         StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
                         if (color){
-                            plateform = StaticPlateform(position, height, length, gf::Color::Red);
+                            plateform = StaticPlateform(position, height, length, gf::Color::Yellow);
                         }
                         horizontalPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
                         platformIndex++;
@@ -154,7 +154,7 @@ namespace swiftness
                         
                         StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
                         if (color){
-                            plateform = StaticPlateform(position, height, length, gf::Color::Red);
+                            plateform = StaticPlateform(position, height, length, gf::Color::Yellow);
                         }
                         blocPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
 
