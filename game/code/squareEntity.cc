@@ -117,15 +117,17 @@ namespace swiftness
                 m_bullet_bar=100.0f;
             }
         }
-        // Mettez à jour la position du carré
-        m_position += dt * m_velocity;
         // Appliquez la gravité
         setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
-
+        // Mettez à jour la position du carré
+        m_position += dt * m_velocity;
+        
+        bool walljumpRight=canWallJumpRight(plateforms);
+        bool walljumpLeft=canWallJumpLeft(plateforms);
         // Vérifiez les collisions avec la plateforme
         for (auto &plateform : plateforms)
         {
-            collideWithPlateform(plateform.second.getPosition(), plateform.second.getHeight(), plateform.second.getLength(),plateform.second.getColor());
+            collideWithPlateform(plateform.second.getPosition(), plateform.second.getHeight(), plateform.second.getLength(),plateform.second.getColor(),walljumpLeft,walljumpRight);
         }
 
         
@@ -287,7 +289,7 @@ namespace swiftness
         setVelocity(m_velocity + gf::Vector2f(0, gravity * dt));
 
         // Vérifiez les collisions avec la plateforme
-        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(),plateform.getColor());
+        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(),plateform.getColor(),false,false);
         
     }
 
@@ -319,7 +321,7 @@ namespace swiftness
     }
 
     // empeche le carré de traverser une plateforme
-    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color)
+    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight)
     {
         // Supposons que la classe Square ait des membres m_position (position centrale du carré),
         // m_size (longueur d'un côté du carré), et m_velocity (vecteur de mouvement du carré)
