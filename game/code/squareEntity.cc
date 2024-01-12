@@ -117,13 +117,14 @@ namespace swiftness
                 m_bullet_bar=100.0f;
             }
         }
+        bool walljumpRight=canWallJumpRight(plateforms);
+        bool walljumpLeft=canWallJumpLeft(plateforms);
         // Appliquez la gravité
         setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
         // Mettez à jour la position du carré
         m_position += dt * m_velocity;
         
-        bool walljumpRight=canWallJumpRight(plateforms);
-        bool walljumpLeft=canWallJumpLeft(plateforms);
+        
         // Vérifiez les collisions avec la plateforme
         for (auto &plateform : plateforms)
         {
@@ -384,7 +385,7 @@ namespace swiftness
                         m_velocity.x=0;
                     }
                 }
-                else if (minOverlap == overlapTop && ((!wallRight || plateformLeft<squareLeft) && (!wallLeft || plateformRight>squareRight)))
+                else if (minOverlap == overlapTop && (((!wallRight || plateformLeft<squareLeft) && (!wallLeft || plateformRight>squareRight)) || (wallLeft && wallRight)))
                 {
                     m_velocity.y=0;
                     m_position.y -= overlapTop;
@@ -395,7 +396,7 @@ namespace swiftness
                         }
                     }
                 }
-                else if (minOverlap == overlapBottom && ((!wallRight || plateformLeft<squareLeft) && (!wallLeft || plateformRight>squareRight)))
+                else if (minOverlap == overlapBottom && (((!wallRight || plateformLeft<squareLeft) && (!wallLeft || plateformRight>squareRight)) || (wallLeft && wallRight)))
                 {
                     m_velocity.y=0;
                     m_position.y += overlapBottom;
