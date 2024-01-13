@@ -117,7 +117,8 @@ namespace swiftness {
                 if (event.type == gf::EventType::MouseButtonPressed && event.mouseButton.button == gf::MouseButton::Left) {
                     float ystart=WINDOW_HEIGHT / 2 - (buttonCount * (buttonHeight + margin)) / 2 - buttonHeight -margin;
                     int clickedButton = (event.mouseButton.coords.y - ystart) / (buttonHeight/2 + margin*1.5f);
-                    if (clickedButton >= 0 && clickedButton <= MAX_LEVEL) {
+                    float xMouse=event.mouseButton.coords.x;
+                    if (event.mouseButton.coords.y>= ystart && xMouse<=(window.getSize().x/2)+150.0f && xMouse>=(window.getSize().x/2)-150.0f && clickedButton >= 0 && clickedButton <= MAX_LEVEL) {
                         selectedLevel = clickedButton;
                         return;
                     } else if (clickedButton == MAX_LEVEL + 1) {
