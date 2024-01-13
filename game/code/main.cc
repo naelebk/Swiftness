@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
     // Welcome displays
     //swiftness::Hello helloWorld;
-    gf::Font font;
+    gf::Font font("../../ressources/font/DejaVuSans.ttf");
     gf::Window win1("Welcome to Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
     gf::RenderWindow render(win1);
     swiftness::MenuHello helloWorld (font, win1);
