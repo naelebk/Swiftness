@@ -35,13 +35,22 @@ int main(int argc, char *argv[])
 
     // Welcome displays
     swiftness::Hello helloWorld;
-    gf::Font font;
-    //gf::Window win1("Welcome to Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
-    //swiftness::MenuHello helloWorld (font, win1);
-    helloWorld.displayWelcomeMenu(plateform, square);
-    /*while(win1.isActive()) {
-        sleep_for(std::chrono::milliseconds(1000));
+    /*gf::Font font;
+    gf::Window win1("Welcome to Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
+    gf::RenderWindow render(win1);
+    swiftness::MenuHello helloWorld (font, win1);
+    int level = -2;
+    while (win1.isOpen() && level == -2) {
+        helloWorld.displayLevelSelection(render, win1, font, level);
+        render.display();
+        gf::Event event;
+        while (win1.pollEvent(event)) {
+            if (event.type == gf::EventType::Closed) {
+                win1.close();
+            }
+        }
     }*/
+    helloWorld.loadLevelWithOrWithoutTMX(plateform, square/*, level*/);
     // set the window in fullscreen mode
     gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
     gf::RenderWindow renderer(window);

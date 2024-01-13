@@ -52,7 +52,7 @@ namespace swiftness {
             // de permettre à l'utilisateur de choisir le niveau auquel il
             // veut jouer, en fonction du niveau choisi, on appelera la fonction
             // adéquate permettant de charger ce niveau
-            void displayLevelSelection(gf::Window& window, gf::Font& font, int& selectedLevel);
+            void displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Font& font, int& selectedLevel);
 
             // Cette seconde fonction permet, dans une fenêtre graphique,
             // de charger les différents paramètres du jeu en fonction du level
@@ -60,7 +60,7 @@ namespace swiftness {
             void loadLevelWithOrWithoutTMX(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square, int level);
 
             // Cette fonction permet d'afficher le menu dans la fenêtre graphique
-            void displayWelcomeMenu(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square);
+            void displayWelcomeMenu(gf::RenderWindow& render, gf::Window& window, gf::Font& font, std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square);
         private:
             gf::Font& m_font;
             gf::Window& m_window;
