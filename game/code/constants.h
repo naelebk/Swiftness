@@ -28,7 +28,7 @@ namespace swiftness
 
     // Levels
     constexpr int MIN_LEVEL = 0;
-    constexpr int MAX_LEVEL = 4;
+    constexpr int MAX_LEVEL = 5;
 
     const std::string LEVELS_TMX_PATH = "../../ressources/Levels/Maps/";
     const std::string TEXTURE_BACKGROUND_PATH = "../../ressources/tiles/Images/background/";

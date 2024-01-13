@@ -5,12 +5,12 @@
     },
     "activeFile": "Maps/level04.tmx",
     "expandedProjectPaths": [
-        ".",
-        "tileset",
-        "Maps",
         "Tilesets",
+        "levels",
         "level",
-        "levels"
+        ".",
+        "Maps",
+        "tileset"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -79,10 +79,10 @@
                 13
             ],
             "scale": 3,
-            "selectedLayer": 2,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 25.333333333333343,
-                "y": 237.33333333333331
+                "x": 1301.3333333333333,
+                "y": 158.33333333333331
             }
         },
         "Maps/level_template.tmx": {

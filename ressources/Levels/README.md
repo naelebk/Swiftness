@@ -7,7 +7,7 @@
 - Installer [Tiled](https://thorbjorn.itch.io/tiled)
 ***Pour faire un niveau swiftness ne faite pas les étapes marqué d'une " \* " mais faite les étapes marqué par un " # "***
 
->- **\*** crée cette arboresccence et placez dans **Levels** :
+>- **\*** crée cette arboresccence et placez vous dans **Levels** :
 > 
 >  Levels/
 >
