@@ -158,6 +158,7 @@
 >> **Théo**
 >
 >- Correction du bug sur le Wall Jump, modification de squareEntity.cc
+>
 
 ## Ajout d'un menu au lancement du jeu
 
@@ -166,4 +167,15 @@
 >> **Naël**
 >
 >- Ajout d'un menu contextuelle (en ligne de commandes dans un premier temps) proposant à l'utilisateur de choisir le niveau qu'il souhaite faire
->- Dans un second temps, ajout d'une interface graphique avec boutons pour que l'utilisateur effectue ce choix 
+>- Dans un second temps, ajout d'une interface graphique avec boutons pour que l'utilisateur effectue ce choix
+>
+
+## gestion des objet avec le fichier tmx
+
+>
+>> *13/01/2024*
+>> **Julien**
+>
+>- On peut maintenant crée des bouton changement de gravité et des murs tueurs à partir des tile tmx
+>- Ajout de beaucoup d'asset pixel art pour les portail de début et fin de niveau, murs tueurs, bouton gravité et portail de choix de niveau
+>
