@@ -1,55 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="1">
- <tileset firstgid="1" source="../Tilesets/TILESET_FUTURISTIC_CITY.tsx"/>
- <tileset firstgid="25" source="../Tilesets/font.tsx"/>
- <tileset firstgid="27" source="../Tilesets/WallOfDeath.tsx"/>
- <layer id="4" name="Decoration" class="visible" width="1" height="1">
+ <tileset firstgid="1" source="../Tilesets/1_utilities.tsx"/>
+ <tileset firstgid="3" source="../Tilesets/2_portal.tsx"/>
+ <tileset firstgid="7" source="../Tilesets/3_futuristic_city.tsx"/>
+ <tileset firstgid="31" source="../Tilesets/4_gravity_switch.tsx"/>
+ <tileset firstgid="47" source="../Tilesets/5_gravity_flow.tsx"/>
+ <tileset firstgid="59" source="../Tilesets/6_wall_of_death.tsx"/>
+ <layer id="11" name="Decoration" class="visible" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="3" name="Filling" class="visible" width="1" height="1">
+ <layer id="10" name="Filling" class="visible" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <objectgroup id="13" name="gravity_switch"/>
- <layer id="9" name="Collision_bloc" width="1" height="1">
+ <objectgroup id="9" name="gravity_switch"/>
+ <layer id="8" name="Collision_bloc" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="2" name="Collision_h" class="collision" width="1" height="1">
+ <layer id="7" name="Collision_h" class="collision" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="1" name="Collision_v" class="collision" width="1" height="1">
+ <layer id="6" name="Collision_v" class="collision" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="11" name="Wall_of_death_bloc" width="1" height="1">
+ <layer id="5" name="Wall_of_death_bloc" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="12" name="Wall_of_death_h" width="1" height="1">
+ <layer id="4" name="Wall_of_death_h" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="10" name="Wall_of_death_v" width="1" height="1">
+ <layer id="3" name="Wall_of_death_v" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="7" name="Border" width="1" height="1" locked="1">
+ <layer id="2" name="Border" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="5" name="IO" width="1" height="1" locked="1">
+ <layer id="1" name="IO" width="1" height="1">
   <data encoding="csv">
 0
 </data>
