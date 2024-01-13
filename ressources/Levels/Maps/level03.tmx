@@ -99,7 +99,12 @@
 </data>
  </layer>
  <objectgroup id="9" name="gravity_switch">
-  <object id="1" type="up" x="788" y="416" width="8" height="12"/>
+  <object id="1" type="up" x="788" y="416" width="8" height="12">
+   <properties>
+    <property name="height" type="int" value="12"/>
+    <property name="width" type="int" value="8"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="8" name="Collision_bloc" width="62" height="42">
   <data encoding="csv">

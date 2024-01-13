@@ -59,7 +59,12 @@
 </data>
  </layer>
  <objectgroup id="9" name="gravity_switch">
-  <object id="1" type="down" x="32" y="32" width="1280" height="16"/>
+  <object id="1" type="down" x="32" y="32" width="1248" height="16">
+   <properties>
+    <property name="height" type="int" value="16"/>
+    <property name="width" type="int" value="1248"/>
+   </properties>
+  </object>
   <object id="2" type="up" x="112" y="304" width="1136" height="16">
    <properties>
     <property name="height" type="int" value="16"/>

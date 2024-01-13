@@ -179,8 +179,18 @@
 </data>
  </layer>
  <objectgroup id="9" name="gravity_switch">
-  <object id="1" type="up" x="224" y="1247" width="32" height="16"/>
-  <object id="2" type="down" x="388" y="32" width="8" height="12"/>
+  <object id="1" type="up" x="224" y="1247" width="32" height="16">
+   <properties>
+    <property name="height" type="int" value="16"/>
+    <property name="width" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="2" type="down" x="388" y="32" width="8" height="12">
+   <properties>
+    <property name="height" type="int" value="12"/>
+    <property name="width" type="int" value="8"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="8" name="Collision_bloc" width="30" height="82">
   <data encoding="csv">

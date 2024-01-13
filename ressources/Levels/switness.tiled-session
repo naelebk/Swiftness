@@ -6,11 +6,11 @@
     "activeFile": "",
     "expandedProjectPaths": [
         "tileset",
-        "levels",
+        "Maps",
         "level",
-        "Tilesets",
         ".",
-        "Maps"
+        "levels",
+        "Tilesets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -84,22 +84,25 @@
             }
         },
         "Maps/level03.tmx": {
+            "expandedObjectLayers": [
+                9
+            ],
             "scale": 0.75,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 325.99999999999994,
-                "y": 419.3333333333333
+                "x": 791.3333333333333,
+                "y": 420.66666666666663
             }
         },
         "Maps/level04.tmx": {
             "expandedObjectLayers": [
-                13
+                9
             ],
-            "scale": 0.5,
-            "selectedLayer": 10,
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 679,
-                "y": 311
+                "x": 200.99999999999997,
+                "y": 38.333333333333314
             }
         },
         "Maps/level_00.tmx": {
@@ -310,18 +313,18 @@
     "project": "switness.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "Tilesets/2_portal.tsx",
+        "Maps/level04.tmx",
+        "Maps/level02.tmx",
+        "Maps/level03.tmx",
         "Tilesets/6_wall_of_death.tsx",
         "Tilesets/5_gravity_flow.tsx",
         "Tilesets/4_gravity_switch.tsx",
         "Tilesets/3_futuristic_city.tsx",
-        "Tilesets/2_portal.tsx",
         "Tilesets/1_utilities.tsx",
-        "Maps/level03.tmx",
         "Maps/level_04.tmx",
-        "Maps/level04.tmx",
         "Maps/level_03.tmx",
-        "Maps/level_template.tmx",
-        "Maps/level02.tmx"
+        "Maps/level_template.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
