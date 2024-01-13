@@ -85,20 +85,25 @@ namespace swiftness {
         const int buttonCount = MAX_LEVEL + 2;
         render.clear(gf::Color::White);
         for (int i = 0; i < buttonCount; ++i) {
-            
+            gf::RectangleShape shape({300.0f, buttonHeight});
             gf::Text buttonText;
             buttonText.setFont(font);
             buttonText.setColor(gf::Color::Black);
-            buttonText.setCharacterSize(30);
+            buttonText.setCharacterSize(50);
             if (i == buttonCount - 1) {
                 buttonText.setString("Quit");
+                shape.setColor(gf::Color::Rose);
             } else {
                 buttonText.setString("Level " + std::to_string(i));
+                shape.setColor(gf::Color::Cyan);
             }
             float buttonX = WINDOW_WIDTH / 2 ;
             float buttonY = WINDOW_HEIGHT / 2 - (buttonCount * (buttonHeight + margin)) / 2 + (buttonHeight + margin) * i;
             buttonText.setPosition({buttonX, buttonY});
             buttonText.setAnchor(gf::Anchor::Center);
+            shape.setPosition({buttonX, buttonY});
+            shape.setAnchor(gf::Anchor::Center);
+            render.draw(shape);
             render.draw(buttonText);
         }
         render.display();
@@ -110,11 +115,12 @@ namespace swiftness {
                     window.close();
                 }
                 if (event.type == gf::EventType::MouseButtonPressed && event.mouseButton.button == gf::MouseButton::Left) {
-                    int clickedButton = (event.mouseButton.coords.y + (WINDOW_HEIGHT / 2 - (buttonCount * (buttonHeight + margin)) / 2)) / (buttonHeight + margin);
+                    float ystart=WINDOW_HEIGHT / 2 - (buttonCount * (buttonHeight + margin)) / 2 - buttonHeight -margin;
+                    int clickedButton = (event.mouseButton.coords.y - ystart) / (buttonHeight/2 + margin*1.5f);
                     if (clickedButton >= 0 && clickedButton <= MAX_LEVEL) {
                         selectedLevel = clickedButton;
                         return;
-                    } else if (clickedButton == MAX_LEVEL) {
+                    } else if (clickedButton == MAX_LEVEL + 1) {
                         selectedLevel = -1;
                         return;
                     }
