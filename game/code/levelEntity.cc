@@ -259,6 +259,8 @@ namespace swiftness
                 }
                 int width = objPtr.get()->properties.getIntProperty("width", 8);
                 int height = objPtr.get()->properties.getIntProperty("height", 12);
+                std::cout << "width : " << width << std::endl;
+                std::cout << "height : " << height << std::endl;
                 gf::Vector2f position = objPtr.get()->position;
                 position.x += width / 2;
                 position.y += height / 2;

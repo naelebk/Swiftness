@@ -3,14 +3,14 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Maps/level02.tmx",
+    "activeFile": "Maps/level04.tmx",
     "expandedProjectPaths": [
-        "Tilesets",
-        "Maps",
-        "levels",
-        "tileset",
         ".",
-        "level"
+        "tileset",
+        "Maps",
+        "Tilesets",
+        "level",
+        "levels"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -72,6 +72,25 @@
             "viewCenter": {
                 "x": 413.33333333333326,
                 "y": 336
+            }
+        },
+        "Maps/level04.tmx": {
+            "expandedObjectLayers": [
+                13
+            ],
+            "scale": 3,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 25.333333333333343,
+                "y": 237.33333333333331
+            }
+        },
+        "Maps/level_template.tmx": {
+            "scale": 2.28037109375,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 8.3319772172498,
+                "y": 8.3319772172498
             }
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -186,22 +205,25 @@
         "Maps/level00.tmx",
         "Maps/level01.tmx",
         "Maps/level02.tmx",
-        "Maps/level03.tmx"
+        "Maps/level03.tmx",
+        "Maps/level_template.tmx",
+        "Maps/level04.tmx"
     ],
     "project": "switness.tiled-project",
+    "property.type": "int",
     "recentFiles": [
         "Maps/level00.tmx",
         "Maps/level01.tmx",
-        "Maps/level03.tmx",
         "Maps/level02.tmx",
+        "Maps/level03.tmx",
+        "Maps/level_template.tmx",
+        "Maps/level04.tmx",
         "Tilesets/WallOfDeath.tsx",
         "Maps/Level03.tmx",
         "Tilesets/hero.tsx",
         "levels/level02.tmx",
         "levels/level01.tmx",
-        "levels/level00.tmx",
-        "tileset/font.tsx",
-        "tileset/hero.tsx"
+        "levels/level00.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
