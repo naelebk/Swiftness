@@ -158,3 +158,12 @@
 >> **Théo**
 >
 >- Correction du bug sur le Wall Jump, modification de squareEntity.cc
+
+## Ajout d'un menu au lancement du jeu
+
+>
+>> *11-13/01/2024*
+>> **Naël**
+>
+>- Ajout d'un menu contextuelle (en ligne de commandes dans un premier temps) proposant à l'utilisateur de choisir le niveau qu'il souhaite faire
+>- Dans un second temps, ajout d'une interface graphique avec boutons pour que l'utilisateur effectue ce choix 
