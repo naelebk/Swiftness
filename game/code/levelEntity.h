@@ -69,6 +69,15 @@ namespace swiftness
          */
         std::map<int, StaticPlateform> generateBorder(int index);
 
+        /**
+         * @brief generate the gravtiy switchs
+         * 
+         * @param index
+         * 
+         * @return std::map<int, StaticPlateform> the gravity switchs
+         */
+        std::map<int, StaticPlateform> generateGravitySwitchs(int index);
+
     private:
         std::string m_name;
         LevelData m_levelData;

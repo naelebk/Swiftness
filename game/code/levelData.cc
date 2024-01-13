@@ -7,7 +7,7 @@ namespace swiftness {
     {
         int entrance = getTileType(PlateformType::entrance);
         int exit = getTileType(PlateformType::exit);
-        gf::TmxLayer* layer = m_layerEntity.getLayerByName(LayerName::IO);
+        gf::TmxLayer* layer = m_layerEntity.getTileLayerByName(LayerName::IO);
         gf::TmxTileLayer* tileLayer = dynamic_cast<gf::TmxTileLayer*>(layer);
         gf::Vector2f mapSize = m_layerEntity.getMapSize();
         std::cout << "mapSize: " << mapSize.x << " , " << mapSize.y << std::endl;

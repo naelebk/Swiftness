@@ -38,7 +38,7 @@ namespace swiftness
                 return layers;
         }
 
-        gf::TmxTileLayer *LayerEntity::getLayerByName(LayerName layerName)
+        gf::TmxTileLayer *LayerEntity::getTileLayerByName(LayerName layerName)
         {
                 std::string name = getLayerName(layerName);
                 if (name == "Error")
@@ -49,6 +49,22 @@ namespace swiftness
                         if (layer->name == name)
                         {
                                 return layerIT = static_cast<gf::TmxTileLayer *>(layer.get());
+                        }
+                }
+                return layerIT;
+        }
+
+        gf::TmxObjectLayer *LayerEntity::getObjectLayerByName(LayerName layerName)
+        {
+                std::string name = getLayerName(layerName);
+                if (name == "Error")
+                        return nullptr;
+                gf::TmxObjectLayer *layerIT = nullptr;
+                for (auto &layer : m_layers.layers)
+                {
+                        if (layer->name == name)
+                        {
+                                return layerIT = static_cast<gf::TmxObjectLayer *>(layer.get());
                         }
                 }
                 return layerIT;

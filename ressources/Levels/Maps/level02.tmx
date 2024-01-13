@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="82" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="2">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="82" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="4">
  <tileset firstgid="1" source="../Tilesets/TILESET_FUTURISTIC_CITY.tsx"/>
  <tileset firstgid="25" source="../Tilesets/font.tsx"/>
  <layer id="14" name="Decoration" width="30" height="82" visible="0" locked="1">
@@ -174,8 +174,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="9" name="gravity_switch" locked="1">
-  <object id="1" type="up" x="232" y="1248" width="16" height="16"/>
+ <objectgroup id="9" name="gravity_switch">
+  <object id="1" type="up" x="236" y="1252" width="8" height="12"/>
+  <object id="2" type="down" x="388" y="32" width="8" height="12"/>
  </objectgroup>
  <layer id="10" name="Collision_bloc" width="30" height="82" locked="1">
   <data encoding="csv">
@@ -693,7 +694,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="8" name="Border" width="30" height="82" visible="0" locked="1">
+ <layer id="8" name="Border" width="30" height="82" locked="1">
   <data encoding="csv">
 0,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,0,
 25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,

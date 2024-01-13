@@ -12,7 +12,7 @@ namespace swiftness
     std::map<int, StaticPlateform> LevelEntity::generateVerticalPlateform(int index, LayerName layerName)
     {
         std::map<int, StaticPlateform> verticalPlateforms;
-        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(layerName);
+        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
         gf::Vector2f mapSize = m_levelData.getMapSize();
         gf::Vector2f tileSize = m_levelData.getTileSize();
@@ -44,7 +44,8 @@ namespace swiftness
 
                         gf::Vector2f position = gf::Vector2f(x * tileSize.width + tileSize.width / 2, y * tileSize.height - height / 2 + tileSize.height);
                         StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
-                        if (color){
+                        if (color)
+                        {
                             plateform = StaticPlateform(position, height, length, gf::Color::Yellow);
                         }
                         verticalPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
@@ -60,7 +61,7 @@ namespace swiftness
     std::map<int, StaticPlateform> LevelEntity::generateHorizontalPlateform(int index, LayerName layerName)
     {
         std::map<int, StaticPlateform> horizontalPlateforms;
-        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(layerName);
+        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
         gf::Vector2f mapSize = m_levelData.getMapSize();
         gf::Vector2f tileSize = m_levelData.getTileSize();
@@ -92,7 +93,8 @@ namespace swiftness
 
                         gf::Vector2f position = gf::Vector2f(x * tileSize.width - length / 2 + tileSize.width, y * tileSize.height + tileSize.height / 2);
                         StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
-                        if (color){
+                        if (color)
+                        {
                             plateform = StaticPlateform(position, height, length, gf::Color::Yellow);
                         }
                         horizontalPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
@@ -108,7 +110,7 @@ namespace swiftness
     std::map<int, StaticPlateform> LevelEntity::generateBlocPlateforms(int index, LayerName layerName)
     {
         std::map<int, StaticPlateform> blocPlateforms;
-        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(layerName);
+        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
         gf::Vector2f mapSize = m_levelData.getMapSize();
         gf::Vector2f tileSize = m_levelData.getTileSize();
@@ -151,9 +153,10 @@ namespace swiftness
                         // Calculer la position centrée de la plateforme
                         gf::Vector2f position = gf::Vector2f((x + xEnd) * tileSize.width / 2 + tileSize.width / 2,
                                                              (y + yEnd) * tileSize.height / 2 + tileSize.height / 2);
-                        
+
                         StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
-                        if (color){
+                        if (color)
+                        {
                             plateform = StaticPlateform(position, height, length, gf::Color::Yellow);
                         }
                         blocPlateforms.insert(std::pair<int, StaticPlateform>(platformIndex, plateform));
@@ -178,7 +181,7 @@ namespace swiftness
     std::map<int, StaticPlateform> LevelEntity::generateBorder(int index)
     {
         std::map<int, StaticPlateform> invisiblePlateforms;
-        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getLayerByName(LayerName::Border);
+        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(LayerName::Border);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(LayerName::Border);
         gf::Vector2f mapSize = m_levelData.getMapSize();
         gf::Vector2f tileSize = m_levelData.getTileSize();
@@ -233,6 +236,40 @@ namespace swiftness
             }
         }
         return invisiblePlateforms;
+    }
+
+    std::map<int, StaticPlateform> LevelEntity::generateGravitySwitchs(int index)
+    {
+        std::map<int, StaticPlateform> gravitySwitchs;
+        std::vector<std::unique_ptr<gf::TmxObject>> objects = m_levelData.getLayersEntity().getObjectsOfaLayer(LayerName::gravity_switch);
+
+        int platformIndex = index;
+        for (const auto &objPtr : objects)
+        {
+            if (objPtr)
+            {
+                gf::Color4f color;
+                if (objPtr.get()->type == "down") // Assurez-vous que la méthode getType() existe
+                {
+                    color = gf::Color::Rose; // Remplacez par la couleur appropriée si Rose n'existe pas
+                }
+                else if (objPtr.get()->type == "up")
+                {
+                    color = gf::Color::Cyan;
+                }
+                int width = objPtr.get()->properties.getIntProperty("width", 8);
+                int height = objPtr.get()->properties.getIntProperty("height", 12);
+                gf::Vector2f position = objPtr.get()->position;
+                position.x += width / 2;
+                position.y += height / 2;
+                std::cout << "position : " << position.col << " : " << position.row << std::endl;
+                StaticPlateform plateform(position, height, width, color);
+                gravitySwitchs.insert(std::make_pair(platformIndex, plateform));
+                platformIndex++;
+            }
+        }
+
+        return gravitySwitchs;
     }
 
 } // namespace swiftness

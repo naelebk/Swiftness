@@ -42,6 +42,11 @@ namespace swiftness
         std::cout << "Bloc death generated" << std::endl;
         index += Death_bloc.size();
 
+        // Ajout des gravity switch
+        std::map<int, StaticPlateform> gravitySwitch = levelEntity.generateGravitySwitchs(index);
+        std::cout << "Gravity switch generated" << std::endl;
+        index += gravitySwitch.size();
+
         // ajout des murs invisible
         std::map<int, StaticPlateform> border = levelEntity.generateBorder(index);
 
@@ -50,6 +55,7 @@ namespace swiftness
         plateform.insert(Death_v.begin(), Death_v.end());
         plateform.insert(Death_h.begin(), Death_h.end());
         plateform.insert(Death_bloc.begin(), Death_bloc.end());
+        plateform.insert(gravitySwitch.begin(), gravitySwitch.end());
         plateform.insert(border.begin(), border.end());
 
         return plateform;
