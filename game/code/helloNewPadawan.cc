@@ -83,10 +83,11 @@ namespace swiftness {
     void MenuHello::displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Font& font, int& selectedLevel) {
         const float buttonHeight = 40.0f, margin = 10.0f;
         const int buttonCount = MAX_LEVEL + 2;
-        render.clear(gf::Color::White);
+        render.clear(gf::Color::Black);
         for (int i = 0; i < buttonCount; ++i) {
             gf::Text buttonText;
             buttonText.setFont(font);
+            buttonText.setColor(gf::Color::Blue);
             buttonText.setCharacterSize(20);
             if (i == buttonCount - 1) {
                 buttonText.setString("Quit");
@@ -98,21 +99,28 @@ namespace swiftness {
             buttonText.setPosition({buttonX, buttonY});
             render.draw(buttonText);
         }
+        render.display();
         gf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == gf::EventType::Closed) {
-                window.close();
-            }
-            if (event.type == gf::EventType::MouseButtonPressed && event.mouseButton.button == gf::MouseButton::Left) {
-                int clickedButton = (event.mouseButton.coords.y - (WINDOW_HEIGHT / 2 - (buttonCount * (buttonHeight + margin)) / 2)) / (buttonHeight + margin);
-                if (clickedButton >= 0 && clickedButton < MAX_LEVEL) {
-                    selectedLevel = clickedButton;
-                } else if (clickedButton == MAX_LEVEL) {
-                    selectedLevel = -1;
+        while (window.isOpen())
+        {
+            while (window.pollEvent(event)) {
+                if (event.type == gf::EventType::Closed) {
+                    window.close();
+                }
+                if (event.type == gf::EventType::MouseButtonPressed && event.mouseButton.button == gf::MouseButton::Left) {
+                    int clickedButton = (event.mouseButton.coords.y - (WINDOW_HEIGHT / 2 - (buttonCount * (buttonHeight + margin)) / 2)) / (buttonHeight + margin);
+                    if (clickedButton >= 0 && clickedButton < MAX_LEVEL) {
+                        selectedLevel = clickedButton;
+                        return;
+                    } else if (clickedButton == MAX_LEVEL) {
+                        selectedLevel = -1;
+                        return;
+                    }
                 }
             }
         }
-        window.close();
+        selectedLevel = -1;
+        return;
     }
 
     // Comme on ne peut pas mettre une valeur non comprise entre MIN_LEVEL et MAX_LEVEL, on n'effectue aucune
