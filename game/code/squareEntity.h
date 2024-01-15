@@ -95,6 +95,7 @@ namespace swiftness
         float m_bullet_bar;
         int nb_jumps;
         int m_gravity;
+        bool horizontal_g;
         bool goLeft;
         bool goRight;
     };

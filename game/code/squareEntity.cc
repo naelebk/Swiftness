@@ -5,7 +5,7 @@
 namespace swiftness
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), m_bullet(false), m_bullet_bar(0.0f), nb_jumps(0), m_gravity(1), goLeft(false), goRight(false)
+        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), m_bullet(false), m_bullet_bar(0.0f), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -127,7 +127,11 @@ namespace swiftness
             }
         }
         // Appliquez la gravité
-        setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
+        if(horizontal_g){
+            setVelocity(m_velocity + gf::Vector2f( gravity * m_gravity * dt,0));
+        }else{
+            setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
+        }
         // Mettez à jour la position du carré
         m_position += dt * m_velocity;
         
@@ -365,20 +369,22 @@ namespace swiftness
             // gravity switch down
             else if(color==gf::Color::Cyan){
                 m_gravity=-1;
+                horizontal_g=false;
             }
             // gravity switch up
             else if(color==gf::Color::Rose){
                 m_gravity=1;
+                horizontal_g=false;
             }
             // gravity switch left
             else if(color==gf::Color::Green){
-                m_gravity=0;
-                m_velocity.x=1;
+                m_gravity=-1;
+                horizontal_g=true;
             }
             // gravity switch right
             else if(color==gf::Color::Orange){
-                m_gravity=0;
-                m_velocity.x=-1;
+                m_gravity=1;
+                horizontal_g=true;
             }
             else{
                 float overlapLeft = squareRight - plateformLeft;
@@ -393,14 +399,14 @@ namespace swiftness
                 if (minOverlap == overlapLeft)
                 {
                     m_position.x -= overlapLeft;
-                    if(m_velocity.x==WALL_JUMP_SPEED){
+                    if(m_velocity.x==WALL_JUMP_SPEED || horizontal_g){
                         m_velocity.x=0;
                     }
                 }
                 else if (minOverlap == overlapRight)
                 {
                     m_position.x += overlapRight;
-                    if(m_velocity.x==-WALL_JUMP_SPEED){
+                    if(m_velocity.x==-WALL_JUMP_SPEED || horizontal_g){
                         m_velocity.x=0;
                     }
                 }
