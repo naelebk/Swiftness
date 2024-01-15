@@ -5,12 +5,12 @@
     },
     "activeFile": "",
     "expandedProjectPaths": [
+        "levels",
         "level",
-        "Maps",
         ".",
-        "Tilesets",
         "tileset",
-        "levels"
+        "Maps",
+        "Tilesets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -175,7 +175,7 @@
             "selectedLayer": 10,
             "viewCenter": {
                 "x": 25.215194210098105,
-                "y": 67.75213052974178
+                "y": 67.31360541304443
             }
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -329,6 +329,7 @@
     "project": "switness.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "Maps/level_template.tmx",
         "Maps/level06.tmx",
         "Maps/level00.tmx",
         "Maps/level01.tmx",
@@ -338,7 +339,6 @@
         "Maps/level04.tmx",
         "Maps/hub.tmx",
         "Tilesets/2_portal.tsx",
-        "Maps/level_template.tmx",
         "Tilesets/6_wall_of_death.tsx",
         "Tilesets/5_gravity_flow.tsx"
     ],
