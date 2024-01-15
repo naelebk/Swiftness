@@ -5,6 +5,7 @@
 #include "commands.h"
 #include "helloNewPadawan.h"
 
+#include <memory>
 #include <gf/Clock.h>
 #include <gf/Views.h>
 #include <gf/View.h>
@@ -31,17 +32,20 @@ int main(int argc, char *argv[]) {
     std::map<int, swiftness::StaticPlateform> plateform;
     swiftness::Square square;
     gf::Font font("../../ressources/font/DejaVuSans.ttf");
-    gf::Window win1("Welcome to Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
-    gf::RenderWindow render(win1);
-    swiftness::MenuHello helloWorld(font, win1);
-    helloWorld.displayLevelSelection(render, win1, font, level);
+    std::unique_ptr<gf::Window> window = std::make_unique<gf::Window>("Welcome to Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
+    gf::RenderWindow renderer(*window);
+    swiftness::MenuHello helloWorld(font, *window);
+    helloWorld.displayLevelSelection(renderer, *window, font, level);
     helloWorld.loadLevelWithOrWithoutTMX(plateform, square, level);
+    while (window->isOpen()) window->close();
+    if (level == -1) exit(0);
     std::cout << "Level : " << level << '\n';
-    gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
-    gf::RenderWindow renderer(window);  
+    delete window.release();
+    window = std::make_unique<gf::Window>("Welcome to Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
+    gf::RenderWindow render(*window);  
 
     // Get the screen size after setting fullscreen mode
-    gf::Vector2i ScreenSize = window.getSize();
+    gf::Vector2i ScreenSize = window->getSize();
 
     // create a vector of Input
     std::vector<Input> enumVector;
@@ -58,16 +62,16 @@ int main(int argc, char *argv[]) {
     }
     // game loop
     gf::Clock clock;
-    renderer.clear(gf::Color::White);
+    render.clear(gf::Color::White);
 
     // gf::Vector2f velocity(0, GRAVITY);
     bool isresize = false;
-    while (level != -1) {
-        while (window.isOpen())
+    while (true) {
+        while (window && window->isOpen())
         {
 
             gf::Event event;
-            while (window.pollEvent(event))
+            while (window->pollEvent(event))
             {
                 commandManager.manageCommands(enumVector, event);
             }
@@ -77,7 +81,7 @@ int main(int argc, char *argv[]) {
             std::vector<Input>::iterator it2 = std::find(enumVector.begin(), enumVector.end(), Input::Closed);
             // Si on a pressé une de ces deux touches, on ferme la fenêtre de jeux
             if (it1 != enumVector.end() || it2 != enumVector.end()) {
-                window.close();
+                window->close();
             }
             float dt = clock.restart().asSeconds();
             square.updateWithMap(dt, plateform, enumVector);
@@ -86,31 +90,35 @@ int main(int argc, char *argv[]) {
             if (isresize)
             {
                 isresize = false;
-                gf::RenderWindow renderer(window);
+                gf::RenderWindow render(*window);
             }
             // render
-            renderer.clear(gf::Color::White);
-            renderer.setView(camera);
-            square.render(renderer);
+            render.clear(gf::Color::White);
+            render.setView(camera);
+            square.render(render);
             for (auto &plateform : plateform)
             {
-                plateform.second.render(renderer);
+                plateform.second.render(render);
             }
-            square.renderHUD(renderer,SCREEN_WIDTH,SCREEN_HEIGHT);
-            renderer.display();
+            square.renderHUD(render,SCREEN_WIDTH,SCREEN_HEIGHT);
+            render.display();
         }
+        delete window.release();
         level=-2;
         std::map<int, swiftness::StaticPlateform> plateform;
         swiftness::Square square;
         gf::Font font("../../ressources/font/DejaVuSans.ttf");
-        gf::Window win1("Welcome to Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
-        gf::RenderWindow render(win1);
-        swiftness::MenuHello helloWorld(font, win1);
-        helloWorld.displayLevelSelection(render, win1, font, level);
+        std::unique_ptr<gf::Window> window = std::make_unique<gf::Window>("Welcome to Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
+        gf::RenderWindow renderer(*window);
+        swiftness::MenuHello helloWorld(font, *window);
+        helloWorld.displayLevelSelection(renderer, *window, font, level);
         helloWorld.loadLevelWithOrWithoutTMX(plateform, square, level);
+        while (window->isOpen()) window->close();
+        if (level == -1) break;
         std::cout << "Level : " << level << '\n';
-        gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
-        gf::RenderWindow renderer(window);
+        delete window.release();
+        window = std::make_unique<gf::Window>("Welcome to Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
+        gf::RenderWindow render(*window);
     }   
     return 0;
 }
