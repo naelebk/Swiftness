@@ -26,12 +26,78 @@ namespace swiftness
 
         // Évènement non released
         std::vector<Input>::iterator Z = std::find(inputs.begin(), inputs.end(), Input::Z);
-        std::vector<Input>::iterator Up = std::find(inputs.begin(), inputs.end(), Input::Up);  
-        std::vector<Input>::iterator Space = std::find(inputs.begin(), inputs.end(), Input::Space);      
-        if (Z != inputs.end() || Up != inputs.end() || Space != inputs.end()) {
+        std::vector<Input>::iterator Up = std::find(inputs.begin(), inputs.end(), Input::Up);        
+        if (Z != inputs.end() || Up != inputs.end()) {
             goUp=true;
             if (horizontal_g){
                 m_velocity.y = -SPEED_SQUARE;
+            }else{
+                m_jump=canJump(plateforms);
+                bool walljumpRight=canWallJumpRight(plateforms);
+                bool walljumpLeft=canWallJumpLeft(plateforms);
+                if(m_jump || (nb_jumps==1 && m_bullet && !walljumpRight && !walljumpLeft)){
+                    m_velocity.y = JUMP*m_gravity;
+                    nb_jumps+=1;
+                }else{
+                    if(m_bullet && walljumpRight){
+                        m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
+                        nb_jumps=0;
+                        m_velocity.x=-WALL_JUMP_SPEED;
+                    }else{
+                        if(m_bullet && walljumpLeft){
+                            m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
+                            nb_jumps=0;
+                            m_velocity.x=WALL_JUMP_SPEED;
+                        }
+                    }
+                }
+                m_jump=false;
+            }
+        }
+        std::vector<Input>::iterator Space = std::find(inputs.begin(), inputs.end(), Input::Space);
+        if (Space != inputs.end()){
+            if(horizontal_g){
+                if(m_gravity>0){
+                    bool walljumpRight=canWallJumpRight(plateforms);
+                    bool walljumpUp=canWallJumpUp(plateforms);
+                    bool wallJumpDown=canWallJumpDown(plateforms);
+                    if(walljumpRight || (nb_jumps==1 && m_bullet && !walljumpUp && !wallJumpDown)){
+                        m_velocity.x = JUMP*m_gravity;
+                        nb_jumps+=1;
+                    }else{
+                        if(m_bullet && wallJumpDown){
+                            m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
+                            nb_jumps=0;
+                            m_velocity.y=-WALL_JUMP_SPEED;
+                        }else{
+                            if(m_bullet && walljumpUp){
+                                m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
+                                nb_jumps=0;
+                                m_velocity.y=WALL_JUMP_SPEED;
+                            }
+                        }
+                    }
+                }else{
+                    bool walljumpLeft=canWallJumpLeft(plateforms);
+                    bool walljumpUp=canWallJumpUp(plateforms);
+                    bool wallJumpDown=canWallJumpDown(plateforms);
+                    if(walljumpLeft || (nb_jumps==1 && m_bullet && !walljumpUp && !wallJumpDown)){
+                        m_velocity.x = JUMP*m_gravity;
+                        nb_jumps+=1;
+                    }else{
+                        if(m_bullet && wallJumpDown){
+                            m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
+                            nb_jumps=0;
+                            m_velocity.y=-WALL_JUMP_SPEED;
+                        }else{
+                            if(m_bullet && walljumpUp){
+                                m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
+                                nb_jumps=0;
+                                m_velocity.y=WALL_JUMP_SPEED;
+                            }
+                        }
+                    }
+                }
             }else{
                 m_jump=canJump(plateforms);
                 bool walljumpRight=canWallJumpRight(plateforms);
@@ -65,7 +131,6 @@ namespace swiftness
         // Évènements released
         std::vector<Input>::iterator Z_Released = std::find(inputs.begin(), inputs.end(), Input::Z_Released);
         std::vector<Input>::iterator UpReleased = std::find(inputs.begin(), inputs.end(), Input::UpReleased);
-        std::vector<Input>::iterator SpaceReleased = std::find(inputs.begin(), inputs.end(), Input::Space_Released);
         if (Z_Released != inputs.end() || UpReleased != inputs.end()) {
             if(horizontal_g){
                 if(m_velocity.y<0){
