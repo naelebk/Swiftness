@@ -3,14 +3,14 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "Maps/level05.tmx",
     "expandedProjectPaths": [
-        "level",
-        "Tilesets",
         "levels",
         "tileset",
-        "Maps",
-        "."
+        "Tilesets",
+        "level",
+        ".",
+        "Maps"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -109,7 +109,7 @@
             "scale": 2.5315340909090907,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 121.86286612052518,
+                "x": 121.0728313320615,
                 "y": 176.37526652452027
             }
         },
@@ -317,6 +317,7 @@
     "map.tileWidth": 16,
     "map.width": 60,
     "openFiles": [
+        "Maps/level05.tmx"
     ],
     "project": "switness.tiled-project",
     "property.type": "int",

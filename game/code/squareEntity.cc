@@ -362,11 +362,23 @@ namespace swiftness
             // Collision détectée. Maintenant, nous devons ajuster la position du carré.
 
             // Vérifiez de quel côté le carré entre en collision
+            // gravity switch down
             else if(color==gf::Color::Cyan){
                 m_gravity=-1;
             }
+            // gravity switch up
             else if(color==gf::Color::Rose){
                 m_gravity=1;
+            }
+            // gravity switch left
+            else if(color==gf::Color::Green){
+                m_gravity=0;
+                m_velocity.x=1;
+            }
+            // gravity switch right
+            else if(color==gf::Color::Orange){
+                m_gravity=0;
+                m_velocity.x=-1;
             }
             else{
                 float overlapLeft = squareRight - plateformLeft;

@@ -257,6 +257,14 @@ namespace swiftness
                 {
                     color = gf::Color::Cyan;
                 }
+                else if (objPtr.get()->type == "left")
+                {
+                    color = gf::Color::Green;
+                }
+                else if (objPtr.get()->type == "right")
+                {
+                    color = gf::Color::Orange;
+                }
                 int width = objPtr.get()->properties.getIntProperty("width", 8);
                 int height = objPtr.get()->properties.getIntProperty("height", 12);
                 std::cout << "width : " << width << std::endl;

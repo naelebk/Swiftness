@@ -64,7 +64,12 @@ namespace swiftness {
             square = level04.square;
             plateform = level04.plateform;
         } else if (level == 5) {
-            std::cout << GREEN << "Level chosen : level05 - Théo" << NC << std::endl;
+            std::cout << GREEN << "Level chosen : level05 - Julien" << NC << std::endl;
+            swiftness::Level::level level05 = Level::initializeLevel("level05.tmx");
+            square = level05.square;
+            plateform = level05.plateform;
+        } else if (level == 6) {
+            std::cout << GREEN << "Level chosen : level06 - Théo" << NC << std::endl;
             square = swiftness::Square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
             plateform = swiftness::Level::initializeLevel03();
         }
