@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) {
     swiftness::MenuHello helloWorld(font, win1);
     helloWorld.displayLevelSelection(render, win1, font, level);
     helloWorld.loadLevelWithOrWithoutTMX(plateform, square, level);
+    std::cout << "Level : " << level << '\n';
     gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
     gf::RenderWindow renderer(window);  
 
@@ -107,6 +108,7 @@ int main(int argc, char *argv[]) {
         swiftness::MenuHello helloWorld(font, win1);
         helloWorld.displayLevelSelection(render, win1, font, level);
         helloWorld.loadLevelWithOrWithoutTMX(plateform, square, level);
+        std::cout << "Level : " << level << '\n';
         gf::Window window("Swiftness", {WINDOW_WIDTH, WINDOW_HEIGHT});
         gf::RenderWindow renderer(window);
     }   
