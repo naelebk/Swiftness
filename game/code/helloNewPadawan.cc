@@ -68,11 +68,18 @@ namespace swiftness {
             swiftness::Level::level level05 = Level::initializeLevel("level05.tmx");
             square = level05.square;
             plateform = level05.plateform;
+        // } else if (level == 6) {
+        //     std::cout << GREEN << "Level chosen : level06 - Théo" << NC << std::endl;
+        //     square = swiftness::Square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
+        //     plateform = swiftness::Level::initializeLevel03();
+        // }
         } else if (level == 6) {
-            std::cout << GREEN << "Level chosen : level06 - Théo" << NC << std::endl;
-            square = swiftness::Square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
-            plateform = swiftness::Level::initializeLevel03();
+            std::cout << GREEN << "Level chosen : level05 - Julien" << NC << std::endl;
+            swiftness::Level::level level06 = Level::initializeLevel("level06.tmx");
+            square = level06.square;
+            plateform = level06.plateform;
         }
+
     }
 
     void Hello::displayWelcomeMenu(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square) {
@@ -173,10 +180,16 @@ namespace swiftness {
             swiftness::Level::level level05 = Level::initializeLevel("level05.tmx");
             square = level05.square;
             plateform = level05.plateform;
+        // } else if (level == 6) {
+        //     std::cout << GREEN << "Level chosen : level06 - Théo" << NC << std::endl;
+        //     square = swiftness::Square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
+        //     plateform = swiftness::Level::initializeLevel03();
+        // }
         } else if (level == 6) {
-            std::cout << GREEN << "Level chosen : level06 - Théo" << NC << std::endl;
-            square = swiftness::Square({100, 100}, 20.0f, gf::Color::Red, GRAVITY);
-            plateform = swiftness::Level::initializeLevel03();
+            std::cout << GREEN << "Level chosen : level05 - Julien" << NC << std::endl;
+            swiftness::Level::level level06 = Level::initializeLevel("level06.tmx");
+            square = level06.square;
+            plateform = level06.plateform;
         }
     }
 }

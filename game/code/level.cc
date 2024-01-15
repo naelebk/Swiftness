@@ -49,6 +49,12 @@ namespace swiftness
 
         // ajout des murs invisible
         std::map<int, StaticPlateform> border = levelEntity.generateBorder(index);
+        index += border.size();
+
+        // Ajout de la sortie
+        std::cout << "before generate exit" << std::endl;
+        std::map<int, StaticPlateform> exit = levelEntity.generateExit(index);
+        std::cout << "plateforme generated : id -> " << exit.begin()->first << std::endl;
 
         plateform.insert(plateform_h.begin(), plateform_h.end());
         plateform.insert(plateform_bloc.begin(), plateform_bloc.end());
@@ -57,6 +63,7 @@ namespace swiftness
         plateform.insert(Death_bloc.begin(), Death_bloc.end());
         plateform.insert(gravitySwitch.begin(), gravitySwitch.end());
         plateform.insert(border.begin(), border.end());
+        plateform.insert(exit.begin(), exit.end());
 
         return plateform;
     }

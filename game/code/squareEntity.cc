@@ -612,6 +612,10 @@ namespace swiftness
                 m_bullet_bar=0.0f;
                 return;
             }
+            // close the game
+            if (color==gf::Color::Black){
+                exit(0);
+            }
             // Collision détectée. Maintenant, nous devons ajuster la position du carré.
 
             // Vérifiez de quel côté le carré entre en collision

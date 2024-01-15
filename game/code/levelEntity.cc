@@ -16,6 +16,7 @@ namespace swiftness
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
         gf::Vector2f mapSize = m_levelData.getMapSize();
         gf::Vector2f tileSize = m_levelData.getTileSize();
+        
 
         if (layer)
         {
@@ -280,6 +281,17 @@ namespace swiftness
         }
 
         return gravitySwitchs;
+    }
+
+    std::map<int, StaticPlateform> LevelEntity::generateExit(int index) {
+        std::map<int, StaticPlateform> exit;
+        gf::Vector2f position = m_levelData.getExit();
+        int width = m_levelData.getTileSize().width;
+        int height = m_levelData.getTileSize().height;
+        position.x += width / 2;
+        StaticPlateform plateform(position, height, width, gf::Color::Black);
+        exit.insert(std::make_pair(index, plateform));
+        return exit;
     }
 
 } // namespace swiftness

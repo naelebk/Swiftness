@@ -3,14 +3,14 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "Maps/level05.tmx",
     "expandedProjectPaths": [
-        "levels",
         "level",
-        ".",
         "tileset",
+        ".",
         "Maps",
-        "Tilesets"
+        "Tilesets",
+        "levels"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -76,11 +76,11 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 4,
+            "scale": 0.6791920731707317,
             "selectedLayer": 10,
             "viewCenter": {
-                "x": 245.125,
-                "y": 93.125
+                "x": 240.72719111210859,
+                "y": 657.3987206823027
             }
         },
         "Maps/level03.tmx": {
@@ -98,27 +98,30 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 1.5,
+            "scale": 0.7168445121951219,
             "selectedLayer": 10,
             "viewCenter": {
-                "x": 1184.3333333333333,
-                "y": 37.666666666666686
+                "x": 656.3487506645401,
+                "y": 176.46783625730995
             }
         },
         "Maps/level05.tmx": {
             "scale": 2.5315340909090907,
-            "selectedLayer": 10,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 120.28279654359783,
-                "y": 175.58523173605658
+                "x": 192.1759622937942,
+                "y": 174.7951969475929
             }
         },
         "Maps/level06.tmx": {
-            "scale": 4,
-            "selectedLayer": 10,
+            "expandedObjectLayers": [
+                9
+            ],
+            "scale": 5.5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 125.875,
-                "y": 119.875
+                "x": 589.909090909091,
+                "y": 111.36363636363637
             }
         },
         "Maps/level_00.tmx": {
@@ -325,16 +328,17 @@
     "map.tileWidth": 16,
     "map.width": 60,
     "openFiles": [
+        "Maps/level05.tmx"
     ],
     "project": "switness.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "Maps/level05.tmx",
         "Maps/level_template.tmx",
         "Maps/level06.tmx",
         "Maps/level00.tmx",
         "Maps/level01.tmx",
         "Maps/level02.tmx",
-        "Maps/level05.tmx",
         "Maps/level03.tmx",
         "Maps/level04.tmx",
         "Maps/hub.tmx",

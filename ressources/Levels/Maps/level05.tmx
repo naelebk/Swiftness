@@ -58,7 +58,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="9" name="gravity_switch" locked="1">
+ <objectgroup id="9" name="gravity_switch">
   <object id="12" type="left" x="116" y="292" width="8" height="12"/>
   <object id="13" type="right" x="32" y="148" width="12" height="8">
    <properties>
@@ -74,12 +74,22 @@
   </object>
   <object id="15" type="right" x="228" y="292" width="8" height="12">
    <properties>
-    <property name="height" type="int" value="8"/>
-    <property name="width" type="int" value="12"/>
+    <property name="height" type="int" value="12"/>
+    <property name="width" type="int" value="8"/>
    </properties>
   </object>
-  <object id="16" type="down" x="192" y="32" width="16" height="288"/>
-  <object id="17" type="down" x="144" y="32" width="16" height="288"/>
+  <object id="16" type="down" x="192" y="32" width="16" height="288">
+   <properties>
+    <property name="height" type="int" value="288"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="17" type="down" x="144" y="32" width="16" height="288">
+   <properties>
+    <property name="height" type="int" value="288"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="8" name="Collision_bloc" width="22" height="22" locked="1">
   <data encoding="csv">

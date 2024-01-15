@@ -78,6 +78,13 @@ namespace swiftness
          */
         std::map<int, StaticPlateform> generateGravitySwitchs(int index);
 
+        /**
+         * @brief make a plateform for the exit
+         * 
+         * @return std::map<int, StaticPlateform> the plateform for the exit
+         */
+        std::map<int, StaticPlateform> generateExit(int index);
+
     private:
         std::string m_name;
         LevelData m_levelData;
