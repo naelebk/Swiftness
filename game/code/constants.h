@@ -19,8 +19,8 @@ namespace swiftness
     constexpr float SPEED_SQUARE = 100.0f;
 
     // Window
-    constexpr int WINDOW_WIDTH = 1920.0f;
-    constexpr int WINDOW_HEIGHT = 1080.0f;
+    constexpr int WINDOW_WIDTH = 1366.0f;
+    constexpr int WINDOW_HEIGHT = 768.0f;
 
     // Screen
     constexpr float SCREEN_WIDTH = 800.0f;
