@@ -5,8 +5,8 @@ namespace swiftness {
     LevelData::LevelData(std::string nameFile)
         : m_layerEntity(nameFile), m_name(nameFile)
     {
-        int entrance = getTileType(PlateformType::blue_portal);
-        int exit = getTileType(PlateformType::yellow_portal);
+        int entrance = static_cast<int>(PlateformType::blue_portal);
+        int exit = static_cast<int>(PlateformType::yellow_portal);
         gf::TmxLayer* layer = m_layerEntity.getTileLayerByName(LayerName::IO);
         gf::TmxTileLayer* tileLayer = dynamic_cast<gf::TmxTileLayer*>(layer);
         gf::Vector2f mapSize = m_layerEntity.getMapSize();
