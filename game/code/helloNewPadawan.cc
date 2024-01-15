@@ -103,7 +103,7 @@ namespace swiftness {
                 shape.setColor(gf::Color::Cyan);
             }
             float buttonX = WINDOW_WIDTH / 2;
-            float buttonY = WINDOW_HEIGHT / 2 - (buttonCount * (buttonHeight + margin)) / 2 + (buttonHeight + margin) * i;
+            float buttonY = window.getSize().y / 2 - (buttonCount * (buttonHeight + margin)) / 2 + (buttonHeight + margin) * i;
             buttonText.setPosition({buttonX, buttonY});
             buttonText.setAnchor(gf::Anchor::Center);
             shape.setPosition({buttonX, buttonY});
@@ -120,8 +120,8 @@ namespace swiftness {
                     window.close();
                 }
                 if (event.type == gf::EventType::MouseButtonPressed && event.mouseButton.button == gf::MouseButton::Left) {
-                    float ystart=WINDOW_HEIGHT / 2 - (buttonCount * (buttonHeight + margin)) / 2 - buttonHeight -margin;
-                    int clickedButton = ((event.mouseButton.coords.y - ystart) / (buttonHeight/2 + margin))-0.35f;
+                    float ystart=window.getSize().y / 2 - (buttonCount * (buttonHeight + margin)) / 2 - buttonHeight -margin;
+                    int clickedButton = (((event.mouseButton.coords.y - ystart) / (buttonHeight/1.5 + 0.65f*margin))) - 3;
                     float xMouse=event.mouseButton.coords.x;
                     if (event.mouseButton.coords.y>= ystart && xMouse<=(window.getSize().x/2)+150.0f && xMouse>=(window.getSize().x/2)-150.0f && clickedButton >= 0 && clickedButton <= MAX_LEVEL) {
                         selectedLevel = clickedButton;
