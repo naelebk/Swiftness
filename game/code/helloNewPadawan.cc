@@ -86,7 +86,7 @@ namespace swiftness {
     int MenuHello::getLevel(){ return m_selectedLevel; }
 
     void MenuHello::displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Font& font, int& selectedLevel) {
-        const float buttonHeight = 70.0f, margin = 20.0f;
+        const float buttonHeight = 70.0f, margin = 30.0f;
         const int buttonCount = MAX_LEVEL + 2;
         render.clear(gf::Color::White);
         for (int i = 0; i < buttonCount; ++i) {
@@ -102,7 +102,7 @@ namespace swiftness {
                 buttonText.setString("Level " + std::to_string(i));
                 shape.setColor(gf::Color::Cyan);
             }
-            float buttonX = WINDOW_WIDTH / 2 ;
+            float buttonX = WINDOW_WIDTH / 2;
             float buttonY = WINDOW_HEIGHT / 2 - (buttonCount * (buttonHeight + margin)) / 2 + (buttonHeight + margin) * i;
             buttonText.setPosition({buttonX, buttonY});
             buttonText.setAnchor(gf::Anchor::Center);
@@ -121,8 +121,7 @@ namespace swiftness {
                 }
                 if (event.type == gf::EventType::MouseButtonPressed && event.mouseButton.button == gf::MouseButton::Left) {
                     float ystart=WINDOW_HEIGHT / 2 - (buttonCount * (buttonHeight + margin)) / 2 - buttonHeight -margin;
-                    int clickedButton = (event.mouseButton.coords.y - ystart) / (buttonHeight + margin);
-                    //int clickedButton = (event.mouseButton.coords.y - ystart) / (buttonHeight/2 + margin*1.5f);
+                    int clickedButton = (event.mouseButton.coords.y - ystart) / (buttonHeight + 0.5f*margin)*0.75f;
                     float xMouse=event.mouseButton.coords.x;
                     if (event.mouseButton.coords.y>= ystart && xMouse<=(window.getSize().x/2)+150.0f && xMouse>=(window.getSize().x/2)-150.0f && clickedButton >= 0 && clickedButton <= MAX_LEVEL) {
                         selectedLevel = clickedButton;
