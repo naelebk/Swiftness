@@ -5,12 +5,12 @@
     },
     "activeFile": "",
     "expandedProjectPaths": [
+        "level",
+        "Tilesets",
+        "levels",
         "tileset",
         "Maps",
-        "level",
-        ".",
-        "levels",
-        "Tilesets"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -43,11 +43,11 @@
             "expandedObjectLayers": [
                 13
             ],
-            "scale": 1,
-            "selectedLayer": 7,
+            "scale": 3,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 483.5,
-                "y": 360.5
+                "x": 435.8333333333333,
+                "y": 164.5
             }
         },
         "Maps/hub.tmx#gravity_flow": {
@@ -103,6 +103,14 @@
             "viewCenter": {
                 "x": 200.99999999999997,
                 "y": 38.333333333333314
+            }
+        },
+        "Maps/level05.tmx": {
+            "scale": 2.5315340909090907,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 121.86286612052518,
+                "y": 176.37526652452027
             }
         },
         "Maps/level_00.tmx": {
@@ -313,6 +321,8 @@
     "project": "switness.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "Maps/level05.tmx",
+        "Maps/hub.tmx",
         "Tilesets/2_portal.tsx",
         "Maps/level04.tmx",
         "Maps/level02.tmx",
@@ -322,9 +332,7 @@
         "Tilesets/4_gravity_switch.tsx",
         "Tilesets/3_futuristic_city.tsx",
         "Tilesets/1_utilities.tsx",
-        "Maps/level_04.tmx",
-        "Maps/level_03.tmx",
-        "Maps/level_template.tmx"
+        "Maps/level_04.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
