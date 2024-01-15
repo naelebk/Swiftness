@@ -63,6 +63,10 @@ namespace swiftness
 
         bool canWallJumpLeft(std::map<int, StaticPlateform> plateforms);
 
+        bool canWallJumpUp(std::map<int, StaticPlateform> plateforms);
+
+        bool canWallJumpDown(std::map<int, StaticPlateform> plateforms);
+
         /*
         * Update the square
         */
@@ -98,6 +102,8 @@ namespace swiftness
         bool horizontal_g;
         bool goLeft;
         bool goRight;
+        bool goUp;
+        bool goDown;
     };
 }
 
