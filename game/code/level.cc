@@ -77,9 +77,9 @@ namespace swiftness
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(3, wallRight));
 
         // Initialize platforms
-        swiftness::StaticPlateform plateform_g_1({100.0f,  275.0f}, 80.0f, 60.0f, gf::Color::Green);
+        swiftness::StaticPlateform plateform_g_1({100.0f,  275.0f}, 80.0f, 60.0f, gf::Color::Violet);
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(4, plateform_g_1));
-        swiftness::StaticPlateform plateform_g_2({200.0f,  175.0f}, 20.0f, 40.0f, gf::Color::Green);
+        swiftness::StaticPlateform plateform_g_2({200.0f,  175.0f}, 20.0f, 40.0f, gf::Color::Violet);
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(5, plateform_g_2));
         swiftness::StaticPlateform plateform_up_1({200.0f,  160.0f}, 10.0f, 10.0f, gf::Color::Cyan);
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(6, plateform_up_1));
@@ -87,9 +87,9 @@ namespace swiftness
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(7, plateform_b_1));
         swiftness::StaticPlateform plateform_down_1({805.0f,  60.0f}, 10.0f, 10.0f, gf::Color::Rose);
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(8, plateform_down_1));
-        swiftness::StaticPlateform plateform_g_3({805.0f,  950.0f}, 20.0f, 40.0f, gf::Color::Green);
+        swiftness::StaticPlateform plateform_g_3({805.0f,  950.0f}, 20.0f, 40.0f, gf::Color::Violet);
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(9, plateform_g_3));
-        swiftness::StaticPlateform plateform_g_4({840.0f,  950.0f}, 20.0f, 40.0f, gf::Color::Green);
+        swiftness::StaticPlateform plateform_g_4({840.0f,  950.0f}, 20.0f, 40.0f, gf::Color::Violet);
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(10, plateform_g_4));
         for(int i=0;i<7;i++){
             swiftness::StaticPlateform plateform_wj_1({855.0f,  900.0f-120.0f*i}, 50.0f, 10.0f, gf::Color::Blue);
@@ -97,7 +97,7 @@ namespace swiftness
             swiftness::StaticPlateform plateform_wj_2({950.0f,  840.0f-120.0f*i}, 50.0f, 10.0f, gf::Color::Blue);
             plateform.insert(std::pair<int, swiftness::StaticPlateform>(12+2*i, plateform_wj_2));
         }
-        swiftness::StaticPlateform plateform_g_5({855.0f,  120.0f}, 20.0f, 40.0f, gf::Color::Green);
+        swiftness::StaticPlateform plateform_g_5({855.0f,  120.0f}, 20.0f, 40.0f, gf::Color::Violet);
         plateform.insert(std::pair<int, swiftness::StaticPlateform>(25, plateform_g_5));
         for(int i=0;i<5;i++){
             swiftness::StaticPlateform plateform_die_1({950.0f,  780.0f-120.0f*i}, 50.0f, 10.0f, gf::Color::Yellow);
