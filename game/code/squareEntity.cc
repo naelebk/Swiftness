@@ -404,7 +404,7 @@ namespace swiftness
                         m_velocity.x=0;
                     }
                 }
-                else if (minOverlap == overlapTop && (((!wallRight || plateformLeft<squareLeft) && (!wallLeft || plateformRight>squareRight)) || (wallLeft && wallRight)))
+                else if (minOverlap == overlapTop && (((!wallRight || plateformLeft<=squareLeft) && (!wallLeft || plateformRight>=squareRight)) || (wallLeft && wallRight)))
                 {
                     m_velocity.y=0;
                     m_position.y -= overlapTop;
@@ -421,7 +421,7 @@ namespace swiftness
                         }
                     }
                 }
-                else if (minOverlap == overlapBottom && (((!wallRight || plateformLeft<squareLeft) && (!wallLeft || plateformRight>squareRight)) || (wallLeft && wallRight)))
+                else if (minOverlap == overlapBottom && (((!wallRight || plateformLeft<=squareLeft) && (!wallLeft || plateformRight>=squareRight)) || (wallLeft && wallRight)))
                 {
                     m_velocity.y=0;
                     m_position.y += overlapBottom;
