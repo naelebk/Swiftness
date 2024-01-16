@@ -3,6 +3,7 @@
 
 #include <gf/Vector.h>
 #include <gf/Color.h>
+#include <gf/Color.h>
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
 #include <map>
@@ -82,6 +83,8 @@ namespace swiftness
         */
         void renderHUD(gf::RenderTarget &target,float width,float height);
 
+        bool getLevelOver() { return isOver; };
+
 
         /**
          * @brief Gère les collisions avec la plateforme
@@ -102,6 +105,7 @@ namespace swiftness
         bool goRight;
         bool goUp;
         bool goDown;
+        bool isOver;
     };
 }
 

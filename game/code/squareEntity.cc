@@ -536,7 +536,6 @@ namespace swiftness
     {
         // Supposons que la classe Square ait des membres m_position (position centrale du carré),
         // m_size (longueur d'un côté du carré), et m_velocity (vecteur de mouvement du carré)
-
         // Calculez les limites du carré en utilisant sa position centrale
         float squareLeft = m_position.x - m_size / 2;
         float squareRight = m_position.x + m_size / 2;
@@ -548,6 +547,9 @@ namespace swiftness
         float plateformRight = plateformPosition.x + plateformLength / 2;
         float plateformTop = plateformPosition.y - plateformHeight / 2;
         float plateformBottom = plateformPosition.y + plateformHeight / 2;
+
+        // Dire si le niveau est terminé ou non
+        isOver = false;
 
         // Vérifiez la collision
         if (squareRight > plateformLeft && squareLeft < plateformRight &&
@@ -562,7 +564,7 @@ namespace swiftness
             }
             // close the game
             if (color==gf::Color::Black){
-                exit(0);
+                isOver = true;
             }
             // Collision détectée. Maintenant, nous devons ajuster la position du carré.
 
@@ -707,7 +709,6 @@ namespace swiftness
                     }
                 }
             }
-            
             
 
             // Optionnellement, arrêtez le mouvement du carré lors de la collision

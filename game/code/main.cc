@@ -93,6 +93,7 @@ int main(int argc, char *argv[]) {
             }
             float dt = clock.restart().asSeconds();
             square.updateWithMap(dt, plateform, enumVector);
+            if (square.getLevelOver()) window.close();
             gf::ExtendView camera(square.getPosition(), {SCREEN_WIDTH, SCREEN_HEIGHT});
             enumVector.clear();
             if (isresize)
