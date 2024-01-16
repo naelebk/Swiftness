@@ -93,6 +93,8 @@ namespace swiftness
 
         int getNbDeaths() { return nb_deaths; };
 
+        float getTimer() { return timer; };
+
 
         /**
          * @brief Gère les collisions avec la plateforme
