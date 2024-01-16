@@ -58,7 +58,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="9" name="gravity_switch">
+ <objectgroup id="9" name="gravity_switch" locked="1">
   <object id="12" type="left" x="116" y="292" width="8" height="12"/>
   <object id="13" type="right" x="32" y="148" width="12" height="8">
    <properties>
@@ -169,7 +169,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="5" name="Wall_of_death_bloc" width="22" height="22" locked="1">
+ <layer id="5" name="Wall_of_death_bloc" width="22" height="22" visible="0" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -195,7 +195,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="4" name="Wall_of_death_h" width="22" height="22" locked="1">
+ <layer id="4" name="Wall_of_death_h" width="22" height="22" visible="0" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -221,7 +221,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="3" name="Wall_of_death_v" width="22" height="22" locked="1">
+ <layer id="3" name="Wall_of_death_v" width="22" height="22" visible="0" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -247,7 +247,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="2" name="Border" width="22" height="22" locked="1">
+ <layer id="2" name="Border" width="22" height="22" visible="0" locked="1">
   <data encoding="csv">
 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,

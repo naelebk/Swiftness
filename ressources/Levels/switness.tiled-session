@@ -3,14 +3,14 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Maps/level06.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
         "tileset",
         ".",
-        "Maps",
-        "level",
+        "levels",
         "Tilesets",
-        "levels"
+        "level",
+        "Maps"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -55,7 +55,7 @@
         },
         "Maps/level00.tmx": {
             "scale": 1.76,
-            "selectedLayer": 10,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 281.53409090909093,
                 "y": 258.23863636363643
@@ -66,10 +66,10 @@
         },
         "Maps/level01.tmx": {
             "scale": 1,
-            "selectedLayer": 10,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 532.5,
-                "y": 393.5
+                "x": 531.5,
+                "y": 392.5
             }
         },
         "Maps/level02.tmx": {
@@ -79,8 +79,8 @@
             "scale": 0.6791920731707317,
             "selectedLayer": 10,
             "viewCenter": {
-                "x": 240.72719111210859,
-                "y": 657.3987206823027
+                "x": 239.25485355179,
+                "y": 654.4540455616653
             }
         },
         "Maps/level03.tmx": {
@@ -90,8 +90,8 @@
             "scale": 0.75,
             "selectedLayer": 10,
             "viewCenter": {
-                "x": 787.3333333333333,
-                "y": 416.66666666666663
+                "x": 784.6666666666667,
+                "y": 414
             }
         },
         "Maps/level04.tmx": {
@@ -99,17 +99,17 @@
                 9
             ],
             "scale": 0.7168445121951219,
-            "selectedLayer": 10,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 654.9537480063796,
-                "y": 175.07283359914936
+                "x": 653.5587453482191,
+                "y": 173.67783094098883
             }
         },
         "Maps/level05.tmx": {
             "scale": 2.5315340909090907,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 191.78094489956234,
+                "x": 191.38592750533053,
                 "y": 174.7951969475929
             }
         },
@@ -118,9 +118,9 @@
                 9
             ],
             "scale": 1.452403846153846,
-            "selectedLayer": 2,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 414.14101290963265,
+                "x": 412.7639854352864,
                 "y": 296.40516385302885
             }
         },
@@ -328,23 +328,22 @@
     "map.tileWidth": 16,
     "map.width": 60,
     "openFiles": [
-        "Maps/level06.tmx"
     ],
     "project": "switness.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "Maps/level03.tmx",
+        "Maps/level02.tmx",
         "Maps/level06.tmx",
         "Maps/level05.tmx",
-        "Maps/level03.tmx",
         "Maps/level04.tmx",
-        "Maps/level_template.tmx",
-        "Maps/level00.tmx",
         "Maps/level01.tmx",
-        "Maps/level02.tmx",
-        "Maps/hub.tmx",
+        "Maps/level00.tmx",
+        "Tilesets/3_futuristic_city.tsx",
         "Tilesets/2_portal.tsx",
-        "Tilesets/6_wall_of_death.tsx",
-        "Tilesets/5_gravity_flow.tsx"
+        "Tilesets/1_utilities.tsx",
+        "Maps/level_template.tmx",
+        "Maps/hub.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

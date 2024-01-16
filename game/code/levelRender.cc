@@ -5,9 +5,12 @@ namespace swiftness{
 
     void LevelRender::renderLayer(LayerEntity &layerEntity, gf::RenderWindow &window, LayerName layerName)
     {
-        gf::TmxRenderOrder::LeftUp;
-        gf::TileLayer tileLayer = gf::makeTileLayer(layerEntity.getLayers(), *layerEntity.getTileLayerByName(layerName), layerEntity.getResources());
-        window.draw(tileLayer);
+        gf::TmxTileLayer *layer = layerEntity.getTileLayerByName(layerName);
+        if (layer->visible == true){
+            gf::TmxRenderOrder::LeftUp;
+            gf::TileLayer tileLayer = gf::makeTileLayer(layerEntity.getLayers(), *layer, layerEntity.getResources());
+            window.draw(tileLayer);
+        }
     }
 
     void LevelRender::renderLevel(std::string nameFile, gf::RenderWindow &window)
