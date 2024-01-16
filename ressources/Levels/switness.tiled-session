@@ -5,11 +5,11 @@
     },
     "activeFile": "",
     "expandedProjectPaths": [
+        "level",
+        "Tilesets",
         "tileset",
         ".",
         "levels",
-        "Tilesets",
-        "level",
         "Maps"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -122,6 +122,14 @@
             "viewCenter": {
                 "x": 412.7639854352864,
                 "y": 296.40516385302885
+            }
+        },
+        "Maps/level07.tmx": {
+            "scale": 2,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 172.25,
+                "y": 193.75
             }
         },
         "Maps/level_00.tmx": {
@@ -332,6 +340,7 @@
     "project": "switness.tiled-project",
     "property.type": "int",
     "recentFiles": [
+        "Maps/level07.tmx",
         "Maps/level03.tmx",
         "Maps/level02.tmx",
         "Maps/level06.tmx",
@@ -342,8 +351,7 @@
         "Tilesets/3_futuristic_city.tsx",
         "Tilesets/2_portal.tsx",
         "Tilesets/1_utilities.tsx",
-        "Maps/level_template.tmx",
-        "Maps/hub.tmx"
+        "Maps/level_template.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

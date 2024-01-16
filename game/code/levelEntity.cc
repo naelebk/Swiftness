@@ -247,12 +247,13 @@ namespace swiftness
         int platformIndex = index;
         for (const auto &objPtr : objects)
         {
+            gf::TmxRectangle *rect = static_cast<gf::TmxRectangle *>(objPtr.get());
             if (objPtr)
             {
                 gf::Color4f color;
-                if (objPtr.get()->type == "down") // Assurez-vous que la méthode getType() existe
+                if (objPtr.get()->type == "down")
                 {
-                    color = gf::Color::Rose; // Remplacez par la couleur appropriée si Rose n'existe pas
+                    color = gf::Color::Rose;
                 }
                 else if (objPtr.get()->type == "up")
                 {
@@ -266,8 +267,8 @@ namespace swiftness
                 {
                     color = gf::Color::Orange;
                 }
-                int width = objPtr.get()->properties.getIntProperty("width", 8);
-                int height = objPtr.get()->properties.getIntProperty("height", 12);
+                int width = rect->size.width;
+                int height = rect->size.height;
                 std::cout << "width : " << width << std::endl;
                 std::cout << "height : " << height << std::endl;
                 gf::Vector2f position = objPtr.get()->position;
