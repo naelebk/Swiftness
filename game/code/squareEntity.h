@@ -6,6 +6,11 @@
 #include <gf/Color.h>
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
+#include <gf/Window.h>
+#include <gf/Math.h>
+#include <gf/Event.h>
+#include <gf/Font.h>
+#include <gf/Text.h>
 #include <map>
 #include "staticPlateforme.h"
 #include "Input.h"
@@ -86,6 +91,8 @@ namespace swiftness
 
         bool getLevelOver() { return isOver; };
 
+        int getNbDeaths() { return nb_deaths; };
+
 
         /**
          * @brief Gère les collisions avec la plateforme
@@ -107,6 +114,8 @@ namespace swiftness
         bool goUp;
         bool goDown;
         bool isOver;
+        int nb_deaths;
+        float timer;
     };
 }
 

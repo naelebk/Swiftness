@@ -5,7 +5,7 @@
 namespace swiftness
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false)
+        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -241,6 +241,10 @@ namespace swiftness
         bool walljumpLeft=canWallJumpLeft(plateforms);
         bool walljumpUp=canWallJumpUp(plateforms);
         bool wallJumpDown=canWallJumpDown(plateforms);
+        timer+=dt;
+        if(timer>999.99f){
+            isOver=true;
+        }
       
         // Appliquez la gravité
         if(horizontal_g){
@@ -542,7 +546,15 @@ namespace swiftness
 
     void Square::renderHUD(gf::RenderTarget &target,float width,float height)
     {
-        
+        gf::Font font("../../ressources/font/DejaVuSans.ttf");
+        gf::Text deathText;
+        deathText.setFont(font);
+        deathText.setColor(gf::Color::Black);
+        deathText.setCharacterSize(35);
+        deathText.setString(std::to_string((int)timer));
+        deathText.setPosition(m_position+gf::Vector2f(-(width/2)+81.0f, -(height/2)+10.0f));
+        deathText.setAnchor(gf::Anchor::TopRight);
+        target.draw(deathText);
     }
 
     // empeche le carré de traverser une plateforme
@@ -574,6 +586,7 @@ namespace swiftness
                 m_jump=0;
                 m_velocity=gf::Vector2f(0,0);
                 m_gravity=1;
+                nb_deaths+=1;
                 return;
             }
             // close the game
@@ -630,7 +643,6 @@ namespace swiftness
             }
             // gravity switch right
             else if(color==gf::Color::Orange){
-                m_gravity=1;
                 if (!horizontal_g){
                     m_velocity.x=0;
                     m_velocity.y=0;
@@ -641,6 +653,7 @@ namespace swiftness
                         m_velocity.y=SPEED_SQUARE;
                     }
                 }
+                m_gravity=1;
                 horizontal_g=true;
             }
             else{
