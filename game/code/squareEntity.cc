@@ -583,9 +583,6 @@ namespace swiftness
         float plateformTop = plateformPosition.y - plateformHeight / 2;
         float plateformBottom = plateformPosition.y + plateformHeight / 2;
 
-        // Dire si le niveau est terminé ou non
-        isOver = false;
-
         // Vérifiez la collision
         if (squareRight > plateformLeft && squareLeft < plateformRight &&
             squareBottom > plateformTop && squareTop < plateformBottom)
