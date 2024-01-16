@@ -589,6 +589,12 @@ namespace swiftness
                 if (horizontal_g){
                     m_velocity.x=0;
                     m_velocity.y=0;
+                    if (goLeft){
+                        m_velocity.x=-SPEED_SQUARE;
+                    }
+                    if (goRight){
+                        m_velocity.x=SPEED_SQUARE;
+                    }
                 }
                 horizontal_g=false;
             }
@@ -598,6 +604,12 @@ namespace swiftness
                 if (horizontal_g){
                     m_velocity.x=0;
                     m_velocity.y=0;
+                    if (goLeft){
+                        m_velocity.x=-SPEED_SQUARE;
+                    }
+                    if (goRight){
+                        m_velocity.x=SPEED_SQUARE;
+                    }
                 }
                 horizontal_g=false;
             }
@@ -607,6 +619,12 @@ namespace swiftness
                 if (!horizontal_g){
                     m_velocity.x=0;
                     m_velocity.y=0;
+                    if (goUp){
+                        m_velocity.y=-SPEED_SQUARE;
+                    }
+                    if (goDown){
+                        m_velocity.y=SPEED_SQUARE;
+                    }
                 }
                 horizontal_g=true;
             }
@@ -616,6 +634,12 @@ namespace swiftness
                 if (!horizontal_g){
                     m_velocity.x=0;
                     m_velocity.y=0;
+                    if (goUp){
+                        m_velocity.y=-SPEED_SQUARE;
+                    }
+                    if (goDown){
+                        m_velocity.y=SPEED_SQUARE;
+                    }
                 }
                 horizontal_g=true;
             }
