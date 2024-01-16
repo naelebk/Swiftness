@@ -568,6 +568,15 @@ namespace swiftness
         float squareTop = m_position.y - m_size / 2;
         float squareBottom = m_position.y + m_size / 2;
 
+        if(color==gf::Color::Yellow){
+            if (wallLeft){ 
+                squareLeft-=1;
+            }
+            if (wallRight){ 
+                squareRight+=1;
+            }
+        }
+
         // Calculez les limites de la plateforme en utilisant sa position centrale
         float plateformLeft = plateformPosition.x - plateformLength / 2;
         float plateformRight = plateformPosition.x + plateformLength / 2;
@@ -686,6 +695,7 @@ namespace swiftness
                     }else{
                         if(m_velocity.x==WALL_JUMP_SPEED){
                             m_velocity.x=0;
+                            m_velocity.y=-50.0f*m_gravity;
                         }
                     }
                 }
@@ -709,6 +719,7 @@ namespace swiftness
                     }else{
                         if(m_velocity.x==-WALL_JUMP_SPEED){
                             m_velocity.x=0;
+                            m_velocity.y=-50.0f*m_gravity;
                         }
                     }
                 }
@@ -718,6 +729,7 @@ namespace swiftness
                     if(horizontal_g){
                         if(m_velocity.y!=SPEED_SQUARE){
                             m_velocity.y=0;
+                            m_velocity.x=-50.0f*m_gravity;
                         }
                     }else{
                         
@@ -742,6 +754,7 @@ namespace swiftness
                     if(horizontal_g){
                         if(m_velocity.y!=-SPEED_SQUARE){
                             m_velocity.y=0;
+                            m_velocity.x=-50.0f*m_gravity;
                         }
                     }else{
                         m_velocity.y=0;
