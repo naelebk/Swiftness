@@ -1,6 +1,7 @@
 #include <gf/Scene.h>
 #include <gf/Action.h>
 #include <gf/Time.h>
+#include <gf/Font.h>
 #include <gf/Texture.h>
 #include <gf/Widgets.h>
 #include <gf/Clock.h>
@@ -23,6 +24,7 @@
 namespace swiftness {
     class GameManager : public gf::Scene {
         public:
+            //const static gf::Font font("../../ressources/font/ActiveSpaceDemoRegular.ttf");
             // Constructeur
             GameManager();
             // Destructeur

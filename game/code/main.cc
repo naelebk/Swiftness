@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     while (true) {
         std::map<int, swiftness::StaticPlateform> plateform;
         swiftness::Square square;
-        gf::Font font("../../ressources/font/DejaVuSans.ttf");
+        gf::Font font("../../ressources/font/KarmaFuture.ttf");
         gf::Window win1("Welcome to Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
         gf::RenderWindow renderer(win1);
         swiftness::MenuHello helloWorld(font, win1);
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
         }
         // game loop
         gf::Clock clock;
-        render.clear(gf::Color::White);
+        render.clear(gf::Color::Black);
         while (window.isOpen())
         {
 
@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
                 gf::RenderWindow render(window);
             }
             // render
-            render.clear(gf::Color::White);
+            render.clear(gf::Color::Black);
             render.setView(camera);
             for (auto &plateform : plateform)
             {

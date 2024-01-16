@@ -546,10 +546,10 @@ namespace swiftness
 
     void Square::renderHUD(gf::RenderTarget &target,float width,float height)
     {
-        gf::Font font("../../ressources/font/DejaVuSans.ttf");
+        gf::Font font("../../ressources/font/KarmaFuture.ttf");
         gf::Text deathText;
         deathText.setFont(font);
-        deathText.setColor(gf::Color::Black);
+        deathText.setColor(gf::Color::White);
         deathText.setCharacterSize(35);
         deathText.setString(std::to_string((int)timer));
         deathText.setPosition(m_position+gf::Vector2f(-(width/2)+81.0f, -(height/2)+10.0f));

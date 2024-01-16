@@ -1,7 +1,6 @@
 #include "GameScenes.h"
 #include "constants.h"
 
-//gf::Font font("../../ressources/font/ActiveSpaceDemoRegular.ttf");
 
 namespace swiftness {
     /*GameManager::GameManager() 

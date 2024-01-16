@@ -95,7 +95,7 @@ namespace swiftness {
     void MenuHello::displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Font& font, int& selectedLevel) {
         const float buttonHeight = 45.0f, margin = 20.0f;
         const int buttonCount = MAX_LEVEL + 2;
-        render.clear(gf::Color::White);
+        render.clear(gf::Color::Black);
         for (int i = 0; i < buttonCount; ++i) {
             gf::RectangleShape shape({150.0f, buttonHeight});
             gf::Text buttonText;
