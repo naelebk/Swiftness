@@ -55,6 +55,7 @@ namespace swiftness
         */
         void actionWithInputs(std::vector<Input> inputs,std::map<int, StaticPlateform> plateforms);
 
+        bool isPlateform(StaticPlateform plateform);
         /**
         * Méthode permettant de savoir si on peut sauter
         */

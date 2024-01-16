@@ -261,49 +261,56 @@ namespace swiftness
         
     }
 
+    bool Square::isPlateform(StaticPlateform plateform){
+        auto color=plateform.getColor();
+        return color!=gf::Color::Yellow && color!=gf::Color::Orange && color!=gf::Color::Rose && color!=gf::Color::Green && color!=gf::Color::Black && color!=gf::Color::Cyan;
+    }
+
     bool Square::canJump(std::map<int, StaticPlateform> plateforms){
         for (auto &plateform : plateforms)
         {
-            gf::Vector2f plateformPosition=plateform.second.getPosition();
-            float plateformHeight=plateform.second.getHeight();
-            float plateformLength=plateform.second.getLength();
-            float squareLeft = m_position.x - m_size / 2;
-            float squareRight = m_position.x + m_size / 2;
-            float squareTop = m_position.y - m_size / 2 -1;
-            float squareBottom = m_position.y + m_size / 2 +1;
+            if(isPlateform(plateform.second)){
+                gf::Vector2f plateformPosition=plateform.second.getPosition();
+                float plateformHeight=plateform.second.getHeight();
+                float plateformLength=plateform.second.getLength();
+                float squareLeft = m_position.x - m_size / 2;
+                float squareRight = m_position.x + m_size / 2;
+                float squareTop = m_position.y - m_size / 2 -1;
+                float squareBottom = m_position.y + m_size / 2 +1;
 
-            // Calculez les limites de la plateforme en utilisant sa position centrale
-            float plateformLeft = plateformPosition.x - plateformLength / 2;
-            float plateformRight = plateformPosition.x + plateformLength / 2;
-            float plateformTop = plateformPosition.y - plateformHeight / 2;
-            float plateformBottom = plateformPosition.y + plateformHeight / 2;
-            if (squareRight > plateformLeft && squareLeft < plateformRight &&
-            squareBottom > plateformTop && squareTop < plateformBottom)
-            {
-
-                // Collision détectée. Maintenant, nous devons ajuster la position du carré.
-
-                // Vérifiez de quel côté le carré entre en collision
-                float overlapLeft = squareRight - plateformLeft;
-                float overlapRight = plateformRight - squareLeft;
-                float overlapTop = squareBottom - plateformTop;
-                float overlapBottom = plateformBottom - squareTop;
-
-                // Trouvez le chevauchement le plus petit
-                float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
-
-                if (minOverlap == overlapTop && m_gravity>0)
+                // Calculez les limites de la plateforme en utilisant sa position centrale
+                float plateformLeft = plateformPosition.x - plateformLength / 2;
+                float plateformRight = plateformPosition.x + plateformLength / 2;
+                float plateformTop = plateformPosition.y - plateformHeight / 2;
+                float plateformBottom = plateformPosition.y + plateformHeight / 2;
+                if (squareRight > plateformLeft && squareLeft < plateformRight &&
+                squareBottom > plateformTop && squareTop < plateformBottom)
                 {
-                    return true;
-                }
-                
-                if (minOverlap == overlapBottom && m_gravity<0)
-                {
-                    return true;
-                }
 
-                // Optionnellement, arrêtez le mouvement du carré lors de la collision
-                //m_velocity.y += -gravity;
+                    // Collision détectée. Maintenant, nous devons ajuster la position du carré.
+
+                    // Vérifiez de quel côté le carré entre en collision
+                    float overlapLeft = squareRight - plateformLeft;
+                    float overlapRight = plateformRight - squareLeft;
+                    float overlapTop = squareBottom - plateformTop;
+                    float overlapBottom = plateformBottom - squareTop;
+
+                    // Trouvez le chevauchement le plus petit
+                    float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
+
+                    if (minOverlap == overlapTop && m_gravity>0)
+                    {
+                        return true;
+                    }
+                    
+                    if (minOverlap == overlapBottom && m_gravity<0)
+                    {
+                        return true;
+                    }
+
+                    // Optionnellement, arrêtez le mouvement du carré lors de la collision
+                    //m_velocity.y += -gravity;
+                }
             }
     
         }
@@ -315,47 +322,48 @@ namespace swiftness
     bool Square::canWallJumpRight(std::map<int, StaticPlateform> plateforms){
         for (auto &plateform : plateforms)
         {
-            gf::Vector2f plateformPosition=plateform.second.getPosition();
-            float plateformHeight=plateform.second.getHeight();
-            float plateformLength=plateform.second.getLength();
-            float squareLeft = m_position.x - m_size / 2;
-            float squareRight = m_position.x + m_size / 2 +1;
-            float squareTop = m_position.y - m_size / 2;
-            float squareBottom = m_position.y + m_size / 2;
+            if(isPlateform(plateform.second)){
+                gf::Vector2f plateformPosition=plateform.second.getPosition();
+                float plateformHeight=plateform.second.getHeight();
+                float plateformLength=plateform.second.getLength();
+                float squareLeft = m_position.x - m_size / 2;
+                float squareRight = m_position.x + m_size / 2 +1;
+                float squareTop = m_position.y - m_size / 2;
+                float squareBottom = m_position.y + m_size / 2;
 
-            // Calculez les limites de la plateforme en utilisant sa position centrale
-            float plateformLeft = plateformPosition.x - plateformLength / 2;
-            float plateformRight = plateformPosition.x + plateformLength / 2;
-            float plateformTop = plateformPosition.y - plateformHeight / 2;
-            float plateformBottom = plateformPosition.y + plateformHeight / 2;
-            if (squareRight > plateformLeft && squareLeft < plateformRight &&
-            squareBottom > plateformTop && squareTop < plateformBottom)
-            {
-
-                // Collision détectée. Maintenant, nous devons ajuster la position du carré.
-
-                // Vérifiez de quel côté le carré entre en collision
-                float overlapLeft = squareRight - plateformLeft;
-                float overlapRight = plateformRight - squareLeft;
-                float overlapTop = squareBottom - plateformTop;
-                float overlapBottom = plateformBottom - squareTop;
-
-                // Trouvez le chevauchement le plus petit
-                float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
-
-                if (minOverlap == overlapLeft)
+                // Calculez les limites de la plateforme en utilisant sa position centrale
+                float plateformLeft = plateformPosition.x - plateformLength / 2;
+                float plateformRight = plateformPosition.x + plateformLength / 2;
+                float plateformTop = plateformPosition.y - plateformHeight / 2;
+                float plateformBottom = plateformPosition.y + plateformHeight / 2;
+                if (squareRight > plateformLeft && squareLeft < plateformRight &&
+                squareBottom > plateformTop && squareTop < plateformBottom)
                 {
-                    return true;
-                }
-                
-                
 
-                // Optionnellement, arrêtez le mouvement du carré lors de la collision
-                //m_velocity.y += -gravity;
+                    // Collision détectée. Maintenant, nous devons ajuster la position du carré.
+
+                    // Vérifiez de quel côté le carré entre en collision
+                    float overlapLeft = squareRight - plateformLeft;
+                    float overlapRight = plateformRight - squareLeft;
+                    float overlapTop = squareBottom - plateformTop;
+                    float overlapBottom = plateformBottom - squareTop;
+
+                    // Trouvez le chevauchement le plus petit
+                    float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
+
+                    if (minOverlap == overlapLeft)
+                    {
+                        return true;
+                    }
+                    
+                    
+
+                    // Optionnellement, arrêtez le mouvement du carré lors de la collision
+                    //m_velocity.y += -gravity;
+                }
             }
-    
         }
-        
+            
         return false;
 
     }
@@ -363,43 +371,45 @@ namespace swiftness
     bool Square::canWallJumpLeft(std::map<int, StaticPlateform> plateforms){
         for (auto &plateform : plateforms)
         {
-            gf::Vector2f plateformPosition=plateform.second.getPosition();
-            float plateformHeight=plateform.second.getHeight();
-            float plateformLength=plateform.second.getLength();
-            float squareLeft = m_position.x - m_size / 2 -1;
-            float squareRight = m_position.x + m_size / 2;
-            float squareTop = m_position.y - m_size / 2;
-            float squareBottom = m_position.y + m_size / 2;
+            if(isPlateform(plateform.second)){
+                gf::Vector2f plateformPosition=plateform.second.getPosition();
+                float plateformHeight=plateform.second.getHeight();
+                float plateformLength=plateform.second.getLength();
+                float squareLeft = m_position.x - m_size / 2 -1;
+                float squareRight = m_position.x + m_size / 2;
+                float squareTop = m_position.y - m_size / 2;
+                float squareBottom = m_position.y + m_size / 2;
 
-            // Calculez les limites de la plateforme en utilisant sa position centrale
-            float plateformLeft = plateformPosition.x - plateformLength / 2;
-            float plateformRight = plateformPosition.x + plateformLength / 2;
-            float plateformTop = plateformPosition.y - plateformHeight / 2;
-            float plateformBottom = plateformPosition.y + plateformHeight / 2;
-            if (squareRight > plateformLeft && squareLeft < plateformRight &&
-            squareBottom > plateformTop && squareTop < plateformBottom)
-            {
-
-                // Collision détectée. Maintenant, nous devons ajuster la position du carré.
-
-                // Vérifiez de quel côté le carré entre en collision
-                float overlapLeft = squareRight - plateformLeft;
-                float overlapRight = plateformRight - squareLeft;
-                float overlapTop = squareBottom - plateformTop;
-                float overlapBottom = plateformBottom - squareTop;
-
-                // Trouvez le chevauchement le plus petit
-                float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
-
-                if (minOverlap == overlapRight)
+                // Calculez les limites de la plateforme en utilisant sa position centrale
+                float plateformLeft = plateformPosition.x - plateformLength / 2;
+                float plateformRight = plateformPosition.x + plateformLength / 2;
+                float plateformTop = plateformPosition.y - plateformHeight / 2;
+                float plateformBottom = plateformPosition.y + plateformHeight / 2;
+                if (squareRight > plateformLeft && squareLeft < plateformRight &&
+                squareBottom > plateformTop && squareTop < plateformBottom)
                 {
-                    return true;
-                }
-                
-                
 
-                // Optionnellement, arrêtez le mouvement du carré lors de la collision
-                //m_velocity.y += -gravity;
+                    // Collision détectée. Maintenant, nous devons ajuster la position du carré.
+
+                    // Vérifiez de quel côté le carré entre en collision
+                    float overlapLeft = squareRight - plateformLeft;
+                    float overlapRight = plateformRight - squareLeft;
+                    float overlapTop = squareBottom - plateformTop;
+                    float overlapBottom = plateformBottom - squareTop;
+
+                    // Trouvez le chevauchement le plus petit
+                    float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
+
+                    if (minOverlap == overlapRight)
+                    {
+                        return true;
+                    }
+                    
+                    
+
+                    // Optionnellement, arrêtez le mouvement du carré lors de la collision
+                    //m_velocity.y += -gravity;
+                }
             }
     
         }
@@ -411,43 +421,45 @@ namespace swiftness
     bool Square::canWallJumpUp(std::map<int, StaticPlateform> plateforms){
         for (auto &plateform : plateforms)
         {
-            gf::Vector2f plateformPosition=plateform.second.getPosition();
-            float plateformHeight=plateform.second.getHeight();
-            float plateformLength=plateform.second.getLength();
-            float squareLeft = m_position.x - m_size / 2;
-            float squareRight = m_position.x + m_size / 2 ;
-            float squareTop = m_position.y - m_size / 2 -1;
-            float squareBottom = m_position.y + m_size / 2;
+            if(isPlateform(plateform.second)){
+                gf::Vector2f plateformPosition=plateform.second.getPosition();
+                float plateformHeight=plateform.second.getHeight();
+                float plateformLength=plateform.second.getLength();
+                float squareLeft = m_position.x - m_size / 2;
+                float squareRight = m_position.x + m_size / 2 ;
+                float squareTop = m_position.y - m_size / 2 -1;
+                float squareBottom = m_position.y + m_size / 2;
 
-            // Calculez les limites de la plateforme en utilisant sa position centrale
-            float plateformLeft = plateformPosition.x - plateformLength / 2;
-            float plateformRight = plateformPosition.x + plateformLength / 2;
-            float plateformTop = plateformPosition.y - plateformHeight / 2;
-            float plateformBottom = plateformPosition.y + plateformHeight / 2;
-            if (squareRight > plateformLeft && squareLeft < plateformRight &&
-            squareBottom > plateformTop && squareTop < plateformBottom)
-            {
-
-                // Collision détectée. Maintenant, nous devons ajuster la position du carré.
-
-                // Vérifiez de quel côté le carré entre en collision
-                float overlapLeft = squareRight - plateformLeft;
-                float overlapRight = plateformRight - squareLeft;
-                float overlapTop = squareBottom - plateformTop;
-                float overlapBottom = plateformBottom - squareTop;
-
-                // Trouvez le chevauchement le plus petit
-                float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
-
-                if (minOverlap == overlapBottom)
+                // Calculez les limites de la plateforme en utilisant sa position centrale
+                float plateformLeft = plateformPosition.x - plateformLength / 2;
+                float plateformRight = plateformPosition.x + plateformLength / 2;
+                float plateformTop = plateformPosition.y - plateformHeight / 2;
+                float plateformBottom = plateformPosition.y + plateformHeight / 2;
+                if (squareRight > plateformLeft && squareLeft < plateformRight &&
+                squareBottom > plateformTop && squareTop < plateformBottom)
                 {
-                    return true;
-                }
-                
-                
 
-                // Optionnellement, arrêtez le mouvement du carré lors de la collision
-                //m_velocity.y += -gravity;
+                    // Collision détectée. Maintenant, nous devons ajuster la position du carré.
+
+                    // Vérifiez de quel côté le carré entre en collision
+                    float overlapLeft = squareRight - plateformLeft;
+                    float overlapRight = plateformRight - squareLeft;
+                    float overlapTop = squareBottom - plateformTop;
+                    float overlapBottom = plateformBottom - squareTop;
+
+                    // Trouvez le chevauchement le plus petit
+                    float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
+
+                    if (minOverlap == overlapBottom)
+                    {
+                        return true;
+                    }
+                    
+                    
+
+                    // Optionnellement, arrêtez le mouvement du carré lors de la collision
+                    //m_velocity.y += -gravity;
+                }
             }
     
         }
@@ -459,43 +471,45 @@ namespace swiftness
     bool Square::canWallJumpDown(std::map<int, StaticPlateform> plateforms){
         for (auto &plateform : plateforms)
         {
-            gf::Vector2f plateformPosition=plateform.second.getPosition();
-            float plateformHeight=plateform.second.getHeight();
-            float plateformLength=plateform.second.getLength();
-            float squareLeft = m_position.x - m_size / 2;
-            float squareRight = m_position.x + m_size / 2;
-            float squareTop = m_position.y - m_size / 2;
-            float squareBottom = m_position.y + m_size / 2 + 1;
+            if(isPlateform(plateform.second)){
+                gf::Vector2f plateformPosition=plateform.second.getPosition();
+                float plateformHeight=plateform.second.getHeight();
+                float plateformLength=plateform.second.getLength();
+                float squareLeft = m_position.x - m_size / 2;
+                float squareRight = m_position.x + m_size / 2;
+                float squareTop = m_position.y - m_size / 2;
+                float squareBottom = m_position.y + m_size / 2 + 1;
 
-            // Calculez les limites de la plateforme en utilisant sa position centrale
-            float plateformLeft = plateformPosition.x - plateformLength / 2;
-            float plateformRight = plateformPosition.x + plateformLength / 2;
-            float plateformTop = plateformPosition.y - plateformHeight / 2;
-            float plateformBottom = plateformPosition.y + plateformHeight / 2;
-            if (squareRight > plateformLeft && squareLeft < plateformRight &&
-            squareBottom > plateformTop && squareTop < plateformBottom)
-            {
-
-                // Collision détectée. Maintenant, nous devons ajuster la position du carré.
-
-                // Vérifiez de quel côté le carré entre en collision
-                float overlapLeft = squareRight - plateformLeft;
-                float overlapRight = plateformRight - squareLeft;
-                float overlapTop = squareBottom - plateformTop;
-                float overlapBottom = plateformBottom - squareTop;
-
-                // Trouvez le chevauchement le plus petit
-                float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
-
-                if (minOverlap == overlapTop)
+                // Calculez les limites de la plateforme en utilisant sa position centrale
+                float plateformLeft = plateformPosition.x - plateformLength / 2;
+                float plateformRight = plateformPosition.x + plateformLength / 2;
+                float plateformTop = plateformPosition.y - plateformHeight / 2;
+                float plateformBottom = plateformPosition.y + plateformHeight / 2;
+                if (squareRight > plateformLeft && squareLeft < plateformRight &&
+                squareBottom > plateformTop && squareTop < plateformBottom)
                 {
-                    return true;
-                }
-                
-                
 
-                // Optionnellement, arrêtez le mouvement du carré lors de la collision
-                //m_velocity.y += -gravity;
+                    // Collision détectée. Maintenant, nous devons ajuster la position du carré.
+
+                    // Vérifiez de quel côté le carré entre en collision
+                    float overlapLeft = squareRight - plateformLeft;
+                    float overlapRight = plateformRight - squareLeft;
+                    float overlapTop = squareBottom - plateformTop;
+                    float overlapBottom = plateformBottom - squareTop;
+
+                    // Trouvez le chevauchement le plus petit
+                    float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
+
+                    if (minOverlap == overlapTop)
+                    {
+                        return true;
+                    }
+                    
+                    
+
+                    // Optionnellement, arrêtez le mouvement du carré lors de la collision
+                    //m_velocity.y += -gravity;
+                }
             }
     
         }
