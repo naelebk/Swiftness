@@ -49,12 +49,12 @@ namespace swiftness
 
         // ajout des murs invisible
         std::map<int, StaticPlateform> border = levelEntity.generateBorder(index);
+        std::cout << "Border generated" << std::endl;
         index += border.size();
 
         // Ajout de la sortie
-        std::cout << "before generate exit" << std::endl;
         std::map<int, StaticPlateform> exit = levelEntity.generateExit(index);
-        std::cout << "plateforme generated : id -> " << exit.begin()->first << std::endl;
+        std::cout << "Exit generated" << std::endl;
 
         plateform.insert(plateform_h.begin(), plateform_h.end());
         plateform.insert(plateform_bloc.begin(), plateform_bloc.end());
@@ -68,7 +68,7 @@ namespace swiftness
         return plateform;
     }
 
-    std::map<int, StaticPlateform> Level::initializeLevel03()
+    /* std::map<int, StaticPlateform> Level::initializeLevel03()
     {
 
         std::map<int, swiftness::StaticPlateform> plateform;
@@ -113,7 +113,7 @@ namespace swiftness
             plateform.insert(std::pair<int, swiftness::StaticPlateform>(27+2*i, plateform_die_2));
         }
         return plateform;
-    }
+    } */
 
     Level::level Level::initializeLevel(std::string nameFile)
     {

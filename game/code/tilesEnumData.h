@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <string>
 
-namespace swiftness {
+namespace swiftness
+{
 
     enum class PlateformType
     {
@@ -116,28 +117,22 @@ namespace swiftness {
         deathT_bloc_left_right
     };
 
-        enum class LayerName
-        {
-            IO,
-            Border,
-            Wall_of_death_v,
-            Wall_of_death_h,
-            Wall_of_death_bloc,
-            Collision_v,
-            Collision_h,
-            Collision_bloc,
-            gravity_switch,
-            Filling,
-            Decoration
-        };
+    enum class LayerName
+    {
+        IO,
+        Border,
+        Wall_of_death_v,
+        Wall_of_death_h,
+        Wall_of_death_bloc,
+        Collision_v,
+        Collision_h,
+        Collision_bloc,
+        Filling,
+        Decoration,
+        gravity_switch
+    };
 
-        std::string getLayerName(LayerName layerName);
-
-        int getTileType(PlateformType type);
-
-
-        
-
+    std::string getLayerName(LayerName layerName);
 
 }
 

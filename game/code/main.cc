@@ -4,6 +4,7 @@
 #include "constants.h"
 #include "commands.h"
 #include "helloNewPadawan.h"
+#include "levelRender.h"
 
 #include <memory>
 #include <gf/Clock.h>
@@ -104,11 +105,14 @@ int main(int argc, char *argv[]) {
             // render
             render.clear(gf::Color::White);
             render.setView(camera);
-            square.render(render);
             for (auto &plateform : plateform)
             {
                 plateform.second.render(render);
             }
+            std::string levelName = "level0" + std::to_string(level) + ".tmx";
+            swiftness::LevelRender levelRender;
+            levelRender.renderLevel(levelName, render);
+            square.render(render);
             square.renderHUD(render,SCREEN_WIDTH,SCREEN_HEIGHT);
             render.display();
         }

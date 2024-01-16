@@ -3,12 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Maps/level05.tmx",
+    "activeFile": "Maps/level06.tmx",
     "expandedProjectPaths": [
-        "level",
         "tileset",
         ".",
         "Maps",
+        "level",
         "Tilesets",
         "levels"
     ],
@@ -117,11 +117,11 @@
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 5.5,
-            "selectedLayer": 0,
+            "scale": 1.452403846153846,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 589.909090909091,
-                "y": 111.36363636363637
+                "x": 414.14101290963265,
+                "y": 296.40516385302885
             }
         },
         "Maps/level_00.tmx": {
@@ -328,19 +328,19 @@
     "map.tileWidth": 16,
     "map.width": 60,
     "openFiles": [
-        "Maps/level05.tmx"
+        "Maps/level06.tmx"
     ],
     "project": "switness.tiled-project",
     "property.type": "int",
     "recentFiles": [
-        "Maps/level05.tmx",
-        "Maps/level_template.tmx",
         "Maps/level06.tmx",
+        "Maps/level05.tmx",
+        "Maps/level03.tmx",
+        "Maps/level04.tmx",
+        "Maps/level_template.tmx",
         "Maps/level00.tmx",
         "Maps/level01.tmx",
         "Maps/level02.tmx",
-        "Maps/level03.tmx",
-        "Maps/level04.tmx",
         "Maps/hub.tmx",
         "Tilesets/2_portal.tsx",
         "Tilesets/6_wall_of_death.tsx",

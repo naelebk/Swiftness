@@ -31,8 +31,11 @@ namespace swiftness
     constexpr int MAX_LEVEL = 6;
 
     const std::string LEVELS_TMX_PATH = "../../ressources/Levels/Maps/";
-    const std::string TEXTURE_BACKGROUND_PATH = "../../ressources/tiles/Images/background/";
+    const std::string TILESETS_TSX_PATH = "../../ressources/Levels/Tilesets/";
+    const std::string IMAGES_GAME = "../../ressources/Images/";
     const std::string TEXTURE_SKIN_PATH = "../../ressources/Levels/Images/skin/";
+
+    const int NB_TILE_LAYERS = 10;
 
 } // namespace swiftness
 
