@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     while (true) {
         std::map<int, swiftness::StaticPlateform> plateform;
         swiftness::Square square;
-        gf::Font font("../../ressources/font/KarmaFuture.ttf");
+        gf::Font font(PATH_FONT);
         gf::Window win1("Welcome to Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
         gf::RenderWindow renderer(win1);
         swiftness::MenuHello helloWorld(font, win1);

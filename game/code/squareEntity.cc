@@ -546,7 +546,7 @@ namespace swiftness
 
     void Square::renderHUD(gf::RenderTarget &target,float width,float height)
     {
-        gf::Font font("../../ressources/font/KarmaFuture.ttf");
+        gf::Font font(PATH_FONT);
         gf::Text deathText;
         deathText.setFont(font);
         deathText.setColor(gf::Color::White);

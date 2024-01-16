@@ -4,9 +4,11 @@
 #include <gf/Font.h>
 #include <gf/Texture.h>
 #include <gf/Widgets.h>
+#include <gf/WidgetContainer.h>
 #include <gf/Clock.h>
 #include <gf/Views.h>
 #include <gf/View.h>
+#include <gf/Text.h>  
 #include <gf/Color.h>
 #include <gf/Event.h>
 #include <gf/RenderTarget.h>
@@ -16,6 +18,8 @@
 #include <gf/Window.h>
 #include <gf/Math.h>
 
+#include "constants.h"
+
 // Concernant la création et la gestion des scènes, tout ce qui concerne également les différents rendus,
 // nous nous sommes largement inspiré d'un lien Github qui nous a été fourni, concernant un jeu créé lors
 // d'une global game jam (2022 ici)
@@ -24,7 +28,6 @@
 namespace swiftness {
     class GameManager : public gf::Scene {
         public:
-            //const static gf::Font font("../../ressources/font/ActiveSpaceDemoRegular.ttf");
             // Constructeur
             GameManager();
             // Destructeur

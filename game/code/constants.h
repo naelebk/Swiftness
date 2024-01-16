@@ -2,7 +2,7 @@
 #define CONSTANTS_H
 
 #include <string>
-
+#include <gf/Font.h>
 namespace swiftness
 {
     // Gravity
@@ -21,6 +21,9 @@ namespace swiftness
     // Window
     constexpr int WINDOW_WIDTH = 1366.0f;
     constexpr int WINDOW_HEIGHT = 768.0f;
+
+    // Font
+    const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
 
     // Screen
     constexpr float SCREEN_WIDTH = 800.0f;
