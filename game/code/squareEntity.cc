@@ -5,7 +5,7 @@
 namespace swiftness
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), m_bullet(false), m_bullet_bar(0.0f), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false)
+        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -35,16 +35,16 @@ namespace swiftness
                 m_jump=canJump(plateforms);
                 bool walljumpRight=canWallJumpRight(plateforms);
                 bool walljumpLeft=canWallJumpLeft(plateforms);
-                if(m_jump || (nb_jumps==1 && m_bullet && !walljumpRight && !walljumpLeft)){
+                if(m_jump || (nb_jumps==1 && !walljumpRight && !walljumpLeft)){
                     m_velocity.y = JUMP*m_gravity;
                     nb_jumps+=1;
                 }else{
-                    if(m_bullet && walljumpRight){
+                    if(walljumpRight){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=0;
                         m_velocity.x=-WALL_JUMP_SPEED;
                     }else{
-                        if(m_bullet && walljumpLeft){
+                        if(walljumpLeft){
                             m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=0;
                             m_velocity.x=WALL_JUMP_SPEED;
@@ -61,16 +61,16 @@ namespace swiftness
                     bool walljumpRight=canWallJumpRight(plateforms);
                     bool walljumpUp=canWallJumpUp(plateforms);
                     bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpRight || (nb_jumps==1 && m_bullet && !walljumpUp && !wallJumpDown)){
+                    if(walljumpRight || (nb_jumps==1 && !walljumpUp && !wallJumpDown)){
                         m_velocity.x = JUMP*m_gravity;
                         nb_jumps+=1;
                     }else{
-                        if(m_bullet && wallJumpDown){
+                        if(wallJumpDown){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=0;
                             m_velocity.y=-WALL_JUMP_SPEED;
                         }else{
-                            if(m_bullet && walljumpUp){
+                            if(walljumpUp){
                                 m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                                 nb_jumps=0;
                                 m_velocity.y=WALL_JUMP_SPEED;
@@ -81,16 +81,16 @@ namespace swiftness
                     bool walljumpLeft=canWallJumpLeft(plateforms);
                     bool walljumpUp=canWallJumpUp(plateforms);
                     bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpLeft || (nb_jumps==1 && m_bullet && !walljumpUp && !wallJumpDown)){
+                    if(walljumpLeft || (nb_jumps==1 && !walljumpUp && !wallJumpDown)){
                         m_velocity.x = JUMP*m_gravity;
                         nb_jumps+=1;
                     }else{
-                        if(m_bullet && wallJumpDown){
+                        if( wallJumpDown){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=0;
                             m_velocity.y=-WALL_JUMP_SPEED;
                         }else{
-                            if(m_bullet && walljumpUp){
+                            if(walljumpUp){
                                 m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                                 nb_jumps=0;
                                 m_velocity.y=WALL_JUMP_SPEED;
@@ -102,16 +102,16 @@ namespace swiftness
                 m_jump=canJump(plateforms);
                 bool walljumpRight=canWallJumpRight(plateforms);
                 bool walljumpLeft=canWallJumpLeft(plateforms);
-                if(m_jump || (nb_jumps==1 && m_bullet && !walljumpRight && !walljumpLeft)){
+                if(m_jump || (nb_jumps==1  && !walljumpRight && !walljumpLeft)){
                     m_velocity.y = JUMP*m_gravity;
                     nb_jumps+=1;
                 }else{
-                    if(m_bullet && walljumpRight){
+                    if( walljumpRight){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=0;
                         m_velocity.x=-WALL_JUMP_SPEED;
                     }else{
-                        if(m_bullet && walljumpLeft){
+                        if( walljumpLeft){
                             m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=0;
                             m_velocity.x=WALL_JUMP_SPEED;
@@ -119,12 +119,6 @@ namespace swiftness
                     }
                 }
                 m_jump=false;
-            }
-        }
-        std::vector<Input>::iterator B = std::find(inputs.begin(), inputs.end(), Input::B);      
-        if (B != inputs.end()) {
-            if(m_bullet_bar>0.0f){
-                m_bullet=!m_bullet;
             }
         }
         
@@ -178,16 +172,16 @@ namespace swiftness
                     bool walljumpLeft=canWallJumpLeft(plateforms);
                     bool walljumpUp=canWallJumpUp(plateforms);
                     bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpLeft || (nb_jumps==1 && m_bullet && !walljumpUp && !wallJumpDown)){
+                    if(walljumpLeft || (nb_jumps==1  && !walljumpUp && !wallJumpDown)){
                         m_velocity.x = JUMP*m_gravity;
                         nb_jumps+=1;
                     }else{
-                        if(m_bullet && wallJumpDown){
+                        if( wallJumpDown){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=0;
                             m_velocity.y=-WALL_JUMP_SPEED;
                         }else{
-                            if(m_bullet && walljumpUp){
+                            if( walljumpUp){
                                 m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                                 nb_jumps=0;
                                 m_velocity.y=WALL_JUMP_SPEED;
@@ -216,16 +210,16 @@ namespace swiftness
                     bool walljumpRight=canWallJumpRight(plateforms);
                     bool walljumpUp=canWallJumpUp(plateforms);
                     bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpRight || (nb_jumps==1 && m_bullet && !walljumpUp && !wallJumpDown)){
+                    if(walljumpRight || (nb_jumps==1 && !walljumpUp && !wallJumpDown)){
                         m_velocity.x = JUMP*m_gravity;
                         nb_jumps+=1;
                     }else{
-                        if(m_bullet && wallJumpDown){
+                        if( wallJumpDown){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=0;
                             m_velocity.y=-WALL_JUMP_SPEED;
                         }else{
-                            if(m_bullet && walljumpUp){
+                            if( walljumpUp){
                                 m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                                 nb_jumps=0;
                                 m_velocity.y=WALL_JUMP_SPEED;
@@ -247,38 +241,7 @@ namespace swiftness
         bool walljumpLeft=canWallJumpLeft(plateforms);
         bool walljumpUp=canWallJumpUp(plateforms);
         bool wallJumpDown=canWallJumpDown(plateforms);
-        if (m_bullet){
-            if (horizontal_g){
-                if ((goUp && walljumpUp) || (goDown && wallJumpDown)){
-                    m_velocity.x=-SPEED_SQUARE*m_gravity;
-                }
-            }else{
-                if ((goLeft && walljumpLeft) || (goRight && walljumpRight)){
-                    m_velocity.y=-SPEED_SQUARE*m_gravity;
-                }
-            }
-            m_bullet_bar-=dt*10;
-            if(m_bullet_bar<=0.0f){
-                m_bullet_bar=0.0f;
-                m_bullet=false;
-            }
-            
-        }
-        if (horizontal_g){
-            if ((m_gravity==1 && m_velocity.x>0) || (m_gravity==-1 && m_velocity.x<0)){
-                m_bullet_bar+=m_gravity*m_velocity.x*dt/10;
-                if (m_bullet_bar>100.0f){
-                    m_bullet_bar=100.0f;
-                }
-            }
-        }else{
-            if ((m_gravity==1 && m_velocity.y>0) || (m_gravity==-1 && m_velocity.y<0)){
-                m_bullet_bar+=m_gravity*m_velocity.y*dt/10;
-                if (m_bullet_bar>100.0f){
-                    m_bullet_bar=100.0f;
-                }
-            }
-        }
+      
         // Appliquez la gravité
         if(horizontal_g){
             setVelocity(m_velocity + gf::Vector2f( gravity * m_gravity * dt,0));
@@ -558,27 +521,14 @@ namespace swiftness
     {
         gf::RectangleShape shape({m_size, m_size});
         shape.setPosition(m_position);
-        if(m_bullet){
-            shape.setColor(gf::Color::Green);
-        }else{
-            shape.setColor(m_color);
-        }
+        shape.setColor(m_color);
         shape.setAnchor(gf::Anchor::Center);
         target.draw(shape);
     }
 
     void Square::renderHUD(gf::RenderTarget &target,float width,float height)
     {
-        gf::RectangleShape shape_bullet_bar({100.0f, 20.0f});
-        shape_bullet_bar.setPosition(m_position - gf::Vector2f(width/2-55.0f, height/2-15.0f));
-        shape_bullet_bar.setColor(gf::Color::Black);
-        shape_bullet_bar.setAnchor(gf::Anchor::Center);
-        target.draw(shape_bullet_bar);
-        gf::RectangleShape shape_bullet_bar2({m_bullet_bar, 20.0f});
-        shape_bullet_bar2.setPosition(m_position - gf::Vector2f(width/2-m_bullet_bar/2-5.0f, height/2-15.0f));
-        shape_bullet_bar2.setColor(gf::Color::Cyan);
-        shape_bullet_bar2.setAnchor(gf::Anchor::Center);
-        target.draw(shape_bullet_bar2);
+        
     }
 
     // empeche le carré de traverser une plateforme
@@ -608,8 +558,6 @@ namespace swiftness
                 m_jump=0;
                 m_velocity=gf::Vector2f(0,0);
                 m_gravity=1;
-                m_bullet=false;
-                m_bullet_bar=0.0f;
                 return;
             }
             // close the game
