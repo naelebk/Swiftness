@@ -1,9 +1,9 @@
 #include "GameScenes.h"
 
 namespace swiftness {
-    /*GameManager::GameManager() 
+    gf::Font font(PATH_FONT);
+    GameManager::GameManager() 
         : gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
-        font("../../ressources/font/DejaVuSans.ttf"),
         up("Up"),
         down("Down"),
         trigger("Trigger"),
@@ -14,7 +14,7 @@ namespace swiftness {
         choose_level("Choose level", font),
         questionmark_b("???", font)
         {
-            // Ajoutez ici le code pour initialiser d'autres membres si nécessaire
-        }*/
+            
+        }
 
 }
