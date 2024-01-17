@@ -102,13 +102,13 @@ int main(int argc, char *argv[]) {
             // render
             render.clear(gf::Color::Black);
             render.setView(camera);
-             for (auto &plateform : plateform)
-            {
-                plateform.second.render(render);
-            }
-            // std::string levelName = "level0" + std::to_string(level) + ".tmx";
-            // swiftness::LevelRender levelRender;
-            // levelRender.renderLevel(levelName, render);
+            // for (auto &plateform : plateform)
+            // {
+            //     plateform.second.render(render);
+            // }
+            std::string levelName = "level0" + std::to_string(level) + ".tmx";
+            swiftness::LevelRender levelRender;
+            levelRender.renderLevel(levelName, render);
             square.render(render);
             square.renderHUD(render,SCREEN_WIDTH,SCREEN_HEIGHT);
             render.display();
