@@ -86,6 +86,51 @@ namespace swiftness {
                 }
                 break;
 
+            case gf::EventType::GamepadButtonPressed:
+                switch(event.gamepadButton.button) {
+                    // Pour sauter : deux manières différentes => haut ou A
+                    case gf::GamepadButton::A:
+                        enumVector.push_back(Input::Space);
+                        break;
+                    case gf::GamepadButton::DPadUp:
+                        enumVector.push_back(Input::Up);
+                        break;
+                    case gf::GamepadButton::LeftStick:
+                    case gf::GamepadButton::DPadLeft:
+                        enumVector.push_back(Input::Left);
+                        break;
+                    case gf::GamepadButton::RightStick:
+                    case gf::GamepadButton::DPadRight:
+                        enumVector.push_back(Input::Right);
+                        break;
+                    case gf::GamepadButton::DPadDown:
+                        enumVector.push_back(Input::Down);
+                        break;
+                    default:
+                        break;                    
+                }
+            case gf::EventType::GamepadButtonReleased:
+                switch(event.gamepadButton.button) {
+                    case gf::GamepadButton::A:
+                        enumVector.push_back(Input::Space_Released);
+                        break;
+                    case gf::GamepadButton::DPadUp:
+                        enumVector.push_back(Input::UpReleased);
+                        break;
+                    case gf::GamepadButton::LeftStick:
+                    case gf::GamepadButton::DPadLeft:
+                        enumVector.push_back(Input::LeftReleased);
+                        break;
+                    case gf::GamepadButton::RightStick:
+                    case gf::GamepadButton::DPadRight:
+                        enumVector.push_back(Input::RightReleased);
+                        break;
+                    case gf::GamepadButton::DPadDown:
+                        enumVector.push_back(Input::DownReleased);
+                        break;
+                    default:
+                        break;
+                }
             default:
                 break;
         }
