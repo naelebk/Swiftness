@@ -179,3 +179,12 @@
 >- On peut maintenant crée des bouton changement de gravité et des murs tueurs à partir des tile tmx
 >- Ajout de beaucoup d'asset pixel art pour les portail de début et fin de niveau, murs tueurs, bouton gravité et portail de choix de niveau
 >
+
+## Fonctionnalité majeure ajoutée : jouabilité avec Gamepad
+
+>
+>> *17/01/2024*
+>> **Naël**
+>
+>- Ajout de la possibilité de jouer avec un Gamepad pour notre jeu (clavier + gamepad possibles)
+>
