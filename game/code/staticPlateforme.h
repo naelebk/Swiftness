@@ -1,3 +1,4 @@
+#pragma once
 #ifndef STATIC_PLATEFORME_H
 #define STATIC_PLATEFORME_H
 

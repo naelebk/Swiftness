@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LEVEL_ENTITY_H
 #define LEVEL_ENTITY_H
 

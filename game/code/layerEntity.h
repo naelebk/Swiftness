@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LAYER_ENTITY_H
 #define LAYER_ENTITY_H
 

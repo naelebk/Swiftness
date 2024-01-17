@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LEVEL_RENDER_H
 #define LEVEL_RENDER_H
 #include "layerEntity.h"

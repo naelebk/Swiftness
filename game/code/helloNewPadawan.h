@@ -1,3 +1,4 @@
+#pragma once
 #include <gf/Scene.h>
 #include <gf/Entity.h>
 #include <gf/Vector.h>

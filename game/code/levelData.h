@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LEVEL_DATA_H
 #define LEVEL_DATA_H
 

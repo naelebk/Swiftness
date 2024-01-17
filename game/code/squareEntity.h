@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SQUARE_ENTITY_H
 #define SQUARE_ENTITY_H
 
