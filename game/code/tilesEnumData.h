@@ -130,7 +130,8 @@ namespace swiftness
         Collision_bloc,
         Filling,
         Decoration,
-        gravity_switch
+        gravity_switch,
+        gravity_walls
     };
 
     std::string getLayerName(LayerName layerName);

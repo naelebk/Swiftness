@@ -1,9 +1,4 @@
 {
-    "Map/SizeTest": {
-        "height": 4300,
-        "width": 2
-    },
-    "activeFile": "",
     "expandedProjectPaths": [
         "level",
         "Tilesets",
@@ -12,7 +7,6 @@
         "levels",
         "Maps"
     ],
-    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInDock": 1
@@ -68,8 +62,8 @@
             "scale": 1.2181451612903225,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 726.9248593181067,
-                "y": 469.1559086395234
+                "x": 726.1039390930157,
+                "y": 468.3349884144324
             }
         },
         "Maps/level02.tmx": {
@@ -325,35 +319,6 @@
             "scaleInEditor": 1
         }
     },
-    "last.externalTilesetPath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Tilesets",
-    "last.imagePath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Images",
-    "map.height": 40,
-    "map.lastUsedFormat": "tmx",
-    "map.tileHeight": 16,
-    "map.tileWidth": 16,
-    "map.width": 60,
     "openFiles": [
-    ],
-    "project": "switness.tiled-project",
-    "property.type": "int",
-    "recentFiles": [
-        "Maps/level01.tmx",
-        "Maps/level_template.tmx",
-        "Maps/level00.tmx",
-        "Maps/level02.tmx",
-        "Maps/level03.tmx",
-        "Maps/level04.tmx",
-        "Maps/level05.tmx",
-        "Maps/level06.tmx",
-        "Maps/level07.tmx",
-        "Tilesets/3_futuristic_city.tsx",
-        "Tilesets/2_portal.tsx",
-        "Tilesets/1_utilities.tsx"
-    ],
-    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
-    "tileset.lastUsedFormat": "tsx",
-    "tileset.tileSize": {
-        "height": 16,
-        "width": 16
-    }
+    ]
 }
