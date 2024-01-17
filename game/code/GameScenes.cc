@@ -20,7 +20,48 @@ namespace swiftness {
             quit_a.addKeycodeKeyControl(gf::Keycode::Escape);
             addAction(quit_a);
 
-            // Seconde
+            // Seconde action permettant d'aller en haut
+            up.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
+            up.addScancodeKeyControl(gf::Scancode::Up);
+            addAction(up);
+
+            // Troisième action permattant d'aller en bas
+            down.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadDown);
+            down.addScancodeKeyControl(gf::Scancode::Down);
+            addAction(down);
+
+            // Quatrième action permettant d'effectuer un choix
+            // (touche A du Gamepad, ou bien touche entrée, ou bien cliquer directement sur le bouton)
+            trigger.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
+            trigger.addScancodeKeyControl(gf::Scancode::Return);
+            addAction(trigger);
+
+            // ????????????????????????????????????????????????????????????????????????
+            // Mystère cette action, que fait-elle ?
+            questionmark.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::X);
+            trigger.addKeycodeKeyControl(gf::Keycode::Y);
+            addAction(questionmark);
+
+            // Création des boutons nous permettant d'effectuer les différentes actions
+            // Tout d'abord, il faut gérer leur création avant de leur assigner leurs valeurs
+            // ainsi que leurs actions
+            auto createButtons = [&] (gf::TextButtonWidget& button, auto callback) {
+                button.setDefaultTextColor(gf::Color::Black);
+                button.setDefaultBackgroundColor(gf::Color::Gray(0.7f));
+                button.setSelectedTextColor(gf::Color::Black);
+                button.setSelectedBackgroundColor(gf::Color::Green);
+                button.setDisabledTextColor(gf::Color::Black);
+                button.setDisabledBackgroundColor(gf::Color::Red);
+                button.setAnchor(gf::Anchor::TopLeft);
+                button.setAlignment(gf::Alignment::Center);
+                button.setCallback(callback);
+                widgets.addWidget(button);
+            };
+
+            // Maintenant le gestionnaire de création de boutons initialisé, on peut créer nos boutons
+            createButtons(quit_b, [&] () {
+
+            });
 
         }*/
 

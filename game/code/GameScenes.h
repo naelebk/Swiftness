@@ -65,6 +65,7 @@ namespace swiftness {
                 - les boutons
                 - les actions concernant ces boutons (le crédit, jouer une partie, quitter le jeu)
             */
+            // Merci pour l'astuce ;) !
             //gf::Scene scene;
             //gf::Action action;
             //gf::SegueEffect effect;
@@ -79,5 +80,6 @@ namespace swiftness {
             gf::TextButtonWidget credits;
             gf::TextButtonWidget choose_level;
             gf::TextButtonWidget questionmark_b;
+            gf::WidgetContainer widgets;
     };
 }
