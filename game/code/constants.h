@@ -22,9 +22,6 @@ namespace swiftness
     constexpr int WINDOW_WIDTH = 1366.0f;
     constexpr int WINDOW_HEIGHT = 768.0f;
 
-    // Font
-    const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
-
     // Screen
     constexpr float SCREEN_WIDTH = 800.0f;
     constexpr float SCREEN_HEIGHT = 600.0f;
@@ -33,6 +30,8 @@ namespace swiftness
     constexpr int MIN_LEVEL = 0;
     constexpr int MAX_LEVEL = 6;
 
+    // Resources
+    const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
     const std::string LEVELS_TMX_PATH = "../../ressources/Levels/Maps/";
     const std::string TILESETS_TSX_PATH = "../../ressources/Levels/Tilesets/";
     const std::string IMAGES_GAME = "../../ressources/Images/";

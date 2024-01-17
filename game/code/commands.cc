@@ -86,7 +86,7 @@ namespace swiftness {
                 }
                 break;
 
-            /*case gf::EventType::GamepadButtonPressed:
+            case gf::EventType::GamepadButtonPressed:
                 switch(event.gamepadButton.button) {
                     // Pour sauter : deux manières différentes => haut ou A
                     case gf::GamepadButton::A:
@@ -136,7 +136,7 @@ namespace swiftness {
                         break;
                     default:
                         break;
-                }*/
+                }
             default:
                 break;
         }
