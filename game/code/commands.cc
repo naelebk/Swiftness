@@ -92,6 +92,9 @@ namespace swiftness {
                     case gf::GamepadButton::A:
                         enumVector.push_back(Input::Space);
                         break;
+                    case gf::GamepadButton::B:
+                        enumVector.push_back(Input::Closed);
+                        break;
                     case gf::GamepadButton::DPadUp:
                         enumVector.push_back(Input::Up);
                         break;
@@ -113,6 +116,9 @@ namespace swiftness {
                 switch(event.gamepadButton.button) {
                     case gf::GamepadButton::A:
                         enumVector.push_back(Input::Space_Released);
+                        break;
+                    case gf::GamepadButton::B:
+                        enumVector.push_back(Input::Closed);
                         break;
                     case gf::GamepadButton::DPadUp:
                         enumVector.push_back(Input::UpReleased);

@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
     // Initialize everything
 
     // gf::Vector2f velocity(0, GRAVITY);
-    bool isresize = false, win1resize = false;
+    bool isresize = false;
     int level = -2;
     while (true) {
         std::map<int, swiftness::StaticPlateform> plateform;
@@ -40,14 +40,11 @@ int main(int argc, char *argv[]) {
         gf::Window win1("Welcome to Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
         gf::RenderWindow renderer(win1);
         swiftness::MenuHello helloWorld(font, win1);
-        gf::Event e;
         while (level == -2) {
-            while (win1.pollEvent(e)) {
-                helloWorld.displayLevelSelection(renderer, win1, font, level);
-            }
-            if (isresize) {
-                win1resize = false;
-                gf::RenderWindow renderer(win1);
+            gf::Event e;
+            if(helloWorld.displayLevelSelection(renderer, win1, e, font, level)) break;
+            if (e.type == gf::EventType::Closed || level == -1) {
+                win1.close();
             }
         }            
         win1.close();

@@ -52,7 +52,7 @@ namespace swiftness {
             // de permettre à l'utilisateur de choisir le niveau auquel il
             // veut jouer, en fonction du niveau choisi, on appelera la fonction
             // adéquate permettant de charger ce niveau
-            void displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Font& font, int& selectedLevel);
+            bool displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Event& event, gf::Font& font, int& selectedLevel);
 
             // Cette seconde fonction permet, dans une fenêtre graphique,
             // de charger les différents paramètres du jeu en fonction du level

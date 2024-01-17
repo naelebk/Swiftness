@@ -92,56 +92,53 @@ namespace swiftness {
 
     int MenuHello::getLevel(){ return m_selectedLevel; }
 
-    void MenuHello::displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Font& font, int& selectedLevel) {
+    bool MenuHello::displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Event& event, gf::Font& font, int& selectedLevel) {
         const float buttonHeight = 45.0f, margin = 20.0f;
         const int buttonCount = MAX_LEVEL + 2;
-        render.clear(gf::Color::Black);
-        for (int i = 0; i < buttonCount; ++i) {
-            gf::RectangleShape shape({150.0f, buttonHeight});
-            gf::Text buttonText;
-            buttonText.setFont(font);
-            buttonText.setColor(gf::Color::Black);
-            buttonText.setCharacterSize(35);
-            if (i == buttonCount - 1) {
-                buttonText.setString("Quit");
-                shape.setColor(gf::Color::Rose);
-            } else {
-                buttonText.setString("Level " + std::to_string(i));
-                shape.setColor(gf::Color::Cyan);
-            }
-            float buttonX = WINDOW_WIDTH / 2;
-            float buttonY = window.getSize().y / 2 - (buttonCount * (buttonHeight + margin)) / 2 + (buttonHeight + margin) * i;
-            buttonText.setPosition({buttonX, buttonY});
-            buttonText.setAnchor(gf::Anchor::Center);
-            shape.setPosition({buttonX, buttonY});
-            shape.setAnchor(gf::Anchor::Center);
-            render.draw(shape);
-            render.draw(buttonText);
-        }
-        render.display();
-        gf::Event event;
-        while (window.isOpen())
-        {
-            while (window.pollEvent(event)) {
-                if (event.type == gf::EventType::Closed) {
-                    window.close();
+        while (true) {
+            gf::RenderWindow render(window);
+            render.clear(gf::Color::Black);
+            for (int i = 0; i < buttonCount; ++i) {
+                gf::RectangleShape shape({150.0f, buttonHeight});
+                gf::Text buttonText;
+                buttonText.setFont(font);
+                buttonText.setColor(gf::Color::Black);
+                buttonText.setCharacterSize(35);
+                if (i == buttonCount - 1) {
+                    buttonText.setString("Quit");
+                    shape.setColor(gf::Color::Rose);
+                } else {
+                    buttonText.setString("Level " + std::to_string(i));
+                    shape.setColor(gf::Color::Cyan);
                 }
+                float buttonX = WINDOW_WIDTH / 2;
+                float buttonY = window.getSize().y / 2 - (buttonCount * (buttonHeight + margin)) / 2 + (buttonHeight + margin) * i;
+                buttonText.setPosition({buttonX, buttonY});
+                buttonText.setAnchor(gf::Anchor::Center);
+                shape.setPosition({buttonX, buttonY});
+                shape.setAnchor(gf::Anchor::Center);
+                render.draw(shape);
+                render.draw(buttonText);
+            }
+            render.display();
+            gf::Event event;
+            while (window.pollEvent(event)) {
                 if (event.type == gf::EventType::MouseButtonPressed && event.mouseButton.button == gf::MouseButton::Left) {
                     float ystart=window.getSize().y / 2 - (buttonCount * (buttonHeight + margin)) / 2 - buttonHeight -margin;
                     int clickedButton = ((event.mouseButton.coords.y - ystart) / (buttonHeight/2 + 1.65f*margin)) - 1.3;
                     float xMouse=event.mouseButton.coords.x;
                     if (event.mouseButton.coords.y>= ystart - 500.0f && xMouse<=(window.getSize().x/2)+150.0f && xMouse>=(window.getSize().x/2)-150.0f && clickedButton >= 0 && clickedButton <= MAX_LEVEL) {
                         selectedLevel = clickedButton;
-                        return;
+                        return true;
                     } else if (clickedButton == MAX_LEVEL + 1) {
                         selectedLevel = -1;
-                        return;
+                        return true;
                     }
                 }
             }
         }
         selectedLevel = -1;
-        return;
+        return false;
     }
 
     // Comme on ne peut pas mettre une valeur non comprise entre MIN_LEVEL et MAX_LEVEL, on n'effectue aucune
