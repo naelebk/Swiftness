@@ -569,6 +569,7 @@ namespace swiftness
         float squareBottom = m_position.y + m_size / 2;
 
         if(color==gf::Color::Yellow){
+            m_gravityDirection="down";
             if (wallLeft){ 
                 squareLeft-=1;
             }
@@ -602,8 +603,9 @@ namespace swiftness
             // Collision détectée. Maintenant, nous devons ajuster la position du carré.
 
             // Vérifiez de quel côté le carré entre en collision
-            // gravity switch down
+            // gravity switch up
             else if(color==gf::Color::Cyan){
+                m_gravityDirection = "up";
                 m_gravity=-1;
                 if (horizontal_g){
                     m_velocity.x=0;
@@ -617,8 +619,9 @@ namespace swiftness
                 }
                 horizontal_g=false;
             }
-            // gravity switch up
+            // gravity switch down
             else if(color==gf::Color::Rose){
+                m_gravityDirection = "down";
                 m_gravity=1;
                 if (horizontal_g){
                     m_velocity.x=0;
@@ -634,6 +637,7 @@ namespace swiftness
             }
             // gravity switch left
             else if(color==gf::Color::Green){
+                m_gravityDirection = "left";
                 m_gravity=-1;
                 if (!horizontal_g){
                     m_velocity.x=0;
@@ -649,6 +653,7 @@ namespace swiftness
             }
             // gravity switch right
             else if(color==gf::Color::Orange){
+                m_gravityDirection = "right";
                 if (!horizontal_g){
                     m_velocity.x=0;
                     m_velocity.y=0;
@@ -662,6 +667,30 @@ namespace swiftness
                 m_gravity=1;
                 horizontal_g=true;
             }
+            // plateforme that can be passed through            
+            // wall down
+            else if(color==gf::Color::fromRgb(100,100,10) && m_gravityDirection=="down"){
+                // si la gravité est vers le bas, la plateforme est intangible
+                return;
+            }
+            // wall up
+            else if(color==gf::Color::fromRgb(100,100,20) && m_gravityDirection=="up"){
+                // si la gravité est vers le haut, la plateforme est intangible
+                return;
+            }
+
+            // wall left
+            else if(color==gf::Color::fromRgb(100,100,30) && m_gravityDirection=="left"){
+                // si la gravité est vers la gauche, la plateforme est intangible
+                return;
+            }
+            // wall right
+            else if(color==gf::Color::fromRgb(100,100,40) && m_gravityDirection=="right"){
+                // si la gravité est vers la droite, la plateforme est intangible
+                return;
+            }
+                
+
             else{
                 float overlapLeft = squareRight - plateformLeft;
                 float overlapRight = plateformRight - squareLeft;

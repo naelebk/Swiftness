@@ -39,6 +39,9 @@ namespace swiftness
         case LayerName::Decoration:
             return "Decoration";
             break;
+        case LayerName::gravity_walls:
+            return "gravity_walls";
+            break;
         default:
             return "Error";
             break;

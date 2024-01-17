@@ -6,6 +6,7 @@
  <tileset firstgid="51" source="../Tilesets/4_gravity_switch.tsx"/>
  <tileset firstgid="67" source="../Tilesets/5_gravity_flow.tsx"/>
  <tileset firstgid="79" source="../Tilesets/6_wall_of_death.tsx"/>
+ <objectgroup id="14" name="gravity_walls"/>
  <layer id="11" name="Decoration" class="visible" width="82" height="22" visible="0" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -58,13 +59,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="9" name="gravity_switch" locked="1">
-  <object id="1" type="down" x="32" y="32" width="1248" height="16">
-   <properties>
-    <property name="height" type="int" value="16"/>
-    <property name="width" type="int" value="1248"/>
-   </properties>
-  </object>
+ <objectgroup id="9" name="gravity_switch">
+  <object id="1" type="down" x="32" y="32" width="1248" height="16"/>
   <object id="2" type="up" x="112" y="304" width="1136" height="16">
    <properties>
     <property name="height" type="int" value="16"/>

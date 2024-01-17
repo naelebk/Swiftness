@@ -108,6 +108,7 @@ namespace swiftness
         float m_size;
         gf::Color4f m_color;
         float gravity;
+        std::string m_gravityDirection = "down";
         bool m_jump;
         int nb_jumps;
         int m_gravity;

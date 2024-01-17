@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="82" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="3">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="82" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="3">
  <tileset firstgid="1" source="../Tilesets/1_utilities.tsx"/>
  <tileset firstgid="3" source="../Tilesets/2_portal.tsx"/>
  <tileset firstgid="27" source="../Tilesets/3_futuristic_city.tsx"/>
  <tileset firstgid="51" source="../Tilesets/4_gravity_switch.tsx"/>
  <tileset firstgid="67" source="../Tilesets/5_gravity_flow.tsx"/>
  <tileset firstgid="79" source="../Tilesets/6_wall_of_death.tsx"/>
+ <objectgroup id="14" name="gravity_walls"/>
  <layer id="11" name="Decoration" class="visible" width="30" height="82" visible="0" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

@@ -284,6 +284,51 @@ namespace swiftness
         return gravitySwitchs;
     }
 
+    std::map<int, StaticPlateform> LevelEntity::generateGravityWalls(int index)
+    {
+        std::map<int, StaticPlateform> gravityWalls;
+        std::vector<std::unique_ptr<gf::TmxObject>> objects = m_levelData.getLayersEntity().getObjectsOfaLayer(LayerName::gravity_walls);
+
+        int platformIndex = index;
+        for (const auto &objPtr : objects)
+        {
+            gf::TmxRectangle *rect = static_cast<gf::TmxRectangle *>(objPtr.get());
+            if (objPtr)
+            {
+                gf::Color4f color;
+                if (objPtr.get()->type == "down")
+                {
+                    color = gf::Color::fromRgb(100,100,10);
+                }
+                else if (objPtr.get()->type == "up")
+                {
+                    color = gf::Color::fromRgb(100,100,20);
+                }
+                else if (objPtr.get()->type == "left")
+                {
+                    color = gf::Color::fromRgb(100,100,30);
+                }
+                else if (objPtr.get()->type == "right")
+                {
+                    color = gf::Color::fromRgb(100,100,40);
+                }
+                int width = rect->size.width;
+                int height = rect->size.height;
+                std::cout << "width : " << width << std::endl;
+                std::cout << "height : " << height << std::endl;
+                gf::Vector2f position = objPtr.get()->position;
+                position.x += width / 2;
+                position.y += height / 2;
+                std::cout << "position : " << position.col << " : " << position.row << std::endl;
+                StaticPlateform plateform(position, height, width, color);
+                gravityWalls.insert(std::make_pair(platformIndex, plateform));
+                platformIndex++;
+            }
+        }
+
+        return gravityWalls;
+    }
+
     std::map<int, StaticPlateform> LevelEntity::generateExit(int index) {
         std::map<int, StaticPlateform> exit;
         gf::Vector2f position = m_levelData.getExit();

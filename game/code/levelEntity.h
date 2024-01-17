@@ -86,6 +86,15 @@ namespace swiftness
          */
         std::map<int, StaticPlateform> generateExit(int index);
 
+        /**
+         * @brief generate the gravity walls
+         * 
+         * @param index
+         * 
+         * @return std::map<int, StaticPlateform> the gravity walls
+         */
+        std::map<int, StaticPlateform> generateGravityWalls(int index);
+
     private:
         std::string m_name;
         LevelData m_levelData;
