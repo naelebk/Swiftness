@@ -1,11 +1,12 @@
+#pragma once
 #include <gf/Action.h>
 #include <gf/Clock.h>
 #include <gf/Color.h>
 #include <gf/Event.h>
 #include <gf/Font.h>
+#include <gf/GameManager.h>
 #include <gf/Math.h>
 #include <gf/RenderTarget.h>
-#include <gf/RenderStates.h>
 #include <gf/Scene.h>
 #include <gf/SegueEffect.h>
 #include <gf/Shapes.h>
@@ -41,9 +42,9 @@ namespace swiftness {
             ~GameScenes() override;
 
             // Méthodes virtuelles privées héritant directement de gf::Scene
-            void handleActions(gf::Window& window);
+            /*void handleActions(gf::Window& window);
             void render(gf::RenderTarget& target, const gf::RenderStates &states);
-            void show(); 
+            void show();*/ 
             
         private:
             // Tous ces attributs vont nous servir à gérer de manière correcte les scènes, à savoir : 

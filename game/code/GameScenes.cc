@@ -62,7 +62,19 @@ namespace swiftness {
 
             // Maintenant le gestionnaire de création de boutons initialisé, on peut créer nos boutons
             createButtons(quit_b, [&] () {
-                //game.replaceAllScenes(game.select);
+                game.popAllScenes();
+            });
+
+            createButtons(credits, [&] () {
+                game.replaceAllScenes(game.level);
+            });
+
+            createButtons(choose_level, [&] () {
+                game.replaceAllScenes(game.level);
+            });
+
+            createButtons(questionmark_b, [&] () {
+                game.replaceAllScenes(game.level);
             });
 
         }
@@ -70,10 +82,10 @@ namespace swiftness {
     GameScenes::~GameScenes() {}
 
     // Méthodes virtuelles privées héritant directement de gf::Scene
-    void handleActions(gf::Window& window) {
+    /*void handleActions(gf::Window& window) {
         if (!window.isOpen()) return;
     }
     void render(gf::RenderTarget& target, const gf::RenderStates &states) {}
-    void show() {}
+    void show() {}*/
 
 }
