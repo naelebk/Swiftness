@@ -27,10 +27,15 @@
 // lien source : https://github.com/Hatunruna/ggj2022/tree/main/code/bits
 
 namespace swiftness {
+
+    // On déclare juste avant notre structure GameCenter, afin de tout pouvoir gérer
+    // et de le placer en paramètre du constructeur de la classe
+    struct GameCenter;
+
     class GameScenes : public gf::Scene {
         public:
             // Constructeur
-            GameScenes();
+            GameScenes(GameCenter& game);
             // Destructeur
             ~GameScenes();
 
@@ -70,6 +75,7 @@ namespace swiftness {
             //gf::Action action;
             //gf::SegueEffect effect;
             //gf::Texture& background;
+            GameCenter& game;
             gf::Action quit_a;
             gf::Action up;
             gf::Action questionmark;

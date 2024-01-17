@@ -1,8 +1,10 @@
 #include "commands.h"
 
 namespace swiftness {
-    CommandsManager::CommandsManager() {}
-    CommandsManager::~CommandsManager() {}
+    CommandsManager::CommandsManager() {
+    }
+    CommandsManager::~CommandsManager() {
+    }
 
     void CommandsManager::manageCommands(std::vector<Input>& enumVector, const gf::Event& event) {
         switch (event.type) {

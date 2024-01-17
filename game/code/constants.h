@@ -36,6 +36,7 @@ namespace swiftness
     const std::string TILESETS_TSX_PATH = "../../ressources/Levels/Tilesets/";
     const std::string IMAGES_GAME = "../../ressources/Images/";
     const std::string TEXTURE_SKIN_PATH = "../../ressources/Levels/Images/skin/";
+    const std::string RESSOURCES_PATH = "../../ressources";
 
     const int NB_TILE_LAYERS = 10;
 

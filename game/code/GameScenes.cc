@@ -1,8 +1,10 @@
 #include "GameScenes.h"
+#include "GameCenter.h"
 
 namespace swiftness {
-    /*GameScenes::GameScenes() 
+    /*GameScenes::GameScenes(GameCenter& game) 
         : gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
+        game(game),
         up("Up"),
         down("Down"),
         trigger("Trigger"),

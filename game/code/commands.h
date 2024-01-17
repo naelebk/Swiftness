@@ -1,5 +1,6 @@
 #pragma once
 #include <gf/Event.h>
+#include <gf/Gamepad.h>
 #include <vector>
 #include "Input.h"
 
@@ -19,6 +20,8 @@ namespace swiftness {
             */
             void manageCommands(std::vector<Input>& enumVector, const gf::Event& event);
         private:
+            // Attribut privé nous permettant de gérer correctement le gamepad
+            //gf::Gamepad gamepad;
     };
 
 }

@@ -7,19 +7,21 @@ project(SWIFTNESS_TEST_ONE
 find_package(gf REQUIRED)
 
 add_executable(game
-  ./code/main.cc
-  ./code/level.cc
-  ./code/squareEntity.cc
-  ./code/staticPlateforme.cc
+  ./code/commands.cc
+  ./code/constants.cc
+  ./code/GameCenter.cc
+  ./code/GameScenes.cc
+  ./code/helloNewPadawan.cc
   ./code/layerEntity.cc
+  ./code/level.cc
   ./code/levelData.cc
   ./code/levelEntity.cc
-  ./code/constants.cc
-  ./code/tilesEnumData.cc
-  ./code/commands.cc
-  ./code/helloNewPadawan.cc
-  ./code/GameScenes.cc
-  ./code/levelRender.cc)
+  ./code/levelRender.cc
+  ./code/main.cc
+  ./code/squareEntity.cc
+  ./code/staticPlateforme.cc
+  ./code/tilesEnumData.cc)
+
 target_include_directories(game
 PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR})
