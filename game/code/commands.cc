@@ -2,6 +2,7 @@
 
 namespace swiftness {
     CommandsManager::CommandsManager() {
+        gf::Gamepad::initialize();
     }
     CommandsManager::~CommandsManager() {
     }

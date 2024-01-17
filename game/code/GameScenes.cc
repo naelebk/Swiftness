@@ -2,7 +2,7 @@
 #include "GameCenter.h"
 
 namespace swiftness {
-    /*GameScenes::GameScenes(GameCenter& game) 
+    GameScenes::GameScenes(GameCenter& game) 
         : gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
         game(game),
         up("Up"),
@@ -62,9 +62,18 @@ namespace swiftness {
 
             // Maintenant le gestionnaire de création de boutons initialisé, on peut créer nos boutons
             createButtons(quit_b, [&] () {
-
+                //game.replaceAllScenes(game.select);
             });
 
-        }*/
+        }
+
+    GameScenes::~GameScenes() {}
+
+    // Méthodes virtuelles privées héritant directement de gf::Scene
+    void handleActions(gf::Window& window) {
+        if (!window.isOpen()) return;
+    }
+    void render(gf::RenderTarget& target, const gf::RenderStates &states) {}
+    void show() {}
 
 }

@@ -21,7 +21,7 @@ namespace swiftness {
             void manageCommands(std::vector<Input>& enumVector, const gf::Event& event);
         private:
             // Attribut privé nous permettant de gérer correctement le gamepad
-            //gf::Gamepad gamepad;
+            gf::GamepadTracker gamepad;
     };
 
 }

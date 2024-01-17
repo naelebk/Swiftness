@@ -5,6 +5,7 @@
 #include <gf/Font.h>
 #include <gf/Math.h>
 #include <gf/RenderTarget.h>
+#include <gf/RenderStates.h>
 #include <gf/Scene.h>
 #include <gf/SegueEffect.h>
 #include <gf/Shapes.h>
@@ -37,33 +38,13 @@ namespace swiftness {
             // Constructeur
             GameScenes(GameCenter& game);
             // Destructeur
-            ~GameScenes();
+            ~GameScenes() override;
 
-            // On aura plusieurs render dans notre main, cette fonction nous permettra de tout rendre directement
-            // Ça sera bien plus simple dans la gestion des rendus du jeu
-            void renderEverything(gf::RenderTarget& targets...);
-
-            // Cette fonction permet de créer une nouvelle scène à partir
-            void createNewScene(gf::Scene& scene, gf::Window& window);
-            
-            // Cette fonction va nous permettre de faire une transition entre deux scènes du jeu
-            void transition(gf::SegueEffect segue);
-
-            // Cette fonction permet de gérer un évènement dans notre scène
-            void manageEvents(gf::Event& event);
-
-            // Cette fonction permet de gérer les actions de part la fenêtre choisie
-            void manageWindowEvents(gf::Window& window);
-
-        private:
             // Méthodes virtuelles privées héritant directement de gf::Scene
-            void doProcessEvent(gf::Event& event) override;
-            void doHandleActions(gf::Window& window) override;
-            void doRender(gf::RenderTarget& target, const gf::RenderStates &states) override;
-            void doShow() override;
-
+            void handleActions(gf::Window& window);
+            void render(gf::RenderTarget& target, const gf::RenderStates &states);
+            void show(); 
             
-
         private:
             // Tous ces attributs vont nous servir à gérer de manière correcte les scènes, à savoir : 
             /*
