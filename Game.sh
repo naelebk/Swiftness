@@ -47,5 +47,4 @@ check_cmd ""
 echo -ne "${YELLOW}Lancement du jeu..... ${NC}"
 ./game > /dev/null 2>&1
 check_cmd ""
-rm -f file
 exit 0
