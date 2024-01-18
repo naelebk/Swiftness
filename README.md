@@ -21,24 +21,19 @@
 >
 > In this game, you can slow down the time to make some cool action like run on walls
 >
-> ***TODO***
 >
 
-## how to launch the game
+## How to launch the game
 
 >
-> On a terminal in game/build folder :
+> On a terminal, very simply : 
 >
 >>
->> **\>** cmake ..
->>
->> **\>** make
->>
->> **\>** ./game
+>> **\>** $ chmod +x Game.sh && ./Game.sh
 >>
 >
 
-## drive for more information
+## Drive for more information : subject, report and oral presentation
 
 >
 >[swiftness drive](https://drive.google.com/drive/folders/16ODVQ7G3J1YIQv3sixIpFKG12zuZQAn5?usp=sharing)
