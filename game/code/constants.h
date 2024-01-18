@@ -25,12 +25,12 @@ namespace swiftness
     constexpr int WINDOW_HEIGHT = 768.0f;
 
     // Screen
-    constexpr float SCREEN_WIDTH = 800.0f;
-    constexpr float SCREEN_HEIGHT = 600.0f;
+    constexpr float SCREEN_WIDTH = WINDOW_WIDTH/4.0f;
+    constexpr float SCREEN_HEIGHT = WINDOW_HEIGHT/4.0f;
 
     // Levels
     constexpr int MIN_LEVEL = 0;
-    constexpr int MAX_LEVEL = 6;
+    constexpr int MAX_LEVEL = 7;
 
     // Resources
     const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
