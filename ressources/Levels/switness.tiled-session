@@ -1,12 +1,12 @@
 {
-    "activeFile": "",
+    "activeFile": "Maps/level07.tmx",
     "expandedProjectPaths": [
-        "level",
-        "Tilesets",
-        "tileset",
         ".",
         "levels",
-        "Maps"
+        "Tilesets",
+        "Maps",
+        "tileset",
+        "level"
     ],
     "fileStates": {
         "": {
@@ -117,11 +117,11 @@
             }
         },
         "Maps/level07.tmx": {
-            "scale": 2,
+            "scale": 0.6496662621359223,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 170.75,
-                "y": 192.25
+                "x": 576.4498202026807,
+                "y": 336.32653061224494
             }
         },
         "Maps/level_00.tmx": {
@@ -177,8 +177,8 @@
             "scale": 2.3601562499999997,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 251.2545514730222,
-                "y": 172.02250910294606
+                "x": 151.6848725587554,
+                "y": 171.81065872227742
             }
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -326,12 +326,15 @@
     },
     "last.imagePath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Images",
     "openFiles": [
+        "Maps/level_template.tmx",
+        "Maps/level07.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
+        "Maps/level_template.tmx",
+        "Maps/level07.tmx",
         "Maps/level01.tmx",
         "Maps/level02.tmx",
-        "Maps/level_template.tmx",
         "Tilesets/7_gravity_walls.tsx",
         "Tilesets/6_wall_of_death.tsx",
         "Maps/level06.tmx",
@@ -339,7 +342,6 @@
         "Maps/level03.tmx",
         "Maps/level04.tmx",
         "Maps/level05.tmx",
-        "Maps/level07.tmx",
         "Tilesets/3_futuristic_city.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
