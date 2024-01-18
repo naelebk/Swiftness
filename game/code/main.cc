@@ -88,7 +88,10 @@ int main(int argc, char *argv[]) {
             float dt = clock.restart().asSeconds();
             square.updateWithMap(dt, plateform, enumVector);
             if (square.getLevelOver()) window.close();
-            gf::ExtendView camera(square.getPosition(), {SCREEN_WIDTH, SCREEN_HEIGHT});
+            float xcamera=square.getPosition().x;
+            float ycamera=square.getPosition().y;
+            xcamera=std::clamp(xcamera,SCREEN_WIDTH/2,SCREEN_WIDTH*10);
+            gf::ExtendView camera({xcamera,ycamera}, {SCREEN_WIDTH, SCREEN_HEIGHT});
             enumVector.clear();
             if (isresize)
             {
@@ -106,7 +109,7 @@ int main(int argc, char *argv[]) {
             swiftness::LevelRender levelRender;
             levelRender.renderLevel(levelName, render);
             square.render(render);
-            square.renderHUD(render,SCREEN_WIDTH,SCREEN_HEIGHT);
+            square.renderHUD(render,SCREEN_WIDTH,SCREEN_HEIGHT,{xcamera,ycamera});
             render.display();
         }
         level = -2;

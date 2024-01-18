@@ -88,7 +88,7 @@ namespace swiftness
         /**
          * @brief Affiche le HUD du carré
         */
-        void renderHUD(gf::RenderTarget &target,float width,float height);
+        void renderHUD(gf::RenderTarget &target,float width,float height,gf::Vector2f pos);
 
         bool getLevelOver() { return isOver; };
 

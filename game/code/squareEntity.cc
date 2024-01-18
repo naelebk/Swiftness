@@ -544,7 +544,7 @@ namespace swiftness
         target.draw(shape);
     }
 
-    void Square::renderHUD(gf::RenderTarget &target,float width,float height)
+    void Square::renderHUD(gf::RenderTarget &target,float width,float height,gf::Vector2f pos)
     {
         gf::Font font(PATH_FONT);
         gf::Text deathText;
@@ -552,7 +552,7 @@ namespace swiftness
         deathText.setColor(gf::Color::White);
         deathText.setCharacterSize(35);
         deathText.setString(std::to_string((int)timer));
-        deathText.setPosition(m_position+gf::Vector2f(-(width/2)+81.0f, -(height/2)+10.0f));
+        deathText.setPosition(pos+gf::Vector2f(-(width/2)+81.0f, -(height/2)+10.0f));
         deathText.setAnchor(gf::Anchor::TopRight);
         target.draw(deathText);
     }
