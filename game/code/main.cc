@@ -47,6 +47,17 @@ int main(int argc, char *argv[]) {
         helloWorld.loadLevelWithOrWithoutTMX(plateform, square, level);
         if (level == -1) break;
         std::cout << "Level : " << level << '\n';
+        std::string lvl = "";
+        if (level >= 0 && level < 10) {
+            lvl = "level0" + std::to_string(level) + ".tmx";
+        } else {
+            lvl = "level" + std::to_string(level) + ".tmx";
+        }
+        swiftness:LevelData ldata(lvl);
+        float map_width=ldata.getMapSize().x;
+        float map_height=ldata.getMapSize().y;
+        float tile_width=ldata.getTileSize().x;
+        float tile_height=ldata.getTileSize().y;
         gf::Window window("Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
         gf::RenderWindow render(window);  
 
@@ -90,7 +101,8 @@ int main(int argc, char *argv[]) {
             if (square.getLevelOver()) window.close();
             float xcamera=square.getPosition().x;
             float ycamera=square.getPosition().y;
-            xcamera=std::clamp(xcamera,SCREEN_WIDTH/2,SCREEN_WIDTH*10);
+            xcamera=std::clamp(xcamera,SCREEN_WIDTH/2+tile_width,map_width*tile_width-SCREEN_WIDTH/2-tile_width);
+            ycamera=std::clamp(ycamera,SCREEN_HEIGHT/2+tile_height,map_height*tile_height-SCREEN_HEIGHT/2-tile_height);
             gf::ExtendView camera({xcamera,ycamera}, {SCREEN_WIDTH, SCREEN_HEIGHT});
             enumVector.clear();
             if (isresize)
@@ -110,6 +122,7 @@ int main(int argc, char *argv[]) {
             levelRender.renderLevel(levelName, render);
             square.render(render);
             square.renderHUD(render,SCREEN_WIDTH,SCREEN_HEIGHT,{xcamera,ycamera});
+
             render.display();
         }
         level = -2;
