@@ -35,18 +35,22 @@ namespace swiftness
                 m_jump=canJump(plateforms);
                 bool walljumpRight=canWallJumpRight(plateforms);
                 bool walljumpLeft=canWallJumpLeft(plateforms);
-                if(m_jump || (nb_jumps==1 && !walljumpRight && !walljumpLeft)){
+                if(m_jump || (nb_jumps<2 && !walljumpRight && !walljumpLeft)){
                     m_velocity.y = JUMP*m_gravity;
-                    nb_jumps+=1;
+                    if (m_jump){
+                            nb_jumps=1;
+                        }else{
+                            nb_jumps=2;
+                        };
                 }else{
                     if(walljumpRight){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
-                        nb_jumps=0;
+                        nb_jumps=2;
                         m_velocity.x=-WALL_JUMP_SPEED;
                     }else{
                         if(walljumpLeft){
                             m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=0;
+                            nb_jumps=2;
                             m_velocity.x=WALL_JUMP_SPEED;
                         }
                     }
@@ -61,18 +65,22 @@ namespace swiftness
                     bool walljumpRight=canWallJumpRight(plateforms);
                     bool walljumpUp=canWallJumpUp(plateforms);
                     bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpRight || (nb_jumps==1 && !walljumpUp && !wallJumpDown)){
+                    if(walljumpRight || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
                         m_velocity.x = JUMP*m_gravity;
-                        nb_jumps+=1;
+                        if (walljumpRight){
+                            nb_jumps=1;
+                        }else{
+                            nb_jumps=2;
+                        }
                     }else{
                         if(wallJumpDown){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=0;
+                            nb_jumps=2;
                             m_velocity.y=-WALL_JUMP_SPEED;
                         }else{
                             if(walljumpUp){
                                 m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                                nb_jumps=0;
+                                nb_jumps=2;
                                 m_velocity.y=WALL_JUMP_SPEED;
                             }
                         }
@@ -81,9 +89,13 @@ namespace swiftness
                     bool walljumpLeft=canWallJumpLeft(plateforms);
                     bool walljumpUp=canWallJumpUp(plateforms);
                     bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpLeft || (nb_jumps==1 && !walljumpUp && !wallJumpDown)){
+                    if(walljumpLeft || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
                         m_velocity.x = JUMP*m_gravity;
-                        nb_jumps+=1;
+                        if (walljumpLeft){
+                            nb_jumps=1;
+                        }else{
+                            nb_jumps=2;
+                        }
                     }else{
                         if( wallJumpDown){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
@@ -102,18 +114,22 @@ namespace swiftness
                 m_jump=canJump(plateforms);
                 bool walljumpRight=canWallJumpRight(plateforms);
                 bool walljumpLeft=canWallJumpLeft(plateforms);
-                if(m_jump || (nb_jumps==1  && !walljumpRight && !walljumpLeft)){
+                if(m_jump || (nb_jumps<2  && !walljumpRight && !walljumpLeft)){
                     m_velocity.y = JUMP*m_gravity;
-                    nb_jumps+=1;
+                    if (m_jump){
+                            nb_jumps=1;
+                        }else{
+                            nb_jumps=2;
+                        }
                 }else{
                     if( walljumpRight){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
-                        nb_jumps=0;
+                        nb_jumps=2;
                         m_velocity.x=-WALL_JUMP_SPEED;
                     }else{
                         if( walljumpLeft){
                             m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=0;
+                            nb_jumps=2;
                             m_velocity.x=WALL_JUMP_SPEED;
                         }
                     }
@@ -172,18 +188,23 @@ namespace swiftness
                     bool walljumpLeft=canWallJumpLeft(plateforms);
                     bool walljumpUp=canWallJumpUp(plateforms);
                     bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpLeft || (nb_jumps==1  && !walljumpUp && !wallJumpDown)){
+                    if(walljumpLeft || (nb_jumps<2  && !walljumpUp && !wallJumpDown)){
                         m_velocity.x = JUMP*m_gravity;
-                        nb_jumps+=1;
+                        if (walljumpLeft){
+                            nb_jumps=1;
+                        }else{
+                            nb_jumps=2;
+                        }
+
                     }else{
                         if( wallJumpDown){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=0;
+                            nb_jumps=2;
                             m_velocity.y=-WALL_JUMP_SPEED;
                         }else{
                             if( walljumpUp){
                                 m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                                nb_jumps=0;
+                                nb_jumps=2;
                                 m_velocity.y=WALL_JUMP_SPEED;
                             }
                         }
@@ -210,18 +231,22 @@ namespace swiftness
                     bool walljumpRight=canWallJumpRight(plateforms);
                     bool walljumpUp=canWallJumpUp(plateforms);
                     bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpRight || (nb_jumps==1 && !walljumpUp && !wallJumpDown)){
+                    if(walljumpRight || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
                         m_velocity.x = JUMP*m_gravity;
-                        nb_jumps+=1;
+                        if (walljumpRight){
+                            nb_jumps=1;
+                        }else{
+                            nb_jumps=2;
+                        }
                     }else{
                         if( wallJumpDown){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=0;
+                            nb_jumps=2;
                             m_velocity.y=-WALL_JUMP_SPEED;
                         }else{
                             if( walljumpUp){
                                 m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                                nb_jumps=0;
+                                nb_jumps=2;
                                 m_velocity.y=WALL_JUMP_SPEED;
                             }
                         }
