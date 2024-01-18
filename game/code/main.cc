@@ -68,8 +68,6 @@ int main(int argc, char *argv[]) {
         // create a vector of Input
         std::vector<Input> enumVector;
 
-        swiftness::CommandsManager commandManager;
-
         // initialisation of the level
 
         std::cout << "plateform size : " << plateform.size() << std::endl;
@@ -83,7 +81,7 @@ int main(int argc, char *argv[]) {
         render.clear(gf::Color::Black);
         while (window.isOpen())
         {
-
+            swiftness::CommandsManager commandManager;
             gf::Event event;
             while (window.pollEvent(event))
             {
@@ -101,12 +99,9 @@ int main(int argc, char *argv[]) {
             if (square.getLevelOver()) window.close();
             float xcamera=square.getPosition().x;
             float ycamera=square.getPosition().y;
-            ScreenSize = window.getSize();
-            float screen_w=ScreenSize.x/4;
-            float screen_h=ScreenSize.y/4;
-            xcamera=std::clamp(xcamera,screen_w/2+tile_width,map_width*tile_width-screen_w/2-tile_width);
-            ycamera=std::clamp(ycamera,screen_h/2+tile_height,map_height*tile_height-screen_h/2-tile_height);
-            gf::ExtendView camera({xcamera,ycamera}, {screen_w, screen_h});
+            xcamera=std::clamp(xcamera,SCREEN_WIDTH/2+tile_width,map_width*tile_width-SCREEN_WIDTH/2-tile_width);
+            ycamera=std::clamp(ycamera,SCREEN_HEIGHT/2+tile_height,map_height*tile_height-SCREEN_HEIGHT/2-tile_height);
+            gf::ExtendView camera({xcamera,ycamera}, {SCREEN_WIDTH, SCREEN_HEIGHT});
             enumVector.clear();
             if (isresize)
             {
@@ -124,7 +119,7 @@ int main(int argc, char *argv[]) {
             swiftness::LevelRender levelRender;
             levelRender.renderLevel(levelName, render);
             square.render(render);
-            square.renderHUD(render,screen_w,screen_h,{xcamera,ycamera});
+            square.renderHUD(render,SCREEN_WIDTH,SCREEN_HEIGHT,{xcamera,ycamera});
 
             render.display();
         }

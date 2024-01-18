@@ -86,10 +86,38 @@ namespace swiftness {
     }
 
     // Méthodes virtuelles privées héritant directement de gf::Scene
+    // Méthodes virtuelles privées héritant directement de gf::Scene
     void GameScenes::GameScenes_HandleActions(gf::Window& window) {
-        if (!window.isOpen()) return;
+        /*if (!window.isOpen()) return;
+        if (up.isActive()) widgets.selectPreviousWidget();
+        if (down.isActive()) widgets.selectNextWidget();
+        if (trigger.isActive()) widgets.triggerAction();
+        if (quit.isActive()) game.replaceScene(game.menu);*/
     }
-    void GameScenes::GameScenes_Render(gf::RenderTarget& target, const gf::RenderStates &states) {}
-    void GameScenes::GameScenes_Show() {}
+    void GameScenes::GameScenes_Render(gf::RenderTarget& target, const gf::RenderStates &states) {
+        /*float size = 0.08f, space = 0.025f;
+        gf::Vector2f bg_size (0.55f, 0.4f); 
+        target.setView(getHudView());
+        gf::Coordinates coords(target);
+        float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
+        int r_size = coords.getRelativeCharacterSize(size);
+
+        for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
+            levels_b[i].setCharacterSize(r_size);
+            levels_b[i].setPosition(coords.getRelativePoint({0.275f, 0.425f}));
+            levels_b[i].setParagraphWidth(width);
+            levels_b[i].setPadding(padding);
+        }
+        widgets.render(target, states);*/
+
+    }
+    void GameScenes::GameScenes_Show() {
+        /*widgets.clear();
+        for (gf::TextButtonWidget b : levels_b) {
+            b.setDefault();
+            widgets.addWidget(b);
+        }
+        widgets.selectNextWidget();*/
+    }
 
 }

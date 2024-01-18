@@ -88,7 +88,30 @@ namespace swiftness {
                         break;
                 }
                 break;
-
+            /*case gf::EventType::GamepadAxisMoved:
+                switch(event.gamepadAxis.axis) {
+                    case gf::GamepadAxis::LeftY:
+                        if (event.gamepadAxis.value > 0) {
+                            enumVector.push_back(Input::Down);
+                            //enumVector.push_back(Input::DownReleased);
+                        } else if (event.gamepadAxis.value < 0) {
+                            enumVector.push_back(Input::Up);
+                            //enumVector.push_back(Input::UpReleased);
+                        }
+                        break;
+                    case gf::GamepadAxis::LeftX:
+                        if (event.gamepadAxis.value > 0) {
+                            enumVector.push_back(Input::Right);
+                            //enumVector.push_back(Input::RightReleased);
+                        } else if (event.gamepadAxis.value < 0) {
+                            enumVector.push_back(Input::Left);
+                            //enumVector.push_back(Input::LeftReleased);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                break;*/
             case gf::EventType::GamepadButtonPressed:
                 switch(event.gamepadButton.button) {
                     // Pour sauter : deux manières différentes => haut ou A
@@ -101,11 +124,9 @@ namespace swiftness {
                     case gf::GamepadButton::DPadUp:
                         enumVector.push_back(Input::Up);
                         break;
-                    case gf::GamepadButton::LeftStick:
                     case gf::GamepadButton::DPadLeft:
                         enumVector.push_back(Input::Left);
                         break;
-                    case gf::GamepadButton::RightStick:
                     case gf::GamepadButton::DPadRight:
                         enumVector.push_back(Input::Right);
                         break;
@@ -115,6 +136,7 @@ namespace swiftness {
                     default:
                         break;                    
                 }
+                break;
             case gf::EventType::GamepadButtonReleased:
                 switch(event.gamepadButton.button) {
                     case gf::GamepadButton::A:
