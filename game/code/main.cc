@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
         float map_height=ldata.getMapSize().y;
         float tile_width=ldata.getTileSize().x;
         float tile_height=ldata.getTileSize().y;
-        gf::Window window("Swiftness", gf::Vector2u(500.0f, WINDOW_HEIGHT));
+        gf::Window window("Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
         gf::RenderWindow render(window);  
 
         // Get the screen size after setting fullscreen mode
