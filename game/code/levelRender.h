@@ -22,7 +22,7 @@ namespace swiftness
              * @param window
              * @param layerName
              */
-            void renderLayer(LayerEntity &layerEntity, gf::RenderWindow &window, LayerName layerName);
+            void renderLayer(LayerEntity &layerEntity, gf::RenderWindow &window, LayerName layerName, std::string gravity);
 
             /**
              * @brief render a level
@@ -30,7 +30,7 @@ namespace swiftness
              * @param layerEntity
              * @param window
             */
-            void renderLevel(std::string namefile, gf::RenderWindow &window);
+            void renderLevel(std::string namefile, gf::RenderWindow &window, std::string gravity);
     };
 }; // namespace swiftness
 

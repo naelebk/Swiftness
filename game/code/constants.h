@@ -40,7 +40,7 @@ namespace swiftness
     const std::string TEXTURE_SKIN_PATH = "../../ressources/Levels/Images/skin/";
     const std::string RESSOURCES_PATH = "../../ressources";
 
-    const int NB_TILE_LAYERS = 10;
+    const int NB_TILE_LAYERS = 14;
 
 } // namespace swiftness
 
