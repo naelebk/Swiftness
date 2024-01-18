@@ -42,6 +42,18 @@ namespace swiftness
         case LayerName::gravity_walls:
             return "gravity_walls";
             break;
+        case LayerName::Gw_blue:
+            return "Gw_blue";
+            break;
+        case LayerName::Gw_rose:
+            return "Gw_rose";
+            break;
+        case LayerName::Gw_green:
+            return "Gw_green";
+            break;
+        case LayerName::Gw_orange:
+            return "Gw_orange";
+            break;
         default:
             return "Error";
             break;

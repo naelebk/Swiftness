@@ -117,7 +117,7 @@ int main(int argc, char *argv[]) {
             // }
             std::string levelName = "level0" + std::to_string(level) + ".tmx";
             swiftness::LevelRender levelRender;
-            levelRender.renderLevel(levelName, render);
+            levelRender.renderLevel(levelName, render,square.getGravity());
             square.render(render);
             square.renderHUD(render,SCREEN_WIDTH,SCREEN_HEIGHT,{xcamera,ycamera});
 

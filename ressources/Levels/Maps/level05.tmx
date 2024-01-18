@@ -198,7 +198,7 @@
     <property name="width" type="int" value="16"/>
    </properties>
   </object>
-  <object id="19" x="180" y="116" width="8" height="12"/>
+  <object id="19" type="up" x="180" y="116" width="8" height="12"/>
  </objectgroup>
  <layer id="8" name="Collision_bloc" width="23" height="22" locked="1">
   <data encoding="csv">
