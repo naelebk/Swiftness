@@ -92,7 +92,7 @@ namespace swiftness {
 
     int MenuHello::getLevel(){ return m_selectedLevel; }
 
-    bool MenuHello::displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Event& event, gf::Font& font, int& selectedLevel) {
+    bool MenuHello::displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Font& font, int& selectedLevel) {
         const float buttonHeight = 45.0f, margin = 20.0f;
         const int buttonCount = MAX_LEVEL + 2;
         while (true) {
@@ -123,6 +123,11 @@ namespace swiftness {
             render.display();
             gf::Event event;
             while (window.pollEvent(event)) {
+                if (event.type == gf::EventType::Closed) {
+                    selectedLevel = -1;
+                    window.close();
+                    return true;
+                }
                 if (event.type == gf::EventType::MouseButtonPressed && event.mouseButton.button == gf::MouseButton::Left) {
                     float ystart=window.getSize().y / 2 - (buttonCount * (buttonHeight + margin)) / 2 - buttonHeight -margin;
                     int clickedButton = ((event.mouseButton.coords.y - ystart) / (buttonHeight/2 + 1.65f*margin)) - 1.3;

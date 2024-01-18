@@ -41,11 +41,7 @@ int main(int argc, char *argv[]) {
         gf::RenderWindow renderer(win1);
         swiftness::MenuHello helloWorld(font, win1);
         while (level == -2) {
-            gf::Event e;
-            if(helloWorld.displayLevelSelection(renderer, win1, e, font, level)) break;
-            if (e.type == gf::EventType::Closed || level == -1) {
-                win1.close();
-            }
+            if(helloWorld.displayLevelSelection(renderer, win1, font, level)) break;
         }            
         win1.close();
         helloWorld.loadLevelWithOrWithoutTMX(plateform, square, level);
