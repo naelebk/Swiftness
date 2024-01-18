@@ -60,19 +60,19 @@
             "scaleInDock": 1
         },
         "Maps/level01.tmx": {
-            "scale": 1.2181451612903225,
-            "selectedLayer": 3,
+            "scale": 4,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 725.2830188679246,
-                "y": 467.51406818934134
+                "x": 835.75,
+                "y": 451.75
             }
         },
         "Maps/level02.tmx": {
             "scale": 0.6791920731707317,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 239.25485355179,
-                "y": 651.509370441028
+                "x": 98.64661654135341,
+                "y": 415.19919200987545
             }
         },
         "Maps/level03.tmx": {
@@ -112,8 +112,8 @@
             "scale": 1.452403846153846,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 411.3869579609402,
-                "y": 296.40516385302885
+                "x": 410.3541873551805,
+                "y": 295.37239324726914
             }
         },
         "Maps/level07.tmx": {
@@ -177,8 +177,8 @@
             "scale": 2.3601562499999997,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 255.7034094670639,
-                "y": 175.62396557431316
+                "x": 251.2545514730222,
+                "y": 172.02250910294606
             }
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -209,6 +209,10 @@
         "Tilesets/6_wall_of_death.tsx": {
             "scaleInDock": 5.5,
             "scaleInEditor": 4
+        },
+        "Tilesets/7_gravity_walls.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 1
         },
         "Tilesets/TILESET_FUTURISTIC_CITY.tsx": {
             "dynamicWrapping": true,
@@ -320,21 +324,27 @@
             "scaleInEditor": 1
         }
     },
+    "last.imagePath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Images",
     "openFiles": [
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
         "Maps/level01.tmx",
-        "Maps/level_template.tmx",
-        "Maps/level00.tmx",
         "Maps/level02.tmx",
+        "Maps/level_template.tmx",
+        "Tilesets/7_gravity_walls.tsx",
+        "Tilesets/6_wall_of_death.tsx",
+        "Maps/level06.tmx",
+        "Maps/level00.tmx",
         "Maps/level03.tmx",
         "Maps/level04.tmx",
         "Maps/level05.tmx",
-        "Maps/level06.tmx",
         "Maps/level07.tmx",
-        "Tilesets/3_futuristic_city.tsx",
-        "Tilesets/2_portal.tsx",
-        "Tilesets/1_utilities.tsx"
-    ]
+        "Tilesets/3_futuristic_city.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
 }

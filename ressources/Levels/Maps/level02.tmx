@@ -6,6 +6,7 @@
  <tileset firstgid="51" source="../Tilesets/4_gravity_switch.tsx"/>
  <tileset firstgid="67" source="../Tilesets/5_gravity_flow.tsx"/>
  <tileset firstgid="79" source="../Tilesets/6_wall_of_death.tsx"/>
+ <tileset firstgid="95" source="../Tilesets/7_gravity_walls.tsx"/>
  <objectgroup id="14" name="gravity_walls"/>
  <layer id="11" name="Decoration" class="visible" width="30" height="82" visible="0" locked="1">
   <data encoding="csv">

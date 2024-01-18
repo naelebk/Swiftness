@@ -4,7 +4,7 @@ namespace swiftness
 {
 
     LevelEntity::LevelEntity(std::string nameFile)
-        : m_name(nameFile), m_levelData(nameFile), m_squareEntity(m_levelData.getEntrance(), m_levelData.getTileSize().width, gf::Color::Red, GRAVITY)
+        : m_name(nameFile), m_levelData(nameFile), m_squareEntity(m_levelData.getEntrance(), m_levelData.getTileSize().width-6, gf::Color::Red, GRAVITY)
     {
         std::cout << "LevelEntity created for file: " << nameFile << std::endl;
     }
