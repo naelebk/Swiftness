@@ -550,9 +550,9 @@ namespace swiftness
         gf::Text deathText;
         deathText.setFont(font);
         deathText.setColor(gf::Color::White);
-        deathText.setCharacterSize(35);
+        deathText.setCharacterSize(20);
         deathText.setString(std::to_string((int)timer));
-        deathText.setPosition(pos+gf::Vector2f(-(width/2)+81.0f, -(height/2)+10.0f));
+        deathText.setPosition(pos+gf::Vector2f(-(width/2)+45.0f, -(height/2)+10.0f));
         deathText.setAnchor(gf::Anchor::TopRight);
         target.draw(deathText);
     }
