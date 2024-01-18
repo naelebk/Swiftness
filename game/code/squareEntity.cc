@@ -284,7 +284,7 @@ namespace swiftness
         // Vérifiez les collisions avec la plateforme
         for (auto &plateform : plateforms)
         {
-            collideWithPlateform(plateform.second.getPosition(), plateform.second.getHeight(), plateform.second.getLength(),plateform.second.getColor(),walljumpLeft,walljumpRight);
+            collideWithPlateform(plateform.second.getPosition(), plateform.second.getHeight(), plateform.second.getLength(),plateform.second.getColor(),walljumpLeft,walljumpRight,wallJumpDown,walljumpUp);
         }
 
         
@@ -292,7 +292,7 @@ namespace swiftness
 
     bool Square::isPlateform(StaticPlateform plateform){
         auto color=plateform.getColor();
-        return color!=gf::Color::Yellow && color!=gf::Color::Orange && color!=gf::Color::Rose && color!=gf::Color::Green && color!=gf::Color::Black && color!=gf::Color::Cyan;
+        return color!=gf::Color::Yellow && color!=gf::Color::Orange && color!=gf::Color::Rose && color!=gf::Color::Green && color!=gf::Color::Black && color!=gf::Color::Cyan && !(color==gf::Color::fromRgb(100,100,10) && m_gravityDirection=="down") && !(color==gf::Color::fromRgb(100,100,20) && m_gravityDirection=="up") && !(color==gf::Color::fromRgb(100,100,30) && m_gravityDirection=="left") && !(color==gf::Color::fromRgb(100,100,40) && m_gravityDirection=="right");
     }
 
     bool Square::canJump(std::map<int, StaticPlateform> plateforms){
@@ -556,7 +556,7 @@ namespace swiftness
         setVelocity(m_velocity + gf::Vector2f(0, gravity * dt));
 
         // Vérifiez les collisions avec la plateforme
-        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(),plateform.getColor(),false,false);
+        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(),plateform.getColor(),false,false,false,false);
         
     }
 
@@ -583,7 +583,7 @@ namespace swiftness
     }
 
     // empeche le carré de traverser une plateforme
-    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight)
+    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp)
     {
         // Supposons que la classe Square ait des membres m_position (position centrale du carré),
         // m_size (longueur d'un côté du carré), et m_velocity (vecteur de mouvement du carré)
@@ -726,7 +726,7 @@ namespace swiftness
                 float minOverlap = std::min({overlapLeft, overlapRight, overlapTop, overlapBottom});
 
                 // Ajustez la position du carré en fonction du plus petit chevauchement
-                if (minOverlap == overlapLeft)
+                if (minOverlap == overlapLeft && (((!wallDown || plateformTop<=squareTop) && (!wallUp || plateformBottom>=squareBottom)) || (wallUp && wallDown)))
                 {
                     m_position.x -= overlapLeft;
                     if(horizontal_g){
@@ -750,7 +750,7 @@ namespace swiftness
                         }
                     }
                 }
-                else if (minOverlap == overlapRight)
+                else if (minOverlap == overlapRight && (((!wallDown || plateformTop<=squareTop) && (!wallUp || plateformBottom>=squareBottom)) || (wallUp && wallDown)))
                 {
                     m_position.x += overlapRight;
                     if(horizontal_g){
