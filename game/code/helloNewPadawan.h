@@ -28,11 +28,6 @@ namespace swiftness {
             // adéquate permettant de charger ce niveau
             int askLevel();
 
-            // Cette seconde fonction permet, dans un premier temps en ligne de commande,
-            // de charger les différents paramètres du jeu en fonction du level
-            // Check de la valeur de level tout de même, car sinon c po drôle
-            void loadLevelWithOrWithoutTMX(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square);
-
             // Cette fonction permet d'effectuer les affichages sur la console 
             // pour avoir un joli affichage
             void displayWelcomeMenu(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square);
@@ -55,7 +50,7 @@ namespace swiftness {
             // adéquate permettant de charger ce niveau
             bool displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Font& font, int& selectedLevel);
 
-            // Cette seconde fonction permet, dans une fenêtre graphique,
+            // Cette seconde fonction permet, dans une fenêtre graphique ou non selon le premier booléen,
             // de charger les différents paramètres du jeu en fonction du level
             // Check de la valeur de level tout de même, car sinon c po drôle
             void loadLevelWithOrWithoutTMX(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square, int level);
