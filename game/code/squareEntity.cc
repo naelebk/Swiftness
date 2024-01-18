@@ -274,8 +274,32 @@ namespace swiftness
         // Appliquez la gravité
         if(horizontal_g){
             setVelocity(m_velocity + gf::Vector2f( gravity * m_gravity * dt,0));
+            if (!goUp && m_velocity.y<0.0f && m_velocity.y!=-WALL_JUMP_SPEED){
+                m_velocity.y+=gravity*dt*5;
+                if (m_velocity.y>0.0f){
+                    m_velocity.y=0.0f;
+                }
+            }
+            if (!goDown && m_velocity.y>0.0f && m_velocity.y!=WALL_JUMP_SPEED){
+                m_velocity.y-=gravity*dt*5;
+                if (m_velocity.y<0.0f){
+                    m_velocity.y=0.0f;
+                }
+            }
         }else{
             setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
+            if (!goLeft && m_velocity.x<0.0f && m_velocity.x!=-WALL_JUMP_SPEED){
+                m_velocity.x+=gravity*dt*5;
+                if (m_velocity.x>0.0f){
+                    m_velocity.x=0.0f;
+                }
+            }
+            if (!goRight && m_velocity.x>0.0f && m_velocity.x!=WALL_JUMP_SPEED){
+                m_velocity.x-=gravity*dt*5;
+                if (m_velocity.x<0.0f){
+                    m_velocity.x=0.0f;
+                }
+            }
         }
         // Mettez à jour la position du carré
         m_position += dt * m_velocity;
@@ -633,8 +657,6 @@ namespace swiftness
                 m_gravityDirection = "up";
                 m_gravity=-1;
                 if (horizontal_g){
-                    m_velocity.x=0;
-                    m_velocity.y=0;
                     if (goLeft){
                         m_velocity.x=-SPEED_SQUARE;
                     }
@@ -649,8 +671,6 @@ namespace swiftness
                 m_gravityDirection = "down";
                 m_gravity=1;
                 if (horizontal_g){
-                    m_velocity.x=0;
-                    m_velocity.y=0;
                     if (goLeft){
                         m_velocity.x=-SPEED_SQUARE;
                     }
@@ -665,8 +685,6 @@ namespace swiftness
                 m_gravityDirection = "left";
                 m_gravity=-1;
                 if (!horizontal_g){
-                    m_velocity.x=0;
-                    m_velocity.y=0;
                     if (goUp){
                         m_velocity.y=-SPEED_SQUARE;
                     }
@@ -680,8 +698,6 @@ namespace swiftness
             else if(color==gf::Color::Orange){
                 m_gravityDirection = "right";
                 if (!horizontal_g){
-                    m_velocity.x=0;
-                    m_velocity.y=0;
                     if (goUp){
                         m_velocity.y=-SPEED_SQUARE;
                     }
