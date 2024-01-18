@@ -29,7 +29,7 @@
 > On a terminal, very simply : 
 >
 >>
->> **\>** $ chmod +x Game.sh && ./Game.sh
+>> **\>** **chmod +x Game.sh && ./Game.sh**
 >>
 >
 
