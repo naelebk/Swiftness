@@ -7,5 +7,6 @@ namespace swiftness {
     struct GameCenter : gf::GameManager {
         GameCenter();
         SelectLevel level;
+        GameScenes menu;
     };
 }

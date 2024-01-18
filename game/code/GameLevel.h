@@ -5,6 +5,7 @@
 #include <gf/Event.h>
 #include <gf/Font.h>
 #include <gf/GameManager.h>
+#include <gf/Log.h>
 #include <gf/Math.h>
 #include <gf/RenderTarget.h>
 #include <gf/Scene.h>
@@ -20,6 +21,7 @@
 #include <gf/Widgets.h>
 #include <gf/Window.h>
 #include <iostream>
+#include <vector>
 #include "constants.h"
 
 namespace swiftness {
@@ -30,16 +32,22 @@ namespace swiftness {
             SelectLevel(GameCenter& game);
             // Desctructeur
             ~SelectLevel() override;
+
+            gf::WidgetContainer GameLevel_getWidgets();
+
             // Méthodes virtuelles privées héritant directement de gf::Scene
-            /*void handleActions(gf::Window& window);
-            void render(gf::RenderTarget& target, const gf::RenderStates &states);
-            void show();*/
+            void GameLevel_HandleActions(gf::Window& window);
+            void GameLevel_Render(gf::RenderTarget& target, const gf::RenderStates &states);
+            void GameLevel_Show();
 
         private:
             GameCenter& game;
             gf::Action up;
             gf::Action down;
             gf::Action trigger;
+            gf::Action quit;
+            gf::WidgetContainer widgets;
+            std::vector<gf::TextButtonWidget> levels_b;
 
     };
 }

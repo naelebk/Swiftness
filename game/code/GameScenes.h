@@ -41,10 +41,12 @@ namespace swiftness {
             // Destructeur
             ~GameScenes() override;
 
+            gf::WidgetContainer GameScenes_getWidgets();
+
             // Méthodes virtuelles privées héritant directement de gf::Scene
-            /*void handleActions(gf::Window& window);
-            void render(gf::RenderTarget& target, const gf::RenderStates &states);
-            void show();*/ 
+            void GameScenes_HandleActions(gf::Window& window);
+            void GameScenes_Render(gf::RenderTarget& target, const gf::RenderStates &states);
+            void GameScenes_Show(); 
             
         private:
             // Tous ces attributs vont nous servir à gérer de manière correcte les scènes, à savoir : 

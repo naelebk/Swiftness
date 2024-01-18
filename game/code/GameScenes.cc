@@ -81,11 +81,15 @@ namespace swiftness {
 
     GameScenes::~GameScenes() {}
 
+    gf::WidgetContainer GameScenes::GameScenes_getWidgets() {
+        return widgets;
+    }
+
     // Méthodes virtuelles privées héritant directement de gf::Scene
-    /*void handleActions(gf::Window& window) {
+    void GameScenes::GameScenes_HandleActions(gf::Window& window) {
         if (!window.isOpen()) return;
     }
-    void render(gf::RenderTarget& target, const gf::RenderStates &states) {}
-    void show() {}*/
+    void GameScenes::GameScenes_Render(gf::RenderTarget& target, const gf::RenderStates &states) {}
+    void GameScenes::GameScenes_Show() {}
 
 }
