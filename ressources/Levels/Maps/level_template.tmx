@@ -7,7 +7,27 @@
  <tileset firstgid="67" source="../Tilesets/5_gravity_flow.tsx"/>
  <tileset firstgid="79" source="../Tilesets/6_wall_of_death.tsx"/>
  <tileset firstgid="95" source="../Tilesets/7_gravity_walls.tsx"/>
- <objectgroup id="14" name="gravity_walls"/>
+ <layer id="16" name="Gw_orange" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="15" name="Gw_green" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="14" name="Gw_rose" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="13" name="Gw_blue" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <objectgroup id="12" name="gravity_walls"/>
  <layer id="11" name="Decoration" class="visible" width="1" height="1">
   <data encoding="csv">
 0
