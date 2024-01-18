@@ -96,6 +96,8 @@ namespace swiftness
 
         float getTimer() { return timer; };
 
+        std::string getGravity() { return m_gravityDirection; };
+
 
         /**
          * @brief Gère les collisions avec la plateforme
