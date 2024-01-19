@@ -14,9 +14,9 @@ namespace swiftness {
     {
         for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
             if (i < MAX_LEVEL + 1) {
-                levels_b.emplace_back("Level " + std::to_string(i), font, 30);
+                levels_b.emplace_back("Level " + std::to_string(i), font, 60);
             } else {
-                levels_b.emplace_back("Quit", font, 30);
+                levels_b.emplace_back("Main Menu", font, 60);
             }
         }
         setClearColor(gf::Color::Black);
@@ -53,9 +53,15 @@ namespace swiftness {
             widgets.addWidget(button);
         };
         for (gf::TextButtonWidget& b : levels_b) {
-            createButtons(b, [&] () {
-                game.popAllScenes();
-            });
+            if (b.getString() == "Main Menu") {
+                createButtons(b, [&] () {
+                    game.replaceAllScenes(game.menu);
+                });
+            } else {
+                createButtons(b, [&] () {
+                    game.popAllScenes();
+                });
+            }
         }
     }
 
@@ -89,8 +95,8 @@ namespace swiftness {
     }
 
     void SelectLevel::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
-        float size = 0.05f, space = 0.05f;
-        gf::Vector2f bg_size (0.55f, 0.2f); 
+        float size = 0.035f, space = 0.04f;
+        gf::Vector2f bg_size (0.55f, 0.1f); 
         target.setView(getHudView());
         gf::Coordinates coords(target);
         float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
