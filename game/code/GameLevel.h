@@ -50,15 +50,7 @@ namespace swiftness {
             gf::Action trigger;
             gf::Action quit;
             gf::WidgetContainer widgets;
-            gf::TextButtonWidget level0_b;
-            gf::TextButtonWidget level1_b;
-            gf::TextButtonWidget level2_b;
-            gf::TextButtonWidget level3_b;
-            gf::TextButtonWidget level4_b;
-            gf::TextButtonWidget level5_b;
-            gf::TextButtonWidget level6_b;
-            gf::TextButtonWidget level7_b;
-            gf::TextButtonWidget quit_b;
+            std::vector<gf::TextButtonWidget> levels_b;
 
     };
 }
