@@ -5,7 +5,8 @@ namespace swiftness {
     up("Up"), 
     down("Down"), 
     left("Left"), 
-    right("Right") {
+    right("Right"),
+    gamepad() {
         gf::Gamepad::initialize();
         up.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
         down.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Positive);

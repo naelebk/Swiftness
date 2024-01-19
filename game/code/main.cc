@@ -11,6 +11,7 @@
 #include <gf/Views.h>
 #include <gf/View.h>
 #include <gf/Color.h>
+#include <gf/Gamepad.h>
 #include <gf/Event.h>
 #include <gf/RenderWindow.h>
 #include <gf/Shapes.h>
@@ -64,9 +65,6 @@ int main(int argc, char *argv[]) {
         // Get the screen size after setting fullscreen mode
         gf::Vector2i ScreenSize = window.getSize();
 
-        // Manage all the commands
-        swiftness::CommandsManager commandManager();
-
         // create a vector of Input
         std::vector<Input> enumVector;
 
@@ -83,12 +81,13 @@ int main(int argc, char *argv[]) {
         render.clear(gf::Color::Black);
         while (window.isOpen())
         {
+            // Manage all the commands
+            swiftness::CommandsManager commandManager;
             gf::Event event;
             while (window.pollEvent(event))
             {
                 commandManager.manageCommands(enumVector, event);
             }
-
             // update the square
             std::vector<Input>::iterator it1 = std::find(enumVector.begin(), enumVector.end(), Input::Escape);
             std::vector<Input>::iterator it2 = std::find(enumVector.begin(), enumVector.end(), Input::Closed);

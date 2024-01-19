@@ -42,7 +42,6 @@ namespace swiftness {
         const float buttonHeight = 45.0f, margin = 20.0f;
         const int buttonCount = MAX_LEVEL + 2;
         while (true) {
-            gf::RenderWindow render(window);
             render.clear(gf::Color::Black);
             for (int i = 0; i < buttonCount; ++i) {
                 gf::RectangleShape shape({150.0f, buttonHeight});

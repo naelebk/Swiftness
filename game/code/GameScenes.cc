@@ -1,5 +1,6 @@
 #include "GameScenes.h"
 #include "GameCenter.h"
+#include <gf/Coordinates.h>
 
 namespace swiftness {
     GameScenes::GameScenes(GameCenter& game) 
@@ -88,36 +89,59 @@ namespace swiftness {
     // Méthodes virtuelles privées héritant directement de gf::Scene
     // Méthodes virtuelles privées héritant directement de gf::Scene
     void GameScenes::GameScenes_HandleActions(gf::Window& window) {
-        /*if (!window.isOpen()) return;
+        if (!window.isOpen()) return;
         if (up.isActive()) widgets.selectPreviousWidget();
         if (down.isActive()) widgets.selectNextWidget();
         if (trigger.isActive()) widgets.triggerAction();
-        if (quit.isActive()) game.replaceScene(game.menu);*/
+        if (quit_a.isActive()) game.replaceScene(game.menu);
     }
     void GameScenes::GameScenes_Render(gf::RenderTarget& target, const gf::RenderStates &states) {
-        /*float size = 0.08f, space = 0.025f;
+        float size = 0.08f, space = 0.025f;
         gf::Vector2f bg_size (0.55f, 0.4f); 
         target.setView(getHudView());
         gf::Coordinates coords(target);
         float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
         int r_size = coords.getRelativeCharacterSize(size);
 
-        for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
-            levels_b[i].setCharacterSize(r_size);
-            levels_b[i].setPosition(coords.getRelativePoint({0.275f, 0.425f}));
-            levels_b[i].setParagraphWidth(width);
-            levels_b[i].setPadding(padding);
-        }
-        widgets.render(target, states);*/
+        quit_b.setCharacterSize(r_size);
+        quit_b.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
+        quit_b.setParagraphWidth(width);
+        quit_b.setPadding(padding);
+
+        credits.setCharacterSize(r_size);
+        credits.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
+        credits.setParagraphWidth(width);
+        credits.setPadding(padding);
+
+        choose_level.setCharacterSize(r_size);
+        choose_level.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
+        choose_level.setParagraphWidth(width);
+        choose_level.setPadding(padding);
+
+        questionmark_b.setCharacterSize(r_size);
+        questionmark_b.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
+        questionmark_b.setParagraphWidth(width);
+        questionmark_b.setPadding(padding);
+
+        widgets.render(target, states);
 
     }
     void GameScenes::GameScenes_Show() {
-        /*widgets.clear();
-        for (gf::TextButtonWidget b : levels_b) {
-            b.setDefault();
-            widgets.addWidget(b);
-        }
-        widgets.selectNextWidget();*/
+        widgets.clear();
+
+        quit_b.setDefault();
+        widgets.addWidget(quit_b);
+
+        credits.setDefault();
+        widgets.addWidget(credits);
+
+        choose_level.setDefault();
+        widgets.addWidget(choose_level);
+
+        questionmark_b.setDefault();
+        widgets.addWidget(questionmark_b);
+        
+        widgets.selectNextWidget();
     }
 
 }
