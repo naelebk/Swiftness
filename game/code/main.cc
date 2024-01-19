@@ -64,6 +64,8 @@ int main(int argc, char *argv[]) {
         // Get the screen size after setting fullscreen mode
         gf::Vector2i ScreenSize = window.getSize();
 
+        // Manage all the commands
+        swiftness::CommandsManager commandManager();
 
         // create a vector of Input
         std::vector<Input> enumVector;
@@ -81,7 +83,6 @@ int main(int argc, char *argv[]) {
         render.clear(gf::Color::Black);
         while (window.isOpen())
         {
-            swiftness::CommandsManager commandManager;
             gf::Event event;
             while (window.pollEvent(event))
             {

@@ -19,6 +19,7 @@ namespace swiftness {
         m_text.setFont(m_font);
         m_text.setCharacterSize(20);
         m_text.setColor(gf::Color::Yellow);
+        gf::Gamepad::initialize();
     }
     MenuHello::~MenuHello() {}
     
@@ -72,6 +73,17 @@ namespace swiftness {
                     selectedLevel = -1;
                     window.close();
                     return true;
+                }
+                if (event.type == gf::EventType::GamepadButtonPressed) {
+                    switch(event.gamepadButton.button) {
+                        case gf::GamepadButton::B:
+                            selectedLevel = -1;
+                            window.close();
+                            return true;
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 if (event.type == gf::EventType::MouseButtonPressed && event.mouseButton.button == gf::MouseButton::Left) {
                     float ystart=window.getSize().y / 2 - (buttonCount * (buttonHeight + margin)) / 2 - buttonHeight -margin;

@@ -7,6 +7,7 @@
 #include <gf/Window.h>
 #include <gf/Mouse.h>
 #include <gf/VectorOps.h> 
+#include <gf/Gamepad.h>
 #include <iostream>
 #include <map>
 #include <cstdlib>

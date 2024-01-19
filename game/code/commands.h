@@ -1,6 +1,7 @@
 #pragma once
 #include <gf/Event.h>
 #include <gf/Gamepad.h>
+#include <gf/Action.h>
 #include <vector>
 #include "Input.h"
 
@@ -22,6 +23,10 @@ namespace swiftness {
         private:
             // Attribut privé nous permettant de gérer correctement le gamepad
             gf::GamepadTracker gamepad;
+            gf::Action up;
+            gf::Action down;
+            gf::Action left;
+            gf::Action right;
     };
 
 }
