@@ -35,19 +35,13 @@ int main(int argc, char *argv[]) {
     // gf::Vector2f velocity(0, GRAVITY);
     bool isresize = false;
     int level = -2;
-    while (true) {
-        std::map<int, swiftness::StaticPlateform> plateform;
-        swiftness::Square square;
-        gf::Font font(PATH_FONT);
-        swiftness::GameCenter game(font);
-        //game.run();
-        //gf::RenderWindow renderer(win1);
-        swiftness::MenuHello helloWorld(game, font);
-        while (level == -2) {
-            if(helloWorld.displayLevelSelection(font, level)) break;
-        }            
-        helloWorld.loadLevelWithOrWithoutTMX(plateform, square, level);
-        if (level == -1) break;
+    std::map<int, swiftness::StaticPlateform> plateform;
+    swiftness::Square square;
+    gf::Font font(PATH_FONT);
+    swiftness::GameCenter game(font);
+    game.run();
+    /*while (true) {
+        
         std::cout << "Level : " << level << '\n';
         std::string lvl = "";
         if (level >= 0 && level < 10) {
@@ -125,6 +119,6 @@ int main(int argc, char *argv[]) {
             render.display();
         }
         level = -2;
-    }   
+    }*/   
     return 0;
 }

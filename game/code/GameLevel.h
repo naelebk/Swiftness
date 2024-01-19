@@ -51,6 +51,7 @@ namespace swiftness {
             gf::Action quit;
             gf::WidgetContainer widgets;
             std::vector<gf::TextButtonWidget> levels_b;
+            std::size_t index;
 
     };
 }

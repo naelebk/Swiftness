@@ -52,14 +52,14 @@ namespace swiftness {
             button.setCallback(callback);
             widgets.addWidget(button);
         };
-        for (gf::TextButtonWidget& b : levels_b) {
-            if (b.getString() == "Main Menu") {
-                createButtons(b, [&] () {
+        for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
+            if (i == MAX_LEVEL + 1) {
+                createButtons(levels_b[i], [&] () {
                     game.replaceAllScenes(game.menu);
                 });
             } else {
-                createButtons(b, [&] () {
-                    game.popAllScenes();
+                createButtons(levels_b[i], [&] () {
+                    game.replaceAllScenes(game.helloWorld[i]);
                 });
             }
         }
