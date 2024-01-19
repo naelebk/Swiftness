@@ -29,12 +29,12 @@ namespace swiftness {
     class SelectLevel : public gf::Scene {
         public:
             // Constructeur
-            SelectLevel(GameCenter& game);
+            SelectLevel(GameCenter& game, gf::Font& font);
             // Desctructeur
             ~SelectLevel() override;
 
             gf::WidgetContainer GameLevel_getWidgets();
-            std::size_t getNumberButtonsCreated();
+            //std::size_t getNumberButtonsCreated();
 
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;
@@ -44,11 +44,21 @@ namespace swiftness {
 
         private:
             GameCenter& game;
+            gf::Font& font;
             gf::Action up;
             gf::Action down;
             gf::Action trigger;
             gf::Action quit;
             gf::WidgetContainer widgets;
-            std::vector<gf::TextButtonWidget> levels_b;
+            gf::TextButtonWidget level0_b;
+            gf::TextButtonWidget level1_b;
+            gf::TextButtonWidget level2_b;
+            gf::TextButtonWidget level3_b;
+            gf::TextButtonWidget level4_b;
+            gf::TextButtonWidget level5_b;
+            gf::TextButtonWidget level6_b;
+            gf::TextButtonWidget level7_b;
+            gf::TextButtonWidget quit_b;
+
     };
 }

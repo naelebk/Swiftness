@@ -3,13 +3,23 @@
 #include <gf/Coordinates.h>
 
 namespace swiftness {
-    SelectLevel::SelectLevel(GameCenter& game) :
+    SelectLevel::SelectLevel(GameCenter& game, gf::Font& font) :
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
+    font(font),
     game(game),
     up("Up"),
     down("Down"),
     trigger("Trigger"),
-    quit("Quit")
+    quit("Quit"),
+    level0_b("Level 0", font, 30),
+    level1_b("Level 1", font, 30),
+    level2_b("Level 2", font, 30),
+    level3_b("Level 3", font, 30),
+    level4_b("Level 4", font, 30),
+    level5_b("Level 5", font, 30),
+    level6_b("Level 6", font, 30),
+    level7_b("Level 7", font, 30),
+    quit_b("Quit", font, 30)
     {
         setClearColor(gf::Color::Black);
 
@@ -44,23 +54,33 @@ namespace swiftness {
             button.setCallback(callback);
             widgets.addWidget(button);
         };
-        levels_b.reserve(MAX_LEVEL + 2);
-        for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
-            gf::Font font(PATH_FONT);
-            if (i < MAX_LEVEL + 1) {
-                gf::TextButtonWidget button("Level " + std::to_string(i), font, 30.0f);
-                createButtons(button, [&] () {
-                    game.popAllScenes();
-                });
-                levels_b.push_back(button);
-            } else {
-                gf::TextButtonWidget button("Quit", font, 30.0f);
-                createButtons(button, [&] () {
-                    game.popAllScenes();
-                });
-                levels_b.push_back(button);
-            }
-        }
+        createButtons(quit_b, [&] () {
+            game.popAllScenes();
+        });
+        createButtons(level0_b, [&] () {
+            game.popAllScenes();
+        });
+        createButtons(level1_b, [&] () {
+            game.popAllScenes();
+        });
+        createButtons(level2_b, [&] () {
+            game.popAllScenes();
+        });
+        createButtons(level3_b, [&] () {
+            game.popAllScenes();
+        });
+        createButtons(level4_b, [&] () {
+            game.popAllScenes();
+        });
+        createButtons(level5_b, [&] () {
+            game.popAllScenes();
+        });
+        createButtons(level6_b, [&] () {
+            game.popAllScenes();
+        });
+        createButtons(level7_b, [&] () {
+            game.popAllScenes();
+        });
     }
 
     SelectLevel::~SelectLevel() {}
@@ -69,9 +89,9 @@ namespace swiftness {
         return widgets;
     }
 
-    std::size_t SelectLevel::getNumberButtonsCreated() {
+    /*std::size_t SelectLevel::getNumberButtonsCreated() {
         return levels_b.size();
-    }
+    }*/
 
     // Méthodes virtuelles privées héritant directement de gf::Scene
     void SelectLevel::doHandleActions(gf::Window& window) {
@@ -93,28 +113,82 @@ namespace swiftness {
     }
 
     void SelectLevel::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
-        float size = 0.05f, space = 0.3f;
-        gf::Vector2f bg_size (0.55f, 0.4f); 
+        float size = 0.05f, space = 0.05f;
+        gf::Vector2f bg_size (0.55f, 0.2f); 
         target.setView(getHudView());
         gf::Coordinates coords(target);
         float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
         int r_size = coords.getRelativeCharacterSize(size);
-        for (std::size_t i = 0 ; i < levels_b.size() ; ++i) {
-            float ne = 0.425f + (size - space)*i;
-            levels_b[i].setCharacterSize(r_size);
-            levels_b[i].setPosition(coords.getRelativePoint({0.275f, ne}));
-            levels_b[i].setParagraphWidth(width);
-            levels_b[i].setPadding(padding);
-        }
+        float ne = 0.0f;
+        ne = 0.1f + (size + space)*0;
+        level0_b.setCharacterSize(r_size);
+        level0_b.setPosition(coords.getRelativePoint({0.275f, ne}));
+        level0_b.setParagraphWidth(width);
+        level0_b.setPadding(padding);
+        ne = 0.1f + (size + space)*1;
+        level1_b.setCharacterSize(r_size);
+        level1_b.setPosition(coords.getRelativePoint({0.275f, ne}));
+        level1_b.setParagraphWidth(width);
+        level1_b.setPadding(padding);
+        ne = 0.1f + (size + space)*2;
+        level2_b.setCharacterSize(r_size);
+        level2_b.setPosition(coords.getRelativePoint({0.275f, ne}));
+        level2_b.setParagraphWidth(width);
+        level2_b.setPadding(padding);
+        ne = 0.1f + (size + space)*3;
+        level3_b.setCharacterSize(r_size);
+        level3_b.setPosition(coords.getRelativePoint({0.275f, ne}));
+        level3_b.setParagraphWidth(width);
+        level3_b.setPadding(padding);
+        ne = 0.1f + (size + space)*4;
+        level4_b.setCharacterSize(r_size);
+        level4_b.setPosition(coords.getRelativePoint({0.275f, ne}));
+        level4_b.setParagraphWidth(width);
+        level4_b.setPadding(padding);
+        ne = 0.1f + (size + space)*5;
+        level5_b.setCharacterSize(r_size);
+        level5_b.setPosition(coords.getRelativePoint({0.275f, ne}));
+        level5_b.setParagraphWidth(width);
+        level5_b.setPadding(padding);
+        ne = 0.1f + (size + space)*6;
+        level6_b.setCharacterSize(r_size);
+        level6_b.setPosition(coords.getRelativePoint({0.275f, ne}));
+        level6_b.setParagraphWidth(width);
+        level6_b.setPadding(padding);
+        ne = 0.1f + (size + space)*7;
+        level7_b.setCharacterSize(r_size);
+        level7_b.setPosition(coords.getRelativePoint({0.275f, ne}));
+        level7_b.setParagraphWidth(width);
+        level7_b.setPadding(padding);
+        ne = 0.1f + (size + space)*8;
+        quit_b.setCharacterSize(r_size);
+        quit_b.setPosition(coords.getRelativePoint({0.275f, ne}));
+        quit_b.setParagraphWidth(width);
+        quit_b.setPadding(padding);
+        
         widgets.render(target, states);
 
     }
     void SelectLevel::doShow() {
         widgets.clear();
-        for (std::size_t i = 0 ; i < levels_b.size() ; ++i) {
-            levels_b[i].setDefault();
-            widgets.addWidget(levels_b[i]);
-        }
+        level0_b.setDefault();
+        widgets.addWidget(level0_b);
+        level1_b.setDefault();
+        widgets.addWidget(level1_b);
+        level2_b.setDefault();
+        widgets.addWidget(level2_b);
+        level3_b.setDefault();
+        widgets.addWidget(level3_b);
+        level4_b.setDefault();
+        widgets.addWidget(level4_b);
+        level5_b.setDefault();
+        widgets.addWidget(level5_b);
+        level6_b.setDefault();
+        widgets.addWidget(level6_b);
+        level7_b.setDefault();
+        widgets.addWidget(level7_b);
+        quit_b.setDefault();
+        widgets.addWidget(quit_b);
         widgets.selectNextWidget();
     }
 }
