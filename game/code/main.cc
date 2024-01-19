@@ -5,6 +5,7 @@
 #include "commands.h"
 #include "helloNewPadawan.h"
 #include "levelRender.h"
+#include "GameCenter.h"
 
 #include <memory>
 #include <gf/Clock.h>
@@ -38,13 +39,13 @@ int main(int argc, char *argv[]) {
         std::map<int, swiftness::StaticPlateform> plateform;
         swiftness::Square square;
         gf::Font font(PATH_FONT);
-        gf::Window win1("Welcome to Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
-        gf::RenderWindow renderer(win1);
-        swiftness::MenuHello helloWorld(font, win1);
+        swiftness::GameCenter game(font);
+        //game.run();
+        //gf::RenderWindow renderer(win1);
+        swiftness::MenuHello helloWorld(game, font);
         while (level == -2) {
-            if(helloWorld.displayLevelSelection(renderer, win1, font, level)) break;
+            if(helloWorld.displayLevelSelection(font, level)) break;
         }            
-        win1.close();
         helloWorld.loadLevelWithOrWithoutTMX(plateform, square, level);
         if (level == -1) break;
         std::cout << "Level : " << level << '\n';
@@ -54,7 +55,7 @@ int main(int argc, char *argv[]) {
         } else {
             lvl = "level" + std::to_string(level) + ".tmx";
         }
-        swiftness:LevelData ldata(lvl);
+        swiftness::LevelData ldata(lvl);
         float map_width=ldata.getMapSize().x;
         float map_height=ldata.getMapSize().y;
         float tile_width=ldata.getTileSize().x;

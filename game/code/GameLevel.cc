@@ -9,7 +9,7 @@ namespace swiftness {
     up("Up"),
     down("Down"),
     trigger("Trigger"),
-    quit("Quit") 
+    quit("Quit")
     {
         setClearColor(gf::Color::Black);
 
@@ -44,18 +44,22 @@ namespace swiftness {
             button.setCallback(callback);
             widgets.addWidget(button);
         };
-
+        levels_b.reserve(MAX_LEVEL + 2);
         for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
             gf::Font font(PATH_FONT);
-            gf::TextButtonWidget button("Quit", font, 30.0f);
             if (i < MAX_LEVEL + 1) {
                 gf::TextButtonWidget button("Level " + std::to_string(i), font, 30.0f);
+                createButtons(button, [&] () {
+                    game.popAllScenes();
+                });
+                levels_b.push_back(button);
+            } else {
+                gf::TextButtonWidget button("Quit", font, 30.0f);
+                createButtons(button, [&] () {
+                    game.popAllScenes();
+                });
+                levels_b.push_back(button);
             }
-            auto callback = [&, i] {
-                gf::Log::debug("A button was pressed !\n");
-            };
-            createButtons(button, callback);
-            levels_b.push_back(button);
         }
     }
 
@@ -65,36 +69,51 @@ namespace swiftness {
         return widgets;
     }
 
+    std::size_t SelectLevel::getNumberButtonsCreated() {
+        return levels_b.size();
+    }
+
     // Méthodes virtuelles privées héritant directement de gf::Scene
-    void SelectLevel::GameLevel_HandleActions(gf::Window& window) {
+    void SelectLevel::doHandleActions(gf::Window& window) {
         if (!window.isOpen()) return;
         if (up.isActive()) widgets.selectPreviousWidget();
         if (down.isActive()) widgets.selectNextWidget();
         if (trigger.isActive()) widgets.triggerAction();
         if (quit.isActive()) game.replaceScene(game.menu);
     }
-    void SelectLevel::GameLevel_Render(gf::RenderTarget& target, const gf::RenderStates &states) {
-        float size = 0.08f, space = 0.025f;
+
+    void SelectLevel::doProcessEvent(gf::Event& event) {
+        switch(event.type) {
+            case gf::EventType::MouseMoved:
+                widgets.pointTo(game.computeWindowToGameCoordinates(event.mouseCursor.coords, getHudView()));
+                break;
+            default:
+                break;
+        }
+    }
+
+    void SelectLevel::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
+        float size = 0.05f, space = 0.3f;
         gf::Vector2f bg_size (0.55f, 0.4f); 
         target.setView(getHudView());
         gf::Coordinates coords(target);
         float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
         int r_size = coords.getRelativeCharacterSize(size);
-
-        for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
+        for (std::size_t i = 0 ; i < levels_b.size() ; ++i) {
+            float ne = 0.425f + (size - space)*i;
             levels_b[i].setCharacterSize(r_size);
-            levels_b[i].setPosition(coords.getRelativePoint({0.275f, 0.425f}));
+            levels_b[i].setPosition(coords.getRelativePoint({0.275f, ne}));
             levels_b[i].setParagraphWidth(width);
             levels_b[i].setPadding(padding);
         }
         widgets.render(target, states);
 
     }
-    void SelectLevel::GameLevel_Show() {
+    void SelectLevel::doShow() {
         widgets.clear();
-        for (gf::TextButtonWidget b : levels_b) {
-            b.setDefault();
-            widgets.addWidget(b);
+        for (std::size_t i = 0 ; i < levels_b.size() ; ++i) {
+            levels_b[i].setDefault();
+            widgets.addWidget(levels_b[i]);
         }
         widgets.selectNextWidget();
     }

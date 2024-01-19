@@ -1,4 +1,5 @@
 #include "helloNewPadawan.h"
+#include "GameCenter.h"
 #define RED     "\x1b[31m"
 #define GREEN   "\x1b[32m"
 #define YELLOW  "\x1b[33m"
@@ -15,7 +16,10 @@ namespace swiftness {
     Hello::~Hello() {}
     // Déclaration en seconde instance du constructeur et du destructeur,
     // de menuHello (interface graphique)
-    MenuHello::MenuHello(gf::Font& font, gf::Window& window) : m_font(font), m_window(window), m_selectedLevel(-2) {
+    MenuHello::MenuHello(GameCenter& game, gf::Font& font) : 
+    gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
+    m_font(font), game(game),
+    m_selectedLevel(-2) {
         m_text.setFont(m_font);
         m_text.setCharacterSize(20);
         m_text.setColor(gf::Color::Yellow);
@@ -38,8 +42,8 @@ namespace swiftness {
 
     int MenuHello::getLevel(){ return m_selectedLevel; }
 
-    bool MenuHello::displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Font& font, int& selectedLevel) {
-        const float buttonHeight = 45.0f, margin = 20.0f;
+    bool MenuHello::displayLevelSelection(gf::Font& font, int& selectedLevel) {
+        /*const float buttonHeight = 45.0f, margin = 20.0f;
         const int buttonCount = MAX_LEVEL + 2;
         while (true) {
             render.clear(gf::Color::Black);
@@ -97,9 +101,10 @@ namespace swiftness {
                     }
                 }
             }
-        }
+        }*/
+        game.run();
         selectedLevel = -1;
-        return false;
+        return true;
     }
 
     // Comme on ne peut pas mettre une valeur non comprise entre MIN_LEVEL et MAX_LEVEL, on n'effectue aucune

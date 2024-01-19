@@ -16,6 +16,7 @@
 #include "level.h"
 #include "squareEntity.h"
 namespace swiftness {
+    struct GameCenter;
     class Hello {
         public:
             // Constructeur
@@ -35,10 +36,10 @@ namespace swiftness {
         private:
     };
 
-    class MenuHello {
+    class MenuHello : public gf::Scene {
         public:
             // Constructeur
-            MenuHello(gf::Font& font, gf::Window& window);
+            MenuHello(GameCenter& game, gf::Font& font);
             // Destructeur
             ~MenuHello();
 
@@ -49,7 +50,7 @@ namespace swiftness {
             // de permettre à l'utilisateur de choisir le niveau auquel il
             // veut jouer, en fonction du niveau choisi, on appelera la fonction
             // adéquate permettant de charger ce niveau
-            bool displayLevelSelection(gf::RenderWindow& render, gf::Window& window, gf::Font& font, int& selectedLevel);
+            bool displayLevelSelection(gf::Font& font, int& selectedLevel);
 
             // Cette seconde fonction permet, dans une fenêtre graphique ou non selon le premier booléen,
             // de charger les différents paramètres du jeu en fonction du level
@@ -59,8 +60,8 @@ namespace swiftness {
             // Cette fonction permet d'afficher le menu dans la fenêtre graphique
             void displayWelcomeMenu(gf::RenderWindow& render, gf::Window& window, gf::Font& font, std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square);
         private:
+            GameCenter& game;
             gf::Font& m_font;
-            gf::Window& m_window;
             int m_selectedLevel;
             gf::Text m_text;
     };
