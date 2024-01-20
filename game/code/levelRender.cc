@@ -32,7 +32,7 @@ namespace swiftness {
             // logFile << "Layer not found or not visible: " << getLayerName(layerName) << std::endl;
         }
 
-        // logFile.close(); // Fermer le fichier de log
+        // logFile.close(); // Fermer le fichier de log.
     }
 
     void LevelRender::renderLevel(std::string nameFile, gf::RenderWindow &window, std::string gravity) {
