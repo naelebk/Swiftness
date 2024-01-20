@@ -134,6 +134,10 @@ namespace swiftness
         Gw_rose,
         Gw_green,
         Gw_orange,
+        Gw_blue_open,
+        Gw_rose_open,
+        Gw_green_open,
+        Gw_orange_open,
         gravity_switch,
         gravity_walls
     };

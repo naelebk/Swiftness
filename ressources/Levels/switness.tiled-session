@@ -1,5 +1,4 @@
 {
-    "activeFile": "",
     "expandedProjectPaths": [
         "Tilesets",
         "levels",
@@ -63,8 +62,8 @@
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 942.75,
-                "y": 471.75
+                "x": 942.5,
+                "y": 471.5
             }
         },
         "Maps/level02.tmx": {
@@ -334,27 +333,6 @@
             "scaleInEditor": 1
         }
     },
-    "last.imagePath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Images",
     "openFiles": [
-    ],
-    "project": "switness.tiled-project",
-    "recentFiles": [
-        "Maps/level01.tmx",
-        "Maps/level07.tmx",
-        "Maps/level06.tmx",
-        "Maps/level05.tmx",
-        "Maps/level04.tmx",
-        "Maps/level03.tmx",
-        "Maps/level02.tmx",
-        "Maps/level00.tmx",
-        "Maps/level_template.tmx",
-        "Tilesets/8_gravity_walls_open.tsx",
-        "Tilesets/7_gravity_walls.tsx",
-        "Tilesets/6_wall_of_death.tsx"
-    ],
-    "tileset.lastUsedFormat": "tsx",
-    "tileset.tileSize": {
-        "height": 16,
-        "width": 16
-    }
+    ]
 }
