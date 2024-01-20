@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     std::map<int, swiftness::StaticPlateform> plateform;
     swiftness::Square square;
     gf::Font font(PATH_FONT);
-    swiftness::GameCenter game(font);
+    swiftness::GameCenter game(font, plateform, square);
     game.run();
     /*while (true) {
         

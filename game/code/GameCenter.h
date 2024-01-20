@@ -6,12 +6,15 @@
 #include "GameScenes.h"
 #include "GameLevel.h"
 #include "helloNewPadawan.h"
+#include "constants.h"
+#include "squareEntity.h"
+#include "staticPlateforme.h"
 
 namespace swiftness {
     struct GameCenter : gf::GameManager {
-        GameCenter(gf::Font& font);
+        GameCenter(gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square);
         SelectLevel level;
         GameScenes menu;
-        std::vector<swiftness::MenuHello> helloWorld;
+        MenuHello hello;
     };
 }

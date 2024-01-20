@@ -11,9 +11,9 @@
 namespace swiftness {
     // Déclaration en seconde instance du constructeur et du destructeur,
     // de menuHello (interface graphique)
-    MenuHello::MenuHello(GameCenter& game, gf::Font& font, int level) : 
+    MenuHello::MenuHello(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square) : 
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
-    m_font(font), game(game), level(level) {
+    m_font(font), game(game), level(level), plateform(plateform), square(square) {
         m_text.setFont(m_font);
         m_text.setCharacterSize(20);
         m_text.setColor(gf::Color::Yellow);
@@ -23,9 +23,16 @@ namespace swiftness {
 
     int MenuHello::getLevel(){ return level; }
 
+    void MenuHello::updateLevel(int s_level) {
+        level = s_level;
+    }
+
     // Comme on ne peut pas mettre une valeur non comprise entre MIN_LEVEL et MAX_LEVEL, on n'effectue aucune
     // vérification sur la valeur de level, car auquel cas rien ne sera fait
     void MenuHello::loadLevelWithOrWithoutTMX(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square, int level) {
+        if (level < 0) {
+            exit(0);
+        }
         std::string lvl = "";
         if (level >= 0 && level < 10) {
             lvl = "level0" + std::to_string(level) + ".tmx";

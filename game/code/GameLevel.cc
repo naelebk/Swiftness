@@ -3,10 +3,12 @@
 #include <gf/Coordinates.h>
 
 namespace swiftness {
-    SelectLevel::SelectLevel(GameCenter& game, gf::Font& font) :
+    SelectLevel::SelectLevel(GameCenter& game, gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square) :
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     font(font),
     game(game),
+    plateform(plateform),
+    square(square),
     up("Up"),
     down("Down"),
     trigger("Trigger"),
@@ -58,8 +60,10 @@ namespace swiftness {
                     game.replaceAllScenes(game.menu);
                 });
             } else {
+                game.hello.updateLevel(i);
+                game.hello.loadLevelWithOrWithoutTMX(plateform, square, i);
                 createButtons(levels_b[i], [&] () {
-                    game.replaceAllScenes(game.helloWorld[i]);
+                    game.replaceAllScenes(game.hello);
                 });
             }
         }

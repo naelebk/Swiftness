@@ -23,13 +23,17 @@
 #include <iostream>
 #include <vector>
 #include "constants.h"
+#include "staticPlateforme.h"
+#include "level.h"
+#include "squareEntity.h"
+#include "helloNewPadawan.h"
 
 namespace swiftness {
     struct GameCenter;
     class SelectLevel : public gf::Scene {
         public:
             // Constructeur
-            SelectLevel(GameCenter& game, gf::Font& font);
+            SelectLevel(GameCenter& game, gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square);
             // Desctructeur
             ~SelectLevel() override;
 
@@ -52,6 +56,8 @@ namespace swiftness {
             gf::WidgetContainer widgets;
             std::vector<gf::TextButtonWidget> levels_b;
             std::size_t index;
+            std::map<int, swiftness::StaticPlateform> plateform;
+            swiftness::Square square;
 
     };
 }
