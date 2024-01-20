@@ -13,12 +13,22 @@ namespace swiftness {
     // de menuHello (interface graphique)
     MenuHello::MenuHello(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square) : 
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
-    m_font(font), game(game), level(level), plateform(plateform), square(square) {
+    m_font(font), 
+    game(game), 
+    level(level), 
+    plateform(plateform), 
+    square(square),
+    quit_a("quit") {
         m_text.setFont(m_font);
         m_text.setCharacterSize(20);
         m_text.setColor(gf::Color::Yellow);
         gf::Gamepad::initialize();
+
+        quit_a.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::B);
+        quit_a.addKeycodeKeyControl(gf::Keycode::Escape);
+        addAction(quit_a);
     }
+
     MenuHello::~MenuHello() {}
 
     int MenuHello::getLevel(){ return level; }
@@ -44,4 +54,9 @@ namespace swiftness {
         square = leveln.square;
         plateform = leveln.plateform;
     }
+
+    void MenuHello::doHandleActions(gf::Window& window) {}
+    void MenuHello::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {}
+    void MenuHello::doProcessEvent(gf::Event& event) {}
+    void MenuHello::doShow() {}
 }

@@ -38,6 +38,7 @@ check_cmd() {
         fi
     fi
 }
+clear
 echo -ne "${YELLOW}Accès au répertoire game..... ${NC}"
 cd game > "$FILE" 2>&1
 check_cmd "" "../$FILE"

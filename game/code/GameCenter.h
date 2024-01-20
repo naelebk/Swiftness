@@ -2,10 +2,8 @@
 #include <gf/GameManager.h>
 #include <gf/Font.h>
 #include <gf/Window.h>
-#include <vector>
 #include "GameScenes.h"
 #include "GameLevel.h"
-#include "helloNewPadawan.h"
 #include "constants.h"
 #include "squareEntity.h"
 #include "staticPlateforme.h"
@@ -15,6 +13,6 @@ namespace swiftness {
         GameCenter(gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square);
         SelectLevel level;
         GameScenes menu;
-        MenuHello hello;
+        MenuHello helloWorld;
     };
 }

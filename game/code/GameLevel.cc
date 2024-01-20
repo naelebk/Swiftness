@@ -1,6 +1,7 @@
 #include "GameLevel.h"
 #include "GameCenter.h"
 #include <gf/Coordinates.h>
+#include "helloNewPadawan.h"
 
 namespace swiftness {
     SelectLevel::SelectLevel(GameCenter& game, gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square) :
@@ -60,10 +61,10 @@ namespace swiftness {
                     game.replaceAllScenes(game.menu);
                 });
             } else {
-                game.hello.updateLevel(i);
-                game.hello.loadLevelWithOrWithoutTMX(plateform, square, i);
+                swiftness::MenuHello helloWorld(game, font, i, plateform, square);
+                helloWorld.loadLevelWithOrWithoutTMX(plateform, square, i);
                 createButtons(levels_b[i], [&] () {
-                    game.replaceAllScenes(game.hello);
+                    game.replaceAllScenes(helloWorld);
                 });
             }
         }
@@ -74,10 +75,6 @@ namespace swiftness {
     gf::WidgetContainer SelectLevel::GameLevel_getWidgets() {
         return widgets;
     }
-
-    /*std::size_t SelectLevel::getNumberButtonsCreated() {
-        return levels_b.size();
-    }*/
 
     // Méthodes virtuelles privées héritant directement de gf::Scene
     void SelectLevel::doHandleActions(gf::Window& window) {

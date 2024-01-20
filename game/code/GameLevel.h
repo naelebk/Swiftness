@@ -38,7 +38,6 @@ namespace swiftness {
             ~SelectLevel() override;
 
             gf::WidgetContainer GameLevel_getWidgets();
-            //std::size_t getNumberButtonsCreated();
 
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;
@@ -55,6 +54,7 @@ namespace swiftness {
             gf::Action quit;
             gf::WidgetContainer widgets;
             std::vector<gf::TextButtonWidget> levels_b;
+            std::vector<MenuHello> helloWorld;
             std::size_t index;
             std::map<int, swiftness::StaticPlateform> plateform;
             swiftness::Square square;

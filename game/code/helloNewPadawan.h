@@ -1,13 +1,25 @@
 #pragma once
-#include <gf/Scene.h>
-#include <gf/Entity.h>
-#include <gf/Vector.h>
+#include <gf/Action.h>
+#include <gf/Clock.h>
+#include <gf/Color.h>
+#include <gf/Event.h>
 #include <gf/Font.h>
+#include <gf/GameManager.h>
+#include <gf/Math.h>
+#include <gf/RenderTarget.h>
+#include <gf/Scene.h>
+#include <gf/SegueEffect.h>
+#include <gf/Shapes.h>
 #include <gf/Text.h>
+#include <gf/Texture.h>
+#include <gf/Time.h>
+#include <gf/Vector.h>
+#include <gf/View.h>
+#include <gf/Views.h>
+#include <gf/WidgetContainer.h>
+#include <gf/Widgets.h>
 #include <gf/Window.h>
-#include <gf/Mouse.h>
-#include <gf/VectorOps.h> 
-#include <gf/Gamepad.h>
+#include <iostream>
 #include <iostream>
 #include <map>
 #include <cstdlib>
@@ -21,9 +33,14 @@ namespace swiftness {
         public:
             // Constructeur
             MenuHello(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square);
-            // Destructeur
-            ~MenuHello();
 
+            ~MenuHello();
+            // Méthodes virtuelles privées héritant directement de gf::Scene
+            void doHandleActions(gf::Window& window) override;
+            void doRender (gf::RenderTarget& target, const gf::RenderStates &states) override;
+            void doProcessEvent(gf::Event& event);
+            void doShow() override;
+            
             // Getter du niveau
             int getLevel();
 
@@ -38,6 +55,7 @@ namespace swiftness {
         private:
             GameCenter& game;
             gf::Font& m_font;
+            gf::Action quit_a;
             int level;
             gf::Text m_text;
             std::map<int, swiftness::StaticPlateform> plateform;
