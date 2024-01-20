@@ -5,7 +5,7 @@
 namespace swiftness {
 
     void LevelRender::renderLayer(LayerEntity &layerEntity, gf::RenderWindow &window, LayerName layerName, std::string gravity) {
-        std::ofstream logFile("log.txt", std::ios::app); // Ouvrir le fichier log.txt en mode append
+        // std::ofstream logFile("log.txt", std::ios::app); // Ouvrir le fichier log.txt en mode append
 
         gf::TmxTileLayer *layer = layerEntity.getTileLayerByName(layerName);
         if (layerName == LayerName::Gw_blue && gravity == "down") {
@@ -21,18 +21,18 @@ namespace swiftness {
                 layer->visible = false;
             }   
         if (layer != nullptr && layer->visible) {
-            logFile << "Layer found: " << getLayerName(layerName) << std::endl; // Écrire dans le fichier de log
+            // logFile << "Layer found: " << getLayerName(layerName) << std::endl; // Écrire dans le fichier de log
 
             // Enregistrer la valeur actuelle de l'opacité
-            logFile << "Current opacity for " << getLayerName(layerName) << ": " << layer->opacity << std::endl;
+            // logFile << "Current opacity for " << getLayerName(layerName) << ": " << layer->opacity << std::endl;
 
             gf::TileLayer tileLayer = gf::makeTileLayer(layerEntity.getLayers(), *layer, layerEntity.getResources());
             window.draw(tileLayer);
         } else {
-            logFile << "Layer not found or not visible: " << getLayerName(layerName) << std::endl;
+            // logFile << "Layer not found or not visible: " << getLayerName(layerName) << std::endl;
         }
 
-        logFile.close(); // Fermer le fichier de log
+        // logFile.close(); // Fermer le fichier de log
     }
 
     void LevelRender::renderLevel(std::string nameFile, gf::RenderWindow &window, std::string gravity) {
