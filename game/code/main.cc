@@ -38,7 +38,8 @@ int main(int argc, char *argv[]) {
     std::map<int, swiftness::StaticPlateform> plateform;
     swiftness::Square square;
     gf::Font font(PATH_FONT);
-    swiftness::GameCenter game(font, plateform, square);
+    std::vector<Input> enumVector;
+    swiftness::GameCenter game(font, plateform, square, enumVector);
     game.run();
     /*while (true) {
         

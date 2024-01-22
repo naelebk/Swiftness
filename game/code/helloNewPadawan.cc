@@ -11,13 +11,14 @@
 namespace swiftness {
     // Déclaration en seconde instance du constructeur et du destructeur,
     // de menuHello (interface graphique)
-    MenuHello::MenuHello(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square) : 
+    MenuHello::MenuHello(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector) : 
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     m_font(font), 
     game(game), 
     level(level), 
     plateform(plateform), 
     square(square),
+    enumVector(enumVector),
     quit_a("quit") {
         m_text.setFont(m_font);
         m_text.setCharacterSize(20);
@@ -55,8 +56,72 @@ namespace swiftness {
         plateform = leveln.plateform;
     }
 
-    void MenuHello::doHandleActions(gf::Window& window) {}
-    void MenuHello::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {}
-    void MenuHello::doProcessEvent(gf::Event& event) {}
+    void MenuHello::doHandleActions(gf::Window& window) {
+        if (!isActive()) return;
+        if (quit_a.isActive()) game.replaceScene(game.menu);
+    }
+    void MenuHello::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
+        loadLevelWithOrWithoutTMX(plateform, square, level);
+        std::cout << "Level : " << level << '\n';
+        std::string lvl = "";
+        if (level >= 0 && level < 10) {
+            lvl = "level0" + std::to_string(level) + ".tmx";
+        } else {
+            lvl = "level" + std::to_string(level) + ".tmx";
+        }
+        swiftness::LevelData ldata(lvl);
+        float map_width=ldata.getMapSize().x;
+        float map_height=ldata.getMapSize().y;
+        float tile_width=ldata.getTileSize().x;
+        float tile_height=ldata.getTileSize().y; 
+
+        // create a vector of Input
+        std::vector<Input> enumVector;
+
+        // initialisation of the level
+
+        std::cout << "plateform size : " << plateform.size() << std::endl;
+        // affiche les coordonnées des plateformes de la map
+        for (auto &plateform : plateform)
+        {
+            std::cout << plateform.first << " : " << plateform.second.getPosition().x << " " << plateform.second.getPosition().y << std::endl;
+        }
+        // game loop
+        gf::Clock clock;
+        target.clear(gf::Color::Black);
+        // update the square
+        std::vector<Input>::iterator it1 = std::find(enumVector.begin(), enumVector.end(), Input::Escape);
+        std::vector<Input>::iterator it2 = std::find(enumVector.begin(), enumVector.end(), Input::Closed);
+        if (it1 != enumVector.end() || it2 != enumVector.end()) {
+            game.replaceAllScenes(game.menu);
+        }
+        float dt = clock.getElapsedTime().asSeconds();
+        clock.restart();
+        square.updateWithMap(dt, plateform, enumVector);
+        if (square.getLevelOver()) {
+            game.replaceAllScenes(game.menu);
+        }
+        float xcamera=square.getPosition().x;
+        float ycamera=square.getPosition().y;
+        xcamera=std::clamp(xcamera,SCREEN_WIDTH/2+tile_width,map_width*tile_width-SCREEN_WIDTH/2-tile_width);
+        ycamera=std::clamp(ycamera,SCREEN_HEIGHT/2+tile_height,map_height*tile_height-SCREEN_HEIGHT/2-tile_height);
+        gf::ExtendView camera({xcamera,ycamera}, {SCREEN_WIDTH, SCREEN_HEIGHT});
+        enumVector.clear();
+        // render
+        target.clear(gf::Color::Black);
+        target.setView(camera);
+        std::string levelName = "level0" + std::to_string(level) + ".tmx";
+        swiftness::LevelRender levelRender;
+        levelRender.renderLevel(levelName, target, square.getGravity());
+        square.render(target);
+        square.renderHUD(target,SCREEN_WIDTH,SCREEN_HEIGHT,{xcamera,ycamera});
+    }
+    void MenuHello::doProcessEvent(gf::Event& event) {
+        swiftness::CommandsManager commandManager;
+        while (game.getWindow().pollEvent(event))
+        {
+            commandManager.manageCommands(enumVector, event);
+        }
+    }
     void MenuHello::doShow() {}
 }

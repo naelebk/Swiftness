@@ -54,7 +54,8 @@ namespace swiftness {
             gf::Action quit;
             gf::WidgetContainer widgets;
             std::vector<gf::TextButtonWidget> levels_b;
-            std::vector<MenuHello> helloWorld;
+            //std::vector<MenuHello> helloWorld;
+            //MenuHello helloWorld;
             std::size_t index;
             std::map<int, swiftness::StaticPlateform> plateform;
             swiftness::Square square;

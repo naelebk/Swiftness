@@ -61,10 +61,8 @@ namespace swiftness {
                     game.replaceAllScenes(game.menu);
                 });
             } else {
-                swiftness::MenuHello helloWorld(game, font, i, plateform, square);
-                helloWorld.loadLevelWithOrWithoutTMX(plateform, square, i);
                 createButtons(levels_b[i], [&] () {
-                    game.replaceAllScenes(helloWorld);
+                    game.replaceAllScenes(game.helloWorld);
                 });
             }
         }

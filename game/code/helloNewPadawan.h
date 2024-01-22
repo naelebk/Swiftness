@@ -23,16 +23,20 @@
 #include <iostream>
 #include <map>
 #include <cstdlib>
+#include <vector>
 #include "constants.h"
 #include "staticPlateforme.h"
 #include "level.h"
 #include "squareEntity.h"
+#include "commands.h"
+#include "Input.h"
+#include "levelRender.h"
 namespace swiftness {
     struct GameCenter;
     class MenuHello : public gf::Scene {
         public:
             // Constructeur
-            MenuHello(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square);
+            MenuHello(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector);
 
             ~MenuHello();
             // Méthodes virtuelles privées héritant directement de gf::Scene
@@ -60,5 +64,6 @@ namespace swiftness {
             gf::Text m_text;
             std::map<int, swiftness::StaticPlateform> plateform;
             swiftness::Square square;
+            std::vector<Input>& enumVector;
     };
 }
