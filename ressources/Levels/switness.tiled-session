@@ -49,11 +49,16 @@
             "scaleInEditor": 1
         },
         "Maps/level00.tmx": {
+            "expandedObjectLayers": [
+                19,
+                9,
+                12
+            ],
             "scale": 0.8092237903225806,
-            "selectedLayer": 3,
+            "selectedLayer": 12,
             "viewCenter": {
-                "x": 336.1245717844908,
-                "y": 496.77234506384303
+                "x": 294.10900031142944,
+                "y": 636.4123326066647
             }
         },
         "Maps/level00.tmx#utilities": {
@@ -105,9 +110,9 @@
                 9
             ],
             "scale": 2.0677989130434784,
-            "selectedLayer": 14,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 184.25389315986598,
+                "x": 184.25389315986595,
                 "y": 175.0653788028123
             }
         },
@@ -118,8 +123,8 @@
             "scale": 0.9146033653846153,
             "selectedLayer": 14,
             "viewCenter": {
-                "x": 416.57401931795795,
-                "y": 293.02319469084705
+                "x": 415.48064918851446,
+                "y": 291.92982456140356
             }
         },
         "Maps/level07.tmx": {
@@ -221,7 +226,7 @@
             "scaleInEditor": 1
         },
         "Tilesets/8_gravity_walls_open.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 3,
             "scaleInEditor": 1
         },
         "Tilesets/TILESET_FUTURISTIC_CITY.tsx": {
@@ -341,12 +346,12 @@
     "project": "switness.tiled-project",
     "recentFiles": [
         "Maps/level00.tmx",
-        "Maps/level02.tmx",
         "Maps/level01.tmx",
-        "Tilesets/8_gravity_walls_open.tsx",
-        "Maps/level07.tmx",
         "Maps/level06.tmx",
         "Maps/level05.tmx",
+        "Maps/level02.tmx",
+        "Tilesets/8_gravity_walls_open.tsx",
+        "Maps/level07.tmx",
         "Maps/level04.tmx",
         "Maps/level03.tmx",
         "Maps/level_template.tmx",

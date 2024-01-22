@@ -111,7 +111,7 @@ namespace swiftness
         float m_size;
         gf::Color4f m_color;
         float gravity;
-        std::string m_gravityDirection = "down";
+        std::string m_gravityDirection;
         bool m_jump;
         int nb_jumps;
         int m_gravity;
@@ -125,7 +125,7 @@ namespace swiftness
         float timer;
 
         // graphics
-        gf::Texture& m_skin;
+        // gf::Texture& m_skin;
     };
 }
 

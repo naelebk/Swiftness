@@ -247,37 +247,39 @@ namespace swiftness
         int platformIndex = index;
         for (const auto &objPtr : objects)
         {
-            gf::TmxRectangle *rect = static_cast<gf::TmxRectangle *>(objPtr.get());
-            if (objPtr)
-            {
-                gf::Color4f color;
-                if (objPtr.get()->type == "down")
+            if (objPtr->visible) {
+                gf::TmxRectangle *rect = static_cast<gf::TmxRectangle *>(objPtr.get());
+                if (objPtr)
                 {
-                    color = gf::Color::Rose;
+                    gf::Color4f color;
+                    if (objPtr.get()->type == "down")
+                    {
+                        color = gf::Color::Rose;
+                    }
+                    else if (objPtr.get()->type == "up")
+                    {
+                        color = gf::Color::Cyan;
+                    }
+                    else if (objPtr.get()->type == "left")
+                    {
+                        color = gf::Color::Green;
+                    }
+                    else if (objPtr.get()->type == "right")
+                    {
+                        color = gf::Color::Orange;
+                    }
+                    int width = rect->size.width;
+                    int height = rect->size.height;
+                    std::cout << "width : " << width << std::endl;
+                    std::cout << "height : " << height << std::endl;
+                    gf::Vector2f position = objPtr.get()->position;
+                    position.x += width / 2;
+                    position.y += height / 2;
+                    std::cout << "position : " << position.col << " : " << position.row << std::endl;
+                    StaticPlateform plateform(position, height, width, color);
+                    gravitySwitchs.insert(std::make_pair(platformIndex, plateform));
+                    platformIndex++;
                 }
-                else if (objPtr.get()->type == "up")
-                {
-                    color = gf::Color::Cyan;
-                }
-                else if (objPtr.get()->type == "left")
-                {
-                    color = gf::Color::Green;
-                }
-                else if (objPtr.get()->type == "right")
-                {
-                    color = gf::Color::Orange;
-                }
-                int width = rect->size.width;
-                int height = rect->size.height;
-                std::cout << "width : " << width << std::endl;
-                std::cout << "height : " << height << std::endl;
-                gf::Vector2f position = objPtr.get()->position;
-                position.x += width / 2;
-                position.y += height / 2;
-                std::cout << "position : " << position.col << " : " << position.row << std::endl;
-                StaticPlateform plateform(position, height, width, color);
-                gravitySwitchs.insert(std::make_pair(platformIndex, plateform));
-                platformIndex++;
             }
         }
 

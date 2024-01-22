@@ -708,7 +708,7 @@ Wall</text>
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="9" name="gravity_switch" locked="1">
+ <objectgroup id="9" name="gravity_switch">
   <object id="1" type="down" x="176" y="644" width="12" height="8"/>
   <object id="2" type="left" x="548" y="564" width="12" height="8"/>
   <object id="3" type="up" x="304" y="468" width="12" height="8"/>
