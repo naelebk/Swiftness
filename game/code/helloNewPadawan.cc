@@ -60,6 +60,7 @@ namespace swiftness {
         if (!isActive()) return;
         if (quit_a.isActive()) game.replaceScene(game.menu);
     }
+
     void MenuHello::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
         loadLevelWithOrWithoutTMX(plateform, square, level);
         std::cout << "Level : " << level << '\n';
@@ -116,12 +117,13 @@ namespace swiftness {
         square.render(target);
         square.renderHUD(target,SCREEN_WIDTH,SCREEN_HEIGHT,{xcamera,ycamera});
     }
-    void MenuHello::doProcessEvent(gf::Event& event) {
+
+    void MenuHello::doUpdate(gf::Time time) {
         swiftness::CommandsManager commandManager;
+        gf::Event event;
         while (game.getWindow().pollEvent(event))
         {
             commandManager.manageCommands(enumVector, event);
         }
     }
-    void MenuHello::doShow() {}
 }

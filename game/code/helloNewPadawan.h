@@ -42,8 +42,7 @@ namespace swiftness {
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;
             void doRender (gf::RenderTarget& target, const gf::RenderStates &states) override;
-            void doProcessEvent(gf::Event& event);
-            void doShow() override;
+            void doUpdate(gf::Time time) override;
             
             // Getter du niveau
             int getLevel();
