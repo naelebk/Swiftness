@@ -96,8 +96,8 @@ namespace swiftness {
             game.replaceAllScenes(game.menu);
         }
         float dt = clock.getElapsedTime().asSeconds();
-        clock.restart();
         square.updateWithMap(dt, plateform, enumVector);
+        clock.restart();
         if (square.getLevelOver()) {
             game.replaceAllScenes(game.menu);
         }

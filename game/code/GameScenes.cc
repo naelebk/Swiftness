@@ -1,5 +1,9 @@
 #include "GameScenes.h"
 #include "GameCenter.h"
+#include <gf/SegueEffects.h>
+#include <gf/Easings.h>
+#include <gf/Time.h>
+#include <gf/SceneManager.h>
 #include <gf/Coordinates.h>
 #include <cstdlib>
 
@@ -18,6 +22,7 @@ namespace swiftness {
         choose_level("Choose level", font),
         questionmark_b("???", font)
         {
+            
             setClearColor(gf::Color::Black);
             // Première action correspondant à un bouton : quitter le jeu
             quit_a.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::B);
@@ -75,7 +80,8 @@ namespace swiftness {
             });*/
 
             createButtons(choose_level, [&] () {
-                game.replaceAllScenes(game.level);
+                gf::FadeSegueEffect fade;
+                game.replaceAllScenes(game.level/*, fade, gf::milliseconds(500)*/);
             });
 
             createButtons(questionmark_b, [&] () {
