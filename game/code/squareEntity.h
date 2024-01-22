@@ -123,6 +123,9 @@ namespace swiftness
         bool isOver;
         int nb_deaths;
         float timer;
+
+        // graphics
+        gf::Texture& m_skin;
     };
 }
 
