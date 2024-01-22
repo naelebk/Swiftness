@@ -18,6 +18,7 @@
 #include <vector>
 #include <gf/Views.h>
 #include <iostream>
+#include <gf/ResourceManager.h>
 
 namespace swiftness
 {
