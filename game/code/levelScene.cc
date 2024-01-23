@@ -27,10 +27,6 @@ namespace swiftness {
     , left("left")
     , right("right")
     , jump("jump")
-    , up_r("up_r")
-    , down_r("down_r")
-    , left_r("left_r")
-    , right_r("right_r")
      {
         m_text.setFont(m_font);
         m_text.setCharacterSize(20);
@@ -100,13 +96,13 @@ namespace swiftness {
         //if (!isActive()) return;
         if (quit_a.isActive()) game.replaceScene(game.menu);
         if(up.isActive()) square.actionUp(plateform);
-        if (!up.isActive()) square.actionUpRelease(plateform);
+        else square.actionUpRelease(plateform);
         if(down.isActive()) square.actionDown(plateform);
-        if (!down.isActive()) square.actionDownRelease(plateform);
+        else square.actionDownRelease(plateform);
         if(left.isActive()) square.actionLeft(plateform);
-        if (!left.isActive()) square.actionLeftRelease(plateform);
+        else square.actionLeftRelease(plateform);
         if (right.isActive()) square.actionRight(plateform);
-        if (!right.isActive()) square.actionRightRelease(plateform);
+        else square.actionRightRelease(plateform);
         if (jump.isActive()) square.actionJump(plateform);
     }
 
