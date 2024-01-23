@@ -34,14 +34,14 @@ namespace swiftness {
     // et de le placer en paramètre du constructeur de la classe
     struct GameCenter;
 
-    class GameScenes : public gf::Scene {
+    class Menu : public gf::Scene {
         public:
             // Constructeur
-            GameScenes(GameCenter& game);
+            Menu(GameCenter& game);
             // Destructeur
-            ~GameScenes() override;
+            ~Menu() override;
 
-            gf::WidgetContainer GameScenes_getWidgets();
+            gf::WidgetContainer MenuScene_getWidgets();
 
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;

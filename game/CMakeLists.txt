@@ -11,7 +11,7 @@ add_executable(game
   ./code/constants.cc
   ./code/GameCenter.cc
   ./code/GameLevel.cc
-  ./code/GameScenes.cc
+  ./code/MenuScene.cc
   ./code/helloNewPadawan.cc
   ./code/layerEntity.cc
   ./code/level.cc

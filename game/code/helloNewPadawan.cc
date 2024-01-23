@@ -88,7 +88,6 @@ namespace swiftness {
             std::cout << plateform.first << " : " << plateform.second.getPosition().x << " " << plateform.second.getPosition().y << std::endl;
         }
         // game loop
-        gf::Clock clock;
         target.clear(gf::Color::Black);
         // update the square
         std::vector<Input>::iterator it1 = std::find(enumVector.begin(), enumVector.end(), Input::Escape);
@@ -96,9 +95,6 @@ namespace swiftness {
         if (it1 != enumVector.end() || it2 != enumVector.end()) {
             game.replaceAllScenes(game.menu);
         }
-        float dt = clock.getElapsedTime().asSeconds();
-        square.updateWithMap(dt, plateform, enumVector);
-        clock.restart();
         if (square.getLevelOver()) {
             game.replaceAllScenes(game.menu);
         }
@@ -111,9 +107,8 @@ namespace swiftness {
         // render
         target.clear(gf::Color::Black);
         target.setView(camera);
-        std::string levelName = "level0" + std::to_string(level) + ".tmx";
         swiftness::LevelRender levelRender;
-        levelRender.renderLevel(levelName, target, square.getGravity());
+        levelRender.renderLevel(lvl, target, square.getGravity());
         square.render(target);
         square.renderHUD(target,SCREEN_WIDTH,SCREEN_HEIGHT,{xcamera,ycamera});
     }
@@ -121,9 +116,13 @@ namespace swiftness {
     void MenuHello::doUpdate(gf::Time time) {
         swiftness::CommandsManager commandManager;
         gf::Event event;
-        while (game.getWindow().pollEvent(event))
+        gf::Clock clock;
+        if (game.getWindow().pollEvent(event))
         {
             commandManager.manageCommands(enumVector, event);
         }
+        float dt = clock.getElapsedTime().asSeconds();
+        square.updateWithMap(dt, plateform, enumVector);
+        clock.restart();
     }
 }

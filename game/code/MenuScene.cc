@@ -1,4 +1,4 @@
-#include "GameScenes.h"
+#include "MenuScene.h"
 #include "GameCenter.h"
 #include <gf/SegueEffects.h>
 #include <gf/Easings.h>
@@ -8,7 +8,7 @@
 #include <cstdlib>
 
 namespace swiftness {
-    GameScenes::GameScenes(GameCenter& game) 
+    Menu::Menu(GameCenter& game) 
         : gf::Scene(game.getRenderer().getSize()),
         game(game),
         up("Up"),
@@ -90,15 +90,15 @@ namespace swiftness {
 
         }
 
-    GameScenes::~GameScenes() {}
+    Menu::~Menu() {}
 
-    gf::WidgetContainer GameScenes::GameScenes_getWidgets() {
+    gf::WidgetContainer Menu::MenuScene_getWidgets() {
         return widgets;
     }
 
     // Méthodes virtuelles privées héritant directement de gf::Scene
     // Méthodes virtuelles privées héritant directement de gf::Scene
-    void GameScenes::doHandleActions([[maybe_unused]] gf::Window& window) {
+    void Menu::doHandleActions([[maybe_unused]] gf::Window& window) {
         if (!isActive()) return;
         if (up.isActive()) widgets.selectPreviousWidget();
         if (down.isActive()) widgets.selectNextWidget();
@@ -106,7 +106,7 @@ namespace swiftness {
         if (quit_a.isActive()) game.popAllScenes();
     }
 
-    void GameScenes::doProcessEvent(gf::Event& event) {
+    void Menu::doProcessEvent(gf::Event& event) {
         switch(event.type) {
             case gf::EventType::MouseMoved:
                 widgets.pointTo(game.computeWindowToGameCoordinates(event.mouseCursor.coords, getHudView()));
@@ -116,7 +116,7 @@ namespace swiftness {
         }
     }
 
-    void GameScenes::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
+    void Menu::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
         float size = 0.05f, space = 0.2f;
         gf::Vector2f bg_size (0.55f, 0.4f); 
         target.setView(getHudView());
@@ -147,7 +147,7 @@ namespace swiftness {
         widgets.render(target, states);
 
     }
-    void GameScenes::doShow() {
+    void Menu::doShow() {
         widgets.clear();
 
         quit_b.setDefault();

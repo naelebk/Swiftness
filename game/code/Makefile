@@ -129,29 +129,29 @@ game/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/build
 .PHONY : game/fast
 
-GameScenes.o: GameScenes.cc.o
-.PHONY : GameScenes.o
+MenuScene.o: MenuScene.cc.o
+.PHONY : MenuScene.o
 
 # target to build an object file
-GameScenes.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/GameScenes.cc.o
-.PHONY : GameScenes.cc.o
+MenuScene.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/MenuScene.cc.o
+.PHONY : MenuScene.cc.o
 
-GameScenes.i: GameScenes.cc.i
-.PHONY : GameScenes.i
+MenuScene.i: MenuScene.cc.i
+.PHONY : MenuScene.i
 
 # target to preprocess a source file
-GameScenes.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/GameScenes.cc.i
-.PHONY : GameScenes.cc.i
+MenuScene.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/MenuScene.cc.i
+.PHONY : MenuScene.cc.i
 
-GameScenes.s: GameScenes.cc.s
-.PHONY : GameScenes.s
+MenuScene.s: MenuScene.cc.s
+.PHONY : MenuScene.s
 
 # target to generate assembly for a file
-GameScenes.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/GameScenes.cc.s
-.PHONY : GameScenes.cc.s
+MenuScene.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/MenuScene.cc.s
+.PHONY : MenuScene.cc.s
 
 commands.o: commands.cc.o
 .PHONY : commands.o
@@ -450,9 +450,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... game"
-	@echo "... GameScenes.o"
-	@echo "... GameScenes.i"
-	@echo "... GameScenes.s"
+	@echo "... MenuScene.o"
+	@echo "... MenuScene.i"
+	@echo "... MenuScene.s"
 	@echo "... commands.o"
 	@echo "... commands.i"
 	@echo "... commands.s"
