@@ -57,8 +57,8 @@
             "scale": 0.8092237903225806,
             "selectedLayer": 11,
             "viewCenter": {
-                "x": 290.4017440049829,
-                "y": 531.3734039240112
+                "x": 336.12457178449085,
+                "y": 496.77234506384303
             }
         },
         "Maps/level00.tmx#utilities": {
@@ -188,8 +188,8 @@
             "scale": 1.4862304687499999,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 248.95196793481836,
-                "y": 170.90216177146988
+                "x": 247.6062816216572,
+                "y": 169.5564754583087
             }
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -356,5 +356,10 @@
         "Tilesets/8_gravity_walls_open.tsx",
         "Maps/level_template.tmx",
         "Tilesets/7_gravity_walls.tsx"
-    ]
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
 }
