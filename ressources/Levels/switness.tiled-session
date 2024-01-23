@@ -1,12 +1,12 @@
 {
-    "activeFile": "Maps/level00.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
-        "levels",
-        "Maps",
         "level",
+        "Maps",
         "tileset",
+        "Tilesets",
         ".",
-        "Tilesets"
+        "levels"
     ],
     "fileStates": {
         "": {
@@ -50,15 +50,15 @@
         },
         "Maps/level00.tmx": {
             "expandedObjectLayers": [
-                19,
                 9,
+                19,
                 12
             ],
             "scale": 0.8092237903225806,
-            "selectedLayer": 12,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 294.10900031142944,
-                "y": 636.4123326066647
+                "x": 292.87324820928063,
+                "y": 533.844908128309
             }
         },
         "Maps/level00.tmx#utilities": {
@@ -341,7 +341,6 @@
     },
     "last.imagePath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Images",
     "openFiles": [
-        "Maps/level00.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
