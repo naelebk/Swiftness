@@ -20,7 +20,7 @@ namespace swiftness {
     square(square),
     enumVector(enumVector),
     m_camera(camera),
-    m_levelData(LEVELS_TMX_PATH + "Level0" + std::to_string(level) + ".tmx"),
+    m_levelData(LEVELS_TMX_PATH + "level0" + std::to_string(level) + ".tmx"),
     quit_a("quit") {
         m_text.setFont(m_font);
         m_text.setCharacterSize(20);
@@ -67,10 +67,10 @@ namespace swiftness {
         gf::ExtendView cam(m_camera, {SCREEN_WIDTH, SCREEN_HEIGHT});
         target.clear(gf::Color::Black);
         target.setView(cam);
+        swiftness::LevelRender renderLevel;
+        renderLevel.renderLevel("level0" + std::to_string(level) + ".tmx", target, square.getGravity());
         square.render(target);
         square.renderHUD(target, SCREEN_WIDTH, SCREEN_HEIGHT, m_camera);
-        swiftness::LevelRender renderLevel;
-        renderLevel.renderLevel(LEVELS_TMX_PATH + "Level0" + std::to_string(level) + ".tmx", target, square.getGravity());
     }
 
     void levelScene::doUpdate(gf::Time time) {
@@ -93,22 +93,15 @@ namespace swiftness {
         xcamera=std::clamp(xcamera,SCREEN_WIDTH/2+tile_width,map_width*tile_width-SCREEN_WIDTH/2-tile_width);
         ycamera=std::clamp(ycamera,SCREEN_HEIGHT/2+tile_height,map_height*tile_height-SCREEN_HEIGHT/2-tile_height);
         m_camera = {xcamera, ycamera};
-        enumVector.clear();
-        // game loop
-        //target.clear(gf::Color::Black);
-        // update the square
-        swiftness::CommandsManager commandManager;
         gf::Event event;
-        if (game.getWindow().pollEvent(event))
+        swiftness::CommandsManager commandManager;
+        while (game.getWindow().pollEvent(event))
         {
             commandManager.manageCommands(enumVector, event);
         }
         std::vector<Input>::iterator it1 = std::find(enumVector.begin(), enumVector.end(), Input::Escape);
         std::vector<Input>::iterator it2 = std::find(enumVector.begin(), enumVector.end(), Input::Closed);
         if (it1 != enumVector.end() || it2 != enumVector.end()) {
-            game.replaceAllScenes(game.menu);
-        }
-        if (square.getLevelOver()) {
             game.replaceAllScenes(game.menu);
         }
     }
