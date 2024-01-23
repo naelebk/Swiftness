@@ -33,12 +33,12 @@
 #include "levelRender.h"
 namespace swiftness {
     struct GameCenter;
-    class MenuHello : public gf::Scene {
+    class levelScene : public gf::Scene {
         public:
             // Constructeur
-            MenuHello(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector);
+            levelScene(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector);
 
-            ~MenuHello();
+            ~levelScene();
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;
             void doRender (gf::RenderTarget& target, const gf::RenderStates &states) override;

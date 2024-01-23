@@ -1,4 +1,4 @@
-#include "helloNewPadawan.h"
+#include "levelScene.h"
 #include "GameCenter.h"
 #define RED     "\x1b[31m"
 #define GREEN   "\x1b[32m"
@@ -10,8 +10,8 @@
 
 namespace swiftness {
     // Déclaration en seconde instance du constructeur et du destructeur,
-    // de menuHello (interface graphique)
-    MenuHello::MenuHello(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector) : 
+    // de levelScene (interface graphique)
+    levelScene::levelScene(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector) : 
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     m_font(font), 
     game(game), 
@@ -30,17 +30,17 @@ namespace swiftness {
         addAction(quit_a);
     }
 
-    MenuHello::~MenuHello() {}
+    levelScene::~levelScene() {}
 
-    int MenuHello::getLevel(){ return level; }
+    int levelScene::getLevel(){ return level; }
 
-    void MenuHello::updateLevel(int s_level) {
+    void levelScene::updateLevel(int s_level) {
         level = s_level;
     }
 
     // Comme on ne peut pas mettre une valeur non comprise entre MIN_LEVEL et MAX_LEVEL, on n'effectue aucune
     // vérification sur la valeur de level, car auquel cas rien ne sera fait
-    void MenuHello::loadLevelWithOrWithoutTMX(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square, int level) {
+    void levelScene::loadLevelWithOrWithoutTMX(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square, int level) {
         if (level < 0) {
             exit(0);
         }
@@ -56,12 +56,12 @@ namespace swiftness {
         plateform = leveln.plateform;
     }
 
-    void MenuHello::doHandleActions(gf::Window& window) {
+    void levelScene::doHandleActions(gf::Window& window) {
         if (!isActive()) return;
         if (quit_a.isActive()) game.replaceScene(game.menu);
     }
 
-    void MenuHello::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
+    void levelScene::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
         loadLevelWithOrWithoutTMX(plateform, square, level);
         std::cout << "Level : " << level << '\n';
         std::string lvl = "";
@@ -113,7 +113,7 @@ namespace swiftness {
         square.renderHUD(target,SCREEN_WIDTH,SCREEN_HEIGHT,{xcamera,ycamera});
     }
 
-    void MenuHello::doUpdate(gf::Time time) {
+    void levelScene::doUpdate(gf::Time time) {
         swiftness::CommandsManager commandManager;
         gf::Event event;
         gf::Clock clock;

@@ -1,7 +1,7 @@
 #include "GameLevel.h"
 #include "GameCenter.h"
 #include <gf/Coordinates.h>
-#include "helloNewPadawan.h"
+#include "levelScene.h"
 
 namespace swiftness {
     SelectLevel::SelectLevel(GameCenter& game, gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square) :

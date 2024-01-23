@@ -15,6 +15,6 @@ namespace swiftness {
         GameCenter(gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector);
         SelectLevel level;
         Menu menu;
-        MenuHello helloWorld;
+        levelScene helloWorld;
     };
 }
