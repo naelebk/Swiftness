@@ -26,7 +26,7 @@
 #include "staticPlateforme.h"
 #include "level.h"
 #include "squareEntity.h"
-#include "helloNewPadawan.h"
+#include "levelScene.h"
 
 namespace swiftness {
     struct GameCenter;
@@ -54,8 +54,8 @@ namespace swiftness {
             gf::Action quit;
             gf::WidgetContainer widgets;
             std::vector<gf::TextButtonWidget> levels_b;
-            //std::vector<MenuHello> helloWorld;
-            //MenuHello helloWorld;
+            //std::vector<levelScene> helloWorld;
+            //levelScene helloWorld;
             std::size_t index;
             std::map<int, swiftness::StaticPlateform> plateform;
             swiftness::Square square;
