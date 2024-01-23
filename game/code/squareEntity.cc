@@ -259,7 +259,7 @@ namespace swiftness
         }    
     }
 
-    void Square::updateWithMap(float dt, std::map<int, StaticPlateform> plateforms, std::vector<Input> inputs)
+    void Square::update(float dt, std::map<int, StaticPlateform> plateforms, std::vector<Input> inputs)
     {
         actionWithInputs(inputs,plateforms);
         bool walljumpRight=canWallJumpRight(plateforms);
@@ -569,19 +569,6 @@ namespace swiftness
         
         return false;
 
-    }
-
-    void Square::update(float dt, StaticPlateform plateform)
-    {
-        // Mettez à jour la position du carré
-        m_position += dt * m_velocity;
-
-        // Appliquez la gravité
-        setVelocity(m_velocity + gf::Vector2f(0, gravity * dt));
-
-        // Vérifiez les collisions avec la plateforme
-        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(),plateform.getColor(),false,false,false,false);
-        
     }
 
     void Square::render(gf::RenderTarget &target)

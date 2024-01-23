@@ -4,6 +4,7 @@
 
 namespace swiftness {
 
+
     void LevelRender::renderLayer(LayerEntity &layerEntity, gf::RenderTarget &target, LayerName layerName, std::string gravity) {
         gf::TmxTileLayer *layer = layerEntity.getTileLayerByName(layerName);
         if (layerName == LayerName::Gw_blue && gravity == "down") {

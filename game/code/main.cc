@@ -39,7 +39,8 @@ int main(int argc, char *argv[]) {
     swiftness::Square square;
     gf::Font font(PATH_FONT);
     std::vector<Input> enumVector;
-    swiftness::GameCenter game(font, plateform, square, enumVector);
+    gf::Vector2f camera;
+    swiftness::GameCenter game(font, plateform, square, enumVector, camera);
     game.run();
     /*while (true) {
         
@@ -91,7 +92,7 @@ int main(int argc, char *argv[]) {
                 window.close();
             }
             float dt = clock.restart().asSeconds();
-            square.updateWithMap(dt, plateform, enumVector);
+            square.update(dt, plateform, enumVector);
             if (square.getLevelOver()) window.close();
             float xcamera=square.getPosition().x;
             float ycamera=square.getPosition().y;

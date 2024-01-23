@@ -55,7 +55,7 @@ namespace swiftness
         /**
          * @brief Met à jour la position du carré
         */
-        void updateWithMap(float dt, std::map<int, StaticPlateform> plateforms, std::vector<Input> inputs);
+        void update(float dt, std::map<int, StaticPlateform> plateforms, std::vector<Input> inputs);
 
         /**
         * Méthode permettant de faire les actions que l'on souhaite avec les inputs
@@ -75,11 +75,6 @@ namespace swiftness
         bool canWallJumpUp(std::map<int, StaticPlateform> plateforms);
 
         bool canWallJumpDown(std::map<int, StaticPlateform> plateforms);
-
-        /*
-        * Update the square
-        */
-        void update(float dt, StaticPlateform plateform);
 
         /**
          * @brief Affiche le carré

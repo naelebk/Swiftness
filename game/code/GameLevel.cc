@@ -4,12 +4,13 @@
 #include "levelScene.h"
 
 namespace swiftness {
-    SelectLevel::SelectLevel(GameCenter& game, gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square) :
+    SelectLevel::SelectLevel(GameCenter& game, gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, gf::Vector2f& camera) :
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     font(font),
     game(game),
     plateform(plateform),
     square(square),
+    m_camera(camera),
     up("Up"),
     down("Down"),
     trigger("Trigger"),
@@ -61,8 +62,9 @@ namespace swiftness {
                     game.replaceAllScenes(game.menu);
                 });
             } else {
+                game.levels.loadLevel(plateform, square, 0);
                 createButtons(levels_b[i], [&] () {
-                    game.replaceAllScenes(game.helloWorld);
+                    game.replaceAllScenes(game.levels);
                 });
             }
         }

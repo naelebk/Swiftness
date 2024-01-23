@@ -12,9 +12,9 @@
 
 namespace swiftness {
     struct GameCenter : gf::GameManager {
-        GameCenter(gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector);
+        GameCenter(gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector, gf::Vector2f& camera);
         SelectLevel level;
         Menu menu;
-        levelScene helloWorld;
+        levelScene levels;
     };
 }

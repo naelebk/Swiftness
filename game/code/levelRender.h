@@ -3,6 +3,7 @@
 #define LEVEL_RENDER_H
 #include "layerEntity.h"
 #include "constants.h"
+#include <gf/Vector.h>
 #include "tilesEnumData.h"
 #include "gf/Drawable.h"
 #include "gf/Tmx.h"
@@ -30,7 +31,7 @@ namespace swiftness
              * @param layerEntity
              * @param window
             */
-            void renderLevel(std::string namefile, gf::RenderTarget &target, std::string gravity);
+            void renderLevel(std::string nameFile, gf::RenderTarget &target, std::string gravity);
     };
 }; // namespace swiftness
 

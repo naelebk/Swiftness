@@ -6,6 +6,8 @@
 #include "staticPlateforme.h"
 #include "levelEntity.h"
 #include <map>
+#include "levelRender.h"
+#include <gf/RenderTarget.h>
 
 namespace swiftness
 {
@@ -51,15 +53,7 @@ namespace swiftness
         static level initializeLevel(std::string nameFile);
 
         static std::map<int, StaticPlateform> initializeLevel03();
-
-        /**
-         * @brief render the texture of the level
-         *
-         * @param level
-         *
-         * @return void
-         */
-        static void render(level level);
+  
     };
 
 } // namespace swiftness
