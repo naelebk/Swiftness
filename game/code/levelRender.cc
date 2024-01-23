@@ -1,21 +1,34 @@
 #include "levelRender.h"
+#include <fstream>
+
 
 namespace swiftness {
 
     void LevelRender::renderLayer(LayerEntity &layerEntity, gf::RenderTarget &target, LayerName layerName, std::string gravity) {
         gf::TmxTileLayer *layer = layerEntity.getTileLayerByName(layerName);
-        if (layer != nullptr && layer->visible) {
-            if ((layerName == LayerName::Gw_blue && gravity == "down") ||
-                (layerName == LayerName::Gw_rose && gravity == "up") ||
-                (layerName == LayerName::Gw_green && gravity == "left") ||
-                (layerName == LayerName::Gw_orange && gravity == "right")) {
-                    layer->opacity = 0;
+        if (layerName == LayerName::Gw_blue && gravity == "down") {
+                layer->visible = false;
             }
+            if (layerName == LayerName::Gw_rose && gravity == "up") {
+                layer->visible = false;
+            }
+            if (layerName == LayerName::Gw_green && gravity == "left") {
+                layer->visible = false;
+            }
+            if (layerName == LayerName::Gw_orange && gravity == "right") {
+                layer->visible = false;
+            }   
+        if (layer != nullptr && layer->visible) {
+            // logFile << "Layer found: " << getLayerName(layerName) << std::endl; // Écrire dans le fichier de log
 
-            // Assurez-vous que cette méthode reflète les changements de l'opacité
+            // Enregistrer la valeur actuelle de l'opacité
+            // logFile << "Current opacity for " << getLayerName(layerName) << ": " << layer->opacity << std::endl;
+
             gf::TileLayer tileLayer = gf::makeTileLayer(layerEntity.getLayers(), *layer, layerEntity.getResources());
             target.draw(tileLayer);
         }
+
+        // logFile.close(); // Fermer le fichier de log.
     }
 
     void LevelRender::renderLevel(std::string nameFile, gf::RenderTarget &target, std::string gravity) {

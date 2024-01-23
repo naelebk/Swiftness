@@ -54,6 +54,18 @@ namespace swiftness
         case LayerName::Gw_orange:
             return "Gw_orange";
             break;
+        case LayerName::Gw_blue_open:
+            return "Gw_blue_open";
+            break;
+        case LayerName::Gw_rose_open:
+            return "Gw_rose_open";
+            break;
+        case LayerName::Gw_green_open:
+            return "Gw_green_open";
+            break;
+        case LayerName::Gw_orange_open:
+            return "Gw_orange_open";
+            break;
         default:
             return "Error";
             break;

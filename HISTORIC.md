@@ -180,6 +180,25 @@
 >- Ajout de beaucoup d'asset pixel art pour les portail de début et fin de niveau, murs tueurs, bouton gravité et portail de choix de niveau
 >
 
+
+## Gestion texture des niveau
+
+>
+>> *17/01/2024*
+>> **Julien**
+>
+>- le niveau s'affiche maintenant avec les texture
+>
+
+## ajout de murs traversable en fonction de la gravité active du niveau
+
+>
+>> *18/01/2024*
+>> **Julien**
+>
+>- certain mur (avec une texture spécifique) peuvent devenir intangible si la gravité associé est active
+>
+
 ## Fonctionnalité majeure ajoutée : jouabilité avec Gamepad
 
 >
@@ -187,4 +206,13 @@
 >> **Naël**
 >
 >- Ajout de la possibilité de jouer avec un Gamepad pour notre jeu (clavier + gamepad possibles)
+>
+
+## Ajout d'un changement d'affichage quand un murs est traversable
+
+>
+>> *20/01/2024*
+>> **Julien**
+>
+>- lorsque le murs est traversable, la texture change
 >
