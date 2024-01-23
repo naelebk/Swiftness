@@ -618,7 +618,7 @@ namespace swiftness
         float squareBottom = m_position.y + m_size / 2;
 
         if(color==gf::Color::Yellow){
-            m_gravityDirection="down";
+            
             if (wallLeft){ 
                 squareLeft-=1;
             }
@@ -643,6 +643,7 @@ namespace swiftness
                 m_velocity=gf::Vector2f(0,0);
                 m_gravity=1;
                 nb_deaths+=1;
+                m_gravityDirection="down";
                 return;
             }
             // close the game
