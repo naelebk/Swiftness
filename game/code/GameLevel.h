@@ -23,31 +23,42 @@
 #include <iostream>
 #include <vector>
 #include "constants.h"
+#include "staticPlateforme.h"
+#include "level.h"
+#include "squareEntity.h"
+#include "helloNewPadawan.h"
 
 namespace swiftness {
     struct GameCenter;
     class SelectLevel : public gf::Scene {
         public:
             // Constructeur
-            SelectLevel(GameCenter& game);
+            SelectLevel(GameCenter& game, gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square);
             // Desctructeur
             ~SelectLevel() override;
 
             gf::WidgetContainer GameLevel_getWidgets();
 
             // Méthodes virtuelles privées héritant directement de gf::Scene
-            void GameLevel_HandleActions(gf::Window& window);
-            void GameLevel_Render(gf::RenderTarget& target, const gf::RenderStates &states);
-            void GameLevel_Show();
+            void doHandleActions(gf::Window& window) override;
+            void doRender (gf::RenderTarget& target, const gf::RenderStates &states) override;
+            void doProcessEvent(gf::Event& event) override;
+            void doShow() override;
 
         private:
             GameCenter& game;
+            gf::Font& font;
             gf::Action up;
             gf::Action down;
             gf::Action trigger;
             gf::Action quit;
             gf::WidgetContainer widgets;
             std::vector<gf::TextButtonWidget> levels_b;
+            //std::vector<MenuHello> helloWorld;
+            //MenuHello helloWorld;
+            std::size_t index;
+            std::map<int, swiftness::StaticPlateform> plateform;
+            swiftness::Square square;
 
     };
 }

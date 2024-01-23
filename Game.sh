@@ -11,25 +11,34 @@ check_cmd() {
     if [[ $? -eq 0 ]]; then
         if [ -z "$1" ]; then 
             echo -e "${GREEN}OK.${NC}"
-            rm -f "$2" > /dev/null 2>&1
+            if [[ -f "$2" ]]; then
+                rm -f "$2" > /dev/null 2>&1
+            fi
         else 
             echo -e "${GREEN}OK pour $1.${NC}"
-            rm -f "$2" > /dev/null 2>&1
+            if [[ -f "$2" ]]; then
+                rm -f "$2" > /dev/null 2>&1
+            fi
         fi
     else
         if [ -z "$1" ]; then 
             echo -e "${RED}ERREUR !${NC}"
-            cat "$2"
-            rm -f "$2" > /dev/null 2>&1
+            if [[ -f "$2" ]]; then
+                cat "$2"
+                rm -f "$2" > /dev/null 2>&1
+            fi
             exit 1
         else
             echo -e "${RED}ERREUR pour $1.${NC}"
-            cat "$2"
-            rm -f "$2" > /dev/null 2>&1
+            if [[ -f "$2" ]]; then
+                cat "$2"
+                rm -f "$2" > /dev/null 2>&1
+            fi
             exit 1
         fi
     fi
 }
+clear
 echo -ne "${YELLOW}Accès au répertoire game..... ${NC}"
 cd game > "$FILE" 2>&1
 check_cmd "" "../$FILE"

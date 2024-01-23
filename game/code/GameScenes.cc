@@ -1,10 +1,15 @@
 #include "GameScenes.h"
 #include "GameCenter.h"
+#include <gf/SegueEffects.h>
+#include <gf/Easings.h>
+#include <gf/Time.h>
+#include <gf/SceneManager.h>
 #include <gf/Coordinates.h>
+#include <cstdlib>
 
 namespace swiftness {
     GameScenes::GameScenes(GameCenter& game) 
-        : gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
+        : gf::Scene(game.getRenderer().getSize()),
         game(game),
         up("Up"),
         down("Down"),
@@ -17,6 +22,7 @@ namespace swiftness {
         choose_level("Choose level", font),
         questionmark_b("???", font)
         {
+            
             setClearColor(gf::Color::Black);
             // Première action correspondant à un bouton : quitter le jeu
             quit_a.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::B);
@@ -26,17 +32,20 @@ namespace swiftness {
             // Seconde action permettant d'aller en haut
             up.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
             up.addScancodeKeyControl(gf::Scancode::Up);
+            up.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
             addAction(up);
 
             // Troisième action permattant d'aller en bas
             down.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadDown);
             down.addScancodeKeyControl(gf::Scancode::Down);
+            down.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Positive);
             addAction(down);
 
             // Quatrième action permettant d'effectuer un choix
             // (touche A du Gamepad, ou bien touche entrée, ou bien cliquer directement sur le bouton)
             trigger.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
             trigger.addScancodeKeyControl(gf::Scancode::Return);
+            trigger.addMouseButtonControl(gf::MouseButton::Left);
             addAction(trigger);
 
             // ????????????????????????????????????????????????????????????????????????
@@ -66,16 +75,17 @@ namespace swiftness {
                 game.popAllScenes();
             });
 
-            createButtons(credits, [&] () {
+            /*createButtons(credits, [&] () {
                 game.replaceAllScenes(game.level);
-            });
+            });*/
 
             createButtons(choose_level, [&] () {
-                game.replaceAllScenes(game.level);
+                gf::FadeSegueEffect fade;
+                game.replaceAllScenes(game.level/*, fade, gf::milliseconds(500)*/);
             });
 
             createButtons(questionmark_b, [&] () {
-                game.replaceAllScenes(game.level);
+                system("gio open https://www.youtube.com/watch?v=xvFZjo5PgG0 > /dev/null 2>&1");
             });
 
         }
@@ -88,15 +98,26 @@ namespace swiftness {
 
     // Méthodes virtuelles privées héritant directement de gf::Scene
     // Méthodes virtuelles privées héritant directement de gf::Scene
-    void GameScenes::GameScenes_HandleActions(gf::Window& window) {
-        if (!window.isOpen()) return;
+    void GameScenes::doHandleActions([[maybe_unused]] gf::Window& window) {
+        if (!isActive()) return;
         if (up.isActive()) widgets.selectPreviousWidget();
         if (down.isActive()) widgets.selectNextWidget();
         if (trigger.isActive()) widgets.triggerAction();
-        if (quit_a.isActive()) game.replaceScene(game.menu);
+        if (quit_a.isActive()) game.popAllScenes();
     }
-    void GameScenes::GameScenes_Render(gf::RenderTarget& target, const gf::RenderStates &states) {
-        float size = 0.08f, space = 0.025f;
+
+    void GameScenes::doProcessEvent(gf::Event& event) {
+        switch(event.type) {
+            case gf::EventType::MouseMoved:
+                widgets.pointTo(game.computeWindowToGameCoordinates(event.mouseCursor.coords, getHudView()));
+                break;
+            default:
+                break;
+        }
+    }
+
+    void GameScenes::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
+        float size = 0.05f, space = 0.2f;
         gf::Vector2f bg_size (0.55f, 0.4f); 
         target.setView(getHudView());
         gf::Coordinates coords(target);
@@ -109,31 +130,31 @@ namespace swiftness {
         quit_b.setPadding(padding);
 
         credits.setCharacterSize(r_size);
-        credits.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
+        credits.setPosition(coords.getRelativePoint({0.275f, 0.425f + size - space}));
         credits.setParagraphWidth(width);
         credits.setPadding(padding);
 
         choose_level.setCharacterSize(r_size);
-        choose_level.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
+        choose_level.setPosition(coords.getRelativePoint({0.275f, (0.425f + size - space)*2}));
         choose_level.setParagraphWidth(width);
         choose_level.setPadding(padding);
 
         questionmark_b.setCharacterSize(r_size);
-        questionmark_b.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
+        questionmark_b.setPosition(coords.getRelativePoint({0.275f, (0.425f + size - space)*3}));
         questionmark_b.setParagraphWidth(width);
         questionmark_b.setPadding(padding);
 
         widgets.render(target, states);
 
     }
-    void GameScenes::GameScenes_Show() {
+    void GameScenes::doShow() {
         widgets.clear();
 
         quit_b.setDefault();
         widgets.addWidget(quit_b);
 
         credits.setDefault();
-        widgets.addWidget(credits);
+        //widgets.addWidget(credits);
 
         choose_level.setDefault();
         widgets.addWidget(choose_level);

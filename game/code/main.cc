@@ -5,6 +5,7 @@
 #include "commands.h"
 #include "helloNewPadawan.h"
 #include "levelRender.h"
+#include "GameCenter.h"
 
 #include <memory>
 #include <gf/Clock.h>
@@ -34,19 +35,14 @@ int main(int argc, char *argv[]) {
     // gf::Vector2f velocity(0, GRAVITY);
     bool isresize = false;
     int level = -2;
-    while (true) {
-        std::map<int, swiftness::StaticPlateform> plateform;
-        swiftness::Square square;
-        gf::Font font(PATH_FONT);
-        gf::Window win1("Welcome to Swiftness", gf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));
-        gf::RenderWindow renderer(win1);
-        swiftness::MenuHello helloWorld(font, win1);
-        while (level == -2) {
-            if(helloWorld.displayLevelSelection(renderer, win1, font, level)) break;
-        }            
-        win1.close();
-        helloWorld.loadLevelWithOrWithoutTMX(plateform, square, level);
-        if (level == -1) break;
+    std::map<int, swiftness::StaticPlateform> plateform;
+    swiftness::Square square;
+    gf::Font font(PATH_FONT);
+    std::vector<Input> enumVector;
+    swiftness::GameCenter game(font, plateform, square, enumVector);
+    game.run();
+    /*while (true) {
+        
         std::cout << "Level : " << level << '\n';
         std::string lvl = "";
         if (level >= 0 && level < 10) {
@@ -54,7 +50,7 @@ int main(int argc, char *argv[]) {
         } else {
             lvl = "level" + std::to_string(level) + ".tmx";
         }
-        swiftness:LevelData ldata(lvl);
+        swiftness::LevelData ldata(lvl);
         float map_width=ldata.getMapSize().x;
         float map_height=ldata.getMapSize().y;
         float tile_width=ldata.getTileSize().x;
@@ -124,6 +120,6 @@ int main(int argc, char *argv[]) {
             render.display();
         }
         level = -2;
-    }   
+    }*/   
     return 0;
 }
