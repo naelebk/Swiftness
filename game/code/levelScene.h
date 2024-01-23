@@ -59,6 +59,15 @@ namespace swiftness {
             GameCenter& game;
             gf::Font& m_font;
             gf::Action quit_a;
+            gf::Action up;
+            gf::Action down;
+            gf::Action left;
+            gf::Action right;
+            gf::Action jump;
+            gf::Action up_r;
+            gf::Action down_r;
+            gf::Action left_r;
+            gf::Action right_r;
             int level;
             gf::Text m_text;
             std::map<int, swiftness::StaticPlateform> plateform;

@@ -21,7 +21,17 @@ namespace swiftness {
     enumVector(enumVector),
     m_camera(camera),
     m_levelData(LEVELS_TMX_PATH + "level0" + std::to_string(level) + ".tmx"),
-    quit_a("quit") {
+    quit_a("quit")
+    , up("up")
+    , down("down")
+    , left("left")
+    , right("right")
+    , jump("jump")
+    , up_r("up_r")
+    , down_r("down_r")
+    , left_r("left_r")
+    , right_r("right_r")
+     {
         m_text.setFont(m_font);
         m_text.setCharacterSize(20);
         m_text.setColor(gf::Color::Yellow);
@@ -30,6 +40,34 @@ namespace swiftness {
         quit_a.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::B);
         quit_a.addKeycodeKeyControl(gf::Keycode::Escape);
         addAction(quit_a);
+
+        up.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
+        up.addScancodeKeyControl(gf::Scancode::Up);
+        up.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
+        up.setContinuous();
+        addAction(up);
+
+        down.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadDown);
+        down.addScancodeKeyControl(gf::Scancode::Down);
+        down.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Positive);
+        down.setContinuous();
+        addAction(down);
+
+        left.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadLeft);
+        left.addScancodeKeyControl(gf::Scancode::Left);
+        left.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Negative);
+        left.setContinuous();
+        addAction(left);
+
+        right.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadRight);
+        right.addScancodeKeyControl(gf::Scancode::Right);
+        right.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Positive);
+        right.setContinuous();
+        addAction(right);
+
+        jump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
+        jump.addKeycodeKeyControl(gf::Keycode::Space);
+        addAction(jump);
     }
 
     levelScene::~levelScene() {}
@@ -59,8 +97,17 @@ namespace swiftness {
     }
 
     void levelScene::doHandleActions(gf::Window& window) {
-        if (!isActive()) return;
+        //if (!isActive()) return;
         if (quit_a.isActive()) game.replaceScene(game.menu);
+        if(up.isActive()) square.actionUp(plateform);
+        if (!up.isActive()) square.actionUpRelease(plateform);
+        if(down.isActive()) square.actionDown(plateform);
+        if (!down.isActive()) square.actionDownRelease(plateform);
+        if(left.isActive()) square.actionLeft(plateform);
+        if (!left.isActive()) square.actionLeftRelease(plateform);
+        if (right.isActive()) square.actionRight(plateform);
+        if (!right.isActive()) square.actionRightRelease(plateform);
+        if (jump.isActive()) square.actionJump(plateform);
     }
 
     void levelScene::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
@@ -75,7 +122,7 @@ namespace swiftness {
 
     void levelScene::doUpdate(gf::Time time) {
         float dt = time.asSeconds();
-        square.update(dt, plateform, enumVector);
+        square.update(dt, plateform, game.getWindow());
         if (square.getLevelOver()) game.replaceAllScenes(game.menu);
         std::string lvl = "";
         if (level >= 0 && level < 10) {

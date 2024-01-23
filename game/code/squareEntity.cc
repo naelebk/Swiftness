@@ -5,7 +5,23 @@
 namespace swiftness
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f)
+        : m_position(position)
+        , m_position_start(position)
+        , m_velocity(0, 0)
+        , m_size(size)
+        , m_color(color)
+        , gravity(GRAVITY_SQUARE)
+        , m_jump(false)
+        , nb_jumps(0)
+        , m_gravity(1)
+        , horizontal_g(false)
+        , goLeft(false)
+        , goRight(false)
+        , goUp(false)
+        , goDown(false)
+        , isOver(false)
+        , nb_deaths(0)
+        , timer(0.0f)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -18,250 +34,215 @@ namespace swiftness
         m_velocity = velocity;
     }
 
-    void Square::actionWithInputs(std::vector<Input> inputs,std::map<int, StaticPlateform> plateforms) {
-        if (inputs.empty()) return;      
-        // On ne return pas à chaque action
-        // Pourquoi ? Dans le cas où le joueur voudrait faire plusieurs actions dans une même frame
-        // Par exemple : aller en haut à gauche
 
-        // Évènement non released
-        std::vector<Input>::iterator Z = std::find(inputs.begin(), inputs.end(), Input::Z);
-        std::vector<Input>::iterator Up = std::find(inputs.begin(), inputs.end(), Input::Up);        
-        if (Z != inputs.end() || Up != inputs.end()) {
-            goUp=true;
-            if (horizontal_g){
-                m_velocity.y = -SPEED_SQUARE;
+    void Square::actionUp(std::map<int, StaticPlateform> plateforms) {
+        goUp=true;
+        if (horizontal_g){
+            m_velocity.y = -SPEED_SQUARE;
+        }else{
+            m_jump=canJump(plateforms);
+            bool walljumpRight=canWallJumpRight(plateforms);
+            bool walljumpLeft=canWallJumpLeft(plateforms);
+            if(m_jump || (nb_jumps<2 && !walljumpRight && !walljumpLeft)){
+                m_velocity.y = JUMP*m_gravity;
+                nb_jumps = m_jump ? 1 : 2;
             }else{
-                m_jump=canJump(plateforms);
-                bool walljumpRight=canWallJumpRight(plateforms);
-                bool walljumpLeft=canWallJumpLeft(plateforms);
-                if(m_jump || (nb_jumps<2 && !walljumpRight && !walljumpLeft)){
-                    m_velocity.y = JUMP*m_gravity;
-                    if (m_jump){
-                            nb_jumps=1;
-                        }else{
-                            nb_jumps=2;
-                        };
+                if(walljumpRight){
+                    m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
+                    nb_jumps=2;
+                    m_velocity.x=-WALL_JUMP_SPEED;
                 }else{
-                    if(walljumpRight){
+                    if(walljumpLeft){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=2;
-                        m_velocity.x=-WALL_JUMP_SPEED;
+                        m_velocity.x=WALL_JUMP_SPEED;
+                    }
+                }
+            }
+            m_jump=false;
+        }
+    }
+    void Square::actionUpRelease(std::map<int, StaticPlateform> plateforms){
+        if(horizontal_g){
+            if(m_velocity.y<0){
+                m_velocity.y = 0;
+            }
+        }
+        goUp=false;
+    }
+    void Square::actionDown(std::map<int, StaticPlateform> plateforms){
+        goDown=true; if (horizontal_g) m_velocity.y = SPEED_SQUARE;
+    }
+    void Square::actionDownRelease(std::map<int, StaticPlateform> plateforms){
+        if(horizontal_g){
+            if(m_velocity.y>0){
+                m_velocity.y = 0;
+            }
+        }
+        goDown=false;
+    }
+    void Square::actionLeft(std::map<int, StaticPlateform> plateforms){
+        if(horizontal_g){
+            if (m_gravity>0){
+                bool walljumpRight=canWallJumpRight(plateforms);
+                bool walljumpUp=canWallJumpUp(plateforms);
+                bool wallJumpDown=canWallJumpDown(plateforms);
+                if(walljumpRight || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
+                    m_velocity.x = JUMP*m_gravity;
+                    if (walljumpRight){
+                        nb_jumps=1;
                     }else{
-                        if(walljumpLeft){
-                            m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
+                        nb_jumps=2;
+                    }
+                }else{
+                    if( wallJumpDown){
+                        m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
+                        nb_jumps=2;
+                        m_velocity.y=-WALL_JUMP_SPEED;
+                    }else{
+                        if( walljumpUp){
+                            m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=2;
-                            m_velocity.x=WALL_JUMP_SPEED;
+                            m_velocity.y=WALL_JUMP_SPEED;
                         }
                     }
                 }
-                m_jump=false;
+            }
+        }else{ 
+            m_velocity.x = -SPEED_SQUARE;
+        }
+        goLeft=true;
+    }
+    void Square::actionLeftRelease(std::map<int, StaticPlateform> plateforms){
+        if(!horizontal_g){
+            if(m_velocity.x<0){
+                m_velocity.x = 0;
             }
         }
-        std::vector<Input>::iterator Space = std::find(inputs.begin(), inputs.end(), Input::Space);
-        if (Space != inputs.end()){
-            if(horizontal_g){
-                if(m_gravity>0){
-                    bool walljumpRight=canWallJumpRight(plateforms);
-                    bool walljumpUp=canWallJumpUp(plateforms);
-                    bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpRight || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
-                        m_velocity.x = JUMP*m_gravity;
-                        if (walljumpRight){
-                            nb_jumps=1;
-                        }else{
-                            nb_jumps=2;
-                        }
+        goLeft=false;
+    }
+    void Square::actionRight(std::map<int, StaticPlateform> plateforms){
+        if(horizontal_g){
+            if (m_gravity<0){
+                bool walljumpLeft=canWallJumpLeft(plateforms);
+                bool walljumpUp=canWallJumpUp(plateforms);
+                bool wallJumpDown=canWallJumpDown(plateforms);
+                if(walljumpLeft || (nb_jumps<2  && !walljumpUp && !wallJumpDown)){
+                    m_velocity.x = JUMP*m_gravity;
+                    if (walljumpLeft){
+                        nb_jumps=1;
                     }else{
-                        if(wallJumpDown){
+                        nb_jumps=2;
+                    }
+
+                }else{
+                    if( wallJumpDown){
+                        m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
+                        nb_jumps=2;
+                        m_velocity.y=-WALL_JUMP_SPEED;
+                    }else{
+                        if( walljumpUp){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=2;
-                            m_velocity.y=-WALL_JUMP_SPEED;
-                        }else{
-                            if(walljumpUp){
-                                m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                                nb_jumps=2;
-                                m_velocity.y=WALL_JUMP_SPEED;
-                            }
+                            m_velocity.y=WALL_JUMP_SPEED;
                         }
                     }
-                }else{
-                    bool walljumpLeft=canWallJumpLeft(plateforms);
-                    bool walljumpUp=canWallJumpUp(plateforms);
-                    bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpLeft || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
-                        m_velocity.x = JUMP*m_gravity;
-                        if (walljumpLeft){
-                            nb_jumps=1;
-                        }else{
-                            nb_jumps=2;
-                        }
+                }
+            }
+        }else{
+            m_velocity.x = SPEED_SQUARE;
+        }
+        goRight=true;
+    }
+    void Square::actionRightRelease(std::map<int, StaticPlateform> plateforms){
+        if(!horizontal_g){
+            if(m_velocity.x>0){
+                m_velocity.x = 0;
+            }
+        }
+        goRight=false;
+    }
+    void Square::actionJump(std::map<int, StaticPlateform> plateforms){
+        if(horizontal_g){
+            if(m_gravity>0){
+                bool walljumpRight=canWallJumpRight(plateforms);
+                bool walljumpUp=canWallJumpUp(plateforms);
+                bool wallJumpDown=canWallJumpDown(plateforms);
+                if(walljumpRight || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
+                    m_velocity.x = JUMP*m_gravity;
+                    if (walljumpRight){
+                        nb_jumps=1;
                     }else{
-                        if( wallJumpDown){
+                        nb_jumps=2;
+                    }
+                }else{
+                    if(wallJumpDown){
+                        m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
+                        nb_jumps=2;
+                        m_velocity.y=-WALL_JUMP_SPEED;
+                    }else{
+                        if(walljumpUp){
+                            m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
+                            nb_jumps=2;
+                            m_velocity.y=WALL_JUMP_SPEED;
+                        }
+                    }
+                }
+            }else{
+                bool walljumpLeft=canWallJumpLeft(plateforms);
+                bool walljumpUp=canWallJumpUp(plateforms);
+                bool wallJumpDown=canWallJumpDown(plateforms);
+                if(walljumpLeft || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
+                    m_velocity.x = JUMP*m_gravity;
+                    if (walljumpLeft){
+                        nb_jumps=1;
+                    }else{
+                        nb_jumps=2;
+                    }
+                }else{
+                    if( wallJumpDown){
+                        m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
+                        nb_jumps=0;
+                        m_velocity.y=-WALL_JUMP_SPEED;
+                    }else{
+                        if(walljumpUp){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=0;
-                            m_velocity.y=-WALL_JUMP_SPEED;
-                        }else{
-                            if(walljumpUp){
-                                m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                                nb_jumps=0;
-                                m_velocity.y=WALL_JUMP_SPEED;
-                            }
+                            m_velocity.y=WALL_JUMP_SPEED;
                         }
                     }
                 }
+            }
+        }else{
+            m_jump=canJump(plateforms);
+            bool walljumpRight=canWallJumpRight(plateforms);
+            bool walljumpLeft=canWallJumpLeft(plateforms);
+            if(m_jump || (nb_jumps<2  && !walljumpRight && !walljumpLeft)){
+                m_velocity.y = JUMP*m_gravity;
+                if (m_jump){
+                        nb_jumps=1;
+                    }else{
+                        nb_jumps=2;
+                    }
             }else{
-                m_jump=canJump(plateforms);
-                bool walljumpRight=canWallJumpRight(plateforms);
-                bool walljumpLeft=canWallJumpLeft(plateforms);
-                if(m_jump || (nb_jumps<2  && !walljumpRight && !walljumpLeft)){
-                    m_velocity.y = JUMP*m_gravity;
-                    if (m_jump){
-                            nb_jumps=1;
-                        }else{
-                            nb_jumps=2;
-                        }
+                if( walljumpRight){
+                    m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
+                    nb_jumps=2;
+                    m_velocity.x=-WALL_JUMP_SPEED;
                 }else{
-                    if( walljumpRight){
+                    if( walljumpLeft){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=2;
-                        m_velocity.x=-WALL_JUMP_SPEED;
-                    }else{
-                        if( walljumpLeft){
-                            m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=2;
-                            m_velocity.x=WALL_JUMP_SPEED;
-                        }
+                        m_velocity.x=WALL_JUMP_SPEED;
                     }
                 }
-                m_jump=false;
             }
-        }
-        
-        // Évènements released
-        std::vector<Input>::iterator Z_Released = std::find(inputs.begin(), inputs.end(), Input::Z_Released);
-        std::vector<Input>::iterator UpReleased = std::find(inputs.begin(), inputs.end(), Input::UpReleased);
-        if (Z_Released != inputs.end() || UpReleased != inputs.end()) {
-            if(horizontal_g){
-                if(m_velocity.y<0){
-                    m_velocity.y = 0;
-                }
-            }
-            goUp=false;
-        }
-        std::vector<Input>::iterator D_Released = std::find(inputs.begin(), inputs.end(), Input::D_Released);
-        std::vector<Input>::iterator RightReleased = std::find(inputs.begin(), inputs.end(), Input::RightReleased);
-        if (D_Released != inputs.end() || RightReleased != inputs.end()) {
-            if(!horizontal_g){
-                if(m_velocity.x>0){
-                    m_velocity.x = 0;
-                }
-            }
-            goRight=false;
-        }
-        std::vector<Input>::iterator S_Released = std::find(inputs.begin(), inputs.end(), Input::S_Released);
-        std::vector<Input>::iterator DownReleased = std::find(inputs.begin(), inputs.end(), Input::DownReleased);
-        if (S_Released != inputs.end() || DownReleased != inputs.end()) {
-            if(horizontal_g){
-                if(m_velocity.y>0){
-                    m_velocity.y = 0;
-                }
-            }
-            goDown=false;
-        }
-        std::vector<Input>::iterator Q_Released = std::find(inputs.begin(), inputs.end(), Input::Q_Released);
-        std::vector<Input>::iterator LeftReleased = std::find(inputs.begin(), inputs.end(), Input::LeftReleased);
-        if (Q_Released != inputs.end() || LeftReleased != inputs.end()) {
-            if(!horizontal_g){
-                if(m_velocity.x<0){
-                    m_velocity.x = 0;
-                }
-            }
-            goLeft=false;
-        } 
-
-        std::vector<Input>::iterator D = std::find(inputs.begin(), inputs.end(), Input::D);
-        std::vector<Input>::iterator Right = std::find(inputs.begin(), inputs.end(), Input::Right);
-        if (D != inputs.end() || Right != inputs.end()) {
-            if(horizontal_g){
-                if (m_gravity<0){
-                    bool walljumpLeft=canWallJumpLeft(plateforms);
-                    bool walljumpUp=canWallJumpUp(plateforms);
-                    bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpLeft || (nb_jumps<2  && !walljumpUp && !wallJumpDown)){
-                        m_velocity.x = JUMP*m_gravity;
-                        if (walljumpLeft){
-                            nb_jumps=1;
-                        }else{
-                            nb_jumps=2;
-                        }
-
-                    }else{
-                        if( wallJumpDown){
-                            m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=2;
-                            m_velocity.y=-WALL_JUMP_SPEED;
-                        }else{
-                            if( walljumpUp){
-                                m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                                nb_jumps=2;
-                                m_velocity.y=WALL_JUMP_SPEED;
-                            }
-                        }
-                    }
-                }
-            }else{
-                m_velocity.x = SPEED_SQUARE;
-            }
-            goRight=true;
-        }
-        std::vector<Input>::iterator S = std::find(inputs.begin(), inputs.end(), Input::S);
-        std::vector<Input>::iterator Down = std::find(inputs.begin(), inputs.end(), Input::Down);
-        if (S != inputs.end() || Down != inputs.end()) {
-            goDown=true;
-            if (horizontal_g){
-                m_velocity.y = SPEED_SQUARE;
-            }
-        }
-        std::vector<Input>::iterator Q = std::find(inputs.begin(), inputs.end(), Input::Q);
-        std::vector<Input>::iterator Left = std::find(inputs.begin(), inputs.end(), Input::Left);
-        if (Q != inputs.end() || Left != inputs.end()) {
-            if(horizontal_g){
-                if (m_gravity>0){
-                    bool walljumpRight=canWallJumpRight(plateforms);
-                    bool walljumpUp=canWallJumpUp(plateforms);
-                    bool wallJumpDown=canWallJumpDown(plateforms);
-                    if(walljumpRight || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
-                        m_velocity.x = JUMP*m_gravity;
-                        if (walljumpRight){
-                            nb_jumps=1;
-                        }else{
-                            nb_jumps=2;
-                        }
-                    }else{
-                        if( wallJumpDown){
-                            m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=2;
-                            m_velocity.y=-WALL_JUMP_SPEED;
-                        }else{
-                            if( walljumpUp){
-                                m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                                nb_jumps=2;
-                                m_velocity.y=WALL_JUMP_SPEED;
-                            }
-                        }
-                    }
-                }
-            }else{ 
-                m_velocity.x = -SPEED_SQUARE;
-            }
-            goLeft=true;
-        }    
+            m_jump=false;
+        }        
     }
 
-    void Square::update(float dt, std::map<int, StaticPlateform> plateforms, std::vector<Input> inputs)
+    void Square::update(float dt, std::map<int, StaticPlateform> plateforms, gf::Window& window)
     {
-        actionWithInputs(inputs,plateforms);
         bool walljumpRight=canWallJumpRight(plateforms);
         bool walljumpLeft=canWallJumpLeft(plateforms);
         bool walljumpUp=canWallJumpUp(plateforms);

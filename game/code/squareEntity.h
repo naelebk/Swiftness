@@ -19,6 +19,7 @@
 #include <gf/Views.h>
 #include <iostream>
 #include <gf/ResourceManager.h>
+#include <gf/Action.h>
 
 namespace swiftness
 {
@@ -55,12 +56,20 @@ namespace swiftness
         /**
          * @brief Met à jour la position du carré
         */
-        void update(float dt, std::map<int, StaticPlateform> plateforms, std::vector<Input> inputs);
+        void update(float dt, std::map<int, StaticPlateform> plateforms, gf::Window& window);
 
         /**
         * Méthode permettant de faire les actions que l'on souhaite avec les inputs
         */
-        void actionWithInputs(std::vector<Input> inputs,std::map<int, StaticPlateform> plateforms);
+        void actionUp(std::map<int, StaticPlateform> plateforms);
+        void actionUpRelease(std::map<int, StaticPlateform> plateforms);
+        void actionDown(std::map<int, StaticPlateform> plateforms);
+        void actionDownRelease(std::map<int, StaticPlateform> plateforms);
+        void actionLeft(std::map<int, StaticPlateform> plateforms);
+        void actionLeftRelease(std::map<int, StaticPlateform> plateforms);
+        void actionRight(std::map<int, StaticPlateform> plateforms);
+        void actionRightRelease(std::map<int, StaticPlateform> plateforms);
+        void actionJump(std::map<int, StaticPlateform> plateforms);
 
         bool isPlateform(StaticPlateform plateform);
         /**
