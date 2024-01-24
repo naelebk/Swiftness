@@ -6,6 +6,7 @@
 #include <gf/Vector.h>
 #include "tilesEnumData.h"
 #include "gf/Drawable.h"
+#include <gf/Text.h>
 #include "gf/Tmx.h"
 
 namespace swiftness
@@ -24,6 +25,14 @@ namespace swiftness
              * @param layerName
              */
             void renderLayer(LayerEntity &layerEntity, gf::RenderTarget &target, LayerName layerName, std::string gravity);
+
+            /**
+             * @brief render the layer tutorial
+             * 
+             * @param layerEntity
+             * @param window
+             */
+            void renderTutorial(LayerEntity &layerEntity, gf::RenderTarget &target);
 
             /**
              * @brief render a level

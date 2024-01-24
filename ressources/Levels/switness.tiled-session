@@ -128,11 +128,11 @@
             }
         },
         "Maps/level07.tmx": {
-            "scale": 0.6496662621359223,
-            "selectedLayer": 2,
+            "scale": 0.6024816176470588,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 281.68308971185735,
-                "y": 449.46154205389246
+                "x": 816.6224256292907,
+                "y": 336.9397406559878
             }
         },
         "Maps/level_00.tmx": {
@@ -194,6 +194,12 @@
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
             "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
+        "Tilesets/10_alpha.tsx": {
+            "scaleInEditor": 1
+        },
+        "Tilesets/11_alpha_key.tsx": {
             "scaleInEditor": 1
         },
         "Tilesets/1_utilities.tsx": {
@@ -349,6 +355,8 @@
     "project": "switness.tiled-project",
     "recentFiles": [
         "Tilesets/9_arrow.tsx",
+        "Tilesets/10_alpha.tsx",
+        "Tilesets/11_alpha_key.tsx",
         "Tilesets/6_wall_of_death.tsx",
         "Maps/level00.tmx",
         "Maps/level_template.tmx",
@@ -357,13 +365,11 @@
         "Maps/level03.tmx",
         "Maps/level04.tmx",
         "Maps/level05.tmx",
-        "Maps/level06.tmx",
-        "Maps/level07.tmx",
-        "Tilesets/8_gravity_walls_open.tsx"
+        "Maps/level06.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 16,
-        "width": 16
+        "width": 12
     }
 }
