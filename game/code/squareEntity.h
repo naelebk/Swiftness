@@ -62,12 +62,15 @@ namespace swiftness
         * Méthode permettant de faire les actions que l'on souhaite avec les inputs
         */
         void actionUp();
+        void actionUpJump();
         void actionUpRelease();
         void actionDown();
         void actionDownRelease();
         void actionLeft();
+        void actionLeftJump();
         void actionLeftRelease();
         void actionRight();
+        void actionRightJump();
         void actionRightRelease();
         void actionJump();
 

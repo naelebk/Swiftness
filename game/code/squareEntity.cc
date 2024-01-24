@@ -22,6 +22,7 @@ namespace swiftness
         , isOver(false)
         , nb_deaths(0)
         , timer(0.0f)
+        , m_gravityDirection("down")
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -36,10 +37,14 @@ namespace swiftness
 
 
     void Square::actionUp() {
-        goUp=true;
         if (horizontal_g){
             m_velocity.y = -SPEED_SQUARE;
-        }else{
+            goUp=true;
+        }
+    }
+
+    void Square::actionUpJump() {
+        if(!horizontal_g){
             m_jump=canJump();
             bool walljumpRight=canWallJumpRight();
             bool walljumpLeft=canWallJumpLeft();
@@ -62,8 +67,9 @@ namespace swiftness
             m_jump=false;
         }
     }
+
     void Square::actionUpRelease(){
-        if(horizontal_g){
+        if(horizontal_g && goUp){
             if(m_velocity.y<0){
                 m_velocity.y = 0;
             }
@@ -74,7 +80,7 @@ namespace swiftness
         goDown=true; if (horizontal_g) m_velocity.y = SPEED_SQUARE;
     }
     void Square::actionDownRelease(){
-        if(horizontal_g){
+        if(horizontal_g && goDown){
             if(m_velocity.y>0){
                 m_velocity.y = 0;
             }
@@ -82,6 +88,13 @@ namespace swiftness
         goDown=false;
     }
     void Square::actionLeft(){
+        if(!horizontal_g){ 
+            m_velocity.x = -SPEED_SQUARE;
+            goLeft=true;
+        }
+    }
+
+    void Square::actionLeftJump() {
         if(horizontal_g){
             if (m_gravity>0){
                 bool walljumpRight=canWallJumpRight();
@@ -108,13 +121,10 @@ namespace swiftness
                     }
                 }
             }
-        }else{ 
-            m_velocity.x = -SPEED_SQUARE;
         }
-        goLeft=true;
     }
     void Square::actionLeftRelease(){
-        if(!horizontal_g){
+        if(!horizontal_g && goLeft){
             if(m_velocity.x<0){
                 m_velocity.x = 0;
             }
@@ -122,6 +132,13 @@ namespace swiftness
         goLeft=false;
     }
     void Square::actionRight(){
+        if(!horizontal_g){
+            m_velocity.x = SPEED_SQUARE;
+            goRight=true;
+        }
+    }
+
+    void Square::actionRightJump() {
         if(horizontal_g){
             if (m_gravity<0){
                 bool walljumpLeft=canWallJumpLeft();
@@ -149,13 +166,10 @@ namespace swiftness
                     }
                 }
             }
-        }else{
-            m_velocity.x = SPEED_SQUARE;
         }
-        goRight=true;
     }
     void Square::actionRightRelease(){
-        if(!horizontal_g){
+        if(!horizontal_g && goRight){
             if(m_velocity.x>0){
                 m_velocity.x = 0;
             }

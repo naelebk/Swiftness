@@ -60,9 +60,12 @@ namespace swiftness {
             gf::Font& m_font;
             gf::Action quit_a;
             gf::Action up;
+            gf::Action upJump;
             gf::Action down;
             gf::Action left;
+            gf::Action leftJump;
             gf::Action right;
+            gf::Action rightJump;
             gf::Action jump;
             int level;
             gf::Text m_text;

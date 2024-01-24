@@ -27,6 +27,9 @@ namespace swiftness {
     , left("left")
     , right("right")
     , jump("jump")
+    , upJump("upJump")
+    , leftJump("leftJump")
+    , rightJump("rightJump")
      {
         m_text.setFont(m_font);
         m_text.setCharacterSize(20);
@@ -44,6 +47,12 @@ namespace swiftness {
         up.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
         addAction(up);
 
+        upJump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
+        upJump.addScancodeKeyControl(gf::Scancode::Up);
+        upJump.addScancodeKeyControl(gf::Scancode::W);
+        upJump.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
+        addAction(upJump);
+
         down.setContinuous();
         down.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadDown);
         down.addScancodeKeyControl(gf::Scancode::Down);
@@ -58,12 +67,24 @@ namespace swiftness {
         left.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Negative);
         addAction(left);
 
+        leftJump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadLeft);
+        leftJump.addScancodeKeyControl(gf::Scancode::Left);
+        leftJump.addScancodeKeyControl(gf::Scancode::A);
+        leftJump.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Negative);
+        addAction(leftJump);
+
         right.setContinuous();
         right.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadRight);
         right.addScancodeKeyControl(gf::Scancode::Right);
         right.addScancodeKeyControl(gf::Scancode::D);
         right.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Positive);
         addAction(right);
+
+        rightJump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadRight);
+        rightJump.addScancodeKeyControl(gf::Scancode::Right);
+        rightJump.addScancodeKeyControl(gf::Scancode::D);
+        rightJump.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Positive);
+        addAction(rightJump);
 
         jump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
         jump.addKeycodeKeyControl(gf::Keycode::Space);
@@ -120,6 +141,9 @@ namespace swiftness {
         } else {
             square.actionRightRelease();
         }
+        if (upJump.isActive()) square.actionUpJump();
+        if (leftJump.isActive()) square.actionLeftJump();
+        if (rightJump.isActive()) square.actionRightJump();
         if (jump.isActive()) square.actionJump();
     }
 
