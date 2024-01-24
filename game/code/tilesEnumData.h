@@ -139,8 +139,7 @@ namespace swiftness
         Gw_green_open,
         Gw_orange_open,
         gravity_switch,
-        gravity_walls,
-        tutorial
+        gravity_walls
     };
 
     std::string getLayerName(LayerName layerName);
