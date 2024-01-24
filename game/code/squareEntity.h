@@ -56,34 +56,34 @@ namespace swiftness
         /**
          * @brief Met à jour la position du carré
         */
-        void update(float dt, std::map<int, StaticPlateform> plateforms, gf::Window& window);
+        void update(float dt);
 
         /**
         * Méthode permettant de faire les actions que l'on souhaite avec les inputs
         */
-        void actionUp(std::map<int, StaticPlateform> plateforms);
-        void actionUpRelease(std::map<int, StaticPlateform> plateforms);
-        void actionDown(std::map<int, StaticPlateform> plateforms);
-        void actionDownRelease(std::map<int, StaticPlateform> plateforms);
-        void actionLeft(std::map<int, StaticPlateform> plateforms);
-        void actionLeftRelease(std::map<int, StaticPlateform> plateforms);
-        void actionRight(std::map<int, StaticPlateform> plateforms);
-        void actionRightRelease(std::map<int, StaticPlateform> plateforms);
-        void actionJump(std::map<int, StaticPlateform> plateforms);
+        void actionUp();
+        void actionUpRelease();
+        void actionDown();
+        void actionDownRelease();
+        void actionLeft();
+        void actionLeftRelease();
+        void actionRight();
+        void actionRightRelease();
+        void actionJump();
 
-        bool isPlateform(StaticPlateform plateform);
+        bool isPlateform(swiftness::StaticPlateform plateform);
         /**
         * Méthode permettant de savoir si on peut sauter
         */
-        bool canJump(std::map<int, StaticPlateform> plateforms);
+        bool canJump();
 
-        bool canWallJumpRight(std::map<int, StaticPlateform> plateforms);
+        bool canWallJumpRight();
 
-        bool canWallJumpLeft(std::map<int, StaticPlateform> plateforms);
+        bool canWallJumpLeft();
 
-        bool canWallJumpUp(std::map<int, StaticPlateform> plateforms);
+        bool canWallJumpUp();
 
-        bool canWallJumpDown(std::map<int, StaticPlateform> plateforms);
+        bool canWallJumpDown();
 
         /**
          * @brief Affiche le carré
@@ -102,6 +102,8 @@ namespace swiftness
         float getTimer() { return timer; };
 
         std::string getGravity() { return m_gravityDirection; };
+
+        void setPlateforms(std::vector<swiftness::StaticPlateform> plateforms) { m_plateforms=plateforms;};
 
 
         /**
@@ -127,6 +129,7 @@ namespace swiftness
         bool isOver;
         int nb_deaths;
         float timer;
+        std::vector<swiftness::StaticPlateform> m_plateforms;
 
         // graphics
         // gf::Texture& m_skin;

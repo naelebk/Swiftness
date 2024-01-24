@@ -4,7 +4,7 @@
 #include "levelScene.h"
 
 namespace swiftness {
-    SelectLevel::SelectLevel(GameCenter& game, gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, gf::Vector2f& camera) :
+    SelectLevel::SelectLevel(GameCenter& game, gf::Font& font, std::vector<swiftness::StaticPlateform>& plateform, swiftness::Square& square, gf::Vector2f& camera) :
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     font(font),
     game(game),

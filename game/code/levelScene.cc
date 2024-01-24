@@ -11,7 +11,7 @@
 namespace swiftness {
     // Déclaration en seconde instance du constructeur et du destructeur,
     // de levelScene (interface graphique)
-    levelScene::levelScene(GameCenter& game, gf::Font& font, int level, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector, gf::Vector2f& camera) : 
+    levelScene::levelScene(GameCenter& game, gf::Font& font, int level, std::vector<swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector, gf::Vector2f& camera) : 
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     m_font(font), 
     game(game), 
@@ -37,28 +37,32 @@ namespace swiftness {
         quit_a.addKeycodeKeyControl(gf::Keycode::Escape);
         addAction(quit_a);
 
+        up.setContinuous();
         up.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
         up.addScancodeKeyControl(gf::Scancode::Up);
+        up.addScancodeKeyControl(gf::Scancode::W);
         up.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
-        up.setContinuous();
         addAction(up);
 
+        down.setContinuous();
         down.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadDown);
         down.addScancodeKeyControl(gf::Scancode::Down);
+        down.addScancodeKeyControl(gf::Scancode::S);
         down.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Positive);
-        down.setContinuous();
         addAction(down);
 
+        left.setContinuous();
         left.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadLeft);
         left.addScancodeKeyControl(gf::Scancode::Left);
+        left.addScancodeKeyControl(gf::Scancode::A);
         left.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Negative);
-        left.setContinuous();
         addAction(left);
 
+        right.setContinuous();
         right.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadRight);
         right.addScancodeKeyControl(gf::Scancode::Right);
+        right.addScancodeKeyControl(gf::Scancode::D);
         right.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Positive);
-        right.setContinuous();
         addAction(right);
 
         jump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
@@ -76,7 +80,7 @@ namespace swiftness {
 
     // Comme on ne peut pas mettre une valeur non comprise entre MIN_LEVEL et MAX_LEVEL, on n'effectue aucune
     // vérification sur la valeur de level, car auquel cas rien ne sera fait
-    void levelScene::loadLevel(std::map<int, swiftness::StaticPlateform> &plateform, swiftness::Square& square, int level) {
+    void levelScene::loadLevel(std::vector<swiftness::StaticPlateform> &plateform, swiftness::Square& square, int level) {
         if (level < 0) {
             exit(0);
         }
@@ -90,20 +94,33 @@ namespace swiftness {
         swiftness::Level::level leveln = Level::initializeLevel(lvl);
         square = leveln.square;
         plateform = leveln.plateform;
+        square.setPlateforms(plateform);
     }
 
     void levelScene::doHandleActions(gf::Window& window) {
         //if (!isActive()) return;
         if (quit_a.isActive()) game.replaceScene(game.menu);
-        if(up.isActive()) square.actionUp(plateform);
-        else square.actionUpRelease(plateform);
-        if(down.isActive()) square.actionDown(plateform);
-        else square.actionDownRelease(plateform);
-        if(left.isActive()) square.actionLeft(plateform);
-        else square.actionLeftRelease(plateform);
-        if (right.isActive()) square.actionRight(plateform);
-        else square.actionRightRelease(plateform);
-        if (jump.isActive()) square.actionJump(plateform);
+        if(up.isActive()) {
+            square.actionUp();
+        } else {
+            square.actionUpRelease();
+        }
+        if(down.isActive()){
+            square.actionDown();
+        } else {
+            square.actionDownRelease();
+        }
+        if(left.isActive()){
+            square.actionLeft();
+        } else {
+            square.actionLeftRelease();
+        }
+        if (right.isActive()) {
+            square.actionRight();
+        } else {
+            square.actionRightRelease();
+        }
+        if (jump.isActive()) square.actionJump();
     }
 
     void levelScene::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
@@ -118,7 +135,7 @@ namespace swiftness {
 
     void levelScene::doUpdate(gf::Time time) {
         float dt = time.asSeconds();
-        square.update(dt, plateform, game.getWindow());
+        square.update(dt);
         if (square.getLevelOver()) game.replaceAllScenes(game.menu);
         std::string lvl = "";
         if (level >= 0 && level < 10) {
@@ -136,7 +153,7 @@ namespace swiftness {
         xcamera=std::clamp(xcamera,SCREEN_WIDTH/2+tile_width,map_width*tile_width-SCREEN_WIDTH/2-tile_width);
         ycamera=std::clamp(ycamera,SCREEN_HEIGHT/2+tile_height,map_height*tile_height-SCREEN_HEIGHT/2-tile_height);
         m_camera = {xcamera, ycamera};
-        gf::Event event;
+        /*gf::Event event;
         swiftness::CommandsManager commandManager;
         while (game.getWindow().pollEvent(event))
         {
@@ -146,6 +163,6 @@ namespace swiftness {
         std::vector<Input>::iterator it2 = std::find(enumVector.begin(), enumVector.end(), Input::Closed);
         if (it1 != enumVector.end() || it2 != enumVector.end()) {
             game.replaceAllScenes(game.menu);
-        }
+        }*/
     }
 }

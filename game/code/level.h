@@ -32,12 +32,12 @@ namespace swiftness
          *
          * @return std::map<int, StaticPlateform> the plateforms
          */
-        static std::map<int, StaticPlateform> initializePlateforms(std::string nameFile);
+        static std::vector<swiftness::StaticPlateform> initializePlateforms(std::string nameFile);
 
     public:
         struct level
         {
-            std::map<int, StaticPlateform> plateform;
+            std::vector<swiftness::StaticPlateform> plateform;
             Square square;
 
             level() : plateform(), square() {}
@@ -52,7 +52,7 @@ namespace swiftness
          */
         static level initializeLevel(std::string nameFile);
 
-        static std::map<int, StaticPlateform> initializeLevel03();
+        static std::vector<swiftness::StaticPlateform> initializeLevel03();
   
     };
 

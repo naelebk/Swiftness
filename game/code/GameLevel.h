@@ -33,7 +33,7 @@ namespace swiftness {
     class SelectLevel : public gf::Scene {
         public:
             // Constructeur
-            SelectLevel(GameCenter& game, gf::Font& font, std::map<int, swiftness::StaticPlateform>& plateform, swiftness::Square& square, gf::Vector2f& camera);
+            SelectLevel(GameCenter& game, gf::Font& font, std::vector<swiftness::StaticPlateform>& plateform, swiftness::Square& square, gf::Vector2f& camera);
             // Desctructeur
             ~SelectLevel() override;
 
@@ -57,7 +57,7 @@ namespace swiftness {
             //std::vector<levelScene> levels;
             //levelScene levels;
             std::size_t index;
-            std::map<int, swiftness::StaticPlateform> plateform;
+            std::vector<swiftness::StaticPlateform> plateform;
             swiftness::Square square;
             gf::Vector2f m_camera;
 

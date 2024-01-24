@@ -35,14 +35,14 @@ namespace swiftness
     }
 
 
-    void Square::actionUp(std::map<int, StaticPlateform> plateforms) {
+    void Square::actionUp() {
         goUp=true;
         if (horizontal_g){
             m_velocity.y = -SPEED_SQUARE;
         }else{
-            m_jump=canJump(plateforms);
-            bool walljumpRight=canWallJumpRight(plateforms);
-            bool walljumpLeft=canWallJumpLeft(plateforms);
+            m_jump=canJump();
+            bool walljumpRight=canWallJumpRight();
+            bool walljumpLeft=canWallJumpLeft();
             if(m_jump || (nb_jumps<2 && !walljumpRight && !walljumpLeft)){
                 m_velocity.y = JUMP*m_gravity;
                 nb_jumps = m_jump ? 1 : 2;
@@ -62,7 +62,7 @@ namespace swiftness
             m_jump=false;
         }
     }
-    void Square::actionUpRelease(std::map<int, StaticPlateform> plateforms){
+    void Square::actionUpRelease(){
         if(horizontal_g){
             if(m_velocity.y<0){
                 m_velocity.y = 0;
@@ -70,10 +70,10 @@ namespace swiftness
         }
         goUp=false;
     }
-    void Square::actionDown(std::map<int, StaticPlateform> plateforms){
+    void Square::actionDown(){
         goDown=true; if (horizontal_g) m_velocity.y = SPEED_SQUARE;
     }
-    void Square::actionDownRelease(std::map<int, StaticPlateform> plateforms){
+    void Square::actionDownRelease(){
         if(horizontal_g){
             if(m_velocity.y>0){
                 m_velocity.y = 0;
@@ -81,12 +81,12 @@ namespace swiftness
         }
         goDown=false;
     }
-    void Square::actionLeft(std::map<int, StaticPlateform> plateforms){
+    void Square::actionLeft(){
         if(horizontal_g){
             if (m_gravity>0){
-                bool walljumpRight=canWallJumpRight(plateforms);
-                bool walljumpUp=canWallJumpUp(plateforms);
-                bool wallJumpDown=canWallJumpDown(plateforms);
+                bool walljumpRight=canWallJumpRight();
+                bool walljumpUp=canWallJumpUp();
+                bool wallJumpDown=canWallJumpDown();
                 if(walljumpRight || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
                     m_velocity.x = JUMP*m_gravity;
                     if (walljumpRight){
@@ -113,7 +113,7 @@ namespace swiftness
         }
         goLeft=true;
     }
-    void Square::actionLeftRelease(std::map<int, StaticPlateform> plateforms){
+    void Square::actionLeftRelease(){
         if(!horizontal_g){
             if(m_velocity.x<0){
                 m_velocity.x = 0;
@@ -121,12 +121,12 @@ namespace swiftness
         }
         goLeft=false;
     }
-    void Square::actionRight(std::map<int, StaticPlateform> plateforms){
+    void Square::actionRight(){
         if(horizontal_g){
             if (m_gravity<0){
-                bool walljumpLeft=canWallJumpLeft(plateforms);
-                bool walljumpUp=canWallJumpUp(plateforms);
-                bool wallJumpDown=canWallJumpDown(plateforms);
+                bool walljumpLeft=canWallJumpLeft();
+                bool walljumpUp=canWallJumpUp();
+                bool wallJumpDown=canWallJumpDown();
                 if(walljumpLeft || (nb_jumps<2  && !walljumpUp && !wallJumpDown)){
                     m_velocity.x = JUMP*m_gravity;
                     if (walljumpLeft){
@@ -154,7 +154,7 @@ namespace swiftness
         }
         goRight=true;
     }
-    void Square::actionRightRelease(std::map<int, StaticPlateform> plateforms){
+    void Square::actionRightRelease(){
         if(!horizontal_g){
             if(m_velocity.x>0){
                 m_velocity.x = 0;
@@ -162,12 +162,12 @@ namespace swiftness
         }
         goRight=false;
     }
-    void Square::actionJump(std::map<int, StaticPlateform> plateforms){
+    void Square::actionJump(){
         if(horizontal_g){
             if(m_gravity>0){
-                bool walljumpRight=canWallJumpRight(plateforms);
-                bool walljumpUp=canWallJumpUp(plateforms);
-                bool wallJumpDown=canWallJumpDown(plateforms);
+                bool walljumpRight=canWallJumpRight();
+                bool walljumpUp=canWallJumpUp();
+                bool wallJumpDown=canWallJumpDown();
                 if(walljumpRight || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
                     m_velocity.x = JUMP*m_gravity;
                     if (walljumpRight){
@@ -189,9 +189,9 @@ namespace swiftness
                     }
                 }
             }else{
-                bool walljumpLeft=canWallJumpLeft(plateforms);
-                bool walljumpUp=canWallJumpUp(plateforms);
-                bool wallJumpDown=canWallJumpDown(plateforms);
+                bool walljumpLeft=canWallJumpLeft();
+                bool walljumpUp=canWallJumpUp();
+                bool wallJumpDown=canWallJumpDown();
                 if(walljumpLeft || (nb_jumps<2 && !walljumpUp && !wallJumpDown)){
                     m_velocity.x = JUMP*m_gravity;
                     if (walljumpLeft){
@@ -214,9 +214,9 @@ namespace swiftness
                 }
             }
         }else{
-            m_jump=canJump(plateforms);
-            bool walljumpRight=canWallJumpRight(plateforms);
-            bool walljumpLeft=canWallJumpLeft(plateforms);
+            m_jump=canJump();
+            bool walljumpRight=canWallJumpRight();
+            bool walljumpLeft=canWallJumpLeft();
             if(m_jump || (nb_jumps<2  && !walljumpRight && !walljumpLeft)){
                 m_velocity.y = JUMP*m_gravity;
                 if (m_jump){
@@ -241,12 +241,12 @@ namespace swiftness
         }        
     }
 
-    void Square::update(float dt, std::map<int, StaticPlateform> plateforms, gf::Window& window)
+    void Square::update(float dt)
     {
-        bool walljumpRight=canWallJumpRight(plateforms);
-        bool walljumpLeft=canWallJumpLeft(plateforms);
-        bool walljumpUp=canWallJumpUp(plateforms);
-        bool wallJumpDown=canWallJumpDown(plateforms);
+        bool walljumpRight=canWallJumpRight();
+        bool walljumpLeft=canWallJumpLeft();
+        bool walljumpUp=canWallJumpUp();
+        bool wallJumpDown=canWallJumpDown();
         timer+=dt;
         if(timer>999.99f){
             isOver=true;
@@ -287,9 +287,9 @@ namespace swiftness
         
         
         // Vérifiez les collisions avec la plateforme
-        for (auto &plateform : plateforms)
+        for (auto &plateform : m_plateforms)
         {
-            collideWithPlateform(plateform.second.getPosition(), plateform.second.getHeight(), plateform.second.getLength(),plateform.second.getColor(),walljumpLeft,walljumpRight,wallJumpDown,walljumpUp);
+            collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(),plateform.getColor(),walljumpLeft,walljumpRight,wallJumpDown,walljumpUp);
         }
 
         
@@ -300,13 +300,13 @@ namespace swiftness
         return color!=gf::Color::Yellow && color!=gf::Color::Orange && color!=gf::Color::Rose && color!=gf::Color::Green && color!=gf::Color::Black && color!=gf::Color::Cyan && !(color==gf::Color::fromRgb(100,100,10) && m_gravityDirection=="down") && !(color==gf::Color::fromRgb(100,100,20) && m_gravityDirection=="up") && !(color==gf::Color::fromRgb(100,100,30) && m_gravityDirection=="left") && !(color==gf::Color::fromRgb(100,100,40) && m_gravityDirection=="right");
     }
 
-    bool Square::canJump(std::map<int, StaticPlateform> plateforms){
-        for (auto &plateform : plateforms)
+    bool Square::canJump(){
+        for (auto &plateform : m_plateforms)
         {
-            if(isPlateform(plateform.second)){
-                gf::Vector2f plateformPosition=plateform.second.getPosition();
-                float plateformHeight=plateform.second.getHeight();
-                float plateformLength=plateform.second.getLength();
+            if(isPlateform(plateform)){
+                gf::Vector2f plateformPosition=plateform.getPosition();
+                float plateformHeight=plateform.getHeight();
+                float plateformLength=plateform.getLength();
                 float squareLeft = m_position.x - m_size / 2;
                 float squareRight = m_position.x + m_size / 2;
                 float squareTop = m_position.y - m_size / 2 -1;
@@ -353,13 +353,13 @@ namespace swiftness
 
     }
 
-    bool Square::canWallJumpRight(std::map<int, StaticPlateform> plateforms){
-        for (auto &plateform : plateforms)
+    bool Square::canWallJumpRight(){
+        for (auto &plateform : m_plateforms)
         {
-            if(isPlateform(plateform.second)){
-                gf::Vector2f plateformPosition=plateform.second.getPosition();
-                float plateformHeight=plateform.second.getHeight();
-                float plateformLength=plateform.second.getLength();
+            if(isPlateform(plateform)){
+                gf::Vector2f plateformPosition=plateform.getPosition();
+                float plateformHeight=plateform.getHeight();
+                float plateformLength=plateform.getLength();
                 float squareLeft = m_position.x - m_size / 2;
                 float squareRight = m_position.x + m_size / 2 +1;
                 float squareTop = m_position.y - m_size / 2;
@@ -402,13 +402,13 @@ namespace swiftness
 
     }
 
-    bool Square::canWallJumpLeft(std::map<int, StaticPlateform> plateforms){
-        for (auto &plateform : plateforms)
+    bool Square::canWallJumpLeft(){
+        for (auto &plateform : m_plateforms)
         {
-            if(isPlateform(plateform.second)){
-                gf::Vector2f plateformPosition=plateform.second.getPosition();
-                float plateformHeight=plateform.second.getHeight();
-                float plateformLength=plateform.second.getLength();
+            if(isPlateform(plateform)){
+                gf::Vector2f plateformPosition=plateform.getPosition();
+                float plateformHeight=plateform.getHeight();
+                float plateformLength=plateform.getLength();
                 float squareLeft = m_position.x - m_size / 2 -1;
                 float squareRight = m_position.x + m_size / 2;
                 float squareTop = m_position.y - m_size / 2;
@@ -452,13 +452,13 @@ namespace swiftness
 
     }
 
-    bool Square::canWallJumpUp(std::map<int, StaticPlateform> plateforms){
-        for (auto &plateform : plateforms)
+    bool Square::canWallJumpUp(){
+        for (auto &plateform : m_plateforms)
         {
-            if(isPlateform(plateform.second)){
-                gf::Vector2f plateformPosition=plateform.second.getPosition();
-                float plateformHeight=plateform.second.getHeight();
-                float plateformLength=plateform.second.getLength();
+            if(isPlateform(plateform)){
+                gf::Vector2f plateformPosition=plateform.getPosition();
+                float plateformHeight=plateform.getHeight();
+                float plateformLength=plateform.getLength();
                 float squareLeft = m_position.x - m_size / 2;
                 float squareRight = m_position.x + m_size / 2 ;
                 float squareTop = m_position.y - m_size / 2 -1;
@@ -502,13 +502,13 @@ namespace swiftness
 
     }
 
-    bool Square::canWallJumpDown(std::map<int, StaticPlateform> plateforms){
-        for (auto &plateform : plateforms)
+    bool Square::canWallJumpDown(){
+        for (auto &plateform : m_plateforms)
         {
-            if(isPlateform(plateform.second)){
-                gf::Vector2f plateformPosition=plateform.second.getPosition();
-                float plateformHeight=plateform.second.getHeight();
-                float plateformLength=plateform.second.getLength();
+            if(isPlateform(plateform)){
+                gf::Vector2f plateformPosition=plateform.getPosition();
+                float plateformHeight=plateform.getHeight();
+                float plateformLength=plateform.getLength();
                 float squareLeft = m_position.x - m_size / 2;
                 float squareRight = m_position.x + m_size / 2;
                 float squareTop = m_position.y - m_size / 2;

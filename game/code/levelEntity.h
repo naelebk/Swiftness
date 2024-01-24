@@ -43,14 +43,14 @@ namespace swiftness
          *
          * @return std::map<int, StaticPlateform> the vertical plateform
          */
-        std::map<int, StaticPlateform> generateVerticalPlateform(int index, LayerName layerName);
+        std::vector<swiftness::StaticPlateform> generateVerticalPlateform(int index, LayerName layerName, std::vector<swiftness::StaticPlateform> verticalPlateforms);
 
         /**
          * @brief generate the horizontal plateform
          *
          * @return std::map<int, StaticPlateform> the horizontal plateform
          */
-        std::map<int, StaticPlateform> generateHorizontalPlateform(int index, LayerName layerName);
+        std::vector<swiftness::StaticPlateform> generateHorizontalPlateform(int index, LayerName layerName, std::vector<swiftness::StaticPlateform> horizontalPlateforms);
 
         /**
          * @brief generate the bloc plateform
@@ -59,7 +59,7 @@ namespace swiftness
          * 
          * @return std::map<int, StaticPlateform> the bloc plateform
          */
-        std::map<int, StaticPlateform> generateBlocPlateforms(int index, LayerName layerName);
+        std::vector<swiftness::StaticPlateform> generateBlocPlateforms(int index, LayerName layerName, std::vector<swiftness::StaticPlateform> blocPlateforms);
 
         /**
          * @brief generate Border of the map
@@ -68,7 +68,7 @@ namespace swiftness
          * 
          * @return std::map<int, StaticPlateform> the Border of the map
          */
-        std::map<int, StaticPlateform> generateBorder(int index);
+        std::vector<swiftness::StaticPlateform> generateBorder(int index,std::vector<swiftness::StaticPlateform> invisiblePlateforms);
 
         /**
          * @brief generate the gravtiy switchs
@@ -77,14 +77,14 @@ namespace swiftness
          * 
          * @return std::map<int, StaticPlateform> the gravity switchs
          */
-        std::map<int, StaticPlateform> generateGravitySwitchs(int index);
+        std::vector<swiftness::StaticPlateform> generateGravitySwitchs(int index,std::vector<swiftness::StaticPlateform> gravitySwitchs);
 
         /**
          * @brief make a plateform for the exit
          * 
          * @return std::map<int, StaticPlateform> the plateform for the exit
          */
-        std::map<int, StaticPlateform> generateExit(int index);
+        std::vector<swiftness::StaticPlateform> generateExit(int index,std::vector<swiftness::StaticPlateform> exit);
 
         /**
          * @brief generate the gravity walls
@@ -93,7 +93,7 @@ namespace swiftness
          * 
          * @return std::map<int, StaticPlateform> the gravity walls
          */
-        std::map<int, StaticPlateform> generateGravityWalls(int index);
+        std::vector<swiftness::StaticPlateform> generateGravityWalls(int index,std::vector<swiftness::StaticPlateform> gravityWalls);
 
     private:
         std::string m_name;

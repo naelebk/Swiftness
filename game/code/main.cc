@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
     // gf::Vector2f velocity(0, GRAVITY);
     bool isresize = false;
     int level = -2;
-    std::map<int, swiftness::StaticPlateform> plateform;
+    std::vector<swiftness::StaticPlateform> plateform;
     swiftness::Square square;
     gf::Font font(PATH_FONT);
     std::vector<Input> enumVector;
