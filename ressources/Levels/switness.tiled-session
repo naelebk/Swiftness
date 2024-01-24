@@ -1,12 +1,12 @@
 {
     "activeFile": "",
     "expandedProjectPaths": [
-        "level",
-        ".",
-        "levels",
         "Maps",
         "Tilesets",
-        "tileset"
+        ".",
+        "tileset",
+        "level",
+        "levels"
     ],
     "fileStates": {
         "": {
@@ -50,56 +50,58 @@
         },
         "Maps/level00.tmx": {
             "expandedObjectLayers": [
-                19,
                 12,
                 9
             ],
             "scale": 0.8092237903225806,
-            "selectedLayer": 0,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 336.12457178449085,
-                "y": 496.77234506384303
+                "x": 506.6583618810339,
+                "y": 375.6686390532544
             }
         },
         "Maps/level00.tmx#utilities": {
             "scaleInDock": 1
         },
         "Maps/level01.tmx": {
-            "scale": 0.991179435483871,
-            "selectedLayer": 2,
+            "scale": 4,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 494.3605390287312,
-                "y": 334.9544876684464
+                "x": 163.5,
+                "y": 478
             }
         },
         "Maps/level02.tmx": {
-            "scale": 0.6791920731707317,
-            "selectedLayer": 14,
+            "expandedObjectLayers": [
+                12
+            ],
+            "scale": 0.6118521341463414,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 80.97856581752887,
-                "y": 814.202670856245
+                "x": 240.25412644036135,
+                "y": 657.0214886328248
             }
         },
         "Maps/level03.tmx": {
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 0.75,
-            "selectedLayer": 14,
+            "scale": 4,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 480,
-                "y": 362.66666666666663
+                "x": 246.75,
+                "y": 233
             }
         },
         "Maps/level04.tmx": {
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 0.5799923780487805,
-            "selectedLayer": 14,
+            "scale": 2,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 648.2843813653984,
-                "y": 151.72613180892313
+                "x": 175,
+                "y": 197.5
             }
         },
         "Maps/level05.tmx": {
@@ -110,29 +112,29 @@
                 9
             ],
             "scale": 2.0677989130434784,
-            "selectedLayer": 2,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 183.28668112228138,
-                "y": 174.58177278401996
+                "x": 182.80307510348905,
+                "y": 246.15546356528023
             }
         },
         "Maps/level06.tmx": {
             "expandedObjectLayers": [
                 9
             ],
-            "scale": 0.9146033653846153,
-            "selectedLayer": 14,
+            "scale": 5.5,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 415.48064918851446,
-                "y": 289.7430843025166
+                "x": 119.0909090909091,
+                "y": 117.0909090909091
             }
         },
         "Maps/level07.tmx": {
-            "scale": 0.6024816176470588,
-            "selectedLayer": 0,
+            "scale": 4,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 816.6224256292907,
-                "y": 336.9397406559878
+                "x": 82.25,
+                "y": 80.75
             }
         },
         "Maps/level_00.tmx": {
@@ -186,33 +188,71 @@
         },
         "Maps/level_template.tmx": {
             "scale": 1.4862304687499999,
-            "selectedLayer": 0,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 247.6062816216572,
-                "y": 68.6300019712202
+                "x": 341.8043235429398,
+                "y": 167.53794598856695
             }
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
             "scaleInDock": 3,
             "scaleInEditor": 1
         },
+        "Tilesets/01_utilities.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilesets/02_portal.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilesets/03_futuristic_city.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilesets/04_gravity_switch.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilesets/05_gravity_flow.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilesets/06_wall_of_death.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilesets/07_gravity_walls.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilesets/08_gravity_walls_open.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilesets/09_arrow.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "Tilesets/10_alpha.tsx": {
+            "scaleInDock": 4,
             "scaleInEditor": 1
         },
         "Tilesets/11_alpha_key.tsx": {
+            "scaleInDock": 4,
             "scaleInEditor": 1
         },
         "Tilesets/1_utilities.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 5.5,
+            "scaleInDock": 11,
             "scaleInEditor": 4
         },
         "Tilesets/2_portal.tsx": {
-            "scaleInDock": 5.5,
+            "scaleInDock": 4,
             "scaleInEditor": 4
         },
         "Tilesets/3_futuristic_city.tsx": {
-            "scaleInDock": 5.5,
+            "scaleInDock": 4,
             "scaleInEditor": 4
         },
         "Tilesets/4_gravity_switch.tsx": {
@@ -228,7 +268,7 @@
             "scaleInEditor": 4
         },
         "Tilesets/7_gravity_walls.tsx": {
-            "scaleInDock": 2,
+            "scaleInDock": 3,
             "scaleInEditor": 1
         },
         "Tilesets/8_gravity_walls_open.tsx": {
@@ -236,7 +276,7 @@
             "scaleInEditor": 1
         },
         "Tilesets/9_arrow.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 5.5,
             "scaleInEditor": 1
         },
         "Tilesets/TILESET_FUTURISTIC_CITY.tsx": {
@@ -349,23 +389,24 @@
             "scaleInEditor": 1
         }
     },
+    "last.externalTilesetPath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Tilesets",
     "last.imagePath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Images",
     "openFiles": [
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
-        "Tilesets/9_arrow.tsx",
-        "Tilesets/10_alpha.tsx",
-        "Tilesets/11_alpha_key.tsx",
-        "Tilesets/6_wall_of_death.tsx",
-        "Maps/level00.tmx",
         "Maps/level_template.tmx",
+        "Maps/level00.tmx",
         "Maps/level01.tmx",
         "Maps/level02.tmx",
         "Maps/level03.tmx",
         "Maps/level04.tmx",
         "Maps/level05.tmx",
-        "Maps/level06.tmx"
+        "Maps/level06.tmx",
+        "Maps/level07.tmx",
+        "Tilesets/01_utilities.tsx",
+        "Tilesets/02_portal.tsx",
+        "Tilesets/03_futuristic_city.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

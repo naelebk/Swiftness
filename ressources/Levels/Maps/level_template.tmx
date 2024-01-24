@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="1">
- <tileset firstgid="1" source="../Tilesets/1_utilities.tsx"/>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="19" nextobjectid="1">
+ <tileset firstgid="1" source="../Tilesets/01_utilities.tsx"/>
  <tileset firstgid="3" source="../Tilesets/2_portal.tsx"/>
  <tileset firstgid="27" source="../Tilesets/3_futuristic_city.tsx"/>
  <tileset firstgid="51" source="../Tilesets/4_gravity_switch.tsx"/>
  <tileset firstgid="67" source="../Tilesets/5_gravity_flow.tsx"/>
- <tileset firstgid="79" source="../Tilesets/6_wall_of_death.tsx"/>
+ <tileset firstgid="79" source="../Tilesets/06_wall_of_death.tsx"/>
  <tileset firstgid="95" source="../Tilesets/7_gravity_walls.tsx"/>
  <tileset firstgid="143" source="../Tilesets/8_gravity_walls_open.tsx"/>
+ <layer id="18" name="Gw_orange_open" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="17" name="Gw_green_open" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="16" name="Gw_rose_open" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="15" name="Gw_blue_open" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
  <layer id="16" name="Gw_orange" width="1" height="1">
   <data encoding="csv">
 0

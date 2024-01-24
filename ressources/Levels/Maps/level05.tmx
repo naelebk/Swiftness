@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="23" nextobjectid="21">
- <tileset firstgid="1" source="../Tilesets/1_utilities.tsx"/>
+ <tileset firstgid="1" source="../Tilesets/01_utilities.tsx"/>
  <tileset firstgid="3" source="../Tilesets/2_portal.tsx"/>
  <tileset firstgid="27" source="../Tilesets/3_futuristic_city.tsx"/>
  <tileset firstgid="51" source="../Tilesets/4_gravity_switch.tsx"/>
  <tileset firstgid="67" source="../Tilesets/5_gravity_flow.tsx"/>
- <tileset firstgid="79" source="../Tilesets/6_wall_of_death.tsx"/>
+ <tileset firstgid="79" source="../Tilesets/06_wall_of_death.tsx"/>
  <tileset firstgid="95" source="../Tilesets/7_gravity_walls.tsx"/>
  <tileset firstgid="143" source="../Tilesets/8_gravity_walls_open.tsx"/>
+ <tileset firstgid="191" source="../Tilesets/10_alpha.tsx"/>
  <layer id="22" name="Gw_orange_open" width="23" height="22" visible="0" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -262,8 +263,8 @@
 0,0,0,0,0,0,0,0,0,71,0,0,0,71,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,71,0,0,0,71,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,71,0,0,0,71,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,71,0,0,0,71,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,71,0,0,0,71,0,0,0,0,0,0,0,0,0,
+0,0,0,202,195,212,195,202,0,71,0,219,0,71,0,204,205,0,0,0,0,0,0,
+0,0,0,196,199,212,195,0,0,71,0,219,0,71,0,199,194,195,191,0,0,0,0,
 0,0,0,0,0,0,0,0,0,71,0,0,0,71,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,59,0,71,0,0,0,71,0,55,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,75,0,0,0,75,0,0,0,0,0,0,0,0,0,
