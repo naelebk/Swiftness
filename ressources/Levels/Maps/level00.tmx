@@ -12,7 +12,7 @@
  <tileset firstgid="95" source="../Tilesets/7_gravity_walls.tsx"/>
  <tileset firstgid="143" source="../Tilesets/8_gravity_walls_open.tsx"/>
  <tileset firstgid="191" source="../Tilesets/9_arrow.tsx"/>
- <objectgroup id="19" name="tutorial" locked="1">
+ <objectgroup id="19" name="tutorial">
   <object id="20" x="336" y="33" width="128" height="48">
    <text fontfamily="Tahoma" pixelsize="17" wrap="1" color="#ffffff" halign="center" valign="center">press &quot;Space&quot; to jump</text>
   </object>
@@ -22,7 +22,7 @@
 &quot;Q&quot;, &quot;S&quot;, &quot;D&quot;</text>
   </object>
   <object id="22" x="547.948" y="32" width="92" height="66.6406">
-   <text wrap="1" color="#ffffff" halign="center" valign="center">Don't touch the laser !</text>
+   <text wrap="1" color="#ffffff" halign="center" valign="center">Don't touch the red walls !</text>
   </object>
   <object id="23" x="128" y="784" width="161.104" height="90.974">
    <text wrap="1" color="#ffffff" halign="center" valign="center">You can

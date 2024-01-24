@@ -1,12 +1,12 @@
 {
     "activeFile": "",
     "expandedProjectPaths": [
-        "Tilesets",
         "level",
-        "Maps",
-        "tileset",
         ".",
-        "levels"
+        "levels",
+        "Maps",
+        "Tilesets",
+        "tileset"
     ],
     "fileStates": {
         "": {
@@ -51,11 +51,11 @@
         "Maps/level00.tmx": {
             "expandedObjectLayers": [
                 19,
-                9,
-                12
+                12,
+                9
             ],
             "scale": 0.8092237903225806,
-            "selectedLayer": 11,
+            "selectedLayer": 0,
             "viewCenter": {
                 "x": 336.12457178449085,
                 "y": 496.77234506384303
@@ -129,10 +129,10 @@
         },
         "Maps/level07.tmx": {
             "scale": 0.6496662621359223,
-            "selectedLayer": 6,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 466.393312473731,
-                "y": 324.7821416896279
+                "x": 281.68308971185735,
+                "y": 449.46154205389246
             }
         },
         "Maps/level_00.tmx": {
@@ -189,7 +189,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 247.6062816216572,
-                "y": 169.5564754583087
+                "y": 68.6300019712202
             }
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -227,6 +227,10 @@
         },
         "Tilesets/8_gravity_walls_open.tsx": {
             "scaleInDock": 3,
+            "scaleInEditor": 1
+        },
+        "Tilesets/9_arrow.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "Tilesets/TILESET_FUTURISTIC_CITY.tsx": {
@@ -344,8 +348,10 @@
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
+        "Tilesets/9_arrow.tsx",
         "Tilesets/6_wall_of_death.tsx",
         "Maps/level00.tmx",
+        "Maps/level_template.tmx",
         "Maps/level01.tmx",
         "Maps/level02.tmx",
         "Maps/level03.tmx",
@@ -353,9 +359,7 @@
         "Maps/level05.tmx",
         "Maps/level06.tmx",
         "Maps/level07.tmx",
-        "Tilesets/8_gravity_walls_open.tsx",
-        "Maps/level_template.tmx",
-        "Tilesets/7_gravity_walls.tsx"
+        "Tilesets/8_gravity_walls_open.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
