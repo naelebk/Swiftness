@@ -36,7 +36,7 @@ namespace swiftness {
     class levelScene : public gf::Scene {
         public:
             // Constructeur
-            levelScene(GameCenter& game, gf::Font& font, int level, std::vector<swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector, gf::Vector2f& camera);
+            levelScene(GameCenter& game, gf::Font& font, std::vector<swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector, gf::Vector2f& camera);
 
             ~levelScene();
             // Méthodes virtuelles privées héritant directement de gf::Scene
@@ -53,7 +53,7 @@ namespace swiftness {
             // Cette seconde fonction permet, dans une fenêtre graphique ou non selon le premier booléen,
             // de charger les différents paramètres du jeu en fonction du level
             // Check de la valeur de level tout de même, car sinon c po drôle
-            void loadLevel(std::vector<swiftness::StaticPlateform> &plateform, swiftness::Square& square, int level);
+            void loadLevel(std::vector<swiftness::StaticPlateform> &plateform, swiftness::Square& square, int t_level);
 
         private:
             GameCenter& game;
@@ -67,7 +67,7 @@ namespace swiftness {
             gf::Action right;
             gf::Action rightJump;
             gf::Action jump;
-            int level;
+            int m_level;
             gf::Text m_text;
             std::vector<swiftness::StaticPlateform> plateform;
             swiftness::Square square;

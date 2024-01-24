@@ -11,16 +11,15 @@
 namespace swiftness {
     // Déclaration en seconde instance du constructeur et du destructeur,
     // de levelScene (interface graphique)
-    levelScene::levelScene(GameCenter& game, gf::Font& font, int level, std::vector<swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector, gf::Vector2f& camera) : 
+    levelScene::levelScene(GameCenter& game, gf::Font& font, std::vector<swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector, gf::Vector2f& camera) : 
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     m_font(font), 
-    game(game), 
-    level(level), 
+    game(game),  
     plateform(plateform), 
     square(square),
     enumVector(enumVector),
     m_camera(camera),
-    m_levelData(LEVELS_TMX_PATH + "level0" + std::to_string(level) + ".tmx"),
+    m_levelData(LEVELS_TMX_PATH + "level0" + std::to_string(m_level) + ".tmx"),
     quit_a("quit")
     , up("up")
     , down("down")
@@ -93,23 +92,24 @@ namespace swiftness {
 
     levelScene::~levelScene() {}
 
-    int levelScene::getLevel(){ return level; }
+    int levelScene::getLevel(){ return m_level; }
 
     void levelScene::updateLevel(int s_level) {
-        level = s_level;
+        m_level = s_level;
     }
 
     // Comme on ne peut pas mettre une valeur non comprise entre MIN_LEVEL et MAX_LEVEL, on n'effectue aucune
     // vérification sur la valeur de level, car auquel cas rien ne sera fait
-    void levelScene::loadLevel(std::vector<swiftness::StaticPlateform> &plateform, swiftness::Square& square, int level) {
-        if (level < 0) {
+    void levelScene::loadLevel(std::vector<swiftness::StaticPlateform> &plateform, swiftness::Square& square, int t_level) {
+        if (t_level < 0) {
             exit(0);
         }
+        updateLevel(t_level);
         std::string lvl = "";
-        if (level >= 0 && level < 10) {
-            lvl = "level0" + std::to_string(level) + ".tmx";
+        if (t_level >= 0 && t_level < 10) {
+            lvl = "level0" + std::to_string(t_level) + ".tmx";
         } else {
-            lvl = "level" + std::to_string(level) + ".tmx";
+            lvl = "level" + std::to_string(t_level) + ".tmx";
         }
         std::cout << GREEN << "File load : " << lvl << NC << std::endl;
         swiftness::Level::level leveln = Level::initializeLevel(lvl);
@@ -152,7 +152,7 @@ namespace swiftness {
         target.clear(gf::Color::Black);
         target.setView(cam);
         swiftness::LevelRender renderLevel;
-        renderLevel.renderLevel("level0" + std::to_string(level) + ".tmx", target, square.getGravity());
+        renderLevel.renderLevel("level0" + std::to_string(m_level) + ".tmx", target, square.getGravity());
         square.render(target);
         square.renderHUD(target, SCREEN_WIDTH, SCREEN_HEIGHT, m_camera);
     }
@@ -162,10 +162,10 @@ namespace swiftness {
         square.update(dt);
         if (square.getLevelOver()) game.replaceAllScenes(game.menu);
         std::string lvl = "";
-        if (level >= 0 && level < 10) {
-            lvl = "level0" + std::to_string(level) + ".tmx";
+        if (m_level >= 0 && m_level < 10) {
+            lvl = "level0" + std::to_string(m_level) + ".tmx";
         } else {
-            lvl = "level" + std::to_string(level) + ".tmx";
+            lvl = "level" + std::to_string(m_level) + ".tmx";
         }
         swiftness::LevelData ldata(lvl);
         float map_width=ldata.getMapSize().x;
