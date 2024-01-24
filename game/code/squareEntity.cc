@@ -37,7 +37,7 @@ namespace swiftness
 
 
     void Square::actionUp() {
-        if (horizontal_g){
+        if (horizontal_g && m_velocity.x<SPEED_SQUARE){
             m_velocity.y = -SPEED_SQUARE;
             goUp=true;
         }
@@ -77,7 +77,7 @@ namespace swiftness
         goUp=false;
     }
     void Square::actionDown(){
-        goDown=true; if (horizontal_g) m_velocity.y = SPEED_SQUARE;
+        goDown=true; if (horizontal_g && m_velocity.y>-SPEED_SQUARE) m_velocity.y = SPEED_SQUARE;
     }
     void Square::actionDownRelease(){
         if(horizontal_g && goDown){
@@ -88,7 +88,7 @@ namespace swiftness
         goDown=false;
     }
     void Square::actionLeft(){
-        if(!horizontal_g){ 
+        if(!horizontal_g && m_velocity.x<SPEED_SQUARE){ 
             m_velocity.x = -SPEED_SQUARE;
             goLeft=true;
         }
@@ -132,7 +132,7 @@ namespace swiftness
         goLeft=false;
     }
     void Square::actionRight(){
-        if(!horizontal_g){
+        if(!horizontal_g && m_velocity.x>-SPEED_SQUARE){
             m_velocity.x = SPEED_SQUARE;
             goRight=true;
         }
@@ -269,28 +269,28 @@ namespace swiftness
         // Appliquez la gravité
         if(horizontal_g){
             setVelocity(m_velocity + gf::Vector2f( gravity * m_gravity * dt,0));
-            if (!goUp && m_velocity.y<0.0f && m_velocity.y!=-WALL_JUMP_SPEED){
-                m_velocity.y+=gravity*dt*5;
+            if (!goUp && m_velocity.y<0.0f){
+                m_velocity.y+=gravity*dt*2.5f;
                 if (m_velocity.y>0.0f){
                     m_velocity.y=0.0f;
                 }
             }
-            if (!goDown && m_velocity.y>0.0f && m_velocity.y!=WALL_JUMP_SPEED){
-                m_velocity.y-=gravity*dt*5;
+            if (!goDown && m_velocity.y>0.0f ){
+                m_velocity.y-=gravity*dt*2.5f;
                 if (m_velocity.y<0.0f){
                     m_velocity.y=0.0f;
                 }
             }
         }else{
             setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
-            if (!goLeft && m_velocity.x<0.0f && m_velocity.x!=-WALL_JUMP_SPEED){
-                m_velocity.x+=gravity*dt*5;
+            if (!goLeft && m_velocity.x<0.0f ){
+                m_velocity.x+=gravity*dt*2.5f;
                 if (m_velocity.x>0.0f){
                     m_velocity.x=0.0f;
                 }
             }
-            if (!goRight && m_velocity.x>0.0f && m_velocity.x!=WALL_JUMP_SPEED){
-                m_velocity.x-=gravity*dt*5;
+            if (!goRight && m_velocity.x>0.0f ){
+                m_velocity.x-=gravity*dt*2.5f;
                 if (m_velocity.x<0.0f){
                     m_velocity.x=0.0f;
                 }
