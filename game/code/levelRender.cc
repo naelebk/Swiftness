@@ -37,16 +37,6 @@ namespace swiftness
         // logFile.close(); // Fermer le fichier de log.
     }
 
-    void LevelRender::renderTutorial(LayerEntity &layerEntity, gf::RenderTarget &target)
-    {
-        gf::TmxObjectLayer *layer = layerEntity.getObjectLayerByName(LayerName::tutorial);
-
-        if (layer != nullptr && layer->visible)
-        {
-            std::vector<std::unique_ptr<gf::TmxObject>> Texts = layerEntity.getObjectsOfaLayer(LayerName::tutorial);
-        }
-    }
-
     void LevelRender::renderLevel(std::string nameFile, gf::RenderTarget &target, std::string gravity)
     {
         swiftness::LayerEntity layerEntity(nameFile);

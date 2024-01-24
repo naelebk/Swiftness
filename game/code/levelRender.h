@@ -27,14 +27,6 @@ namespace swiftness
             void renderLayer(LayerEntity &layerEntity, gf::RenderTarget &target, LayerName layerName, std::string gravity);
 
             /**
-             * @brief render the layer tutorial
-             * 
-             * @param layerEntity
-             * @param window
-             */
-            void renderTutorial(LayerEntity &layerEntity, gf::RenderTarget &target);
-
-            /**
              * @brief render a level
              * 
              * @param layerEntity
