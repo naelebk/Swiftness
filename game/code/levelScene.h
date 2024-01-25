@@ -45,13 +45,16 @@ namespace swiftness {
             // Getter du niveau
             int getLevel();
 
+            swiftness::Square getSquare() { return m_square; };
+            std::vector<swiftness::StaticPlateform> getPlateforms() { return m_plateform; };
+
             // Update the scene with the menu
             void updateLevel(int s_level);
 
             // Cette seconde fonction permet, dans une fenêtre graphique ou non selon le premier booléen,
             // de charger les différents paramètres du jeu en fonction du level
             // Check de la valeur de level tout de même, car sinon c po drôle
-            void loadLevel(std::vector<swiftness::StaticPlateform> &plateform, swiftness::Square& square, int t_level);
+            void loadLevel(std::vector<swiftness::StaticPlateform> plateform, swiftness::Square square, int t_level);
 
         private:
             GameCenter& game;

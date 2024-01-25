@@ -37,10 +37,10 @@ int main(int argc, char *argv[]) {
     resources.addSearchDir(LEVELS_TMX_PATH);
     resources.addSearchDir(TILESETS_TSX_PATH);
     resources.addSearchDir(IMAGES_GAME);
-    resources.addSearchDir(PATH_FONT);
     resources.addSearchDir(gf::Paths::getBasePath());
     resources.addSearchDir(gf::Paths::getCurrentPath());
-    swiftness::GameCenter game(resources);
+    gf::Font font(PATH_FONT);
+    swiftness::GameCenter game(resources, font);
     game.run();
     /*while (true) {
         

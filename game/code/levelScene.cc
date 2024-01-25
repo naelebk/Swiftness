@@ -17,7 +17,7 @@ namespace swiftness {
     m_font(font), 
     game(game),
     m_levelNumber(level),
-    m_levelData(LEVELS_TMX_PATH + "level0" + std::to_string(m_levelNumber) + ".tmx"),
+    m_levelData("level0" + std::to_string(m_levelNumber) + ".tmx"),
     quit_a("quit")
     , up("up")
     , down("down")
@@ -30,12 +30,6 @@ namespace swiftness {
      {
 
         gf::Gamepad::initialize();
-        gf::Vector2f camera;
-        m_camera = camera;
-        swiftness::Square square;
-        m_square = square;
-        std::vector<swiftness::StaticPlateform> plateform;
-        m_plateform = plateform;
         quit_a.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::B);
         quit_a.addKeycodeKeyControl(gf::Keycode::Escape);
         addAction(quit_a);
@@ -99,7 +93,7 @@ namespace swiftness {
 
     // Comme on ne peut pas mettre une valeur non comprise entre MIN_LEVEL et MAX_LEVEL, on n'effectue aucune
     // vérification sur la valeur de level, car auquel cas rien ne sera fait
-    void levelScene::loadLevel(std::vector<swiftness::StaticPlateform> &plateform, swiftness::Square& square, int t_level) {
+    void levelScene::loadLevel(std::vector<swiftness::StaticPlateform> plateform, swiftness::Square square, int t_level) {
         if (t_level < 0) {
             exit(0);
         }

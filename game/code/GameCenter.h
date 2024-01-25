@@ -17,7 +17,7 @@
 
 namespace swiftness {
     struct GameCenter : gf::GameManager {
-        GameCenter(gf::ResourceManager& resources);
+        GameCenter(gf::ResourceManager& resources, gf::Font& font);
         SelectLevel level;
         Menu menu;
         gf::Font& font;

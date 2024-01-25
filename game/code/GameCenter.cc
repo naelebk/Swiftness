@@ -3,10 +3,10 @@
 namespace swiftness {
 
     // Héritage de gf::Scene, on peut utiliser *this pour instancier
-    GameCenter::GameCenter(gf::ResourceManager& resources)
+    GameCenter::GameCenter(gf::ResourceManager& resources, gf::Font& font)
     : GameManager("Swiftness", {RESSOURCES_PATH}), 
     menu(*this),
-    font(resources.getFont(PATH_FONT)),
+    font(font),
     level(*this, font, resources) 
     {
         pushScene(menu);
