@@ -190,8 +190,8 @@
             "scale": 1.4862304687499999,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 341.8043235429398,
-                "y": 167.53794598856695
+                "x": 341.1314803863592,
+                "y": 165.51941651882515
             }
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -408,6 +408,7 @@
         "Tilesets/02_portal.tsx",
         "Tilesets/03_futuristic_city.tsx"
     ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 16,

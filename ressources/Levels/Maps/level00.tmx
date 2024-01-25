@@ -4,13 +4,13 @@
   <property name="Name" value="Welcome To Swiftness"/>
  </properties>
  <tileset firstgid="1" source="../Tilesets/01_utilities.tsx"/>
- <tileset firstgid="3" source="../Tilesets/2_portal.tsx"/>
- <tileset firstgid="27" source="../Tilesets/3_futuristic_city.tsx"/>
- <tileset firstgid="51" source="../Tilesets/4_gravity_switch.tsx"/>
- <tileset firstgid="67" source="../Tilesets/5_gravity_flow.tsx"/>
+ <tileset firstgid="3" source="../Tilesets/02_portal.tsx"/>
+ <tileset firstgid="27" source="../Tilesets/03_futuristic_city.tsx"/>
+ <tileset firstgid="51" source="../Tilesets/04_gravity_switch.tsx"/>
+ <tileset firstgid="67" source="../Tilesets/05_gravity_flow.tsx"/>
  <tileset firstgid="79" source="../Tilesets/06_wall_of_death.tsx"/>
- <tileset firstgid="95" source="../Tilesets/7_gravity_walls.tsx"/>
- <tileset firstgid="143" source="../Tilesets/8_gravity_walls_open.tsx"/>
+ <tileset firstgid="95" source="../Tilesets/07_gravity_walls.tsx"/>
+ <tileset firstgid="143" source="../Tilesets/08_gravity_walls_open.tsx"/>
  <tileset firstgid="191" source="../Tilesets/09_arrow.tsx"/>
  <tileset firstgid="195" source="../Tilesets/10_alpha.tsx"/>
  <tileset firstgid="225" source="../Tilesets/11_alpha_key.tsx"/>
