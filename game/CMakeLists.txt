@@ -10,7 +10,7 @@ add_executable(game
   ./code/commands.cc
   ./code/constants.cc
   ./code/GameCenter.cc
-  ./code/GameLevel.cc
+  ./code/SelectLevelScene.cc
   ./code/MenuScene.cc
   ./code/levelScene.cc
   ./code/layerEntity.cc

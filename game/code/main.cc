@@ -15,6 +15,8 @@
 #include <gf/Gamepad.h>
 #include <gf/Event.h>
 #include <gf/RenderWindow.h>
+#include <gf/ResourceManager.h>
+#include <gf/Paths.h>
 #include <gf/Shapes.h>
 #include <gf/Vector.h>
 #include <gf/Window.h>
@@ -31,16 +33,14 @@ using std::this_thread::sleep_for;
 
 int main(int argc, char *argv[]) {
     // Initialize everything
-
-    // gf::Vector2f velocity(0, GRAVITY);
-    bool isresize = false;
-    int level = -2;
-    std::vector<swiftness::StaticPlateform> plateform;
-    swiftness::Square square;
-    gf::Font font(PATH_FONT);
-    std::vector<Input> enumVector;
-    gf::Vector2f camera;
-    swiftness::GameCenter game(font, plateform, square, enumVector, camera);
+    gf::ResourceManager resources;
+    resources.addSearchDir(LEVELS_TMX_PATH);
+    resources.addSearchDir(TILESETS_TSX_PATH);
+    resources.addSearchDir(IMAGES_GAME);
+    resources.addSearchDir(PATH_FONT);
+    resources.addSearchDir(gf::Paths::getBasePath());
+    resources.addSearchDir(gf::Paths::getCurrentPath());
+    swiftness::GameCenter game(resources);
     game.run();
     /*while (true) {
         

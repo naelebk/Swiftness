@@ -36,9 +36,7 @@ namespace swiftness {
     class levelScene : public gf::Scene {
         public:
             // Constructeur
-            levelScene(GameCenter& game, gf::Font& font, std::vector<swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector, gf::Vector2f& camera);
-
-            ~levelScene();
+            levelScene(GameCenter& game, gf::Font& font, gf::ResourceManager& resources, int level);
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;
             void doRender (gf::RenderTarget& target, const gf::RenderStates &states) override;
@@ -67,12 +65,10 @@ namespace swiftness {
             gf::Action right;
             gf::Action rightJump;
             gf::Action jump;
-            int m_level;
-            gf::Text m_text;
-            std::vector<swiftness::StaticPlateform> plateform;
-            swiftness::Square square;
-            std::vector<Input>& enumVector;
+            int m_levelNumber;
+            std::vector<swiftness::StaticPlateform> m_plateform;
+            swiftness::Square m_square;
             swiftness::LevelData m_levelData;
-            gf::Vector2f& m_camera;
+            gf::Vector2f m_camera;
     };
 }

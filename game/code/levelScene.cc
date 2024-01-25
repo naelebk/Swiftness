@@ -1,5 +1,6 @@
 #include "levelScene.h"
 #include "GameCenter.h"
+#include <iostream>
 #define RED     "\x1b[31m"
 #define GREEN   "\x1b[32m"
 #define YELLOW  "\x1b[33m"
@@ -11,15 +12,12 @@
 namespace swiftness {
     // Déclaration en seconde instance du constructeur et du destructeur,
     // de levelScene (interface graphique)
-    levelScene::levelScene(GameCenter& game, gf::Font& font, std::vector<swiftness::StaticPlateform>& plateform, swiftness::Square& square, std::vector<Input>& enumVector, gf::Vector2f& camera) : 
+    levelScene::levelScene(GameCenter& game, gf::Font& font, gf::ResourceManager& resources, int level) : 
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     m_font(font), 
-    game(game),  
-    plateform(plateform), 
-    square(square),
-    enumVector(enumVector),
-    m_camera(camera),
-    m_levelData(LEVELS_TMX_PATH + "level0" + std::to_string(m_level) + ".tmx"),
+    game(game),
+    m_levelNumber(level),
+    m_levelData(LEVELS_TMX_PATH + "level0" + std::to_string(m_levelNumber) + ".tmx"),
     quit_a("quit")
     , up("up")
     , down("down")
@@ -30,11 +28,14 @@ namespace swiftness {
     , leftJump("leftJump")
     , rightJump("rightJump")
      {
-        m_text.setFont(m_font);
-        m_text.setCharacterSize(20);
-        m_text.setColor(gf::Color::Yellow);
-        gf::Gamepad::initialize();
 
+        gf::Gamepad::initialize();
+        gf::Vector2f camera;
+        m_camera = camera;
+        swiftness::Square square;
+        m_square = square;
+        std::vector<swiftness::StaticPlateform> plateform;
+        m_plateform = plateform;
         quit_a.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::B);
         quit_a.addKeycodeKeyControl(gf::Keycode::Escape);
         addAction(quit_a);
@@ -90,12 +91,10 @@ namespace swiftness {
         addAction(jump);
     }
 
-    levelScene::~levelScene() {}
-
-    int levelScene::getLevel(){ return m_level; }
+    int levelScene::getLevel(){ return m_levelNumber; }
 
     void levelScene::updateLevel(int s_level) {
-        m_level = s_level;
+        m_levelNumber = s_level;
     }
 
     // Comme on ne peut pas mettre une valeur non comprise entre MIN_LEVEL et MAX_LEVEL, on n'effectue aucune
@@ -122,29 +121,29 @@ namespace swiftness {
         //if (!isActive()) return;
         if (quit_a.isActive()) game.replaceScene(game.menu);
         if(up.isActive()) {
-            square.actionUp();
+            m_square.actionUp();
         } else {
-            square.actionUpRelease();
+            m_square.actionUpRelease();
         }
         if(down.isActive()){
-            square.actionDown();
+            m_square.actionDown();
         } else {
-            square.actionDownRelease();
+            m_square.actionDownRelease();
         }
         if(left.isActive()){
-            square.actionLeft();
+            m_square.actionLeft();
         } else {
-            square.actionLeftRelease();
+            m_square.actionLeftRelease();
         }
         if (right.isActive()) {
-            square.actionRight();
+            m_square.actionRight();
         } else {
-            square.actionRightRelease();
+            m_square.actionRightRelease();
         }
-        if (upJump.isActive()) square.actionUpJump();
-        if (leftJump.isActive()) square.actionLeftJump();
-        if (rightJump.isActive()) square.actionRightJump();
-        if (jump.isActive()) square.actionJump();
+        if (upJump.isActive()) m_square.actionUpJump();
+        if (leftJump.isActive()) m_square.actionLeftJump();
+        if (rightJump.isActive()) m_square.actionRightJump();
+        if (jump.isActive()) m_square.actionJump();
     }
 
     void levelScene::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
@@ -152,41 +151,30 @@ namespace swiftness {
         target.clear(gf::Color::Black);
         target.setView(cam);
         swiftness::LevelRender renderLevel;
-        renderLevel.renderLevel("level0" + std::to_string(m_level) + ".tmx", target, square.getGravity());
-        square.render(target);
-        square.renderHUD(target, SCREEN_WIDTH, SCREEN_HEIGHT, m_camera);
+        renderLevel.renderLevel("level0" + std::to_string(m_levelNumber) + ".tmx", target, m_square.getGravity());
+        m_square.render(target);
+        m_square.renderHUD(target, SCREEN_WIDTH, SCREEN_HEIGHT, m_camera);
     }
 
     void levelScene::doUpdate(gf::Time time) {
         float dt = time.asSeconds();
-        square.update(dt);
-        if (square.getLevelOver()) game.replaceAllScenes(game.menu);
+        m_square.update(dt);
+        if (m_square.getLevelOver()) game.replaceAllScenes(game.menu);
         std::string lvl = "";
-        if (m_level >= 0 && m_level < 10) {
-            lvl = "level0" + std::to_string(m_level) + ".tmx";
+        if (m_levelNumber >= 0 && m_levelNumber < 10) {
+            lvl = "level0" + std::to_string(m_levelNumber) + ".tmx";
         } else {
-            lvl = "level" + std::to_string(m_level) + ".tmx";
+            lvl = "level" + std::to_string(m_levelNumber) + ".tmx";
         }
         swiftness::LevelData ldata(lvl);
         float map_width=ldata.getMapSize().x;
         float map_height=ldata.getMapSize().y;
         float tile_width=ldata.getTileSize().x;
         float tile_height=ldata.getTileSize().y;
-        float xcamera=square.getPosition().x;
-        float ycamera=square.getPosition().y;
+        float xcamera=m_square.getPosition().x;
+        float ycamera=m_square.getPosition().y;
         xcamera=std::clamp(xcamera,SCREEN_WIDTH/2+tile_width,map_width*tile_width-SCREEN_WIDTH/2-tile_width);
         ycamera=std::clamp(ycamera,SCREEN_HEIGHT/2+tile_height,map_height*tile_height-SCREEN_HEIGHT/2-tile_height);
         m_camera = {xcamera, ycamera};
-        /*gf::Event event;
-        swiftness::CommandsManager commandManager;
-        while (game.getWindow().pollEvent(event))
-        {
-            commandManager.manageCommands(enumVector, event);
-        }
-        std::vector<Input>::iterator it1 = std::find(enumVector.begin(), enumVector.end(), Input::Escape);
-        std::vector<Input>::iterator it2 = std::find(enumVector.begin(), enumVector.end(), Input::Closed);
-        if (it1 != enumVector.end() || it2 != enumVector.end()) {
-            game.replaceAllScenes(game.menu);
-        }*/
     }
 }
