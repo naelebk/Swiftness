@@ -64,7 +64,7 @@ namespace swiftness {
             widgets.addWidget(button);
         };
         createButtons(levels_b[MAX_LEVEL + 1], [&] () {
-            game.replaceAllScenes(level00);
+            game.replaceAllScenes(game.menu);
         });
 
         createButtons(levels_b[0], [&] () {
