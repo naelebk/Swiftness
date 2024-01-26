@@ -23,6 +23,7 @@ namespace swiftness
         , nb_deaths(0)
         , timer(0.0f)
         , m_gravityDirection("down")
+        , m_walljump(0.0f)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -37,7 +38,7 @@ namespace swiftness
 
 
     void Square::actionUp() {
-        if (horizontal_g && m_velocity.y<SPEED_SQUARE){
+        if (horizontal_g && m_velocity.y<SPEED_SQUARE && m_walljump==0.0f){
             m_velocity.y = -SPEED_SQUARE;
             goUp=true;
         }
@@ -56,11 +57,13 @@ namespace swiftness
                     m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                     nb_jumps=1;
                     m_velocity.x=-WALL_JUMP_SPEED;
+                    m_walljump=WALL_JUMP_TIME;
                 }else{
                     if(walljumpLeft){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=1;
                         m_velocity.x=WALL_JUMP_SPEED;
+                        m_walljump=WALL_JUMP_TIME;
                     }
                 }
             }
@@ -77,7 +80,7 @@ namespace swiftness
         goUp=false;
     }
     void Square::actionDown(){
-        goDown=true; if (horizontal_g && m_velocity.y>-SPEED_SQUARE) m_velocity.y = SPEED_SQUARE;
+        goDown=true; if (horizontal_g && m_velocity.y>-SPEED_SQUARE && m_walljump==0.0f) m_velocity.y = SPEED_SQUARE;
     }
     void Square::actionDownRelease(){
         if(horizontal_g && goDown){
@@ -88,7 +91,7 @@ namespace swiftness
         goDown=false;
     }
     void Square::actionLeft(){
-        if(!horizontal_g && m_velocity.x<SPEED_SQUARE){ 
+        if(!horizontal_g && m_velocity.x<SPEED_SQUARE && m_walljump==0.0f){ 
             m_velocity.x = -SPEED_SQUARE;
             goLeft=true;
         }
@@ -112,11 +115,13 @@ namespace swiftness
                         m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=1;
                         m_velocity.y=-WALL_JUMP_SPEED;
+                        m_walljump=WALL_JUMP_TIME;
                     }else{
                         if( walljumpUp){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=1;
                             m_velocity.y=WALL_JUMP_SPEED;
+                            m_walljump=WALL_JUMP_TIME;
                         }
                     }
                 }
@@ -132,7 +137,7 @@ namespace swiftness
         goLeft=false;
     }
     void Square::actionRight(){
-        if(!horizontal_g && m_velocity.x>-SPEED_SQUARE){
+        if(!horizontal_g && m_velocity.x>-SPEED_SQUARE && m_walljump==0.0f){
             m_velocity.x = SPEED_SQUARE;
             goRight=true;
         }
@@ -157,11 +162,13 @@ namespace swiftness
                         m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=1;
                         m_velocity.y=-WALL_JUMP_SPEED;
+                        m_walljump=WALL_JUMP_TIME;
                     }else{
                         if( walljumpUp){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=1;
                             m_velocity.y=WALL_JUMP_SPEED;
+                            m_walljump=WALL_JUMP_TIME;
                         }
                     }
                 }
@@ -194,11 +201,13 @@ namespace swiftness
                         m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=1;
                         m_velocity.y=-WALL_JUMP_SPEED;
+                        m_walljump=WALL_JUMP_TIME;
                     }else{
                         if(walljumpUp){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=1;
                             m_velocity.y=WALL_JUMP_SPEED;
+                            m_walljump=WALL_JUMP_TIME;
                         }
                     }
                 }
@@ -218,11 +227,13 @@ namespace swiftness
                         m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=1;
                         m_velocity.y=-WALL_JUMP_SPEED;
+                        m_walljump=WALL_JUMP_TIME;
                     }else{
                         if(walljumpUp){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
                             nb_jumps=1;
                             m_velocity.y=WALL_JUMP_SPEED;
+                            m_walljump=WALL_JUMP_TIME;
                         }
                     }
                 }
@@ -243,11 +254,13 @@ namespace swiftness
                     m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                     nb_jumps=1;
                     m_velocity.x=-WALL_JUMP_SPEED;
+                    m_walljump=WALL_JUMP_TIME;
                 }else{
                     if( walljumpLeft){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
                         nb_jumps=1;
                         m_velocity.x=WALL_JUMP_SPEED;
+                        m_walljump=WALL_JUMP_TIME;
                     }
                 }
             }
@@ -264,6 +277,10 @@ namespace swiftness
         timer+=dt;
         if(timer>999.99f){
             isOver=true;
+        }
+        m_walljump-=dt;
+        if(m_walljump<0.0f){
+            m_walljump=0.0f;
         }
       
         // Appliquez la gravité
@@ -618,6 +635,12 @@ namespace swiftness
             }
             if (wallRight){ 
                 squareRight+=1;
+            }
+            if (wallUp){ 
+                squareTop-=1;
+            }
+            if (wallDown){ 
+                squareBottom+=1;
             }
         }
 

@@ -123,6 +123,7 @@ namespace swiftness
         std::string m_gravityDirection;
         bool m_jump;
         int nb_jumps;
+        float m_walljump;
         int m_gravity;
         bool horizontal_g;
         bool goLeft;
