@@ -1,5 +1,6 @@
 #include "levelScene.h"
 #include "GameCenter.h"
+#include <unistd.h>
 #include <iostream>
 #define RED     "\x1b[31m"
 #define GREEN   "\x1b[32m"
@@ -115,8 +116,6 @@ namespace swiftness {
         //if (!isActive()) return;
         if (quit_a.isActive()) {
             m_square.squareReset();
-            right.reset();
-            left.reset();
             game.replaceScene(game.menu);
         }
         if(up.isActive()) {

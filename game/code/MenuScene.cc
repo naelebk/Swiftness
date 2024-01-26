@@ -1,5 +1,6 @@
 #include "MenuScene.h"
 #include "GameCenter.h"
+#include "Credits.h"
 #include <gf/Easings.h>
 #include <gf/Time.h>
 #include <gf/SceneManager.h>
@@ -69,22 +70,22 @@ namespace swiftness {
                 widgets.addWidget(button);
             };
 
-            // Maintenant le gestionnaire de création de boutons initialisé, on peut créer nos boutons
-            createButtons(quit_b, [&] () {
-                game.popAllScenes();
-            });
-
-            /*createButtons(credits, [&] () {
-                game.replaceAllScenes(game.level);
-            });*/
-
             gf::FadeSegueEffect fade;
             createButtons(choose_level, [&] () {
                 game.replaceAllScenes(game.level/*, fade, gf::milliseconds(500)*/);
             });
 
+            // Maintenant le gestionnaire de création de boutons initialisé, on peut créer nos boutons
+            createButtons(quit_b, [&] () {
+                game.popAllScenes();
+            });
+
             createButtons(questionmark_b, [&] () {
-                system("xdg-open https://www.youtube.com/watch?v=xvFZjo5PgG0 > /dev/null 2>&1");
+                system("xdg-open https://gamedevframework.github.io/v1.2.0/index.html > /dev/null 2>&1");
+            });
+
+            createButtons(credits, [&] () {
+                game.replaceAllScenes(game.credits);
             });
 
         }
@@ -123,23 +124,23 @@ namespace swiftness {
         float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
         int r_size = coords.getRelativeCharacterSize(size);
 
-        quit_b.setCharacterSize(r_size);
-        quit_b.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
-        quit_b.setParagraphWidth(width);
-        quit_b.setPadding(padding);
-
         credits.setCharacterSize(r_size);
-        credits.setPosition(coords.getRelativePoint({0.275f, 0.425f + size - space}));
+        credits.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
         credits.setParagraphWidth(width);
         credits.setPadding(padding);
 
         choose_level.setCharacterSize(r_size);
-        choose_level.setPosition(coords.getRelativePoint({0.275f, (0.425f + size - space)*2}));
+        choose_level.setPosition(coords.getRelativePoint({0.275f, 0.325f}));
         choose_level.setParagraphWidth(width);
         choose_level.setPadding(padding);
 
+        quit_b.setCharacterSize(r_size);
+        quit_b.setPosition(coords.getRelativePoint({0.275f, 0.525f}));
+        quit_b.setParagraphWidth(width);
+        quit_b.setPadding(padding);
+
         questionmark_b.setCharacterSize(r_size);
-        questionmark_b.setPosition(coords.getRelativePoint({0.275f, (0.425f + size - space)*3}));
+        questionmark_b.setPosition(coords.getRelativePoint({0.275f, 0.625f}));
         questionmark_b.setParagraphWidth(width);
         questionmark_b.setPadding(padding);
 
@@ -148,19 +149,14 @@ namespace swiftness {
     }
     void Menu::doShow() {
         widgets.clear();
-
-        quit_b.setDefault();
-        widgets.addWidget(quit_b);
-
-        credits.setDefault();
-        //widgets.addWidget(credits);
-
         choose_level.setDefault();
         widgets.addWidget(choose_level);
-
+        credits.setDefault();
+        widgets.addWidget(credits);
+        quit_b.setDefault();
+        widgets.addWidget(quit_b);
         questionmark_b.setDefault();
         widgets.addWidget(questionmark_b);
-        
         widgets.selectNextWidget();
     }
 

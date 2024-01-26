@@ -7,6 +7,7 @@ namespace swiftness {
     : GameManager("Swiftness", {RESSOURCES_PATH}), 
     menu(*this),
     font(font),
+    credits(*this, font),
     level(*this, font, resources) 
     {
         pushScene(menu);
