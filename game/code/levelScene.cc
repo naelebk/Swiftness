@@ -93,7 +93,7 @@ namespace swiftness {
 
     // Comme on ne peut pas mettre une valeur non comprise entre MIN_LEVEL et MAX_LEVEL, on n'effectue aucune
     // vérification sur la valeur de level, car auquel cas rien ne sera fait
-    void levelScene::loadLevel(std::vector<swiftness::StaticPlateform> plateform, swiftness::Square square, int t_level) {
+    void levelScene::loadLevel(int t_level) {
         if (t_level < 0) {
             exit(0);
         }

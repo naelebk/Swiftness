@@ -54,7 +54,7 @@ namespace swiftness {
             // Cette seconde fonction permet, dans une fenêtre graphique ou non selon le premier booléen,
             // de charger les différents paramètres du jeu en fonction du level
             // Check de la valeur de level tout de même, car sinon c po drôle
-            void loadLevel(std::vector<swiftness::StaticPlateform> plateform, swiftness::Square square, int t_level);
+            void loadLevel(int t_level);
 
         private:
             GameCenter& game;

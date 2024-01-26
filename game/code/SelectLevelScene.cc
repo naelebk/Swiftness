@@ -68,43 +68,43 @@ namespace swiftness {
         });
 
         createButtons(levels_b[0], [&] () {
-            level00.loadLevel(level00.getPlateforms(), level00.getSquare(), 0);
+            level00.loadLevel(0);
             game.replaceAllScenes(level00);
             
         });
 
         createButtons(levels_b[1], [&] () {
-            level01.loadLevel(level01.getPlateforms(), level01.getSquare(), 1);
+            level01.loadLevel(1);
             game.replaceAllScenes(level01);
         });
 
         createButtons(levels_b[2], [&] () {
-            level02.loadLevel(level02.getPlateforms(), level02.getSquare(), 2);
+            level02.loadLevel(2);
             game.replaceAllScenes(level02);
         });
 
         createButtons(levels_b[3], [&] () {
-            level03.loadLevel(level03.getPlateforms(), level03.getSquare(), 3);
+            level03.loadLevel(3);
             game.replaceAllScenes(level03);
         });
 
         createButtons(levels_b[4], [&] () {
-            level04.loadLevel(level04.getPlateforms(), level04.getSquare(), 4);
+            level04.loadLevel(4);
             game.replaceAllScenes(level04);
         });
 
         createButtons(levels_b[5], [&] () {
-            level05.loadLevel(level05.getPlateforms(), level05.getSquare(), 5);
+            level05.loadLevel(5);
             game.replaceAllScenes(level05);
         });
 
         createButtons(levels_b[6], [&] () {
-            level06.loadLevel(level06.getPlateforms(), level06.getSquare(), 6);
+            level06.loadLevel(6);
             game.replaceAllScenes(level06);
         });
 
         createButtons(levels_b[7], [&] () {
-            level07.loadLevel(level07.getPlateforms(), level07.getSquare(), 7);
+            level07.loadLevel(7);
             game.replaceAllScenes(level07);
         });
 
