@@ -37,7 +37,7 @@ namespace swiftness
 
 
     void Square::actionUp() {
-        if (horizontal_g && m_velocity.x<SPEED_SQUARE){
+        if (horizontal_g && m_velocity.y<SPEED_SQUARE){
             m_velocity.y = -SPEED_SQUARE;
             goUp=true;
         }
@@ -54,12 +54,12 @@ namespace swiftness
             }else{
                 if(walljumpRight){
                     m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
-                    nb_jumps=2;
+                    nb_jumps=1;
                     m_velocity.x=-WALL_JUMP_SPEED;
                 }else{
                     if(walljumpLeft){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
-                        nb_jumps=2;
+                        nb_jumps=1;
                         m_velocity.x=WALL_JUMP_SPEED;
                     }
                 }
@@ -110,12 +110,12 @@ namespace swiftness
                 }else{
                     if( wallJumpDown){
                         m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                        nb_jumps=2;
+                        nb_jumps=1;
                         m_velocity.y=-WALL_JUMP_SPEED;
                     }else{
                         if( walljumpUp){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=2;
+                            nb_jumps=1;
                             m_velocity.y=WALL_JUMP_SPEED;
                         }
                     }
@@ -155,12 +155,12 @@ namespace swiftness
                 }else{
                     if( wallJumpDown){
                         m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                        nb_jumps=2;
+                        nb_jumps=1;
                         m_velocity.y=-WALL_JUMP_SPEED;
                     }else{
                         if( walljumpUp){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=2;
+                            nb_jumps=1;
                             m_velocity.y=WALL_JUMP_SPEED;
                         }
                     }
@@ -192,12 +192,12 @@ namespace swiftness
                 }else{
                     if(wallJumpDown){
                         m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                        nb_jumps=2;
+                        nb_jumps=1;
                         m_velocity.y=-WALL_JUMP_SPEED;
                     }else{
                         if(walljumpUp){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=2;
+                            nb_jumps=1;
                             m_velocity.y=WALL_JUMP_SPEED;
                         }
                     }
@@ -216,12 +216,12 @@ namespace swiftness
                 }else{
                     if( wallJumpDown){
                         m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                        nb_jumps=0;
+                        nb_jumps=1;
                         m_velocity.y=-WALL_JUMP_SPEED;
                     }else{
                         if(walljumpUp){
                             m_velocity.x=WALL_JUMP_HEIGHT*m_gravity;
-                            nb_jumps=0;
+                            nb_jumps=1;
                             m_velocity.y=WALL_JUMP_SPEED;
                         }
                     }
@@ -241,12 +241,12 @@ namespace swiftness
             }else{
                 if( walljumpRight){
                     m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
-                    nb_jumps=2;
+                    nb_jumps=1;
                     m_velocity.x=-WALL_JUMP_SPEED;
                 }else{
                     if( walljumpLeft){
                         m_velocity.y=WALL_JUMP_HEIGHT*m_gravity;
-                        nb_jumps=2;
+                        nb_jumps=1;
                         m_velocity.x=WALL_JUMP_SPEED;
                     }
                 }
@@ -269,13 +269,19 @@ namespace swiftness
         // Appliquez la gravité
         if(horizontal_g){
             setVelocity(m_velocity + gf::Vector2f( gravity * m_gravity * dt,0));
-            if (!goUp && m_velocity.y<0.0f){
+            if(m_velocity.x<-SPEED_LIMIT){
+                m_velocity.x=-SPEED_LIMIT;
+            }
+            if(m_velocity.x>SPEED_LIMIT){
+                m_velocity.x=SPEED_LIMIT;
+            }
+            if (!goUp && m_velocity.y<0.0f && m_velocity.y!=-WALL_JUMP_SPEED){
                 m_velocity.y+=gravity*dt*2.5f;
                 if (m_velocity.y>0.0f){
                     m_velocity.y=0.0f;
                 }
             }
-            if (!goDown && m_velocity.y>0.0f ){
+            if (!goDown && m_velocity.y>0.0f &&  m_velocity.y!=WALL_JUMP_SPEED){
                 m_velocity.y-=gravity*dt*2.5f;
                 if (m_velocity.y<0.0f){
                     m_velocity.y=0.0f;
@@ -283,13 +289,19 @@ namespace swiftness
             }
         }else{
             setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
-            if (!goLeft && m_velocity.x<0.0f ){
+            if(m_velocity.y<-SPEED_LIMIT){
+                m_velocity.y=-SPEED_LIMIT;
+            }
+            if(m_velocity.y>SPEED_LIMIT){
+                m_velocity.y=SPEED_LIMIT;
+            }
+            if (!goLeft && m_velocity.x<0.0f &&  m_velocity.x!=-WALL_JUMP_SPEED){
                 m_velocity.x+=gravity*dt*2.5f;
                 if (m_velocity.x>0.0f){
                     m_velocity.x=0.0f;
                 }
             }
-            if (!goRight && m_velocity.x>0.0f ){
+            if (!goRight && m_velocity.x>0.0f &&  m_velocity.x!=WALL_JUMP_SPEED){
                 m_velocity.x-=gravity*dt*2.5f;
                 if (m_velocity.x<0.0f){
                     m_velocity.x=0.0f;
