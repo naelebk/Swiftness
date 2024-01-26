@@ -131,10 +131,7 @@ namespace swiftness {
 
     std::string getLevelNameByButton(gf::TextButtonWidget& button) {
         std::string buttonName = button.getString();
-        if (buttonName == "Tutorial") {
-            return "level00.tmx";
-        }
-        return buttonName + ".tmx";
+        return buttonName == "Tutorial" ? "level00.tmx" : buttonName + ".tmx";
     }
 
     // Méthodes virtuelles privées héritant directement de gf::Scene

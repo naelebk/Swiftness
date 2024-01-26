@@ -1,6 +1,5 @@
 #include "MenuScene.h"
 #include "GameCenter.h"
-#include <gf/SegueEffects.h>
 #include <gf/Easings.h>
 #include <gf/Time.h>
 #include <gf/SceneManager.h>
@@ -79,13 +78,13 @@ namespace swiftness {
                 game.replaceAllScenes(game.level);
             });*/
 
+            gf::FadeSegueEffect fade;
             createButtons(choose_level, [&] () {
-                gf::FadeSegueEffect fade;
                 game.replaceAllScenes(game.level/*, fade, gf::milliseconds(500)*/);
             });
 
             createButtons(questionmark_b, [&] () {
-                system("gio open https://www.youtube.com/watch?v=xvFZjo5PgG0 > /dev/null 2>&1");
+                system("xdg-open https://www.youtube.com/watch?v=xvFZjo5PgG0 > /dev/null 2>&1");
             });
 
         }

@@ -97,6 +97,11 @@ namespace swiftness
         }
     }
 
+    void Square::squareReset() {
+        m_velocity.x = 0;
+        m_velocity.y = 0;
+    }
+
     void Square::actionLeftJump() {
         if(horizontal_g){
             if (m_gravity>0){

@@ -8,7 +8,7 @@
 #include <gf/Math.h>
 #include <gf/RenderTarget.h>
 #include <gf/Scene.h>
-#include <gf/SegueEffect.h>
+#include <gf/SegueEffects.h>
 #include <gf/Shapes.h>
 #include <gf/Text.h>
 #include <gf/Texture.h>
@@ -55,11 +55,6 @@ namespace swiftness {
                 - les boutons
                 - les actions concernant ces boutons (le crédit, jouer une partie, quitter le jeu)
             */
-            // Merci pour l'astuce ;) !
-            //gf::Scene scene;
-            //gf::Action action;
-            //gf::SegueEffect effect;
-            //gf::Texture& background;
             GameCenter& game;
             gf::Action quit_a;
             gf::Action up;

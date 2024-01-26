@@ -73,6 +73,7 @@ namespace swiftness
         void actionRightJump();
         void actionRightRelease();
         void actionJump();
+        void squareReset();
 
         bool isPlateform(swiftness::StaticPlateform plateform);
         /**
