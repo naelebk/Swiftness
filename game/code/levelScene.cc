@@ -158,14 +158,7 @@ namespace swiftness {
     void levelScene::doUpdate(gf::Time time) {
         float dt = time.asSeconds();
         m_square.update(dt);
-        if (m_square.getLevelOver()) {
-            if (m_levelNumber == MAX_LEVEL) {
-                system("xdg-open https://www.youtube.com/watch?v=xvFZjo5PgG0 > /dev/null 2>&1");
-                game.replaceAllScenes(game.menu);
-            } else {
-                game.replaceAllScenes(game.menu);
-            }
-        }
+        if (m_square.getLevelOver()) game.replaceAllScenes(game.menu);
         std::string lvl = "";
         if (m_levelNumber >= 0 && m_levelNumber < 10) {
             lvl = "level0" + std::to_string(m_levelNumber) + ".tmx";
