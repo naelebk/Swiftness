@@ -106,9 +106,9 @@ namespace swiftness {
         }
         std::cout << GREEN << "File load : " << lvl << NC << std::endl;
         swiftness::Level::level leveln = Level::initializeLevel(lvl);
-        square = leveln.square;
-        plateform = leveln.plateform;
-        square.setPlateforms(plateform);
+        m_square = leveln.square;
+        m_plateform = leveln.plateform;
+        m_square.setPlateforms(m_plateform);
     }
 
     void levelScene::doHandleActions(gf::Window& window) {
