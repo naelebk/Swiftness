@@ -28,6 +28,12 @@ namespace swiftness {
     , upJump("upJump")
     , leftJump("leftJump")
     , rightJump("rightJump")
+    , map_width(m_levelData.getMapSize().x)
+    , map_height(m_levelData.getMapSize().y)
+    , tile_width(m_levelData.getTileSize().x)
+    , tile_height(m_levelData.getTileSize().y)
+    , xcamera(m_square.getPosition().x)
+    , ycamera(m_square.getPosition().y)
      {
 
         gf::Gamepad::initialize();
@@ -158,19 +164,12 @@ namespace swiftness {
         float dt = time.asSeconds();
         m_square.update(dt);
         if (m_square.getLevelOver()) game.replaceAllScenes(game.menu);
-        std::string lvl = "";
-        if (m_levelNumber >= 0 && m_levelNumber < 10) {
-            lvl = "level0" + std::to_string(m_levelNumber) + ".tmx";
-        } else {
-            lvl = "level" + std::to_string(m_levelNumber) + ".tmx";
-        }
-        swiftness::LevelData ldata(lvl);
-        float map_width=ldata.getMapSize().x;
-        float map_height=ldata.getMapSize().y;
-        float tile_width=ldata.getTileSize().x;
-        float tile_height=ldata.getTileSize().y;
-        float xcamera=m_square.getPosition().x;
-        float ycamera=m_square.getPosition().y;
+        map_width=m_levelData.getMapSize().x;
+        map_height=m_levelData.getMapSize().y;
+        tile_width=m_levelData.getTileSize().x;
+        tile_height=m_levelData.getTileSize().y;
+        xcamera=m_square.getPosition().x;
+        ycamera=m_square.getPosition().y;
         xcamera=std::clamp(xcamera,SCREEN_WIDTH/2+tile_width,map_width*tile_width-SCREEN_WIDTH/2-tile_width);
         ycamera=std::clamp(ycamera,SCREEN_HEIGHT/2+tile_height,map_height*tile_height-SCREEN_HEIGHT/2-tile_height);
         m_camera = {xcamera, ycamera};

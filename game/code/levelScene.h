@@ -73,5 +73,6 @@ namespace swiftness {
             swiftness::Square m_square;
             swiftness::LevelData m_levelData;
             gf::Vector2f m_camera;
+            float map_width, map_height, tile_width, tile_height, xcamera, ycamera;
     };
 }
