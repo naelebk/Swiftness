@@ -34,6 +34,12 @@ class TmxValidator:
         tree = ET.parse(self.file_path)
         root = tree.getroot()
 
+        # Check tilewidth and tileheight
+        tilewidth = int(root.get('tilewidth'))
+        tileheight = int(root.get('tileheight'))
+        if tilewidth != 16 or tileheight != 16:
+            self.errors.append("[ERROR] : tilewidth and tileheight must be 16.")
+
         self.validate_tilesets(root)
         self.validate_layers(root)
 

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="22" tilewidth="10" tileheight="46" infinite="0" nextlayerid="21" nextobjectid="1">
+ <tileset firstgid="1" source="../Tilesets/01_utilities.tsx"/>
+ <tileset firstgid="3" source="../Tilesets/02_portal.tsx"/>
+ <tileset firstgid="27" source="../Tilesets/03_futuristic_city.tsx"/>
+ <tileset firstgid="51" source="../Tilesets/04_gravity_switch.tsx"/>
+ <tileset firstgid="67" source="../Tilesets/05_gravity_flow.tsx"/>
+ <tileset firstgid="79" source="../Tilesets/06_wall_of_death.tsx"/>
+ <tileset firstgid="95" source="../Tilesets/07_gravity_walls.tsx"/>
+ <tileset firstgid="143" source="../Tilesets/08_gravity_walls_open.tsx"/>
+ <tileset firstgid="191" source="../Tilesets/09_arrow.tsx"/>
+ <tileset firstgid="195" source="../Tilesets/10_alpha.tsx"/>
+ <tileset firstgid="225" source="../Tilesets/11_alpha_key.tsx"/>
+ <layer id="20" name="Gw_orange_open" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="19" name="Gw_green_open" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="18" name="Gw_rose_open" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="17" name="Gw_blue_open" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="16" name="Gw_orange" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="15" name="Gw_green" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="14" name="Gw_rose" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="13" name="Gw_blue" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <objectgroup id="12" name="gravity_walls"/>
+ <layer id="11" name="Decoration" class="visible" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="10" name="Filling" class="visible" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <objectgroup id="9" name="gravity_switch"/>
+ <layer id="8" name="Collision_bloc" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="7" name="Collision_h" class="collision" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="6" name="Collision_v" class="collision" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="5" name="Wall_of_death_bloc" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="4" name="Wall_of_death_h" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="3" name="Wall_of_death_v" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="2" name="Border" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+ <layer id="1" name="IO" width="1" height="1">
+  <data encoding="csv">
+0
+</data>
+ </layer>
+</map>
