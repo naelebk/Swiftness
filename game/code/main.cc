@@ -2,7 +2,6 @@
 #include "staticPlateforme.h"
 #include "level.h"
 #include "constants.h"
-#include "commands.h"
 #include "levelScene.h"
 #include "levelRender.h"
 #include "GameCenter.h"

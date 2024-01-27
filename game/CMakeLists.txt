@@ -7,7 +7,6 @@ project(SWIFTNESS_TEST_ONE
 find_package(gf REQUIRED)
 
 add_executable(game
-  ./code/commands.cc
   ./code/constants.cc
   ./code/Credits.cc
   ./code/GameCenter.cc
