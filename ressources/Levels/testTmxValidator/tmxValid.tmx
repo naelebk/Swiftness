@@ -52,12 +52,12 @@
 </data>
  </layer>
  <objectgroup id="12" name="gravity_walls"/>
- <layer id="11" name="Decoration" width="1" height="1">
+ <layer id="11" name="Decoration" class="visible" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="10" name="Filling" width="1" height="1">
+ <layer id="10" name="Filling" class="visible" width="1" height="1">
   <data encoding="csv">
 0
 </data>
@@ -68,12 +68,12 @@
 0
 </data>
  </layer>
- <layer id="7" name="Collision_h" width="1" height="1">
+ <layer id="7" name="Collision_h" class="collision" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="6" name="Collision_v" width="1" height="1">
+ <layer id="6" name="Collision_v" class="collision" width="1" height="1">
   <data encoding="csv">
 0
 </data>

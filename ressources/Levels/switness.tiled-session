@@ -1,12 +1,16 @@
 {
-    "activeFile": "",
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Maps/level00.tmx",
     "expandedProjectPaths": [
         "Maps",
-        "Tilesets",
-        ".",
+        "levels",
         "tileset",
+        "Tilesets",
         "level",
-        "levels"
+        "."
     ],
     "fileStates": {
         "": {
@@ -50,14 +54,14 @@
         },
         "Maps/level00.tmx": {
             "expandedObjectLayers": [
-                9,
-                12
+                12,
+                9
             ],
-            "scale": 0.8092237903225806,
+            "scale": 1,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 502.9511055745874,
-                "y": 641.3553410152601
+                "x": 527,
+                "y": 181
             }
         },
         "Maps/level00.tmx#utilities": {
@@ -76,10 +80,10 @@
                 12
             ],
             "scale": 3,
-            "selectedLayer": 7,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 181,
-                "y": 94.66666666666666
+                "x": 180.66666666666663,
+                "y": 94.33333333333333
             }
         },
         "Maps/level03.tmx": {
@@ -191,7 +195,7 @@
             "selectedLayer": 3,
             "viewCenter": {
                 "x": 341.1314803863592,
-                "y": 164.173730205664
+                "y": 162.82804389250282
             }
         },
         "TILESET_FUTURISTIC_CITY.tsx": {
@@ -392,18 +396,19 @@
     "last.externalTilesetPath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Tilesets",
     "last.imagePath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Images",
     "openFiles": [
+        "Maps/level00.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
+        "Maps/level_template.tmx",
+        "Maps/level00.tmx",
         "Maps/level06.tmx",
         "Maps/level05.tmx",
         "Maps/level07.tmx",
-        "Maps/level00.tmx",
         "Maps/level01.tmx",
         "Maps/level02.tmx",
         "Maps/level03.tmx",
         "Maps/level04.tmx",
-        "Maps/level_template.tmx",
         "Tilesets/01_utilities.tsx",
         "Tilesets/02_portal.tsx",
         "Tilesets/03_futuristic_city.tsx"

@@ -5,12 +5,12 @@
  <tileset firstgid="27" source="../Tilesets/03_futuristic_city.tsx"/>
  <tileset firstgid="51" source="../Tilesets/04_gravity_switch.tsx"/>
  <tileset firstgid="67" source="../Tilesets/05_gravity_flow.tsx"/>
- <tileset firstgid="79" source="../Tilesets/06_wall_of_death.tsx"/>
+ <tileset firstgid="9" source="../Tilesets/06_wall_of_death.tsx"/>
  <tileset firstgid="95" source="../Tilesets/07_gravity_walls.tsx"/>
- <tileset firstgid="143" source="../Tilesets/08_gravity_walls_open.tsx"/>
+ <tileset firstgid="13" source="../Tilesets/08_gravity_walls_open.tsx"/>
  <tileset firstgid="191" source="../Tilesets/09_arrow.tsx"/>
  <tileset firstgid="195" source="../Tilesets/10_alpha.tsx"/>
- <tileset firstgid="225" source="../Tilesets/11_alpha_key.tsx"/>
+ <tileset firstgid="22225" source="../Tilesets/11_alpha_key.tsx"/>
  <layer id="20" name="Gw_orange_open" width="1" height="1">
   <data encoding="csv">
 0
@@ -52,12 +52,12 @@
 </data>
  </layer>
  <objectgroup id="12" name="gravity_walls"/>
- <layer id="11" name="Decoration" width="1" height="1">
+ <layer id="11" name="Decoration" class="visible" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="10" name="Filling" width="1" height="1">
+ <layer id="10" name="Filling" class="visible" width="1" height="1">
   <data encoding="csv">
 0
 </data>
@@ -68,12 +68,12 @@
 0
 </data>
  </layer>
- <layer id="7" name="Collision_h" width="1" height="1">
+ <layer id="7" name="Collision_h" class="collision" width="1" height="1">
   <data encoding="csv">
 0
 </data>
  </layer>
- <layer id="6" name="Collision_v" width="1" height="1">
+ <layer id="6" name="Collision_v" class="collision" width="1" height="1">
   <data encoding="csv">
 0
 </data>
