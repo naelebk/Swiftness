@@ -28,7 +28,6 @@
 #include "staticPlateforme.h"
 #include "level.h"
 #include "squareEntity.h"
-#include "Input.h"
 #include "levelRender.h"
 namespace swiftness {
     struct GameCenter;

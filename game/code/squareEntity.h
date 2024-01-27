@@ -14,7 +14,6 @@
 #include <gf/Text.h>
 #include <map>
 #include "staticPlateforme.h"
-#include "Input.h"
 #include <vector>
 #include <gf/Views.h>
 #include <iostream>
