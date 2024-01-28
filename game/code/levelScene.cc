@@ -37,6 +37,7 @@ namespace swiftness {
     , tile_height(m_levelData.getTileSize().y)
     , xcamera(m_square.getPosition().x)
     , ycamera(m_square.getPosition().y)
+    , konami(0)
      {
 
         gf::Gamepad::initialize();
@@ -58,7 +59,7 @@ namespace swiftness {
         upJump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
         upJump.addScancodeKeyControl(gf::Scancode::Up);
         upJump.addScancodeKeyControl(gf::Scancode::W);
-        upJump.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
+        //upJump.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
         addAction(upJump);
 
         down.setContinuous();
@@ -78,7 +79,7 @@ namespace swiftness {
         leftJump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadLeft);
         leftJump.addScancodeKeyControl(gf::Scancode::Left);
         leftJump.addScancodeKeyControl(gf::Scancode::A);
-        leftJump.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Negative);
+        //leftJump.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Negative);
         addAction(leftJump);
 
         right.setContinuous();
@@ -91,7 +92,7 @@ namespace swiftness {
         rightJump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadRight);
         rightJump.addScancodeKeyControl(gf::Scancode::Right);
         rightJump.addScancodeKeyControl(gf::Scancode::D);
-        rightJump.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Positive);
+        //rightJump.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Positive);
         addAction(rightJump);
 
         jump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
@@ -126,7 +127,7 @@ namespace swiftness {
     }
 
     void levelScene::doHandleActions(gf::Window& window) {
-        //if (!isActive()) return;
+        if (!isActive()) pause();
         if (quit_a.isActive()) {
             m_square.squareReset();
             game.replaceScene(game.menu);
@@ -134,28 +135,60 @@ namespace swiftness {
         if (Pause.isActive()) isPaused() ? resume() : pause();
         if(up.isActive()) {
             m_square.actionUp();
+            if (konami == 0) {
+                konami++;
+            } else if (konami == 1) {
+                konami++;
+            }
         } else {
             m_square.actionUpRelease();
         }
         if(down.isActive()){
             m_square.actionDown();
+            if (konami == 2) {
+                konami++;
+            } else if (konami == 3) {
+                konami++;
+            }
         } else {
             m_square.actionDownRelease();
         }
         if(left.isActive()){
             m_square.actionLeft();
+            if (konami == 4) {
+                konami++;
+            } else if (konami == 6) {
+                konami++;
+            }
         } else {
             m_square.actionLeftRelease();
         }
         if (right.isActive()) {
             m_square.actionRight();
+            if (konami == 5) {
+                konami++;
+            } else if (konami == 7) {
+                konami++;
+            }
         } else {
             m_square.actionRightRelease();
         }
         if (upJump.isActive()) m_square.actionUpJump();
         if (leftJump.isActive()) m_square.actionLeftJump();
         if (rightJump.isActive()) m_square.actionRightJump();
-        if (jump.isActive()) m_square.actionJump();
+        if (jump.isActive()) {
+            m_square.actionJump();
+            if (konami == 8) {
+                konami++;
+            } else if (konami == 9) {
+                konami++;
+            }
+        }
+        if (konami == 10) {
+            // NOT A RICK ROLL
+            konami = -1;
+            system("xdg-open https://www.youtube.com/watch?v=ZmzjH6OjjIA&t=119s > /dev/null 2>&1");
+        }
     }
 
     void levelScene::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
