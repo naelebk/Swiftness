@@ -24,6 +24,7 @@ namespace swiftness
         , timer(0.0f)
         , m_gravityDirection("down")
         , m_walljump(0.0f)
+        , m_isFlying(false)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -38,14 +39,14 @@ namespace swiftness
 
 
     void Square::actionUp() {
-        if (horizontal_g && m_velocity.y<SPEED_SQUARE && m_walljump==0.0f){
+        if (m_isFlying || (horizontal_g && m_velocity.y<SPEED_SQUARE && m_walljump==0.0f)){
             m_velocity.y = -SPEED_SQUARE;
             goUp=true;
         }
     }
 
     void Square::actionUpJump() {
-        if(!horizontal_g){
+        if(!horizontal_g && !m_isFlying){
             m_jump=canJump();
             bool walljumpRight=canWallJumpRight();
             bool walljumpLeft=canWallJumpLeft();
@@ -72,7 +73,7 @@ namespace swiftness
     }
 
     void Square::actionUpRelease(){
-        if(horizontal_g && goUp){
+        if((m_isFlying || horizontal_g) && goUp){
             if(m_velocity.y<0){
                 m_velocity.y = 0;
             }
@@ -80,10 +81,10 @@ namespace swiftness
         goUp=false;
     }
     void Square::actionDown(){
-        goDown=true; if (horizontal_g && m_velocity.y>-SPEED_SQUARE && m_walljump==0.0f) m_velocity.y = SPEED_SQUARE;
+        goDown=true; if (m_isFlying || (horizontal_g && m_velocity.y>-SPEED_SQUARE && m_walljump==0.0f)) m_velocity.y = SPEED_SQUARE;
     }
     void Square::actionDownRelease(){
-        if(horizontal_g && goDown){
+        if((m_isFlying || horizontal_g) && goDown){
             if(m_velocity.y>0){
                 m_velocity.y = 0;
             }
@@ -91,7 +92,7 @@ namespace swiftness
         goDown=false;
     }
     void Square::actionLeft(){
-        if(!horizontal_g && m_velocity.x<SPEED_SQUARE && m_walljump==0.0f){ 
+        if (m_isFlying || (!horizontal_g && m_velocity.x<SPEED_SQUARE && m_walljump==0.0f)){ 
             m_velocity.x = -SPEED_SQUARE;
             goLeft=true;
         }
@@ -103,7 +104,7 @@ namespace swiftness
     }
 
     void Square::actionLeftJump() {
-        if(horizontal_g){
+        if(horizontal_g && !m_isFlying){
             if (m_gravity>0){
                 bool walljumpRight=canWallJumpRight();
                 bool walljumpUp=canWallJumpUp();
@@ -134,7 +135,7 @@ namespace swiftness
         }
     }
     void Square::actionLeftRelease(){
-        if(!horizontal_g && goLeft){
+        if((m_isFlying || !horizontal_g) && goLeft){
             if(m_velocity.x<0){
                 m_velocity.x = 0;
             }
@@ -142,14 +143,14 @@ namespace swiftness
         goLeft=false;
     }
     void Square::actionRight(){
-        if(!horizontal_g && m_velocity.x>-SPEED_SQUARE && m_walljump==0.0f){
+        if (m_isFlying || (!horizontal_g && m_velocity.x>-SPEED_SQUARE && m_walljump==0.0f)){
             m_velocity.x = SPEED_SQUARE;
             goRight=true;
         }
     }
 
     void Square::actionRightJump() {
-        if(horizontal_g){
+        if(horizontal_g && !m_isFlying){
             if (m_gravity<0){
                 bool walljumpLeft=canWallJumpLeft();
                 bool walljumpUp=canWallJumpUp();
@@ -181,7 +182,7 @@ namespace swiftness
         }
     }
     void Square::actionRightRelease(){
-        if(!horizontal_g && goRight){
+        if((m_isFlying || !horizontal_g) && goRight){
             if(m_velocity.x>0){
                 m_velocity.x = 0;
             }
@@ -189,6 +190,9 @@ namespace swiftness
         goRight=false;
     }
     void Square::actionJump(){
+        if(m_isFlying){
+            return;
+        }
         if(horizontal_g){
             if(m_gravity>0){
                 bool walljumpRight=canWallJumpRight();
@@ -289,44 +293,46 @@ namespace swiftness
         }
       
         // Appliquez la gravité
-        if(horizontal_g){
-            setVelocity(m_velocity + gf::Vector2f( gravity * m_gravity * dt,0));
-            if(m_velocity.x<-SPEED_LIMIT){
-                m_velocity.x=-SPEED_LIMIT;
-            }
-            if(m_velocity.x>SPEED_LIMIT){
-                m_velocity.x=SPEED_LIMIT;
-            }
-            if (!goUp && m_velocity.y<0.0f && m_velocity.y!=-WALL_JUMP_SPEED){
-                m_velocity.y+=gravity*dt*2.5f;
-                if (m_velocity.y>0.0f){
-                    m_velocity.y=0.0f;
+        if(!m_isFlying){
+            if(horizontal_g){
+                setVelocity(m_velocity + gf::Vector2f( gravity * m_gravity * dt,0));
+                if(m_velocity.x<-SPEED_LIMIT){
+                    m_velocity.x=-SPEED_LIMIT;
                 }
-            }
-            if (!goDown && m_velocity.y>0.0f &&  m_velocity.y!=WALL_JUMP_SPEED){
-                m_velocity.y-=gravity*dt*2.5f;
-                if (m_velocity.y<0.0f){
-                    m_velocity.y=0.0f;
+                if(m_velocity.x>SPEED_LIMIT){
+                    m_velocity.x=SPEED_LIMIT;
                 }
-            }
-        }else{
-            setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
-            if(m_velocity.y<-SPEED_LIMIT){
-                m_velocity.y=-SPEED_LIMIT;
-            }
-            if(m_velocity.y>SPEED_LIMIT){
-                m_velocity.y=SPEED_LIMIT;
-            }
-            if (!goLeft && m_velocity.x<0.0f &&  m_velocity.x!=-WALL_JUMP_SPEED){
-                m_velocity.x+=gravity*dt*2.5f;
-                if (m_velocity.x>0.0f){
-                    m_velocity.x=0.0f;
+                if (!goUp && m_velocity.y<0.0f && m_velocity.y!=-WALL_JUMP_SPEED){
+                    m_velocity.y+=gravity*dt*2.5f;
+                    if (m_velocity.y>0.0f){
+                        m_velocity.y=0.0f;
+                    }
                 }
-            }
-            if (!goRight && m_velocity.x>0.0f &&  m_velocity.x!=WALL_JUMP_SPEED){
-                m_velocity.x-=gravity*dt*2.5f;
-                if (m_velocity.x<0.0f){
-                    m_velocity.x=0.0f;
+                if (!goDown && m_velocity.y>0.0f &&  m_velocity.y!=WALL_JUMP_SPEED){
+                    m_velocity.y-=gravity*dt*2.5f;
+                    if (m_velocity.y<0.0f){
+                        m_velocity.y=0.0f;
+                    }
+                }
+            }else{
+                setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
+                if(m_velocity.y<-SPEED_LIMIT){
+                    m_velocity.y=-SPEED_LIMIT;
+                }
+                if(m_velocity.y>SPEED_LIMIT){
+                    m_velocity.y=SPEED_LIMIT;
+                }
+                if (!goLeft && m_velocity.x<0.0f &&  m_velocity.x!=-WALL_JUMP_SPEED){
+                    m_velocity.x+=gravity*dt*2.5f;
+                    if (m_velocity.x>0.0f){
+                        m_velocity.x=0.0f;
+                    }
+                }
+                if (!goRight && m_velocity.x>0.0f &&  m_velocity.x!=WALL_JUMP_SPEED){
+                    m_velocity.x-=gravity*dt*2.5f;
+                    if (m_velocity.x<0.0f){
+                        m_velocity.x=0.0f;
+                    }
                 }
             }
         }

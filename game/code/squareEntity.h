@@ -108,6 +108,8 @@ namespace swiftness
 
         void setPlateforms(std::vector<swiftness::StaticPlateform> plateforms) { m_plateforms=plateforms;};
 
+        void setIsFlying(bool isFlying) { m_isFlying=isFlying; };
+
 
         /**
          * @brief Gère les collisions avec la plateforme
@@ -134,6 +136,7 @@ namespace swiftness
         int nb_deaths;
         float timer;
         std::vector<swiftness::StaticPlateform> m_plateforms;
+        bool m_isFlying;
 
         // graphics
         // gf::Texture& m_skin;
