@@ -6,6 +6,7 @@
 #include <gf/Paths.h>
 #include "MenuScene.h"
 #include "SelectLevelScene.h"
+#include "Start.h"
 #include "Credits.h"
 #include "constants.h"
 #include "squareEntity.h"
@@ -21,6 +22,7 @@ namespace swiftness {
         SelectLevel level;
         Menu menu;
         Credits credits;
+        Start start;
         gf::Font& font;
     };
 }

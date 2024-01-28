@@ -20,6 +20,7 @@ add_executable(game
   ./code/levelRender.cc
   ./code/main.cc
   ./code/squareEntity.cc
+  ./code/Start.cc
   ./code/staticPlateforme.cc
   ./code/tilesEnumData.cc)
 

@@ -4,6 +4,7 @@
 #include "constants.h"
 #include "levelScene.h"
 #include "levelRender.h"
+#include "Start.h"
 #include "GameCenter.h"
 
 #include <memory>
@@ -36,6 +37,7 @@ int main(int argc, char *argv[]) {
     resources.addSearchDir(LEVELS_TMX_PATH);
     resources.addSearchDir(TILESETS_TSX_PATH);
     resources.addSearchDir(IMAGES_GAME);
+    resources.addSearchDir(RESSOURCES_PATH);
     resources.addSearchDir(gf::Paths::getBasePath());
     resources.addSearchDir(gf::Paths::getCurrentPath());
     gf::Font font(PATH_FONT);
