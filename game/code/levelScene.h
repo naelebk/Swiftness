@@ -73,6 +73,7 @@ namespace swiftness {
             swiftness::LevelData m_levelData;
             gf::Vector2f m_camera;
             float map_width, map_height, tile_width, tile_height, xcamera, ycamera;
-            int konami;
+            int konami, konami2;
+            bool canFly, commandsChange;
     };
 }

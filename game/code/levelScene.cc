@@ -38,6 +38,9 @@ namespace swiftness {
     , xcamera(m_square.getPosition().x)
     , ycamera(m_square.getPosition().y)
     , konami(0)
+    , konami2(0)
+    , canFly(false)
+    , commandsChange(false)
      {
 
         gf::Gamepad::initialize();
@@ -51,7 +54,7 @@ namespace swiftness {
         up.addScancodeKeyControl(gf::Scancode::W);
         up.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
         addAction(up);
-
+        
         Pause.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::Start);
         Pause.addScancodeKeyControl(gf::Scancode::P);
         addAction(Pause);
@@ -61,6 +64,7 @@ namespace swiftness {
         upJump.addScancodeKeyControl(gf::Scancode::W);
         //upJump.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
         addAction(upJump);
+
 
         down.setContinuous();
         down.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadDown);
@@ -130,69 +134,89 @@ namespace swiftness {
         if (!isActive()) pause();
         if (quit_a.isActive()) {
             m_square.squareReset();
+            konami = -1;
+            konami2 = -1;
+            canFly = false;
+            commandsChange = false;
+            m_square.setIsFlying(false);
             game.replaceScene(game.menu);
         }
         if (Pause.isActive()) isPaused() ? resume() : pause();
-        if(up.isActive()) {
-            m_square.actionUp();
-            if (konami == 0) {
-                konami++;
-            } else if (konami == 1) {
-                konami++;
+        if (!commandsChange) {
+            if(up.isActive()) {
+                m_square.actionUp();
+                if (konami == 0) {
+                    konami++;
+                } else if (konami == 1) {
+                    konami++;
+                }
+            } else {
+                m_square.actionUpRelease();
+            }
+            if(down.isActive()){
+                m_square.actionDown();
+                if (konami == 2) {
+                    konami++;
+                } else if (konami == 3) {
+                    konami++;
+                }
+            } else {
+                m_square.actionDownRelease();
+            }
+            if(left.isActive()){
+                m_square.actionLeft();
+                if (konami == 4) {
+                    konami++;
+                } else if (konami == 6) {
+                    konami++;
+                }
+            } else {
+                m_square.actionLeftRelease();
+            }
+            if (right.isActive()) {
+                m_square.actionRight();
+                if (konami == 5) {
+                    konami++;
+                } else if (konami == 7) {
+                    konami++;
+                }
+            } else {
+                m_square.actionRightRelease();
+            }
+            if (upJump.isActive()) {
+                m_square.actionUpJump();
+            }
+            if (leftJump.isActive()) {
+                m_square.actionLeftJump();
+            }
+            if (rightJump.isActive()) {
+                m_square.actionRightJump();
+            }
+            if (jump.isActive()) {
+                m_square.actionJump();
+                if (konami == 8) {
+                    konami++;
+                } else if (konami == 9) {
+                    konami++;
+                }
             }
         } else {
-            m_square.actionUpRelease();
-        }
-        if(down.isActive()){
-            m_square.actionDown();
-            if (konami == 2) {
-                konami++;
-            } else if (konami == 3) {
-                konami++;
-            }
-        } else {
-            m_square.actionDownRelease();
-        }
-        if(left.isActive()){
-            m_square.actionLeft();
-            if (konami == 4) {
-                konami++;
-            } else if (konami == 6) {
-                konami++;
-            }
-        } else {
-            m_square.actionLeftRelease();
-        }
-        if (right.isActive()) {
-            m_square.actionRight();
-            if (konami == 5) {
-                konami++;
-            } else if (konami == 7) {
-                konami++;
-            }
-        } else {
-            m_square.actionRightRelease();
-        }
-        if (upJump.isActive()) m_square.actionUpJump();
-        if (leftJump.isActive()) m_square.actionLeftJump();
-        if (rightJump.isActive()) m_square.actionRightJump();
-        if (jump.isActive()) {
-            m_square.actionJump();
-            if (konami == 8) {
-                konami++;
-            } else if (konami == 9) {
-                konami++;
-            }
+            up.isActive() ? m_square.actionDown() : m_square.actionDownRelease();
+            right.isActive() ? m_square.actionUp() : m_square.actionUpRelease();
+            down.isActive() ? m_square.actionLeft() : m_square.actionLeftRelease();
+            left.isActive() ? m_square.actionRight() : m_square.actionRightRelease();
         }
         if (konami == 10) {
-            // NOT A RICK ROLL
+            m_square.setIsFlying(true);
+            canFly = true;
+            commandsChange = true; 
             konami = -1;
-            system("xdg-open https://www.youtube.com/watch?v=ZmzjH6OjjIA&t=119s > /dev/null 2>&1");
         }
     }
 
     void levelScene::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
         gf::ExtendView cam(m_camera, {SCREEN_WIDTH, SCREEN_HEIGHT});
+        canFly && commandsChange ? target.clear(gf::Color::Violet/*a*/) : 
         target.clear(gf::Color::Black);
         target.setView(cam);
         swiftness::LevelRender renderLevel;
@@ -204,7 +228,9 @@ namespace swiftness {
     void levelScene::doUpdate(gf::Time time) {
         float dt = time.asSeconds();
         m_square.update(dt);
-        if (m_square.getLevelOver()) game.replaceAllScenes(game.menu);
+        if (m_square.getLevelOver()) {
+            game.replaceAllScenes(game.menu);
+        }
         map_width=m_levelData.getMapSize().x;
         map_height=m_levelData.getMapSize().y;
         tile_width=m_levelData.getTileSize().x;
