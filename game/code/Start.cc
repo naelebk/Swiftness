@@ -17,6 +17,7 @@ namespace swiftness {
         setClearColor(gf::Color::Black);
 
         menu.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
+        menu.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
         menu.addScancodeKeyControl(gf::Scancode::Up);
         menu.addScancodeKeyControl(gf::Scancode::W);
         menu.addScancodeKeyControl(gf::Scancode::Space);

@@ -66,6 +66,7 @@ namespace swiftness {
             gf::Action right;
             gf::Action rightJump;
             gf::Action jump;
+            gf::Action Pause;
             int m_levelNumber;
             std::vector<swiftness::StaticPlateform> m_plateform;
             swiftness::Square m_square;

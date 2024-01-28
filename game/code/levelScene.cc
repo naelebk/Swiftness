@@ -1,7 +1,9 @@
 #include "levelScene.h"
 #include "GameCenter.h"
 #include <unistd.h>
+#include <gf/Coordinates.h>
 #include <iostream>
+#include <gf/Sprite.h>
 #define RED     "\x1b[31m"
 #define GREEN   "\x1b[32m"
 #define YELLOW  "\x1b[33m"
@@ -28,6 +30,7 @@ namespace swiftness {
     , upJump("upJump")
     , leftJump("leftJump")
     , rightJump("rightJump")
+    , Pause("pause")
     , map_width(m_levelData.getMapSize().x)
     , map_height(m_levelData.getMapSize().y)
     , tile_width(m_levelData.getTileSize().x)
@@ -47,6 +50,10 @@ namespace swiftness {
         up.addScancodeKeyControl(gf::Scancode::W);
         up.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
         addAction(up);
+
+        Pause.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::Start);
+        Pause.addScancodeKeyControl(gf::Scancode::P);
+        addAction(Pause);
 
         upJump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
         upJump.addScancodeKeyControl(gf::Scancode::Up);
@@ -124,6 +131,7 @@ namespace swiftness {
             m_square.squareReset();
             game.replaceScene(game.menu);
         }
+        if (Pause.isActive()) isPaused() ? resume() : pause();
         if(up.isActive()) {
             m_square.actionUp();
         } else {
