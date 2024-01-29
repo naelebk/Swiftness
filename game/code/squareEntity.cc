@@ -25,7 +25,8 @@ namespace swiftness
         , m_gravityDirection("down")
         , m_walljump(0.0f)
         , m_isFlying(false)
-        , m_skin(std::make_shared<gf::Texture>(swiftness::TEXTURE_SKIN_PATH + "the_protagonist.png"))
+        , m_skin(std::make_shared<gf::Texture>(swiftness::TEXTURE_SKIN_PATH + "spider_cube.png"))
+        , m_faceDirection(false)
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -93,6 +94,7 @@ namespace swiftness
         goDown=false;
     }
     void Square::actionLeft(){
+        m_faceDirection = true;
         if (m_isFlying || (!horizontal_g && m_velocity.x<SPEED_SQUARE && m_walljump==0.0f)){ 
             m_velocity.x = -SPEED_SQUARE;
             goLeft=true;
@@ -144,6 +146,7 @@ namespace swiftness
         goLeft=false;
     }
     void Square::actionRight(){
+        m_faceDirection = false;
         if (m_isFlying || (!horizontal_g && m_velocity.x>-SPEED_SQUARE && m_walljump==0.0f)){
             m_velocity.x = SPEED_SQUARE;
             goRight=true;
@@ -611,6 +614,12 @@ namespace swiftness
     {
         gf::RectangleShape shape({m_size, m_size});
         shape.setPosition(m_position);
+        if (m_faceDirection) {
+            shape.setScale({-1.0f, 1.0f});
+        }
+        else {
+            shape.setScale({1.0f, 1.0f});
+        }
         // shape.setColor(m_color);
         shape.setTexture(*m_skin);
         shape.setAnchor(gf::Anchor::Center);

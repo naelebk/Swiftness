@@ -143,6 +143,8 @@ namespace swiftness
         bool m_isFlying;
 
         // graphics
+        bool m_faceDirection;
+        int m_rotation;
         std::shared_ptr<gf::Texture> m_skin;
     };
 }
