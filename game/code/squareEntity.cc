@@ -336,6 +336,9 @@ namespace swiftness
                 }
             }
         }
+        if (dt>0.16f){
+            dt=0.16f;
+        }
         // Mettez à jour la position du carré
         m_position += dt * m_velocity;
         
@@ -343,7 +346,7 @@ namespace swiftness
         // Vérifiez les collisions avec la plateforme
         for (auto &plateform : m_plateforms)
         {
-            collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(),plateform.getColor(),walljumpLeft,walljumpRight,wallJumpDown,walljumpUp);
+            collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(),plateform.getColor(),walljumpLeft,walljumpRight,wallJumpDown,walljumpUp,dt);
         }
 
         
@@ -629,7 +632,7 @@ namespace swiftness
     }
 
     // empeche le carré de traverser une plateforme
-    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp)
+    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp,float dt)
     {
         // Supposons que la classe Square ait des membres m_position (position centrale du carré),
         // m_size (longueur d'un côté du carré), et m_velocity (vecteur de mouvement du carré)
@@ -660,6 +663,19 @@ namespace swiftness
         float plateformRight = plateformPosition.x + plateformLength / 2;
         float plateformTop = plateformPosition.y - plateformHeight / 2;
         float plateformBottom = plateformPosition.y + plateformHeight / 2;
+
+        float speedX=dt*m_velocity.x;
+        float speedY=dt*m_velocity.y;
+        if (speedX>0){
+            plateformRight+=speedX-1.0f;
+        }else{
+            plateformLeft+=speedX+1.0f;
+        }
+        if (speedY>0){
+            plateformBottom+=speedY-1.0f;
+        }else{
+            plateformTop+=speedY+1.0f;
+        }
 
         // Vérifiez la collision
         if (squareRight > plateformLeft && squareLeft < plateformRight &&
