@@ -141,6 +141,8 @@ namespace swiftness {
                     konami++;
                 } else if (konami == 1) {
                     konami++;
+                } else {
+                    konami = 1;
                 }
             } else {
                 m_square.actionUpRelease();
@@ -151,6 +153,8 @@ namespace swiftness {
                     konami++;
                 } else if (konami == 3) {
                     konami++;
+                } else {
+                    konami = 1;
                 }
             } else {
                 m_square.actionDownRelease();
@@ -161,6 +165,8 @@ namespace swiftness {
                     konami++;
                 } else if (konami == 6) {
                     konami++;
+                } else {
+                    konami = 1;
                 }
             } else {
                 m_square.actionLeftRelease();
@@ -171,6 +177,8 @@ namespace swiftness {
                     konami++;
                 } else if (konami == 7) {
                     konami++;
+                } else {
+                    konami = 1;
                 }
             } else {
                 m_square.actionRightRelease();
@@ -190,6 +198,8 @@ namespace swiftness {
                     konami++;
                 } else if (konami == 9) {
                     konami++;
+                } else {
+                    konami = 1;
                 }
             }
         } else {
