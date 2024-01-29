@@ -61,6 +61,7 @@ namespace swiftness {
             gf::Action up;
             gf::Action upJump;
             gf::Action down;
+            gf::Action downJump;
             gf::Action left;
             gf::Action leftJump;
             gf::Action right;

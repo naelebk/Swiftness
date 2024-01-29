@@ -27,6 +27,7 @@ namespace swiftness {
     , right("right")
     , jump("jump")
     , upJump("upJump")
+    , downJump("downJump")
     , leftJump("leftJump")
     , rightJump("rightJump")
     , Pause("pause")
@@ -70,6 +71,11 @@ namespace swiftness {
         down.addScancodeKeyControl(gf::Scancode::S);
         down.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Positive);
         addAction(down);
+
+        downJump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadDown);
+        downJump.addScancodeKeyControl(gf::Scancode::Down);
+        downJump.addScancodeKeyControl(gf::Scancode::S);
+        addAction(downJump);
 
         left.setContinuous();
         left.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadLeft);
@@ -137,60 +143,65 @@ namespace swiftness {
         if (!commandsChange) {
             if(up.isActive()) {
                 m_square.actionUp();
-                if (konami == 0) {
-                    konami++;
-                } else if (konami == 1) {
-                    konami++;
-                } else {
-                    konami = 1;
-                }
             } else {
                 m_square.actionUpRelease();
             }
             if(down.isActive()){
                 m_square.actionDown();
-                if (konami == 2) {
-                    konami++;
-                } else if (konami == 3) {
-                    konami++;
-                } else {
-                    konami = 1;
-                }
             } else {
                 m_square.actionDownRelease();
             }
             if(left.isActive()){
                 m_square.actionLeft();
-                if (konami == 4) {
-                    konami++;
-                } else if (konami == 6) {
-                    konami++;
-                } else {
-                    konami = 1;
-                }
             } else {
                 m_square.actionLeftRelease();
             }
             if (right.isActive()) {
                 m_square.actionRight();
-                if (konami == 5) {
-                    konami++;
-                } else if (konami == 7) {
-                    konami++;
-                } else {
-                    konami = 1;
-                }
             } else {
                 m_square.actionRightRelease();
             }
             if (upJump.isActive()) {
                 m_square.actionUpJump();
+                if (konami == 0) {
+                    konami++;
+                } else if (konami == 1) {
+                    konami++;
+                } else if (konami == 2) {
+                    konami=2;
+                } 
+                else {
+                    konami = 1;
+                }
+            }
+            if (downJump.isActive()){
+                if (konami == 2) {
+                    konami++;
+                } else if (konami == 3) {
+                    konami++;
+                } else {
+                    konami = 0;
+                }
             }
             if (leftJump.isActive()) {
                 m_square.actionLeftJump();
+                if (konami == 4) {
+                    konami++;
+                } else if (konami == 6) {
+                    konami++;
+                } else {
+                    konami = 0;
+                }
             }
             if (rightJump.isActive()) {
                 m_square.actionRightJump();
+                if (konami == 5) {
+                    konami++;
+                } else if (konami == 7) {
+                    konami++;
+                } else {
+                    konami = 0;
+                }
             }
             if (jump.isActive()) {
                 m_square.actionJump();
@@ -199,7 +210,7 @@ namespace swiftness {
                 } else if (konami == 9) {
                     konami++;
                 } else {
-                    konami = 1;
+                    konami = 0;
                 }
             }
         } else {
