@@ -25,6 +25,7 @@ namespace swiftness
         , m_gravityDirection("down")
         , m_walljump(0.0f)
         , m_isFlying(false)
+        , m_skin(std::make_shared<gf::Texture>(swiftness::TEXTURE_SKIN_PATH + "the_protagonist.png"))
     {
     }
     gf::Vector2f Square::getPosition() const
@@ -610,7 +611,8 @@ namespace swiftness
     {
         gf::RectangleShape shape({m_size, m_size});
         shape.setPosition(m_position);
-        shape.setColor(m_color);
+        // shape.setColor(m_color);
+        shape.setTexture(*m_skin);
         shape.setAnchor(gf::Anchor::Center);
         target.draw(shape);
     }

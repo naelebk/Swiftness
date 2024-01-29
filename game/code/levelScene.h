@@ -43,7 +43,7 @@ namespace swiftness {
             // Getter du niveau
             int getLevel();
 
-            swiftness::Square getSquare() { return m_square; };
+            swiftness::Square& getSquare() { return m_square; };
             std::vector<swiftness::StaticPlateform> getPlateforms() { return m_plateform; };
 
             // Update the scene with the menu

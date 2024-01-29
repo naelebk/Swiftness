@@ -2,6 +2,7 @@
 #ifndef SQUARE_ENTITY_H
 #define SQUARE_ENTITY_H
 
+#include "constants.h"
 #include <gf/Vector.h>
 #include <gf/Color.h>
 #include <gf/Color.h>
@@ -12,6 +13,7 @@
 #include <gf/Event.h>
 #include <gf/Font.h>
 #include <gf/Text.h>
+#include <gf/Texture.h>
 #include <map>
 #include "staticPlateforme.h"
 #include <vector>
@@ -110,6 +112,8 @@ namespace swiftness
 
         void setIsFlying(bool isFlying) { m_isFlying=isFlying; };
 
+        void setTexture(const std::string& filename) { m_skin = std::make_unique<gf::Texture>(swiftness::TEXTURE_SKIN_PATH + filename + ".png"); };
+
 
         /**
          * @brief Gère les collisions avec la plateforme
@@ -139,7 +143,7 @@ namespace swiftness
         bool m_isFlying;
 
         // graphics
-        // gf::Texture& m_skin;
+        std::shared_ptr<gf::Texture> m_skin;
     };
 }
 

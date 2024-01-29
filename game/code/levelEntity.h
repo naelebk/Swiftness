@@ -27,7 +27,7 @@ namespace swiftness
          *
          * @return Square the square of the level
          */
-        Square getSquareEntity() { return m_squareEntity; };
+        Square& getSquareEntity() { return m_squareEntity; };
 
         
 
