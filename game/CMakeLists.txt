@@ -19,6 +19,7 @@ add_executable(game
   ./code/levelEntity.cc
   ./code/levelRender.cc
   ./code/main.cc
+  ./code/pauseScene.cc
   ./code/squareEntity.cc
   ./code/Start.cc
   ./code/staticPlateforme.cc

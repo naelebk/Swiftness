@@ -9,7 +9,8 @@ namespace swiftness {
     start(*this),
     font(font),
     credits(*this, font),
-    level(*this, font, resources) 
+    level(*this, font, resources),
+    s_pause(*this, font, resources) 
     {
         pushScene(start);
     }

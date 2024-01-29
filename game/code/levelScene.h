@@ -29,6 +29,7 @@
 #include "level.h"
 #include "squareEntity.h"
 #include "levelRender.h"
+#include "pauseScene.h"
 namespace swiftness {
     struct GameCenter;
     class levelScene : public gf::Scene {
@@ -57,7 +58,6 @@ namespace swiftness {
         private:
             GameCenter& game;
             gf::Font& m_font;
-            gf::Action quit_a;
             gf::Action up;
             gf::Action upJump;
             gf::Action down;

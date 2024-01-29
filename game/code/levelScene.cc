@@ -20,8 +20,7 @@ namespace swiftness {
     m_font(font), 
     game(game),
     m_levelNumber(level),
-    m_levelData("level0" + std::to_string(m_levelNumber) + ".tmx"),
-    quit_a("quit")
+    m_levelData("level0" + std::to_string(m_levelNumber) + ".tmx")
     , up("up")
     , down("down")
     , left("left")
@@ -44,9 +43,6 @@ namespace swiftness {
      {
 
         gf::Gamepad::initialize();
-        quit_a.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::B);
-        quit_a.addKeycodeKeyControl(gf::Keycode::Escape);
-        addAction(quit_a);
 
         up.setContinuous();
         up.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
@@ -57,6 +53,8 @@ namespace swiftness {
         
         Pause.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::Start);
         Pause.addScancodeKeyControl(gf::Scancode::P);
+        Pause.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::B);
+        Pause.addKeycodeKeyControl(gf::Keycode::Escape);
         addAction(Pause);
 
         upJump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
@@ -132,16 +130,10 @@ namespace swiftness {
 
     void levelScene::doHandleActions(gf::Window& window) {
         if (!isActive()) pause();
-        if (quit_a.isActive()) {
-            m_square.squareReset();
-            konami = -1;
-            konami2 = -1;
-            canFly = false;
-            commandsChange = false;
-            m_square.setIsFlying(false);
-            game.replaceScene(game.menu);
+        if (Pause.isActive()) {
+            isPaused() ? resume() : pause();
+            game.pushScene(game.s_pause);
         }
-        if (Pause.isActive()) isPaused() ? resume() : pause();
         if (!commandsChange) {
             if(up.isActive()) {
                 m_square.actionUp();
@@ -217,8 +209,8 @@ namespace swiftness {
     void levelScene::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
         gf::ExtendView cam(m_camera, {SCREEN_WIDTH, SCREEN_HEIGHT});
         isPaused() ? target.clear(gf::Color::Blue) :
-	canFly && commandsChange ? target.clear(gf::Color::Violet/*a*/) :
-	target.clear(gf::Color::Black);
+        canFly && commandsChange ? target.clear(gf::Color::Violet/*a*/) :
+        target.clear(gf::Color::Black);
         target.setView(cam);
         swiftness::LevelRender renderLevel;
         renderLevel.renderLevel("level0" + std::to_string(m_levelNumber) + ".tmx", target, m_square.getGravity());

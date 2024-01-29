@@ -7,6 +7,7 @@
 #include "MenuScene.h"
 #include "SelectLevelScene.h"
 #include "Start.h"
+#include "pauseScene.h"
 #include "Credits.h"
 #include "constants.h"
 #include "squareEntity.h"
@@ -23,6 +24,7 @@ namespace swiftness {
         Menu menu;
         Credits credits;
         Start start;
+        pauseScene s_pause;
         gf::Font& font;
     };
 }
