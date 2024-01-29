@@ -631,6 +631,12 @@ namespace swiftness
         target.draw(deathText);
     }
 
+    void Square::setIsFlying(bool isFlying){ 
+        m_isFlying=isFlying;
+        m_velocity.x=0;
+        m_velocity.y=0; 
+    }
+
     // empeche le carré de traverser une plateforme
     void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp,float dt)
     {
