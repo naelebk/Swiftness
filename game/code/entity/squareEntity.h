@@ -2,7 +2,6 @@
 #ifndef SQUARE_ENTITY_H
 #define SQUARE_ENTITY_H
 
-#include "constants.h"
 #include <gf/Vector.h>
 #include <gf/Color.h>
 #include <gf/Color.h>
@@ -112,10 +111,6 @@ namespace swiftness
         void setPlateforms(std::vector<swiftness::PlateformEntity> plateforms) { m_plateforms=plateforms;};
 
         void setIsFlying(bool isFlying) { m_isFlying=isFlying; };
-
-        void setTexture(const std::string& filename) { m_skin = std::make_unique<gf::Texture>(swiftness::TEXTURE_SKIN_PATH + filename + ".png"); };
-
-        void setTexture(const std::string& filename) { m_skin = std::make_unique<gf::Texture>(swiftness::TEXTURE_SKIN_PATH + filename + ".png"); };
 
 
         /**
