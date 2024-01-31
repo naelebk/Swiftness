@@ -3,7 +3,7 @@
 #define LEVEL_DATA_H
 
 #include "layerData.h"
-#include "../tilesEnumData.h"
+#include "../constants.h"
 
 #include <cstdlib>
 #include <iostream>

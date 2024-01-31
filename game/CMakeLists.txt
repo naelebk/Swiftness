@@ -8,7 +8,6 @@ find_package(gf REQUIRED)
 
 add_executable(swiftness
   ./code/constants.cc
-  ./code/tilesEnumData.cc
   ./code/gameCenter.cc
   ./code/main.cc
   ./code/scene/creditScene.cc
