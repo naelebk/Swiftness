@@ -8,7 +8,7 @@
 #include <gf/ResourceManager.h>
 #include <gf/Paths.h>
 #include "scene/MenuScene.h"
-#include "scene/SelectLevelScene.h"
+#include "scene/selectLevelScene.h"
 #include "scene/startScene.h"
 #include "scene/pauseScene.h"
 #include "scene/creditScene.h"

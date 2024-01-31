@@ -11,7 +11,7 @@ add_executable(swiftness
   ./code/gameCenter.cc
   ./code/main.cc
   ./code/scene/creditScene.cc
-  ./code/scene/SelectLevelScene.cc
+  ./code/scene/selectLevelScene.cc
   ./code/scene/MenuScene.cc
   ./code/scene/levelScene.cc
   ./code/scene/startScene.cc
