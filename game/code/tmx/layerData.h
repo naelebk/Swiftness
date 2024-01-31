@@ -6,7 +6,8 @@
 #include <iostream>
 #include <memory>
 
-#include "tilesEnumData.h"
+#include "../tilesEnumData.h"
+#include "../constants.h"
 
 #include <gf/Event.h>
 #include <gf/Log.h>

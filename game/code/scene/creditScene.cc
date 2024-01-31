@@ -1,5 +1,5 @@
 #include "creditScene.h"
-#include "gameCenter.h"
+#include "../gameCenter.h"
 
 namespace swiftness {
     CreditScene::CreditScene(GameCenter& game, gf::Font& font) :

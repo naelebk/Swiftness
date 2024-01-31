@@ -1,5 +1,5 @@
 #include "startScene.h"
-#include "gameCenter.h"
+#include "../gameCenter.h"
 #include <gf/Easings.h>
 #include <gf/Time.h>
 #include <gf/SceneManager.h>

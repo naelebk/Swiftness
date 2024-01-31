@@ -8,9 +8,7 @@ namespace swiftness
 {
     // Gravity
     constexpr float GRAVITY = 500.0f;
-    // constexpr float GRAVITY = 0.0f;
     constexpr float GRAVITY_SQUARE = 500.0f;
-    // constexpr float GRAVITY_SQUARE = 0.0f;
 
     constexpr int SQUARE_SIZE=13.0f;
     // Speed

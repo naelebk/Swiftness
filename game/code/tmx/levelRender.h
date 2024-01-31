@@ -3,9 +3,9 @@
 #define LEVEL_RENDER_H
 
 #include "layerData.h"
-#include "constants.h"
+#include "../constants.h"
 #include <gf/Vector.h>
-#include "tilesEnumData.h"
+#include "../tilesEnumData.h"
 #include <gf/Drawable.h>
 #include <gf/Text.h>
 #include <gf/Tmx.h>

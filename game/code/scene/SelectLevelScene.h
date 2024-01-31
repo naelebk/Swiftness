@@ -25,10 +25,10 @@
 #include <gf/Window.h>
 #include <iostream>
 #include <vector>
-#include "constants.h"
-#include "plateformEntity.h"
-#include "level.h"
-#include "squareEntity.h"
+#include "../constants.h"
+#include "../entity/plateformEntity.h"
+#include "../entity/squareEntity.h"
+#include "../tmx/level.h"
 #include "levelScene.h"
 
 namespace swiftness {

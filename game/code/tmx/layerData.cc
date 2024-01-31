@@ -1,6 +1,4 @@
 #include "layerData.h"
-#include "constants.h"
-#include "tilesEnumData.h"
 
 namespace swiftness
 {

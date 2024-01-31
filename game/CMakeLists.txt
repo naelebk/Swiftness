@@ -6,32 +6,33 @@ project(SWIFTNESS_TEST_ONE
  
 find_package(gf REQUIRED)
 
-add_executable(game
+add_executable(swiftness
   ./code/constants.cc
-  ./code/creditScene.cc
+  ./code/tilesEnumData.cc
   ./code/gameCenter.cc
-  ./code/SelectLevelScene.cc
-  ./code/MenuScene.cc
-  ./code/levelScene.cc
-  ./code/layerData.cc
-  ./code/level.cc
-  ./code/levelData.cc
-  ./code/generationLevel.cc
-  ./code/levelRender.cc
   ./code/main.cc
-  ./code/pauseScene.cc
-  ./code/squareEntity.cc
-  ./code/startScene.cc
-  ./code/plateformEntity.cc
-  ./code/tilesEnumData.cc)
+  ./code/scene/creditScene.cc
+  ./code/scene/SelectLevelScene.cc
+  ./code/scene/MenuScene.cc
+  ./code/scene/levelScene.cc
+  ./code/scene/startScene.cc
+  ./code/scene/pauseScene.cc
+  ./code/tmx/layerData.cc
+  ./code/tmx/level.cc
+  ./code/tmx/levelData.cc
+  ./code/tmx/generationLevel.cc
+  ./code/tmx/levelRender.cc
+  ./code/entity/squareEntity.cc
+  ./code/entity/plateformEntity.cc
+  )
 
-target_include_directories(game
+target_include_directories(swiftness
 PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR})
   
 
  
-target_link_libraries(game
+target_link_libraries(swiftness
   PRIVATE
     gf::graphics
     gf::net

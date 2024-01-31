@@ -22,8 +22,8 @@
 #include <gf/WidgetContainer.h>
 #include <gf/Widgets.h>
 #include <gf/Window.h>
-#include "constants.h"
 #include <gf/Coordinates.h>
+#include "../constants.h"
 
 namespace swiftness {
     struct GameCenter;

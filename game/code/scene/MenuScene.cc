@@ -1,5 +1,5 @@
 #include "MenuScene.h"
-#include "gameCenter.h"
+#include "../gameCenter.h"
 
 
 namespace swiftness {

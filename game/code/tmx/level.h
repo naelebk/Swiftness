@@ -2,8 +2,8 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 
-#include "squareEntity.h"
-#include "plateformEntity.h"
+#include "../entity/squareEntity.h"
+#include "../entity/plateformEntity.h"
 #include "generationLevel.h"
 #include <map>
 #include "levelRender.h"

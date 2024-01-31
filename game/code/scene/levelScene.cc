@@ -1,5 +1,5 @@
 #include "levelScene.h"
-#include "gameCenter.h"
+#include "../gameCenter.h"
 #include <unistd.h>
 #include <gf/Coordinates.h>
 #include <iostream>

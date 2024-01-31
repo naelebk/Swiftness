@@ -27,11 +27,11 @@
 #include <map>
 #include <cstdlib>
 #include <vector>
-#include "constants.h"
-#include "plateformEntity.h"
-#include "level.h"
-#include "squareEntity.h"
-#include "levelRender.h"
+#include "../constants.h"
+#include "../entity/plateformEntity.h"
+#include "../entity/squareEntity.h"
+#include "../tmx/level.h"
+#include "../tmx/levelRender.h"
 #include "pauseScene.h"
 namespace swiftness {
     struct GameCenter;

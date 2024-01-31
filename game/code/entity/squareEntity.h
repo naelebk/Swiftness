@@ -13,13 +13,13 @@
 #include <gf/Font.h>
 #include <gf/Text.h>
 #include <map>
-#include "plateformEntity.h"
-#include "constants.h"
 #include <vector>
 #include <gf/Views.h>
 #include <iostream>
 #include <gf/ResourceManager.h>
 #include <gf/Action.h>
+#include "plateformEntity.h"
+#include "../constants.h"
 
 namespace swiftness
 {

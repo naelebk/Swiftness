@@ -23,7 +23,7 @@
 #include <gf/Widgets.h>
 #include <gf/Window.h>
 #include <iostream>
-#include "constants.h"
+#include "../constants.h"
 
 namespace swiftness {
 

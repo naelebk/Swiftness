@@ -1,11 +1,11 @@
-#include "squareEntity.h"
-#include "plateformEntity.h"
-#include "level.h"
+#include "entity/squareEntity.h"
+#include "entity/plateformEntity.h"
+#include "tmx/level.h"
 #include "constants.h"
-#include "levelScene.h"
-#include "levelRender.h"
-#include "startScene.h"
-#include "pauseScene.h"
+#include "scene/levelScene.h"
+#include "tmx/levelRender.h"
+#include "scene/startScene.h"
+#include "scene/pauseScene.h"
 #include "gameCenter.h"
 
 #include <memory>
