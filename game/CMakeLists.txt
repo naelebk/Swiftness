@@ -8,8 +8,8 @@ find_package(gf REQUIRED)
 
 add_executable(game
   ./code/constants.cc
-  ./code/Credits.cc
-  ./code/GameCenter.cc
+  ./code/creditScene.cc
+  ./code/gameCenter.cc
   ./code/SelectLevelScene.cc
   ./code/MenuScene.cc
   ./code/levelScene.cc
@@ -21,7 +21,7 @@ add_executable(game
   ./code/main.cc
   ./code/pauseScene.cc
   ./code/squareEntity.cc
-  ./code/Start.cc
+  ./code/startScene.cc
   ./code/plateformEntity.cc
   ./code/tilesEnumData.cc)
 

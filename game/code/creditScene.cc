@@ -1,9 +1,8 @@
-#include "GameCenter.h"
-#include <gf/Coordinates.h>
-#include "Credits.h"
+#include "creditScene.h"
+#include "gameCenter.h"
 
 namespace swiftness {
-    Credits::Credits(GameCenter& game, gf::Font& font) :
+    CreditScene::CreditScene(GameCenter& game, gf::Font& font) :
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     font(font),
     game(game),
@@ -40,16 +39,16 @@ namespace swiftness {
         });
     }
 
-    Credits::~Credits() {}
+    CreditScene::~CreditScene() {}
 
     // Méthodes virtuelles privées héritant directement de gf::Scene
-    void Credits::doHandleActions(gf::Window& window) {
+    void CreditScene::doHandleActions(gf::Window& window) {
         if (!window.isOpen()) return;
         if (trigger.isActive()) widgets.triggerAction();
         if (quit.isActive()) game.replaceScene(game.menu);
     }
 
-    void Credits::doProcessEvent(gf::Event& event) {
+    void CreditScene::doProcessEvent(gf::Event& event) {
         switch(event.type) {
             case gf::EventType::MouseMoved:
                 widgets.pointTo(game.computeWindowToGameCoordinates(event.mouseCursor.coords, getHudView()));
@@ -59,7 +58,7 @@ namespace swiftness {
         }
     }
 
-    void Credits::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
+    void CreditScene::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
         float size = 0.035f, space = 0.04f;
         gf::Vector2f bg_size (0.55f, 0.1f); 
         target.setView(getHudView());
@@ -81,7 +80,7 @@ namespace swiftness {
         widgets.render(target, states);
     }
 
-    void Credits::doShow() {
+    void CreditScene::doShow() {
         widgets.clear();
         mainmenu.setDefault();
         widgets.addWidget(mainmenu);

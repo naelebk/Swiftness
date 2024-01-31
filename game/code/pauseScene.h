@@ -22,6 +22,12 @@
 #include <gf/Window.h>
 #include <iostream>
 #include <vector>
+#include <gf/Easings.h>
+#include <gf/Time.h>
+#include <gf/SceneManager.h>
+#include <gf/Coordinates.h>
+#include <cstdlib>
+#include <gf/Sprite.h>
 
 namespace swiftness {
     struct GameCenter;

@@ -7,58 +7,58 @@ namespace swiftness
     {
         std::vector<swiftness::PlateformEntity> plateform;
 
-        GenerationLevel levelEntity(nameFile);
+        GenerationLevel levelGen(nameFile);
 
         int index = 0;
 
         // Ajout des plateformes verticales
-        plateform = levelEntity.generateVerticalPlateform(index, LayerName::Collision_v,plateform);
+        plateform = levelGen.generateVerticalPlateform(index, LayerName::Collision_v,plateform);
         std::cout << "Vertical plateform generated : index->" << index << std::endl;
         index = plateform.size();
 
         // Ajout des plateformes horizontales
-        plateform = levelEntity.generateHorizontalPlateform(index, LayerName::Collision_h,plateform);
+        plateform = levelGen.generateHorizontalPlateform(index, LayerName::Collision_h,plateform);
         std::cout << "Horizontal plateform generated : index->" << index << std::endl;
         index = plateform.size();
 
         // Ajout des plateformes bloc
-        plateform = levelEntity.generateBlocPlateforms(index, LayerName::Collision_bloc,plateform);
+        plateform = levelGen.generateBlocPlateforms(index, LayerName::Collision_bloc,plateform);
         std::cout << "Bloc plateform generated : index->" << index << std::endl;
         index = plateform.size();
         // Ajout des plateformes tueuses !!
 
         // Ajout des plateformes verticales
-        plateform = levelEntity.generateVerticalPlateform(index, LayerName::Wall_of_death_v,plateform);
+        plateform = levelGen.generateVerticalPlateform(index, LayerName::Wall_of_death_v,plateform);
         std::cout << "Vertical death generated : index->" << index << std::endl;
         index = plateform.size();
 
         // Ajout des plateformes horizontales
-        plateform = levelEntity.generateHorizontalPlateform(index, LayerName::Wall_of_death_h,plateform);
+        plateform = levelGen.generateHorizontalPlateform(index, LayerName::Wall_of_death_h,plateform);
         std::cout << "Horizontal death generated : index->" << index << std::endl;
         index = plateform.size();
 
         // Ajout des plateformes bloc
-        plateform = levelEntity.generateBlocPlateforms(index, LayerName::Wall_of_death_bloc,plateform);
+        plateform = levelGen.generateBlocPlateforms(index, LayerName::Wall_of_death_bloc,plateform);
         std::cout << "Bloc death generated : index->" << index << std::endl;
         index = plateform.size();
 
         // Ajout des gravity switch
-        plateform = levelEntity.generateGravitySwitchs(index,plateform);
+        plateform = levelGen.generateGravitySwitchs(index,plateform);
         std::cout << "Gravity switch generated : index->" << index << std::endl;
         index = plateform.size();
 
         // ajout des murs invisible
-        plateform = levelEntity.generateBorder(index,plateform);
+        plateform = levelGen.generateBorder(index,plateform);
         std::cout << "Border generated : index->" << index << std::endl;
         index = plateform.size();
 
         // Ajout des gravity walls
-        plateform = levelEntity.generateGravityWalls(index,plateform);
+        plateform = levelGen.generateGravityWalls(index,plateform);
         std::cout << "Gravity wall generated : index->" << index << std::endl;
         index = plateform.size();
 
         // Ajout de la sortie
-        plateform = levelEntity.generateExit(index,plateform);
+        plateform = levelGen.generateExit(index,plateform);
         std::cout << "Exit generated : index->" << index << std::endl;
 
         return plateform;

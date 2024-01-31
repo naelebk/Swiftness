@@ -1,11 +1,5 @@
 #include "pauseScene.h"
-#include "GameCenter.h"
-#include <gf/Easings.h>
-#include <gf/Time.h>
-#include <gf/SceneManager.h>
-#include <gf/Coordinates.h>
-#include <cstdlib>
-#include <gf/Sprite.h>
+#include "gameCenter.h"
 
 namespace swiftness {
     pauseScene::pauseScene(GameCenter& game, gf::Font& font, gf::ResourceManager& resources) :

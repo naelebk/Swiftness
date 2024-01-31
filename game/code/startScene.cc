@@ -1,5 +1,5 @@
-#include "Start.h"
-#include "GameCenter.h"
+#include "startScene.h"
+#include "gameCenter.h"
 #include <gf/Easings.h>
 #include <gf/Time.h>
 #include <gf/SceneManager.h>
@@ -8,7 +8,7 @@
 #include <gf/Sprite.h>
 
 namespace swiftness {
-    Start::Start(GameCenter& game) :
+    StartScene::StartScene(GameCenter& game) :
     gf::Scene(game.getRenderer().getSize()),
     game(game),
     background(game.resources.getTexture("command.png")),
@@ -25,13 +25,13 @@ namespace swiftness {
         addAction(menu);
     }
 
-    Start::~Start() {}
+    StartScene::~StartScene() {}
 
-    void Start::doHandleActions(gf::Window& window) {
+    void StartScene::doHandleActions(gf::Window& window) {
         if (!isActive()) return;
         if (menu.isActive()) game.replaceAllScenes(game.menu);
     }
-    void Start::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
+    void StartScene::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
         gf::Coordinates coords(target);
         float backgroundHeight = coords.getRelativeSize(gf::vec(0.0f, 1.0f)).height;
         float backgroundScale = backgroundHeight / background.getSize().height;

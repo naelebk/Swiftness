@@ -1,4 +1,4 @@
-#include "GameCenter.h"
+#include "gameCenter.h"
 
 namespace swiftness {
 

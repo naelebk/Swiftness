@@ -1,11 +1,6 @@
 #include "MenuScene.h"
-#include "GameCenter.h"
-#include "Credits.h"
-#include <gf/Easings.h>
-#include <gf/Time.h>
-#include <gf/SceneManager.h>
-#include <gf/Coordinates.h>
-#include <cstdlib>
+#include "gameCenter.h"
+
 
 namespace swiftness {
     Menu::Menu(GameCenter& game) 

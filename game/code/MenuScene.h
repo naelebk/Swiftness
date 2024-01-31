@@ -21,6 +21,12 @@
 #include <gf/Window.h>
 #include <iostream>
 #include "constants.h"
+#include "creditScene.h"
+#include <gf/Easings.h>
+#include <gf/Time.h>
+#include <gf/SceneManager.h>
+#include <gf/Coordinates.h>
+#include <cstdlib>
 
 
 // Concernant la création et la gestion des scènes, tout ce qui concerne également les différents rendus,

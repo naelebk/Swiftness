@@ -1,4 +1,7 @@
 #pragma once
+#ifndef CREDIT_SCENE_H
+#define CREDIT_SCENE_H
+
 #include <gf/Action.h>
 #include <gf/Clock.h>
 #include <gf/Color.h>
@@ -19,27 +22,33 @@
 #include <gf/WidgetContainer.h>
 #include <gf/Widgets.h>
 #include <gf/Window.h>
-#include <iostream>
 #include "constants.h"
+#include <gf/Coordinates.h>
 
 namespace swiftness {
-
     struct GameCenter;
-
-    class Start : public gf::Scene {
+    class CreditScene : public gf::Scene {
         public:
             // Constructeur
-            Start(GameCenter& game);
-            // Destructeur
-            ~Start() override;
+            CreditScene(GameCenter& game, gf::Font& font);
+            // Desctructeur
+            ~CreditScene() override;
 
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;
             void doRender (gf::RenderTarget& target, const gf::RenderStates &states) override;
+            void doProcessEvent(gf::Event& event) override;
+            void doShow() override;
 
         private:
             GameCenter& game;
-            gf::Texture& background;
-            gf::Action menu;
+            gf::Font& font;
+            gf::Action trigger;
+            gf::Action quit;
+            gf::WidgetContainer widgets;
+            gf::TextButtonWidget mainmenu;
+
     };
 }
+
+#endif // CREDIT_SCENE_H

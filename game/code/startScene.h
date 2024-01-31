@@ -19,30 +19,27 @@
 #include <gf/WidgetContainer.h>
 #include <gf/Widgets.h>
 #include <gf/Window.h>
+#include <iostream>
 #include "constants.h"
 
 namespace swiftness {
+
     struct GameCenter;
-    class Credits : public gf::Scene {
+
+    class StartScene : public gf::Scene {
         public:
             // Constructeur
-            Credits(GameCenter& game, gf::Font& font);
-            // Desctructeur
-            ~Credits() override;
+            StartScene(GameCenter& game);
+            // Destructeur
+            ~StartScene() override;
 
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;
             void doRender (gf::RenderTarget& target, const gf::RenderStates &states) override;
-            void doProcessEvent(gf::Event& event) override;
-            void doShow() override;
 
         private:
             GameCenter& game;
-            gf::Font& font;
-            gf::Action trigger;
-            gf::Action quit;
-            gf::WidgetContainer widgets;
-            gf::TextButtonWidget mainmenu;
-
+            gf::Texture& background;
+            gf::Action menu;
     };
 }

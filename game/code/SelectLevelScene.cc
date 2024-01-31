@@ -1,5 +1,5 @@
 #include "SelectLevelScene.h"
-#include "GameCenter.h"
+#include "gameCenter.h"
 #include <gf/Coordinates.h>
 #include "levelScene.h"
 

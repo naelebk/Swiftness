@@ -4,9 +4,9 @@
 #include "constants.h"
 #include "levelScene.h"
 #include "levelRender.h"
-#include "Start.h"
+#include "startScene.h"
 #include "pauseScene.h"
-#include "GameCenter.h"
+#include "gameCenter.h"
 
 #include <memory>
 #include <gf/Clock.h>

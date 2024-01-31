@@ -1,5 +1,5 @@
 #include "levelScene.h"
-#include "GameCenter.h"
+#include "gameCenter.h"
 #include <unistd.h>
 #include <gf/Coordinates.h>
 #include <iostream>
@@ -251,8 +251,8 @@ namespace swiftness {
         tile_height=m_levelData.getTileSize().y;
         xcamera=m_square.getPosition().x;
         ycamera=m_square.getPosition().y;
-        xcamera=std::clamp(xcamera,SCREEN_WIDTH/2+tile_width,map_width*tile_width-SCREEN_WIDTH/2-tile_width);
-        ycamera=std::clamp(ycamera,SCREEN_HEIGHT/2+tile_height,map_height*tile_height-SCREEN_HEIGHT/2-tile_height);
+        xcamera=gf::clamp(xcamera,SCREEN_WIDTH/2+tile_width,map_width*tile_width-SCREEN_WIDTH/2-tile_width);
+        ycamera=gf::clamp(ycamera,SCREEN_HEIGHT/2+tile_height,map_height*tile_height-SCREEN_HEIGHT/2-tile_height);
         m_camera = {xcamera, ycamera};
     }
 }
