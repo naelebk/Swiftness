@@ -231,7 +231,7 @@ namespace swiftness {
         gf::ExtendView cam(m_camera, {SCREEN_WIDTH, SCREEN_HEIGHT});
         isPaused() ? target.clear(gf::Color::Blue) :
         canFly && commandsChange ? target.clear(gf::Color::Violet/*a*/) :
-        target.clear(gf::Color::Black);
+        target.clear(gf::Color::fromRgb(0.2, 0.2, 0.2));
         target.setView(cam);
         swiftness::LevelRender renderLevel;
         renderLevel.renderLevel("level0" + std::to_string(m_levelNumber) + ".tmx", target, m_square.getGravity());
