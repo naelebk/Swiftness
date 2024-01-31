@@ -19,6 +19,7 @@ namespace swiftness {
 
         trigger.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
         trigger.addScancodeKeyControl(gf::Scancode::Return);
+        trigger.addScancodeKeyControl(gf::Scancode::Space);
         trigger.addMouseButtonControl(gf::MouseButton::Left);
         addAction(trigger);
 
