@@ -1,13 +1,13 @@
-#include "level.h"
+#include "levelInitializer.h"
 
 namespace swiftness
 {
 
-    std::vector<swiftness::PlateformEntity> Level::initializePlateforms(std::string nameFile)
+    std::vector<swiftness::PlateformEntity> LevelInitializer::initializePlateforms(std::string nameFile)
     {
         std::vector<swiftness::PlateformEntity> plateform;
 
-        GenerationLevel levelGen(nameFile);
+        LevelGenerator levelGen(nameFile);
 
         int index = 0;
 
@@ -65,9 +65,9 @@ namespace swiftness
     }
 
 
-    Level::level Level::initializeLevel(std::string nameFile)
+    LevelInitializer::level LevelInitializer::initializeLevel(std::string nameFile)
     {
-        Level::level level;
+        LevelInitializer::level level;
 
         level.plateform = initializePlateforms(nameFile);
         level.square = initializeSquare(nameFile);
@@ -75,9 +75,9 @@ namespace swiftness
         return level;
     }
 
-    swiftness::Square Level::initializeSquare(std::string nameFile)
+    swiftness::Square LevelInitializer::initializeSquare(std::string nameFile)
     {
-        GenerationLevel levelEntity(nameFile);
+        LevelGenerator levelEntity(nameFile);
         return levelEntity.getSquareEntity();
     }
 

@@ -17,9 +17,9 @@ add_executable(swiftness
   ./code/scene/startScene.cc
   ./code/scene/pauseScene.cc
   ./code/tmx/layerData.cc
-  ./code/tmx/level.cc
+  ./code/tmx/levelInitializer.cc
   ./code/tmx/levelData.cc
-  ./code/tmx/generationLevel.cc
+  ./code/tmx/levelGenerator.cc
   ./code/tmx/levelRender.cc
   ./code/entity/squareEntity.cc
   ./code/entity/plateformEntity.cc

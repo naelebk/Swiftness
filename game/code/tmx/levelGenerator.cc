@@ -1,15 +1,15 @@
-#include "generationLevel.h"
+#include "levelGenerator.h"
 
 namespace swiftness
 {
 
-    GenerationLevel::GenerationLevel(std::string nameFile)
+    LevelGenerator::LevelGenerator(std::string nameFile)
         : m_name(nameFile), m_levelData(nameFile), m_squareEntity(m_levelData.getEntrance(), SQUARE_SIZE, gf::Color::Red, GRAVITY)
     {
         std::cout << "LevelEntity created for file: " << nameFile << std::endl;
     }
 
-    std::vector<swiftness::PlateformEntity> GenerationLevel::generateVerticalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateVerticalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms)
     {
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
@@ -58,7 +58,7 @@ namespace swiftness
         return verticalPlateforms;
     }
 
-    std::vector<swiftness::PlateformEntity> GenerationLevel::generateHorizontalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> horizontalPlateforms)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateHorizontalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> horizontalPlateforms)
     {
         
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
@@ -107,7 +107,7 @@ namespace swiftness
         return horizontalPlateforms;
     }
 
-    std::vector<swiftness::PlateformEntity> GenerationLevel::generateBlocPlateforms(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> blocPlateforms)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateBlocPlateforms(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> blocPlateforms)
     {
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
@@ -177,7 +177,7 @@ namespace swiftness
         return blocPlateforms;
     }
 
-    std::vector<swiftness::PlateformEntity> GenerationLevel::generateBorder(int index,std::vector<swiftness::PlateformEntity> invisiblePlateforms)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateBorder(int index,std::vector<swiftness::PlateformEntity> invisiblePlateforms)
     {
     
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(LayerName::Border);
@@ -237,7 +237,7 @@ namespace swiftness
         return invisiblePlateforms;
     }
 
-    std::vector<swiftness::PlateformEntity> GenerationLevel::generateGravitySwitchs(int index,std::vector<swiftness::PlateformEntity> gravitySwitchs)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateGravitySwitchs(int index,std::vector<swiftness::PlateformEntity> gravitySwitchs)
     {
         std::vector<std::unique_ptr<gf::TmxObject>> objects = m_levelData.getLayersEntity().getObjectsOfaLayer(LayerName::gravity_switch);
 
@@ -283,7 +283,7 @@ namespace swiftness
 
     }
 
-    std::vector<swiftness::PlateformEntity> GenerationLevel::generateGravityWalls(int index,std::vector<swiftness::PlateformEntity> gravityWalls)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateGravityWalls(int index,std::vector<swiftness::PlateformEntity> gravityWalls)
     {
         std::vector<std::unique_ptr<gf::TmxObject>> objects = m_levelData.getLayersEntity().getObjectsOfaLayer(LayerName::gravity_walls);
 
@@ -326,7 +326,7 @@ namespace swiftness
         return gravityWalls;
     }
 
-    std::vector<swiftness::PlateformEntity> GenerationLevel::generateExit(int index, std::vector<swiftness::PlateformEntity> exit) {
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateExit(int index, std::vector<swiftness::PlateformEntity> exit) {
         gf::Vector2f position = m_levelData.getExit();
         int width = m_levelData.getTileSize().width;
         int height = m_levelData.getTileSize().height;

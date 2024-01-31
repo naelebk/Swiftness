@@ -30,7 +30,7 @@
 #include "../constants.h"
 #include "../entity/plateformEntity.h"
 #include "../entity/squareEntity.h"
-#include "../tmx/level.h"
+#include "../tmx/levelInitializer.h"
 #include "../tmx/levelRender.h"
 #include "pauseScene.h"
 namespace swiftness {

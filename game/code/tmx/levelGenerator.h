@@ -1,6 +1,6 @@
 #pragma once
-#ifndef GENERATION_LEVEL_H
-#define GENERATION_LEVEL_H
+#ifndef LEVEL_GENERATOR_H
+#define LEVEL_GENERATOR_H
 
 
 #include "levelData.h"
@@ -10,10 +10,10 @@
 namespace swiftness
 {
 
-    class GenerationLevel
+    class LevelGenerator
     {
     public:
-        GenerationLevel(std::string nameFile);
+        LevelGenerator(std::string nameFile);
 
         /**
          * @brief Load a tmx file
@@ -105,5 +105,5 @@ namespace swiftness
 
 } // namespace swiftness
 
-#endif // GENERATION_LEVEL_H
+#endif // LEVEL_GENERATOR_H
 

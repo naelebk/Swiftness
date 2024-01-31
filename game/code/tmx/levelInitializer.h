@@ -1,10 +1,10 @@
 #pragma once
-#ifndef LEVEL_H
-#define LEVEL_H
+#ifndef LEVEL_INTIALIZER_H
+#define LEVEL_INTIALIZER_H
 
 #include "../entity/squareEntity.h"
 #include "../entity/plateformEntity.h"
-#include "generationLevel.h"
+#include "levelGenerator.h"
 #include <map>
 #include "levelRender.h"
 #include <gf/RenderTarget.h>
@@ -12,7 +12,7 @@
 namespace swiftness
 {
 
-    class Level
+    class LevelInitializer
     {
 
     private:
@@ -58,4 +58,4 @@ namespace swiftness
 
 } // namespace swiftness
 
-#endif // LEVEL0_H
+#endif // LEVEL_INITIALIZER_H

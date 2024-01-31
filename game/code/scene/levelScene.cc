@@ -128,7 +128,7 @@ namespace swiftness {
             lvl = "level" + std::to_string(t_level) + ".tmx";
         }
         std::cout << GREEN << "File load : " << lvl << NC << std::endl;
-        swiftness::Level::level leveln = Level::initializeLevel(lvl);
+        swiftness::LevelInitializer::level leveln = LevelInitializer::initializeLevel(lvl);
         m_square = leveln.square;
         m_plateform = leveln.plateform;
         m_square.setPlateforms(m_plateform);
