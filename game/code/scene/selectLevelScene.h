@@ -36,7 +36,7 @@ namespace swiftness {
     class SelectLevel : public gf::Scene {
         public:
             // Constructeur
-            SelectLevel(GameCenter& game, gf::Font& font, gf::ResourceManager& resources);
+            SelectLevel(GameCenter& game, gf::Font& font);
             // Desctructeur
             ~SelectLevel() override;
 

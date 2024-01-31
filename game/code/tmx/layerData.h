@@ -29,10 +29,6 @@ namespace swiftness
     class LayerData
     {
     public:
-        struct LayersMaker : public gf::TmxVisitor
-        {
-            virtual void visitTileLayer(const gf::TmxLayers &map, const gf::TmxTileLayer &layer) override;
-        };
 
         LayerData(std::string nameFile);
 
@@ -46,8 +42,6 @@ namespace swiftness
 
         gf::Vector2f getTileSize() { return m_tileSize; };
 
-        gf::v1::ResourceManager& getResources() { return m_resources; };
-
         gf::TmxLayers& getLayers() { return m_layers; };
 
         std::vector<gf::TmxCell> getCellsOfaLayer(LayerName name) { auto t = getTileLayerByName(name); return t ? t->cells : std::vector<gf::TmxCell>(); };
@@ -55,7 +49,6 @@ namespace swiftness
         std::vector<std::unique_ptr<gf::TmxObject>> getObjectsOfaLayer(LayerName name) { auto t = getObjectLayerByName(name); return t ? std::move(t->objects) : std::vector<std::unique_ptr<gf::TmxObject>>(); };
 
     private:
-        gf::ResourceManager m_resources; 
         gf::TmxLayers m_layers;
         gf::Vector2f m_mapSize;
         gf::Vector2f m_tileSize;

@@ -3,24 +3,9 @@
 namespace swiftness
 {
 
-        void LayerData::LayersMaker::visitTileLayer(const gf::TmxLayers &map, const gf::TmxTileLayer &layer)
-        {
-                if (!layer.visible)
-                {
-                        return;
-                }
-
-                std::cout << "Parsing layer '" << layer.name << "'\n";
-        }
-
         LayerData::LayerData(std::string nameFile)
         {
                 m_layers = loadLayers(nameFile);
-                m_resources.addSearchDir(LEVELS_TMX_PATH);
-                m_resources.addSearchDir(TILESETS_TSX_PATH);
-                m_resources.addSearchDir(IMAGES_GAME);
-                m_resources.addSearchDir(gf::Paths::getBasePath());
-                m_resources.addSearchDir(gf::Paths::getCurrentPath());
                 m_mapSize = m_layers.mapSize;
                 m_tileSize = m_layers.tileSize;
         }

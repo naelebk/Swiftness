@@ -2,7 +2,7 @@
 #include "../gameCenter.h"
 
 namespace swiftness {
-    pauseScene::pauseScene(GameCenter& game, gf::Font& font, gf::ResourceManager& resources) :
+    pauseScene::pauseScene(GameCenter& game, gf::Font& font) :
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     game(game),
     font(font),

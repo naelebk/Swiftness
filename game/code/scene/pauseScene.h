@@ -36,7 +36,7 @@ namespace swiftness {
     struct GameCenter;
     class pauseScene : public gf::Scene {
         public:
-            pauseScene(GameCenter& game, gf::Font& font, gf::ResourceManager& resources);
+            pauseScene(GameCenter& game, gf::Font& font);
             ~pauseScene();
 
             // Méthodes virtuelles privées héritant directement de gf::Scene

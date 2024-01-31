@@ -77,8 +77,8 @@ namespace swiftness
 
     swiftness::Square LevelInitializer::initializeSquare(std::string nameFile)
     {
-        LevelGenerator levelEntity(nameFile);
-        return levelEntity.getSquareEntity();
+        LevelGenerator levelGen(nameFile);
+        return levelGen.getSquareEntity();
     }
 
 } // namespace swiftness

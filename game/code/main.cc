@@ -34,15 +34,8 @@ using std::this_thread::sleep_for;
 
 int main(int argc, char *argv[]) {
     // Initialize everything
-    gf::ResourceManager resources;
-    resources.addSearchDir(LEVELS_TMX_PATH);
-    resources.addSearchDir(TILESETS_TSX_PATH);
-    resources.addSearchDir(IMAGES_GAME);
-    resources.addSearchDir(RESSOURCES_PATH);
-    resources.addSearchDir(gf::Paths::getBasePath());
-    resources.addSearchDir(gf::Paths::getCurrentPath());
     gf::Font font(PATH_FONT);
-    swiftness::GameCenter game(resources, font);
+    swiftness::GameCenter game(font);
     game.run(); 
     return 0;
 }

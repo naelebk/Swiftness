@@ -4,8 +4,44 @@
 
 #include <string>
 #include <gf/Font.h>
+#include <gf/ResourceManager.h>
+#include <gf/Paths.h>
 namespace swiftness
 {
+
+    // Resources
+    const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
+    const std::string LEVELS_TMX_PATH = "../../ressources/Levels/Maps/";
+    const std::string TILESETS_TSX_PATH = "../../ressources/Levels/Tilesets/";
+    const std::string IMAGES_GAME = "../../ressources/Images/";
+    const std::string TEXTURE_SKIN_PATH = "../../ressources/Levels/Images/skin/BMO.png";
+    const std::string RESSOURCES_PATH = "../../ressources";
+
+    class SingletonResourceManager {
+    public:
+        static SingletonResourceManager& getInstance() {
+            static SingletonResourceManager instance; // Instance unique
+            return instance;
+        }
+
+        gf::ResourceManager& getResourceManager() {
+            return resourceManager;
+        }
+
+        SingletonResourceManager(SingletonResourceManager const&) = delete;
+        void operator=(SingletonResourceManager const&) = delete;
+
+    private:
+        SingletonResourceManager() 
+        {
+            resourceManager.addSearchDir(RESSOURCES_PATH);
+            resourceManager.addSearchDir(gf::Paths::getBasePath());
+            resourceManager.addSearchDir(gf::Paths::getCurrentPath());
+        } // Constructeur privé
+
+        gf::ResourceManager resourceManager; // Instance de ResourceManager
+    };
+
     // Gravity
     constexpr float GRAVITY = 500.0f;
     constexpr float GRAVITY_SQUARE = 500.0f;
@@ -31,14 +67,6 @@ namespace swiftness
     // Levels
     constexpr int MIN_LEVEL = 0;
     constexpr int MAX_LEVEL = 7;
-
-    // Resources
-    const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
-    const std::string LEVELS_TMX_PATH = "../../ressources/Levels/Maps/";
-    const std::string TILESETS_TSX_PATH = "../../ressources/Levels/Tilesets/";
-    const std::string IMAGES_GAME = "../../ressources/Images/";
-    const std::string TEXTURE_SKIN_PATH = "../../ressources/Levels/Images/skin/BMO.png";
-    const std::string RESSOURCES_PATH = "../../ressources";
 
     // Layers
     const int NB_TILE_LAYERS = 18;
@@ -177,7 +205,6 @@ namespace swiftness
     };
 
     std::string getLayerName(LayerName layerName);
-
 
 
 } // namespace swiftness

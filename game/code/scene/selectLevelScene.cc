@@ -4,7 +4,7 @@
 #include "levelScene.h"
 
 namespace swiftness {
-    SelectLevel::SelectLevel(GameCenter& game, gf::Font& font, gf::ResourceManager& resources) :
+    SelectLevel::SelectLevel(GameCenter& game, gf::Font& font) :
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     font(font),
     game(game),
@@ -12,14 +12,14 @@ namespace swiftness {
     down("Down"),
     trigger("Trigger"),
     quit("Quit"),
-    level00(game, font, resources, 0),
-    level01(game, font, resources, 1),
-    level02(game, font, resources, 2),
-    level03(game, font, resources, 3),
-    level04(game, font, resources, 4),
-    level05(game, font, resources, 5),
-    level06(game, font, resources, 6),
-    level07(game, font, resources, 7)
+    level00(game, font, 0),
+    level01(game, font, 1),
+    level02(game, font, 2),
+    level03(game, font, 3),
+    level04(game, font, 4),
+    level05(game, font, 5),
+    level06(game, font, 6),
+    level07(game, font, 7)
     {
         for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
             if (i >= 1 && i < MAX_LEVEL + 1) {

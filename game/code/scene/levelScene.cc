@@ -15,7 +15,7 @@
 namespace swiftness {
     // Déclaration en seconde instance du constructeur et du destructeur,
     // de levelScene (interface graphique)
-    levelScene::levelScene(GameCenter& game, gf::Font& font, gf::ResourceManager& resources, int level) : 
+    levelScene::levelScene(GameCenter& game, gf::Font& font, int level) : 
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     m_font(font), 
     game(game),

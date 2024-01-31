@@ -38,7 +38,7 @@ namespace swiftness {
     class levelScene : public gf::Scene {
         public:
             // Constructeur
-            levelScene(GameCenter& game, gf::Font& font, gf::ResourceManager& resources, int level);
+            levelScene(GameCenter& game, gf::Font& font, int level);
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;
             void doRender (gf::RenderTarget& target, const gf::RenderStates &states) override;

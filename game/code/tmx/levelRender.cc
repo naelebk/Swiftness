@@ -29,7 +29,7 @@ namespace swiftness
             // Enregistrer la valeur actuelle de l'opacité
             // logFile << "Current opacity for " << getLayerName(layerName) << ": " << layer->opacity << std::endl;
 
-            gf::TileLayer tileLayer = gf::makeTileLayer(layerEntity.getLayers(), *layer, layerEntity.getResources());
+            gf::TileLayer tileLayer = gf::makeTileLayer(layerEntity.getLayers(), *layer, SingletonResourceManager::getInstance().getResourceManager());
             target.draw(tileLayer);
         }
 
