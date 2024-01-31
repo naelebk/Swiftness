@@ -1,10 +1,9 @@
 #include "levelRender.h"
-#include <fstream>
 
 namespace swiftness
 {
 
-    void LevelRender::renderLayer(LayerEntity &layerEntity, gf::RenderTarget &target, LayerName layerName, std::string gravity)
+    void LevelRender::renderLayer(LayerData &layerEntity, gf::RenderTarget &target, LayerName layerName, std::string gravity)
     {
         gf::TmxTileLayer *layer = layerEntity.getTileLayerByName(layerName);
         if (layerName == LayerName::Gw_blue && gravity == "down")
@@ -39,7 +38,7 @@ namespace swiftness
 
     void LevelRender::renderLevel(std::string nameFile, gf::RenderTarget &target, std::string gravity)
     {
-        swiftness::LayerEntity layerEntity(nameFile);
+        swiftness::LayerData layerEntity(nameFile);
 
         for (int i = 0; i < swiftness::NB_TILE_LAYERS; i++)
         {

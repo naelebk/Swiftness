@@ -3,11 +3,11 @@
 namespace swiftness
 {
 
-    std::vector<swiftness::StaticPlateform> Level::initializePlateforms(std::string nameFile)
+    std::vector<swiftness::PlateformEntity> Level::initializePlateforms(std::string nameFile)
     {
-        std::vector<swiftness::StaticPlateform> plateform;
+        std::vector<swiftness::PlateformEntity> plateform;
 
-        LevelEntity levelEntity(nameFile);
+        GenerationLevel levelEntity(nameFile);
 
         int index = 0;
 
@@ -77,7 +77,7 @@ namespace swiftness
 
     swiftness::Square Level::initializeSquare(std::string nameFile)
     {
-        LevelEntity levelEntity(nameFile);
+        GenerationLevel levelEntity(nameFile);
         return levelEntity.getSquareEntity();
     }
 

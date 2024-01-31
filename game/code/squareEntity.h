@@ -13,7 +13,8 @@
 #include <gf/Font.h>
 #include <gf/Text.h>
 #include <map>
-#include "staticPlateforme.h"
+#include "plateformEntity.h"
+#include "constants.h"
 #include <vector>
 #include <gf/Views.h>
 #include <iostream>
@@ -74,7 +75,7 @@ namespace swiftness
         void actionJump();
         void squareReset();
 
-        bool isPlateform(swiftness::StaticPlateform plateform);
+        bool isPlateform(swiftness::PlateformEntity plateform);
         /**
         * Méthode permettant de savoir si on peut sauter
         */
@@ -106,7 +107,7 @@ namespace swiftness
 
         std::string getGravity() { return m_gravityDirection; };
 
-        void setPlateforms(std::vector<swiftness::StaticPlateform> plateforms) { m_plateforms=plateforms;};
+        void setPlateforms(std::vector<swiftness::PlateformEntity> plateforms) { m_plateforms=plateforms;};
 
         void setIsFlying(bool isFlying);
 
@@ -135,7 +136,7 @@ namespace swiftness
         bool isOver;
         int nb_deaths;
         float timer;
-        std::vector<swiftness::StaticPlateform> m_plateforms;
+        std::vector<swiftness::PlateformEntity> m_plateforms;
         bool m_isFlying;
 
         // graphics

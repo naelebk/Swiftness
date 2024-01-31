@@ -2,7 +2,7 @@
 #ifndef LEVEL_DATA_H
 #define LEVEL_DATA_H
 
-#include "layerEntity.h"
+#include "layerData.h"
 #include "tilesEnumData.h"
 
 #include <cstdlib>
@@ -41,7 +41,7 @@ namespace swiftness
          *
          * @return gf::TmxLayers the layers of the tmx file
          */
-        LayerEntity& getLayersEntity() { return m_layerEntity; };
+        LayerData& getLayersEntity() { return m_layerEntity; };
 
         /**
          * @brief Get the entrance of the level
@@ -86,7 +86,7 @@ namespace swiftness
     private:
         std::string m_name;        // name of the tmx file and the level
         std::string m_name_background; // path of the background
-        LayerEntity m_layerEntity; // entity of the layer
+        LayerData m_layerEntity; // entity of the layer
         gf::Vector2f m_mapCenter;  // center of the map
         gf::Vector2f m_entrance;   // entrance of the level
         gf::Vector2f m_exit;       // exit of the level

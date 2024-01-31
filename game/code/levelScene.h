@@ -25,7 +25,7 @@
 #include <cstdlib>
 #include <vector>
 #include "constants.h"
-#include "staticPlateforme.h"
+#include "plateformEntity.h"
 #include "level.h"
 #include "squareEntity.h"
 #include "levelRender.h"
@@ -45,7 +45,7 @@ namespace swiftness {
             int getLevel();
 
             swiftness::Square getSquare() { return m_square; };
-            std::vector<swiftness::StaticPlateform> getPlateforms() { return m_plateform; };
+            std::vector<swiftness::PlateformEntity> getPlateforms() { return m_plateform; };
 
             // Update the scene with the menu
             void updateLevel(int s_level);
@@ -69,7 +69,7 @@ namespace swiftness {
             gf::Action jump;
             gf::Action Pause;
             int m_levelNumber;
-            std::vector<swiftness::StaticPlateform> m_plateform;
+            std::vector<swiftness::PlateformEntity> m_plateform;
             swiftness::Square m_square;
             swiftness::LevelData m_levelData;
             gf::Vector2f m_camera;

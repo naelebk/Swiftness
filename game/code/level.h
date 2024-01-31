@@ -3,8 +3,8 @@
 #define LEVEL_H
 
 #include "squareEntity.h"
-#include "staticPlateforme.h"
-#include "levelEntity.h"
+#include "plateformEntity.h"
+#include "generationLevel.h"
 #include <map>
 #include "levelRender.h"
 #include <gf/RenderTarget.h>
@@ -32,12 +32,12 @@ namespace swiftness
          *
          * @return std::map<int, StaticPlateform> the plateforms
          */
-        static std::vector<swiftness::StaticPlateform> initializePlateforms(std::string nameFile);
+        static std::vector<swiftness::PlateformEntity> initializePlateforms(std::string nameFile);
 
     public:
         struct level
         {
-            std::vector<swiftness::StaticPlateform> plateform;
+            std::vector<swiftness::PlateformEntity> plateform;
             Square square;
 
             level() : plateform(), square() {}
@@ -52,7 +52,7 @@ namespace swiftness
          */
         static level initializeLevel(std::string nameFile);
 
-        static std::vector<swiftness::StaticPlateform> initializeLevel03();
+        // static std::vector<swiftness::PlateformEntity> initializeLevel03();
   
     };
 

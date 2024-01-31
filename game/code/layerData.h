@@ -1,10 +1,10 @@
 #pragma once
-#ifndef LAYER_ENTITY_H
-#define LAYER_ENTITY_H
+#ifndef LAYER_DATA_H
+#define LAYER_DATA_H
 
 #include <cstdlib>
 #include <iostream>
-#include <memory> // Inclure pour std::unique_ptr
+#include <memory>
 
 #include "tilesEnumData.h"
 
@@ -26,7 +26,7 @@
 
 namespace swiftness
 {
-    class LayerEntity
+    class LayerData
     {
     public:
         struct LayersMaker : public gf::TmxVisitor
@@ -34,7 +34,7 @@ namespace swiftness
             virtual void visitTileLayer(const gf::TmxLayers &map, const gf::TmxTileLayer &layer) override;
         };
 
-        LayerEntity(std::string nameFile);
+        LayerData(std::string nameFile);
 
         gf::TmxLayers loadLayers(std::string nameFile);
 
@@ -62,4 +62,4 @@ namespace swiftness
     };
 }; // namespace swiftness
 
-#endif // LAYER_ENTITY_H
+#endif // LAYER_DATA_H

@@ -13,16 +13,16 @@ add_executable(game
   ./code/SelectLevelScene.cc
   ./code/MenuScene.cc
   ./code/levelScene.cc
-  ./code/layerEntity.cc
+  ./code/layerData.cc
   ./code/level.cc
   ./code/levelData.cc
-  ./code/levelEntity.cc
+  ./code/generationLevel.cc
   ./code/levelRender.cc
   ./code/main.cc
   ./code/pauseScene.cc
   ./code/squareEntity.cc
   ./code/Start.cc
-  ./code/staticPlateforme.cc
+  ./code/plateformEntity.cc
   ./code/tilesEnumData.cc)
 
 target_include_directories(game

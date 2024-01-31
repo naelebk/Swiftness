@@ -11,7 +11,7 @@
 #include "Credits.h"
 #include "constants.h"
 #include "squareEntity.h"
-#include "staticPlateforme.h"
+#include "plateformEntity.h"
 #include <vector>
 #include <map>
 #include <memory>

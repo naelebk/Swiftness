@@ -1,15 +1,15 @@
-#include "levelEntity.h"
+#include "generationLevel.h"
 
 namespace swiftness
 {
 
-    LevelEntity::LevelEntity(std::string nameFile)
+    GenerationLevel::GenerationLevel(std::string nameFile)
         : m_name(nameFile), m_levelData(nameFile), m_squareEntity(m_levelData.getEntrance(), SQUARE_SIZE, gf::Color::Red, GRAVITY)
     {
         std::cout << "LevelEntity created for file: " << nameFile << std::endl;
     }
 
-    std::vector<swiftness::StaticPlateform> LevelEntity::generateVerticalPlateform(int index, LayerName layerName, std::vector<swiftness::StaticPlateform> verticalPlateforms)
+    std::vector<swiftness::PlateformEntity> GenerationLevel::generateVerticalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms)
     {
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
@@ -43,10 +43,10 @@ namespace swiftness
                         }
 
                         gf::Vector2f position = gf::Vector2f(x * tileSize.width + tileSize.width / 2, y * tileSize.height - height / 2 + tileSize.height);
-                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
+                        PlateformEntity plateform = PlateformEntity(position, height, length, gf::Color::Blue);
                         if (color)
                         {
-                            plateform = StaticPlateform(position, height, length, gf::Color::Yellow);
+                            plateform = PlateformEntity(position, height, length, gf::Color::Yellow);
                         }
                         verticalPlateforms.push_back(plateform);
                         platformIndex++;
@@ -58,7 +58,7 @@ namespace swiftness
         return verticalPlateforms;
     }
 
-    std::vector<swiftness::StaticPlateform> LevelEntity::generateHorizontalPlateform(int index, LayerName layerName, std::vector<swiftness::StaticPlateform> horizontalPlateforms)
+    std::vector<swiftness::PlateformEntity> GenerationLevel::generateHorizontalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> horizontalPlateforms)
     {
         
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
@@ -92,10 +92,10 @@ namespace swiftness
                         }
 
                         gf::Vector2f position = gf::Vector2f(x * tileSize.width - length / 2 + tileSize.width, y * tileSize.height + tileSize.height / 2);
-                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
+                        PlateformEntity plateform = PlateformEntity(position, height, length, gf::Color::Blue);
                         if (color)
                         {
-                            plateform = StaticPlateform(position, height, length, gf::Color::Yellow);
+                            plateform = PlateformEntity(position, height, length, gf::Color::Yellow);
                         }
                         horizontalPlateforms.push_back(plateform);
                         platformIndex++;
@@ -107,7 +107,7 @@ namespace swiftness
         return horizontalPlateforms;
     }
 
-    std::vector<swiftness::StaticPlateform> LevelEntity::generateBlocPlateforms(int index, LayerName layerName, std::vector<swiftness::StaticPlateform> blocPlateforms)
+    std::vector<swiftness::PlateformEntity> GenerationLevel::generateBlocPlateforms(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> blocPlateforms)
     {
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
@@ -153,10 +153,10 @@ namespace swiftness
                         gf::Vector2f position = gf::Vector2f((x + xEnd) * tileSize.width / 2 + tileSize.width / 2,
                                                              (y + yEnd) * tileSize.height / 2 + tileSize.height / 2);
 
-                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Blue);
+                        PlateformEntity plateform = PlateformEntity(position, height, length, gf::Color::Blue);
                         if (color)
                         {
-                            plateform = StaticPlateform(position, height, length, gf::Color::Yellow);
+                            plateform = PlateformEntity(position, height, length, gf::Color::Yellow);
                         }
                         blocPlateforms.push_back(plateform);
 
@@ -177,7 +177,7 @@ namespace swiftness
         return blocPlateforms;
     }
 
-    std::vector<swiftness::StaticPlateform> LevelEntity::generateBorder(int index,std::vector<swiftness::StaticPlateform> invisiblePlateforms)
+    std::vector<swiftness::PlateformEntity> GenerationLevel::generateBorder(int index,std::vector<swiftness::PlateformEntity> invisiblePlateforms)
     {
     
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(LayerName::Border);
@@ -217,7 +217,7 @@ namespace swiftness
                         // Calculer la position centrée de la plateforme
                         gf::Vector2f position = gf::Vector2f((x + xEnd) * tileSize.width / 2 + tileSize.width / 2,
                                                              (y + yEnd) * tileSize.height / 2 + tileSize.height / 2);
-                        StaticPlateform plateform = StaticPlateform(position, height, length, gf::Color::Transparent);
+                        PlateformEntity plateform = PlateformEntity(position, height, length, gf::Color::Transparent);
                         invisiblePlateforms.push_back(plateform);
 
                         // Marquer les cellules déjà traitées
@@ -237,7 +237,7 @@ namespace swiftness
         return invisiblePlateforms;
     }
 
-    std::vector<swiftness::StaticPlateform> LevelEntity::generateGravitySwitchs(int index,std::vector<swiftness::StaticPlateform> gravitySwitchs)
+    std::vector<swiftness::PlateformEntity> GenerationLevel::generateGravitySwitchs(int index,std::vector<swiftness::PlateformEntity> gravitySwitchs)
     {
         std::vector<std::unique_ptr<gf::TmxObject>> objects = m_levelData.getLayersEntity().getObjectsOfaLayer(LayerName::gravity_switch);
 
@@ -273,7 +273,7 @@ namespace swiftness
                     position.x += width / 2;
                     position.y += height / 2;
                     std::cout << "position : " << position.col << " : " << position.row << std::endl;
-                    StaticPlateform plateform(position, height, width, color);
+                    PlateformEntity plateform(position, height, width, color);
                     gravitySwitchs.push_back(plateform);
                     platformIndex++;
                 }
@@ -283,7 +283,7 @@ namespace swiftness
 
     }
 
-    std::vector<swiftness::StaticPlateform> LevelEntity::generateGravityWalls(int index,std::vector<swiftness::StaticPlateform> gravityWalls)
+    std::vector<swiftness::PlateformEntity> GenerationLevel::generateGravityWalls(int index,std::vector<swiftness::PlateformEntity> gravityWalls)
     {
         std::vector<std::unique_ptr<gf::TmxObject>> objects = m_levelData.getLayersEntity().getObjectsOfaLayer(LayerName::gravity_walls);
 
@@ -318,7 +318,7 @@ namespace swiftness
                 position.x += width / 2;
                 position.y += height / 2;
                 std::cout << "position : " << position.col << " : " << position.row << std::endl;
-                StaticPlateform plateform(position, height, width, color);
+                PlateformEntity plateform(position, height, width, color);
                 gravityWalls.push_back(plateform);
                 platformIndex++;
             }
@@ -326,12 +326,12 @@ namespace swiftness
         return gravityWalls;
     }
 
-    std::vector<swiftness::StaticPlateform> LevelEntity::generateExit(int index, std::vector<swiftness::StaticPlateform> exit) {
+    std::vector<swiftness::PlateformEntity> GenerationLevel::generateExit(int index, std::vector<swiftness::PlateformEntity> exit) {
         gf::Vector2f position = m_levelData.getExit();
         int width = m_levelData.getTileSize().width;
         int height = m_levelData.getTileSize().height;
         position.x += width / 2;
-        StaticPlateform plateform(position, height, width, gf::Color::Black);
+        PlateformEntity plateform(position, height, width, gf::Color::Black);
         exit.push_back(plateform);
         return exit;
     }

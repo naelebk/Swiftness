@@ -1,11 +1,11 @@
-#include "layerEntity.h"
+#include "layerData.h"
 #include "constants.h"
 #include "tilesEnumData.h"
 
 namespace swiftness
 {
 
-        void LayerEntity::LayersMaker::visitTileLayer(const gf::TmxLayers &map, const gf::TmxTileLayer &layer)
+        void LayerData::LayersMaker::visitTileLayer(const gf::TmxLayers &map, const gf::TmxTileLayer &layer)
         {
                 if (!layer.visible)
                 {
@@ -15,7 +15,7 @@ namespace swiftness
                 std::cout << "Parsing layer '" << layer.name << "'\n";
         }
 
-        LayerEntity::LayerEntity(std::string nameFile)
+        LayerData::LayerData(std::string nameFile)
         {
                 m_layers = loadLayers(nameFile);
                 m_resources.addSearchDir(LEVELS_TMX_PATH);
@@ -27,7 +27,7 @@ namespace swiftness
                 m_tileSize = m_layers.tileSize;
         }
 
-        gf::TmxLayers LayerEntity::loadLayers(std::string nameFile)
+        gf::TmxLayers LayerData::loadLayers(std::string nameFile)
         {
 
                 gf::TmxLayers layers;
@@ -42,7 +42,7 @@ namespace swiftness
                 return layers;
         }
 
-        gf::TmxTileLayer *LayerEntity::getTileLayerByName(LayerName layerName)
+        gf::TmxTileLayer *LayerData::getTileLayerByName(LayerName layerName)
         {
                 std::string name = getLayerName(layerName);
                 if (name == "Error")
@@ -58,7 +58,7 @@ namespace swiftness
                 return layerIT;
         }
 
-        gf::TmxObjectLayer *LayerEntity::getObjectLayerByName(LayerName layerName)
+        gf::TmxObjectLayer *LayerData::getObjectLayerByName(LayerName layerName)
         {
                 std::string name = getLayerName(layerName);
                 if (name == "Error")

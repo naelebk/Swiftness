@@ -1,6 +1,6 @@
 #pragma once
-#ifndef STATIC_PLATEFORME_H
-#define STATIC_PLATEFORME_H
+#ifndef PLATEFORM_ENTITY_H
+#define PLATEFORM_ENTITY_H
 
 #include <gf/Vector.h>
 #include <gf/Color.h>
@@ -9,10 +9,10 @@
 
 namespace swiftness
 {
-    class StaticPlateform
+    class PlateformEntity
     {
     public:
-        StaticPlateform(gf::Vector2f position, float height, float length, gf::Color4f color);
+        PlateformEntity(gf::Vector2f position, float height, float length, gf::Color4f color);
 
         void render(gf::RenderTarget &target);
 
@@ -38,4 +38,4 @@ namespace swiftness
     };
 }
 
-#endif // STATIC_PLATEFORME_H
+#endif // PLATFORM_ENTITY_H

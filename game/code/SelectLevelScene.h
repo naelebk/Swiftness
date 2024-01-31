@@ -23,7 +23,7 @@
 #include <iostream>
 #include <vector>
 #include "constants.h"
-#include "staticPlateforme.h"
+#include "plateformEntity.h"
 #include "level.h"
 #include "squareEntity.h"
 #include "levelScene.h"

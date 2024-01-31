@@ -128,8 +128,6 @@ namespace swiftness
         Collision_v,
         Collision_h,
         Collision_bloc,
-        Filling,
-        Decoration,
         Gw_blue,
         Gw_rose,
         Gw_green,
@@ -138,6 +136,8 @@ namespace swiftness
         Gw_rose_open,
         Gw_green_open,
         Gw_orange_open,
+        Filling,
+        Decoration,
         gravity_switch,
         gravity_walls
     };

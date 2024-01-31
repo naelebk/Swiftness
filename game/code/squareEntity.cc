@@ -1,6 +1,4 @@
 #include "squareEntity.h"
-#include "staticPlateforme.h"
-#include "constants.h"
 
 namespace swiftness
 {
@@ -352,7 +350,7 @@ namespace swiftness
         
     }
 
-    bool Square::isPlateform(StaticPlateform plateform){
+    bool Square::isPlateform(PlateformEntity plateform){
         auto color=plateform.getColor();
         return color!=gf::Color::Yellow && color!=gf::Color::Orange && color!=gf::Color::Rose && color!=gf::Color::Green && color!=gf::Color::Black && color!=gf::Color::Cyan && !(color==gf::Color::fromRgb(100,100,10) && m_gravityDirection=="down") && !(color==gf::Color::fromRgb(100,100,20) && m_gravityDirection=="up") && !(color==gf::Color::fromRgb(100,100,30) && m_gravityDirection=="left") && !(color==gf::Color::fromRgb(100,100,40) && m_gravityDirection=="right");
     }

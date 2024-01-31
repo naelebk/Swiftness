@@ -1,5 +1,5 @@
 #include "squareEntity.h"
-#include "staticPlateforme.h"
+#include "plateformEntity.h"
 #include "level.h"
 #include "constants.h"
 #include "levelScene.h"

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef LEVEL_ENTITY_H
-#define LEVEL_ENTITY_H
+#ifndef GENERATION_LEVEL_H
+#define GENERATION_LEVEL_H
 
 
 #include "levelData.h"
@@ -10,10 +10,10 @@
 namespace swiftness
 {
 
-    class LevelEntity
+    class GenerationLevel
     {
     public:
-        LevelEntity(std::string nameFile);
+        GenerationLevel(std::string nameFile);
 
         /**
          * @brief Load a tmx file
@@ -43,14 +43,14 @@ namespace swiftness
          *
          * @return std::map<int, StaticPlateform> the vertical plateform
          */
-        std::vector<swiftness::StaticPlateform> generateVerticalPlateform(int index, LayerName layerName, std::vector<swiftness::StaticPlateform> verticalPlateforms);
+        std::vector<swiftness::PlateformEntity> generateVerticalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms);
 
         /**
          * @brief generate the horizontal plateform
          *
          * @return std::map<int, StaticPlateform> the horizontal plateform
          */
-        std::vector<swiftness::StaticPlateform> generateHorizontalPlateform(int index, LayerName layerName, std::vector<swiftness::StaticPlateform> horizontalPlateforms);
+        std::vector<swiftness::PlateformEntity> generateHorizontalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> horizontalPlateforms);
 
         /**
          * @brief generate the bloc plateform
@@ -59,7 +59,7 @@ namespace swiftness
          * 
          * @return std::map<int, StaticPlateform> the bloc plateform
          */
-        std::vector<swiftness::StaticPlateform> generateBlocPlateforms(int index, LayerName layerName, std::vector<swiftness::StaticPlateform> blocPlateforms);
+        std::vector<swiftness::PlateformEntity> generateBlocPlateforms(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> blocPlateforms);
 
         /**
          * @brief generate Border of the map
@@ -68,7 +68,7 @@ namespace swiftness
          * 
          * @return std::map<int, StaticPlateform> the Border of the map
          */
-        std::vector<swiftness::StaticPlateform> generateBorder(int index,std::vector<swiftness::StaticPlateform> invisiblePlateforms);
+        std::vector<swiftness::PlateformEntity> generateBorder(int index,std::vector<swiftness::PlateformEntity> invisiblePlateforms);
 
         /**
          * @brief generate the gravtiy switchs
@@ -77,14 +77,14 @@ namespace swiftness
          * 
          * @return std::map<int, StaticPlateform> the gravity switchs
          */
-        std::vector<swiftness::StaticPlateform> generateGravitySwitchs(int index,std::vector<swiftness::StaticPlateform> gravitySwitchs);
+        std::vector<swiftness::PlateformEntity> generateGravitySwitchs(int index,std::vector<swiftness::PlateformEntity> gravitySwitchs);
 
         /**
          * @brief make a plateform for the exit
          * 
          * @return std::map<int, StaticPlateform> the plateform for the exit
          */
-        std::vector<swiftness::StaticPlateform> generateExit(int index,std::vector<swiftness::StaticPlateform> exit);
+        std::vector<swiftness::PlateformEntity> generateExit(int index,std::vector<swiftness::PlateformEntity> exit);
 
         /**
          * @brief generate the gravity walls
@@ -93,7 +93,7 @@ namespace swiftness
          * 
          * @return std::map<int, StaticPlateform> the gravity walls
          */
-        std::vector<swiftness::StaticPlateform> generateGravityWalls(int index,std::vector<swiftness::StaticPlateform> gravityWalls);
+        std::vector<swiftness::PlateformEntity> generateGravityWalls(int index,std::vector<swiftness::PlateformEntity> gravityWalls);
 
     private:
         std::string m_name;
@@ -105,5 +105,5 @@ namespace swiftness
 
 } // namespace swiftness
 
-#endif // LEVEL_ENTITY_H
+#endif // GENERATION_LEVEL_H
 

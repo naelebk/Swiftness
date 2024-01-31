@@ -1,14 +1,14 @@
-#include "staticPlateforme.h"
+#include "plateformEntity.h"
 
 namespace swiftness
 {
 
-    StaticPlateform::StaticPlateform(gf::Vector2f position, float height, float length, gf::Color4f color)
+    PlateformEntity::PlateformEntity(gf::Vector2f position, float height, float length, gf::Color4f color)
             : m_position(position), m_height(height), m_length(length), m_color(color)
         {
         }
 
-    void StaticPlateform::render(gf::RenderTarget &target)
+    void PlateformEntity::render(gf::RenderTarget &target)
     {
         gf::RectangleShape shape({m_length, m_height});
         shape.setPosition(m_position);
@@ -17,35 +17,35 @@ namespace swiftness
         target.draw(shape);
     }
 
-    gf::Vector2f StaticPlateform::getPosition() const
+    gf::Vector2f PlateformEntity::getPosition() const
     {
         return m_position;
     }
 
-    float StaticPlateform::getHeight() const
+    float PlateformEntity::getHeight() const
     {
         return m_height;
     }
 
-    float StaticPlateform::getLength() const
+    float PlateformEntity::getLength() const
     {
         return m_length;
     }
 
-    gf::Color4f StaticPlateform::getColor() const
+    gf::Color4f PlateformEntity::getColor() const
     {
         return m_color;
     }
 
-    void StaticPlateform::setPosition (gf::Vector2f self) {
+    void PlateformEntity::setPosition (gf::Vector2f self) {
         m_position = self;
     }
 
-    void StaticPlateform::setHeight(float self) {
+    void PlateformEntity::setHeight(float self) {
         m_height = self;
     }
 
-    void StaticPlateform::setLength(float self) {
+    void PlateformEntity::setLength(float self) {
         m_length = self;
     }
 
