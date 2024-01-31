@@ -70,9 +70,8 @@ namespace swiftness {
                 widgets.addWidget(button);
             };
 
-            gf::FadeSegueEffect fade;
             createButtons(choose_level, [&] () {
-                game.replaceAllScenes(game.level/*, fade, gf::milliseconds(500)*/);
+                game.replaceAllScenes(game.level, fade, gf::milliseconds(500));
             });
 
             // Maintenant le gestionnaire de création de boutons initialisé, on peut créer nos boutons

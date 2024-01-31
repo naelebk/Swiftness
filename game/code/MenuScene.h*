@@ -67,6 +67,6 @@ namespace swiftness {
             gf::TextButtonWidget choose_level;
             gf::TextButtonWidget questionmark_b;
             gf::WidgetContainer widgets;
-            gf::FadeSegueEffect fade;
+	    gf::FadeSegueEffect fade;
     };
 }
