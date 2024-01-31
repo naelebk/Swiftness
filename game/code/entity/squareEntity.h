@@ -12,6 +12,7 @@
 #include <gf/Event.h>
 #include <gf/Font.h>
 #include <gf/Text.h>
+#include <gf/Texture.h>
 #include <map>
 #include <vector>
 #include <gf/Views.h>
@@ -109,13 +110,15 @@ namespace swiftness
 
         void setPlateforms(std::vector<swiftness::PlateformEntity> plateforms) { m_plateforms=plateforms;};
 
-        void setIsFlying(bool isFlying);
+        void setIsFlying(bool isFlying) { m_isFlying=isFlying; };
+
+        void setTexture(const std::string& filename) { m_skin = std::make_unique<gf::Texture>(swiftness::TEXTURE_SKIN_PATH + filename + ".png"); };
 
 
         /**
          * @brief Gère les collisions avec la plateforme
         */
-        void collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp,float dt);
+        void collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp);
 
     private:
         gf::Vector2f m_position, m_position_start; // Centre du carré
@@ -140,7 +143,9 @@ namespace swiftness
         bool m_isFlying;
 
         // graphics
-        // gf::Texture& m_skin;
+        bool m_faceDirection;
+        float m_rotation;
+        std::shared_ptr<gf::Texture> m_skin;
     };
 }
 

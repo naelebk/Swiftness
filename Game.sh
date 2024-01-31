@@ -56,10 +56,9 @@ check_cmd "" "../$FILE"
 echo -ne "${YELLOW}Appel au script CMake pour création du Makefile..... ${NC}"
 cmake .. > "$FILE" 2>&1
 check_cmd "" $FILE
-echo -ne "${YELLOW}Compilation du projet pour production de l'exécutable game..... ${NC}"
-make > "$FILE" 2>&1
-check_cmd "" $FILE
+echo -e "${YELLOW}Compilation du projet pour production de l'exécutable game..... ${NC}"
+make
 echo -ne "${YELLOW}Lancement du jeu..... ${NC}"
-./game > /dev/null 2>&1
+./swiftness > /dev/null 2>&1
 check_cmd "" $FILE
 exit 0
