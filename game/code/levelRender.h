@@ -1,6 +1,7 @@
 #pragma once
 #ifndef LEVEL_RENDER_H
 #define LEVEL_RENDER_H
+
 #include "layerData.h"
 #include "constants.h"
 #include <gf/Vector.h>

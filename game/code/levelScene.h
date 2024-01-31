@@ -1,4 +1,7 @@
 #pragma once
+#ifndef LEVEL_SCENE_H
+#define LEVEL_SCENE_H
+
 #include <gf/Action.h>
 #include <gf/Clock.h>
 #include <gf/Color.h>
@@ -78,3 +81,5 @@ namespace swiftness {
             bool canFly, commandsChange;
     };
 }
+
+#endif // LEVEL_SCENE_H

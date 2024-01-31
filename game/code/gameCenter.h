@@ -1,4 +1,7 @@
 #pragma once
+#ifndef GAME_CENTER_H
+#define GAME_CENTER_H
+
 #include <gf/GameManager.h>
 #include <gf/Font.h>
 #include <gf/Window.h>
@@ -28,3 +31,5 @@ namespace swiftness {
         gf::Font& font;
     };
 }
+
+#endif // GAME_CENTER_H

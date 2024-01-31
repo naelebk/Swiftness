@@ -1,4 +1,7 @@
 #pragma once
+#ifndef PAUSE_SCENE_H
+#define PAUSE_SCENE_H
+
 #include <gf/Action.h>
 #include <gf/Clock.h>
 #include <gf/Color.h>
@@ -54,3 +57,5 @@ namespace swiftness {
             gf::WidgetContainer widgets;
     };
 }
+
+#endif // PAUSE_SCENE_H

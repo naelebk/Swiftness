@@ -1,4 +1,7 @@
 #pragma once
+#ifndef MENU_SCENE_H
+#define MENU_SCENE_H
+
 #include <gf/Action.h>
 #include <gf/Clock.h>
 #include <gf/Color.h>
@@ -76,3 +79,5 @@ namespace swiftness {
             gf::FadeSegueEffect fade;
     };
 }
+
+#endif // MENU_SCENE_H

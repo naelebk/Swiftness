@@ -1,4 +1,7 @@
 #pragma once
+#ifndef SELECT_LEVEL_SCENE_H
+#define SELECT_LEVEL_SCENE_H
+
 #include <gf/Action.h>
 #include <gf/Clock.h>
 #include <gf/Color.h>
@@ -70,3 +73,5 @@ namespace swiftness {
 
     };
 }
+
+#endif // SELECT_LEVEL_SCENE_H
