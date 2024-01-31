@@ -11,10 +11,9 @@ namespace swiftness
 
     // Resources
     const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
-    const std::string LEVELS_TMX_PATH = "../../ressources/Levels/Maps/";
-    const std::string TILESETS_TSX_PATH = "../../ressources/Levels/Tilesets/";
-    const std::string IMAGES_GAME = "../../ressources/Images/";
-    const std::string TEXTURE_SKIN_PATH = "../../ressources/Levels/Images/skin/BMO.png";
+    const std::string LEVELS_TMX_PATH = "../../ressources/levels/maps/";
+    const std::string TILESETS_TSX_PATH = "../../ressources/levels/tilesets/";
+    const std::string TEXTURE_SKIN_PATH = "../../ressources/levels/png/skin/selected.png";
     const std::string RESSOURCES_PATH = "../../ressources";
 
     class SingletonResourceManager {
