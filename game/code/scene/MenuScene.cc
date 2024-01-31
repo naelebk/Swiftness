@@ -40,6 +40,7 @@ namespace swiftness {
             // (touche A du Gamepad, ou bien touche entrée, ou bien cliquer directement sur le bouton)
             trigger.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
             trigger.addScancodeKeyControl(gf::Scancode::Return);
+            trigger.addScancodeKeyControl(gf::Scancode::Space);
             trigger.addMouseButtonControl(gf::MouseButton::Left);
             addAction(trigger);
 
