@@ -62,13 +62,20 @@ echo -ne "${YELLOW}Choix aléatoire du skin..... ${NC}"
 skin="${skinarray[$((RANDOM % ${#skinarray[@]}))]}"
 check_cmd "choix du skin, le choix en question : $skin"
 skin="$skin$ext"
-echo -ne "${YELLOW}Application du skin pour le jeu..... ${NC}"
-mv "$PATH_SKIN/$skin" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
+if [[ -f "$PATH_SKIN/selected$ext" ]]; then
+    echo -ne "${YELLOW}Le fichier selected$ext existait déjà, renommage en selected_cc$ext..... ${NC}"
+    mv "$PATH_SKIN/selected$ext" "$PATH_SKIN/selected_cc$ext" > "$FILE" 2>&1
+    check_cmd "" "$FILE"
+else
+    echo -ne "${YELLOW}Application du skin pour le jeu..... ${NC}"
+    mv "$PATH_SKIN/$skin" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
+    check_cmd "" "$FILE"
+fi
 check_cmd "renommage"
 echo -ne "${YELLOW}Appel au script CMake pour création du Makefile..... ${NC}"
 cmake .. > "$FILE" 2>&1
 check_cmd "" $FILE
-echo -e "${YELLOW}Compilation du projet pour production de l'exécutable game..... ${NC}"
+echo -e "${YELLOW}Compilation du projet pour production de l'exécutable..... ${NC}"
 make
 if [[ "$?" -eq 0 ]]; then
     echo -e "${GREEN}OK.${NC}"
@@ -82,4 +89,9 @@ check_cmd "" $FILE
 echo -ne "${YELLOW}Fin du script, renommage du skin de départ..... ${NC}"
 mv "$PATH_SKIN/selected$ext" "$PATH_SKIN/$skin" > "$FILE" 2>&1
 check_cmd "" "$FILE"
+if [[ -f "$PATH_SKIN/selected_cc$ext" ]]; then
+    echo -ne "${YELLOW}Renommage en selected_cc$ext en selected$ext..... ${NC}"
+    mv "$PATH_SKIN/selected_cc$ext" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
+    check_cmd "" "$FILE"
+fi
 exit 0
