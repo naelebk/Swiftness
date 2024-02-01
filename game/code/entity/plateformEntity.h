@@ -6,15 +6,16 @@
 #include <gf/Color.h>
 #include <gf/RenderTarget.h>
 #include <gf/Shapes.h>
+#include <gf/Entity.h>
 
 namespace swiftness
 {
-    class PlateformEntity
+    class PlateformEntity : public gf::Entity
     {
     public:
         PlateformEntity(gf::Vector2f position, float height, float length, gf::Color4f color);
 
-        void render(gf::RenderTarget &target);
+        void render(gf::RenderTarget &target, const gf::RenderStates &states) override;
 
         gf::Vector2f getPosition() const;
 

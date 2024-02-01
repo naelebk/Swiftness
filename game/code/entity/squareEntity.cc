@@ -381,8 +381,9 @@ namespace swiftness
         }
     }
 
-    void Square::update(float dt)
+    void Square::update(gf::Time time)
     {
+        float dt = time.asSeconds();
         bool walljumpRight = canWallJumpRight();
         bool walljumpLeft = canWallJumpLeft();
         bool walljumpUp = canWallJumpUp();
@@ -719,7 +720,7 @@ namespace swiftness
         return false;
     }
 
-    void Square::render(gf::RenderTarget &target)
+    void Square::render(gf::RenderTarget &target, const gf::RenderStates& states)
     {
         gf::RectangleShape shape({m_size, m_size});
         shape.setPosition(m_position);

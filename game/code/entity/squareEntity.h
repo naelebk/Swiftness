@@ -13,6 +13,8 @@
 #include <gf/Font.h>
 #include <gf/Text.h>
 #include <gf/Texture.h>
+#include <gf/Entity.h>
+#include <gf/Time.h>
 #include <map>
 #include <vector>
 #include <gf/Views.h>
@@ -24,7 +26,7 @@
 
 namespace swiftness
 {
-    class Square
+    class Square : public gf::Entity
     {
     public:
         /**
@@ -57,7 +59,7 @@ namespace swiftness
         /**
          * @brief Met à jour la position du carré
         */
-        void update(float dt);
+        void update(gf::Time dt) override;
 
         /**
         * Méthode permettant de faire les actions que l'on souhaite avec les inputs
@@ -93,7 +95,7 @@ namespace swiftness
         /**
          * @brief Affiche le carré
         */
-        void render(gf::RenderTarget &target);
+        void render(gf::RenderTarget &target, const gf::RenderStates& states) override;
 
         /**
          * @brief Affiche le HUD du carré

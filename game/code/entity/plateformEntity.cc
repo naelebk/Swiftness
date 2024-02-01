@@ -8,7 +8,7 @@ namespace swiftness
         {
         }
 
-    void PlateformEntity::render(gf::RenderTarget &target)
+    void PlateformEntity::render(gf::RenderTarget &target, const gf::RenderStates &states)
     {
         gf::RectangleShape shape({m_length, m_height});
         shape.setPosition(m_position);

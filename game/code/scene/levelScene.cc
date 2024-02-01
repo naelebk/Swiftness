@@ -235,13 +235,13 @@ namespace swiftness {
         target.setView(cam);
         swiftness::LevelRender renderLevel;
         renderLevel.renderLevel(m_levelData, "level0" + std::to_string(m_levelNumber) + ".tmx", target, m_square.getGravity());
-        m_square.render(target);
+        m_square.render(target, states);
         m_square.renderHUD(target, SCREEN_WIDTH, SCREEN_HEIGHT, m_camera);
     }
 
     void levelScene::doUpdate(gf::Time time) {
-        float dt = time.asSeconds();
-        m_square.update(dt);
+        
+        m_square.update(time);
         if (m_square.getLevelOver()) {
             game.replaceAllScenes(game.menu);
         }
