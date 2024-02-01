@@ -5,6 +5,8 @@ PURPLE='\033[0;35m'
 RED='\033[0;31m'
 NC='\033[0m'
 FILE="file.txt"
+PATH_SKIN="../../ressources/levels/png/skin"
+ext=".png"
 
 # Fonction permettant de check les commandes
 check_cmd() {
@@ -53,12 +55,31 @@ fi
 echo -ne "${YELLOW}Accès au répertoire build..... ${NC}"
 cd build > "$FILE" 2>&1
 check_cmd "" "../$FILE"
+echo -ne "${YELLOW}Lecture du fichier skinName.txt pour sélection d'un skin..... ${NC}"
+mapfile -t skinarray < "../../ressources/levels/png/skin/skinName.txt" > "$FILE" 2>&1
+check_cmd "" "$FILE"
+echo -ne "${YELLOW}Choix aléatoire du skin..... ${NC}"
+skin="${skinarray[$((RANDOM % ${#skinarray[@]}))]}"
+check_cmd "choix du skin, le choix en question : $skin"
+skin="$skin$ext"
+echo -ne "${YELLOW}Application du skin pour le jeu..... ${NC}"
+mv "$PATH_SKIN/$skin" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
+check_cmd "renommage"
 echo -ne "${YELLOW}Appel au script CMake pour création du Makefile..... ${NC}"
 cmake .. > "$FILE" 2>&1
 check_cmd "" $FILE
 echo -e "${YELLOW}Compilation du projet pour production de l'exécutable game..... ${NC}"
 make
+if [[ "$?" -eq 0 ]]; then
+    echo -e "${GREEN}OK.${NC}"
+else
+    echo -e "${RED}KO !${NC}"
+    exit 1
+fi
 echo -ne "${YELLOW}Lancement du jeu..... ${NC}"
 ./swiftness > /dev/null 2>&1
 check_cmd "" $FILE
+echo -ne "${YELLOW}Fin du script, renommage du skin de départ..... ${NC}"
+mv "$PATH_SKIN/selected$ext" "$PATH_SKIN/$skin" > "$FILE" 2>&1
+check_cmd "" "$FILE"
 exit 0

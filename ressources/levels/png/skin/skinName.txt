@@ -5,7 +5,3 @@ kirbo
 le_baguette
 meat_boy
 spider_cube
-
-(not yet) :
-pierce
-godzilla
