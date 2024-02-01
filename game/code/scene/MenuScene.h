@@ -78,6 +78,7 @@ namespace swiftness {
             gf::TextButtonWidget questionmark_b;
             gf::WidgetContainer widgets;
             gf::ZoomBlurSegueEffect trans;
+            gf::SlideSegueEffect slide;
     };
 }
 

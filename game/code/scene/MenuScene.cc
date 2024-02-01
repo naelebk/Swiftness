@@ -80,7 +80,7 @@ namespace swiftness {
             });
 
             createButtons(credits, [&] () {
-                game.replaceAllScenes(game.credits, trans, gf::milliseconds(300));
+                game.replaceAllScenes(game.credits, slide, gf::milliseconds(300));
             });
 
         }

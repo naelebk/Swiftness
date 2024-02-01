@@ -48,7 +48,7 @@ namespace swiftness {
             gf::Action quit;
             gf::WidgetContainer widgets;
             gf::TextButtonWidget mainmenu;
-            gf::ZoomBlurSegueEffect trans;
+            gf::SlideSegueEffect trans;
 
     };
 }
