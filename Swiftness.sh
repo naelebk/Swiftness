@@ -56,7 +56,7 @@ echo -ne "${YELLOW}Accès au répertoire build..... ${NC}"
 cd build > "$FILE" 2>&1
 check_cmd "" "../$FILE"
 echo -ne "${YELLOW}Lecture du fichier skinName.txt pour sélection d'un skin..... ${NC}"
-mapfile -t skinarray < "../../ressources/levels/png/skin/skinName.txt" > "$FILE" 2>&1
+mapfile -t skinarray < "$PATH_SKIN/skinName.txt" > "$FILE" 2>&1
 check_cmd "" "$FILE"
 echo -ne "${YELLOW}Choix aléatoire du skin..... ${NC}"
 skin="${skinarray[$((RANDOM % ${#skinarray[@]}))]}"
