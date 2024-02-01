@@ -66,11 +66,10 @@ if [[ -f "$PATH_SKIN/selected$ext" ]]; then
     echo -ne "${YELLOW}Le fichier selected$ext existait déjà, renommage en selected_cc$ext..... ${NC}"
     mv "$PATH_SKIN/selected$ext" "$PATH_SKIN/selected_cc$ext" > "$FILE" 2>&1
     check_cmd "" "$FILE"
-else
-    echo -ne "${YELLOW}Application du skin pour le jeu..... ${NC}"
-    mv "$PATH_SKIN/$skin" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
-    check_cmd "" "$FILE"
 fi
+echo -ne "${YELLOW}Application du skin pour le jeu..... ${NC}"
+mv "$PATH_SKIN/$skin" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
+check_cmd "" "$FILE"
 check_cmd "renommage"
 echo -ne "${YELLOW}Appel au script CMake pour création du Makefile..... ${NC}"
 cmake .. > "$FILE" 2>&1
