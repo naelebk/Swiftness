@@ -4,4 +4,3 @@ jake
 kirbo
 le_baguette
 meat_boy
-spider_cube

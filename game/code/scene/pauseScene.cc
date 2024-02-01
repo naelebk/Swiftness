@@ -44,7 +44,7 @@ namespace swiftness {
         };
 
         createButtons(quit_b, [&] () {
-            game.replaceAllScenes(game.menu, trans, gf::milliseconds(300));
+            game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
         });
 
         createButtons(back_b, [&] () {

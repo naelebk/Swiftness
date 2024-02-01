@@ -29,7 +29,7 @@ namespace swiftness {
 
     void StartScene::doHandleActions(gf::Window& window) {
         if (!isActive()) return;
-        if (menu.isActive()) game.replaceAllScenes(game.menu, trans, gf::milliseconds(300));
+        if (menu.isActive()) game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
     }
     void StartScene::doRender (gf::RenderTarget& target, const gf::RenderStates &states) {
         gf::Coordinates coords(target);

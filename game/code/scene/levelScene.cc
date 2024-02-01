@@ -238,7 +238,7 @@ namespace swiftness {
         
         m_square.update(time);
         if (m_square.getLevelOver()) {
-            game.replaceAllScenes(game.menu);
+            game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
         }
         map_width=m_levelData.getMapSize().x;
         map_height=m_levelData.getMapSize().y;

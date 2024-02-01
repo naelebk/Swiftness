@@ -36,7 +36,7 @@ namespace swiftness {
             widgets.addWidget(button);
         };
         createButtons(mainmenu, [&] () {
-            game.replaceAllScenes(game.menu, trans, gf::milliseconds(300));
+            game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
         });
     }
 
