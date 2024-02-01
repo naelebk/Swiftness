@@ -70,55 +70,55 @@ namespace swiftness {
 
         createButtons(levels_b[0], [&] () {
             level00.loadLevel(0);
-            game.replaceAllScenes(level00, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level00, pixel, gf::milliseconds(500));
             
         });
 
         createButtons(levels_b[1], [&] () {
             level01.loadLevel(1);
-            game.replaceAllScenes(level01, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level01, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[2], [&] () {
             level02.loadLevel(2);
-            game.replaceAllScenes(level02, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level02, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[3], [&] () {
             level03.loadLevel(3);
-            game.replaceAllScenes(level03, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level03, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[4], [&] () {
             level04.loadLevel(4);
-            game.replaceAllScenes(level04, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level04, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[5], [&] () {
             level05.loadLevel(5);
-            game.replaceAllScenes(level05, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level05, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[6], [&] () {
             level06.loadLevel(6);
-            game.replaceAllScenes(level06, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level06, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[7], [&] () {
             level07.loadLevel(7);
-            game.replaceAllScenes(level07, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level07, pixel, gf::milliseconds(500));
         });
 
         /*createButtons(levels_b[8], [&] () {
-            game.replaceAllScenes(level08, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level08, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[9], [&] () {
-            game.replaceAllScenes(level09, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level09, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[10], [&] () {
-            game.replaceAllScenes(level10, trans, gf::milliseconds(500));
+            game.replaceAllScenes(level10, pixel, gf::milliseconds(500));
         });*/
 
 

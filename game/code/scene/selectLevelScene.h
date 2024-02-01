@@ -72,6 +72,7 @@ namespace swiftness {
             levelScene level09;
             levelScene level10;*/
             gf::ZoomBlurSegueEffect trans;
+            gf::PixelateSegueEffect pixel;
 
     };
 }
