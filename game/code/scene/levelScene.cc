@@ -134,6 +134,7 @@ namespace swiftness {
         if (Pause.isActive()) {
             isPaused() ? resume() : pause();
             game.pushScene(game.s_pause);
+            return;
         }
         if (!commandsChange) {
             if(up.isActive()) {
@@ -235,7 +236,6 @@ namespace swiftness {
     }
 
     void levelScene::doUpdate(gf::Time time) {
-        
         m_square.update(time);
         if (m_square.getLevelOver()) {
             game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
