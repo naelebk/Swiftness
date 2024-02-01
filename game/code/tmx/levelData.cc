@@ -6,17 +6,17 @@ namespace swiftness
     LevelData::LevelData(std::string nameFile)
         : m_layerData(nameFile), m_name(nameFile)
     {
-        // std::cout << "LevelData loaded" << std::endl;
+        std::cout << swiftness::PURPLE << "LevelData\t\t[LOADED]" << std::endl;
         int entrance = static_cast<int>(PlateformType::blue_portal);
         int exit = static_cast<int>(PlateformType::orange_portal);
         gf::TmxLayer *layer = m_layerData.getTileLayerByName(LayerName::IO);
         gf::TmxTileLayer *tileLayer = dynamic_cast<gf::TmxTileLayer *>(layer);
         gf::Vector2f mapSize = m_layerData.getMapSize();
-        std::cout << "mapSize: " << mapSize.x << " , " << mapSize.y << std::endl;
+        std::cout << "Map Size\t: " << mapSize.x << " , " << mapSize.y << std::endl;
         gf::Vector2f tileSize = m_layerData.getTileSize();
-        std::cout << "tileSize: " << tileSize.x << " , " << tileSize.y << std::endl;
+        std::cout << "Tile Size\t: " << tileSize.x << " , " << tileSize.y << std::endl;
         m_mapCenter = gf::Vector2f(mapSize.width * tileSize.width / 2, mapSize.height * tileSize.height / 2);
-        std::cout << "mapCenter: " << m_mapCenter.x << " , " << m_mapCenter.y << std::endl;
+        std::cout << "Map Center\t: " << m_mapCenter.x << " , " << m_mapCenter.y << "\n" << swiftness::NC << std::endl;
         if (tileLayer)
         {
             int stop = 0;

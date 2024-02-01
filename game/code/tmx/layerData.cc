@@ -5,7 +5,7 @@ namespace swiftness
 
         LayerData::LayerData(std::string nameFile)
         {
-                std::cout << "LayerData loaded" << std::endl;
+                std::cout << swiftness::CYAN << "LayerData\t\t[LOADED]" << swiftness::NC << std::endl;
                 m_layers = loadLayers(nameFile);
                 m_mapSize = m_layers.mapSize;
                 m_tileSize = m_layers.tileSize;

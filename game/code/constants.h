@@ -9,6 +9,16 @@
 namespace swiftness
 {
 
+    // COLORS
+    const std::string RED = "\x1b[31m";
+    const std::string GREEN = "\x1b[32m";
+    const std::string YELLOW = "\x1b[33m";
+    const std::string BLUE = "\x1b[34m";
+    const std::string PURPLE = "\x1b[35m";
+    const std::string CYAN = "\x1b[36m";
+    const std::string BOLD = "\x1b[1m";
+    const std::string NC = "\x1b[0m";
+
     // Resources
     const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
     const std::string LEVELS_TMX_PATH = "../../ressources/levels/maps/";

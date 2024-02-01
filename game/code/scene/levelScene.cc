@@ -4,13 +4,6 @@
 #include <gf/Coordinates.h>
 #include <iostream>
 #include <gf/Sprite.h>
-#define RED     "\x1b[31m"
-#define GREEN   "\x1b[32m"
-#define YELLOW  "\x1b[33m"
-#define BLUE    "\x1b[34m"
-#define PURPLE "\x1b[35m"
-#define CYAN    "\x1b[36m"
-#define NC   "\x1b[0m"
 
 namespace swiftness {
     // Déclaration en seconde instance du constructeur et du destructeur,
@@ -124,10 +117,12 @@ namespace swiftness {
         std::string lvl = "";
         if (t_level >= 0 && t_level < 10) {
             lvl = "level0" + std::to_string(t_level) + ".tmx";
+            std::cout << GREEN << "Level -> 0" << std::to_string(t_level) << NC << std::endl;
         } else {
             lvl = "level" + std::to_string(t_level) + ".tmx";
+            std::cout << GREEN << "Level -> " << std::to_string(t_level) << NC << std::endl;
         }
-        std::cout << GREEN << "File load : " << lvl << NC << std::endl;
+        
         swiftness::LevelInitializer::level leveln = LevelInitializer::initializeLevel(lvl);
         m_square = leveln.square;
         m_plateform = leveln.plateform;
