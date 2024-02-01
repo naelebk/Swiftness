@@ -234,7 +234,7 @@ namespace swiftness {
         target.clear(gf::Color::fromRgb(0.2, 0.2, 0.2));
         target.setView(cam);
         swiftness::LevelRender renderLevel;
-        renderLevel.renderLevel("level0" + std::to_string(m_levelNumber) + ".tmx", target, m_square.getGravity());
+        renderLevel.renderLevel(m_levelData, "level0" + std::to_string(m_levelNumber) + ".tmx", target, m_square.getGravity());
         m_square.render(target);
         m_square.renderHUD(target, SCREEN_WIDTH, SCREEN_HEIGHT, m_camera);
     }

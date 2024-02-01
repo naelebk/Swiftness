@@ -3,24 +3,27 @@
 namespace swiftness
 {
 
-    void LevelRender::renderLayer(LayerData &layerEntity, gf::RenderTarget &target, LayerName layerName, std::string gravity)
+    void LevelRender::renderLayer(LevelData &levelData, gf::RenderTarget &target, LayerName layerName, std::string gravity)
     {
-        gf::TmxTileLayer *layer = layerEntity.getTileLayerByName(layerName);
+        gf::TmxTileLayer *layer = levelData.getLayersEntity().getTileLayerByName(layerName);
         if (layerName == LayerName::Gw_blue && gravity == "down")
         {
             layer->visible = false;
         }
-        if (layerName == LayerName::Gw_rose && gravity == "up")
+        else if (layerName == LayerName::Gw_rose && gravity == "up")
         {
             layer->visible = false;
         }
-        if (layerName == LayerName::Gw_green && gravity == "left")
+        else if (layerName == LayerName::Gw_green && gravity == "left")
         {
             layer->visible = false;
         }
-        if (layerName == LayerName::Gw_orange && gravity == "right")
+        else if (layerName == LayerName::Gw_orange && gravity == "right")
         {
             layer->visible = false;
+        }
+        else {
+            layer->visible = true;
         }
         if (layer != nullptr && layer->visible)
         {
@@ -29,21 +32,19 @@ namespace swiftness
             // Enregistrer la valeur actuelle de l'opacité
             // logFile << "Current opacity for " << getLayerName(layerName) << ": " << layer->opacity << std::endl;
 
-            gf::TileLayer tileLayer = gf::makeTileLayer(layerEntity.getLayers(), *layer, SingletonResourceManager::getInstance().getResourceManager());
+            gf::TileLayer tileLayer = gf::makeTileLayer(levelData.getLayersEntity().getLayers(), *layer, SingletonResourceManager::getInstance().getResourceManager());
             target.draw(tileLayer);
         }
 
         // logFile.close(); // Fermer le fichier de log.
     }
 
-    void LevelRender::renderLevel(std::string nameFile, gf::RenderTarget &target, std::string gravity)
+    void LevelRender::renderLevel(swiftness::LevelData& levelData, std::string nameFile, gf::RenderTarget &target, std::string gravity)
     {
-        swiftness::LayerData layerEntity(nameFile);
-
         for (int i = 0; i < swiftness::NB_TILE_LAYERS; i++)
         {
             swiftness::LayerName layerName = static_cast<swiftness::LayerName>(i);
-            renderLayer(layerEntity, target, layerName, gravity);
+            renderLayer(levelData, target, layerName, gravity);
         }
     }
 }

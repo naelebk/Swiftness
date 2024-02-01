@@ -2,7 +2,7 @@
 #ifndef LEVEL_RENDER_H
 #define LEVEL_RENDER_H
 
-#include "layerData.h"
+#include "levelData.h"
 #include "../constants.h"
 #include <gf/Vector.h>
 #include <gf/Drawable.h>
@@ -25,7 +25,7 @@ namespace swiftness
              * @param window
              * @param layerName
              */
-            void renderLayer(LayerData &layerEntity, gf::RenderTarget &target, LayerName layerName, std::string gravity);
+            void renderLayer(LevelData &levelData, gf::RenderTarget &target, LayerName layerName, std::string gravity);
 
             /**
              * @brief render a level
@@ -33,7 +33,7 @@ namespace swiftness
              * @param layerEntity
              * @param window
             */
-            void renderLevel(std::string nameFile, gf::RenderTarget &target, std::string gravity);
+            void renderLevel(swiftness::LevelData& layerData, std::string nameFile, gf::RenderTarget &target, std::string gravity);
     };
 }; // namespace swiftness
 

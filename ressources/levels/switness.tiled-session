@@ -3,19 +3,19 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "maps/level00.tmx",
     "expandedProjectPaths": [
-        "maps",
         "level",
+        "tilesets",
+        ".",
+        "maps/custom",
+        "levels",
         "tileset",
         "testTmxValidator",
+        "maps",
         "Tilesets",
-        "tilesets",
         "Maps",
-        "levels",
-        "maps/custom",
-        "Maps/custom",
-        "."
+        "Maps/custom"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -475,11 +475,11 @@
             }
         },
         "maps/level00.tmx": {
-            "scale": 0.5219254032258065,
-            "selectedLayer": 0,
+            "scale": 0.75,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 335.29695799130855,
-                "y": 781.7209077740222
+                "x": 209.33333333333337,
+                "y": 511.99999999999994
             }
         },
         "maps/level01.tmx": {
@@ -508,10 +508,10 @@
         },
         "maps/level04.tmx": {
             "scale": 0.9521722560975608,
-            "selectedLayer": 5,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 651.1426856113668,
-                "y": 329.7722633580148
+                "x": 650.0924554732841,
+                "y": 328.722033219932
             }
         },
         "maps/level05.tmx": {
@@ -656,7 +656,7 @@
             "scaleInEditor": 1
         },
         "tilesets/04_gravity_switch.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 4,
             "scaleInEditor": 1
         },
         "tilesets/05_gravity_flow.tsx": {
@@ -691,9 +691,11 @@
     "last.externalTilesetPath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Tilesets",
     "last.imagePath": "/home/juliengauthier410/l3/projet_swiftness/ressources/levels/png",
     "openFiles": [
+        "maps/level00.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
+        "maps/level00.tmx",
         "maps/level04.tmx",
         "maps/level02.tmx",
         "maps/level01.tmx",
@@ -704,8 +706,7 @@
         "testTmxValidator/tmxLayerMissing.tmx",
         "maps/custom/level_template.tmx",
         "maps/custom/custom01.tmx",
-        "maps/custom/custom02.tmx",
-        "maps/custom/custom03.tmx"
+        "maps/custom/custom02.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

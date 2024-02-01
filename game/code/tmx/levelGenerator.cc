@@ -6,7 +6,7 @@ namespace swiftness
     LevelGenerator::LevelGenerator(std::string nameFile)
         : m_name(nameFile), m_levelData(nameFile), m_squareEntity(m_levelData.getEntrance(), SQUARE_SIZE, gf::Color::Red, GRAVITY)
     {
-        std::cout << "LevelEntity created for file: " << nameFile << std::endl;
+        std::cout << "LevelData created for file: " << nameFile << std::endl;
     }
 
     std::vector<swiftness::PlateformEntity> LevelGenerator::generateVerticalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms)
@@ -121,7 +121,6 @@ namespace swiftness
             {
                 color = true;
             }
-            std::cout << "color : " << color << std::endl;
             int platformIndex = index;
             for (int y = 0; y < mapSize.height; y++)
             {
@@ -267,12 +266,9 @@ namespace swiftness
                     }
                     int width = rect->size.width;
                     int height = rect->size.height;
-                    std::cout << "width : " << width << std::endl;
-                    std::cout << "height : " << height << std::endl;
                     gf::Vector2f position = objPtr.get()->position;
                     position.x += width / 2;
                     position.y += height / 2;
-                    std::cout << "position : " << position.col << " : " << position.row << std::endl;
                     PlateformEntity plateform(position, height, width, color);
                     gravitySwitchs.push_back(plateform);
                     platformIndex++;
@@ -312,12 +308,9 @@ namespace swiftness
                 }
                 int width = rect->size.width;
                 int height = rect->size.height;
-                std::cout << "width : " << width << std::endl;
-                std::cout << "height : " << height << std::endl;
                 gf::Vector2f position = objPtr.get()->position;
                 position.x += width / 2;
                 position.y += height / 2;
-                std::cout << "position : " << position.col << " : " << position.row << std::endl;
                 PlateformEntity plateform(position, height, width, color);
                 gravityWalls.push_back(plateform);
                 platformIndex++;

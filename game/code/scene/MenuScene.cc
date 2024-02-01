@@ -15,7 +15,7 @@ namespace swiftness {
         quit_b("Quit", font),
         credits("Credits", font),
         choose_level("Choose level", font),
-        questionmark_b("???", font)
+        questionmark_b("gf", font)
         {
             
             setClearColor(gf::Color::Black);
