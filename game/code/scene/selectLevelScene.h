@@ -13,6 +13,7 @@
 #include <gf/RenderTarget.h>
 #include <gf/Scene.h>
 #include <gf/SegueEffect.h>
+#include <gf/SegueEffect.h>
 #include <gf/Shapes.h>
 #include <gf/Text.h>
 #include <gf/Texture.h>
@@ -70,6 +71,7 @@ namespace swiftness {
             /*levelScene level08;
             levelScene level09;
             levelScene level10;*/
+            gf::ZoomBlurSegueEffect trans;
 
     };
 }

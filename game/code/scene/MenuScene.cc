@@ -67,7 +67,7 @@ namespace swiftness {
             };
 
             createButtons(choose_level, [&] () {
-                game.replaceAllScenes(game.level, fade, gf::milliseconds(500));
+                game.replaceAllScenes(game.level, trans, gf::milliseconds(300));
             });
 
             // Maintenant le gestionnaire de création de boutons initialisé, on peut créer nos boutons
@@ -80,7 +80,7 @@ namespace swiftness {
             });
 
             createButtons(credits, [&] () {
-                game.replaceAllScenes(game.credits);
+                game.replaceAllScenes(game.credits, trans, gf::milliseconds(300));
             });
 
         }

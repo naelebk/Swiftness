@@ -12,6 +12,7 @@
 #include <gf/Math.h>
 #include <gf/RenderTarget.h>
 #include <gf/Scene.h>
+#include <gf/SegueEffects.h>
 #include <gf/SegueEffect.h>
 #include <gf/Shapes.h>
 #include <gf/Text.h>
@@ -55,6 +56,7 @@ namespace swiftness {
             gf::TextButtonWidget back_b;
             gf::Texture& background;
             gf::WidgetContainer widgets;
+            gf::ZoomBlurSegueEffect trans;
     };
 }
 

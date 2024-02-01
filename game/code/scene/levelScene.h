@@ -11,6 +11,7 @@
 #include <gf/Math.h>
 #include <gf/RenderTarget.h>
 #include <gf/Scene.h>
+#include <gf/SegueEffects.h>
 #include <gf/SegueEffect.h>
 #include <gf/Shapes.h>
 #include <gf/Text.h>
@@ -79,6 +80,7 @@ namespace swiftness {
             float map_width, map_height, tile_width, tile_height, xcamera, ycamera;
             int konami, konami2;
             bool canFly, commandsChange;
+            gf::ZoomBlurSegueEffect trans;
     };
 }
 

@@ -11,6 +11,7 @@
 #include <gf/Math.h>
 #include <gf/RenderTarget.h>
 #include <gf/Scene.h>
+#include <gf/SegueEffect.h>
 #include <gf/SegueEffects.h>
 #include <gf/Shapes.h>
 #include <gf/Text.h>
@@ -47,6 +48,7 @@ namespace swiftness {
             gf::Action quit;
             gf::WidgetContainer widgets;
             gf::TextButtonWidget mainmenu;
+            gf::ZoomBlurSegueEffect trans;
 
     };
 }
