@@ -78,6 +78,9 @@ make
 if [[ "$?" -eq 0 ]]; then
     echo -e "${GREEN}OK.${NC}"
 else
+    echo -ne "${YELLOW}Renommage en selected_cc$ext en selected$ext..... ${NC}"
+    mv "$PATH_SKIN/selected_cc$ext" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
+    check_cmd "" "$FILE"
     echo -e "${RED}KO !${NC}"
     exit 1
 fi
