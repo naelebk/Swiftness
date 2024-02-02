@@ -37,7 +37,7 @@ namespace swiftness {
         up.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadUp);
         up.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Negative);
         up.addScancodeKeyControl(gf::Scancode::Up);
-        addAction(up);
+        addAction(up);//
 
         down.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadDown);
         down.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Positive);
