@@ -15,6 +15,7 @@
 #include "constants.h"
 #include "entity/squareEntity.h"
 #include "entity/plateformEntity.h"
+#include "audioManager.h"
 #include <vector>
 #include <map>
 #include <memory>
@@ -29,6 +30,11 @@ namespace swiftness {
         StartScene start;
         pauseScene s_pause;
         gf::Font& font;
+        AudioManager audioManager;
+        sf::Music& mainTheme;
+        sf::Music& levelTheme;
+        sf::Sound& jumpSound;
+        sf::Sound& notifSound;
     };
 }
 

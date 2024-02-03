@@ -27,6 +27,12 @@ namespace swiftness
     const std::string RESSOURCES_PATH = "../../ressources";
     const std::initializer_list<gf::Path> PATHS = {gf::Path(RESSOURCES_PATH), gf::Paths::getBasePath(), gf::Paths::getCurrentPath()};
 
+    // Audio
+    const std::string MAIN_THEME = "../../ressources/music/MainTheme.wav";
+    const std::string LEVEL_THEME = "../../ressources/music/LevelTheme.wav";
+    const std::string JUMP_SOUND = "../../ressources/sounds/jump.wav";
+    const std::string NOTIF_SOUND = "../../ressources/sounds/notif.wav";
+
     // Gravity
     constexpr float GRAVITY = 500.0f;
     constexpr float GRAVITY_SQUARE = 500.0f;

@@ -70,42 +70,58 @@ namespace swiftness {
 
         createButtons(levels_b[0], [&] () {
             level00.loadLevel(0);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level00, pixel, gf::milliseconds(500));
             
         });
 
         createButtons(levels_b[1], [&] () {
             level01.loadLevel(1);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level01, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[2], [&] () {
             level02.loadLevel(2);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level02, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[3], [&] () {
             level03.loadLevel(3);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level03, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[4], [&] () {
             level04.loadLevel(4);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level04, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[5], [&] () {
             level05.loadLevel(5);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level05, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[6], [&] () {
             level06.loadLevel(6);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level06, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[7], [&] () {
             level07.loadLevel(7);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level07, pixel, gf::milliseconds(500));
         });
 

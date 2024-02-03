@@ -44,6 +44,8 @@ namespace swiftness {
         };
 
         createButtons(quit_b, [&] () {
+            game.levelTheme.stop();
+            game.mainTheme.play();
             game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
         });
 
