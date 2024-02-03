@@ -118,7 +118,7 @@ namespace swiftness
         /**
          * @brief Gère les collisions avec la plateforme
         */
-        void collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp);
+        void collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp,float dt);
 
     private:
         gf::Vector2f m_position, m_position_start; // Centre du carré
