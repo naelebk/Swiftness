@@ -25,31 +25,8 @@ namespace swiftness
     const std::string TILESETS_TSX_PATH = "../../ressources/levels/tilesets/";
     const std::string TEXTURE_SKIN_PATH = "../../ressources/levels/png/skin/selected.png";
     const std::string RESSOURCES_PATH = "../../ressources";
-
-    class SingletonResourceManager {
-    public:
-        static SingletonResourceManager& getInstance() {
-            static SingletonResourceManager instance; // Instance unique
-            return instance;
-        }
-
-        gf::ResourceManager& getResourceManager() {
-            return resourceManager;
-        }
-
-        SingletonResourceManager(SingletonResourceManager const&) = delete;
-        void operator=(SingletonResourceManager const&) = delete;
-
-    private:
-        SingletonResourceManager() 
-        {
-            resourceManager.addSearchDir(RESSOURCES_PATH);
-            resourceManager.addSearchDir(gf::Paths::getBasePath());
-            resourceManager.addSearchDir(gf::Paths::getCurrentPath());
-        } // Constructeur privé
-
-        gf::ResourceManager resourceManager; // Instance de ResourceManager
-    };
+    extern std::initializer_list<gf::Path> PATHS;
+    extern gf::ResourceManager manager;
 
     // Gravity
     constexpr float GRAVITY = 500.0f;

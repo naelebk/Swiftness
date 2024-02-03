@@ -2,6 +2,9 @@
 
 namespace swiftness
 {
+    std::initializer_list<gf::Path> PATHS = {gf::Path(RESSOURCES_PATH), gf::Paths::getBasePath(), gf::Paths::getCurrentPath()};
+    gf::ResourceManager manager(PATHS);
+
     std::string getLayerName(LayerName name)
     {
         switch (name)
