@@ -35,7 +35,6 @@ namespace swiftness {
     , canFly(false)
     , commandsChange(false)
      {
-
         gf::Gamepad::initialize();
 
         up.setContinuous();
@@ -238,6 +237,8 @@ namespace swiftness {
     void levelScene::doUpdate(gf::Time time) {
         m_square.update(time);
         if (m_square.getLevelOver()) {
+            game.levelTheme.stop();
+            game.mainTheme.play();
             game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
         }
         map_width=m_levelData.getMapSize().x;

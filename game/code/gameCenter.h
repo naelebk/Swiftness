@@ -24,13 +24,17 @@
 namespace swiftness {
     struct GameCenter : gf::GameManager {
         GameCenter(gf::Font& font);
-        AudioManager audio;
         SelectLevel level;
         Menu menu;
         CreditScene credits;
         StartScene start;
         pauseScene s_pause;
         gf::Font& font;
+        AudioManager audioManager;
+        sf::Music& mainTheme;
+        sf::Music& levelTheme;
+        sf::Sound& jumpSound;
+        sf::Sound& notifSound;
     };
 }
 

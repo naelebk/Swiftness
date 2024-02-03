@@ -2,12 +2,22 @@
 
 namespace swiftness
 {
+
     AudioManager::AudioManager()
-    : music()
+    : mainTheme()
+    , levelTheme()
+    , jumpSound()
+    , notifSound()
     {
-        music.openFromFile("../../ressources/music/mellow-synth-key-melody_140bpm_C_major.wav");
-        music.setLoop(true);
-        music.setVolume(50);
-        music.play();
+        mainTheme.openFromFile(MAIN_THEME);
+        mainTheme.setLoop(true);
+        levelTheme.openFromFile(LEVEL_THEME);
+        levelTheme.setLoop(true);
+        sf::SoundBuffer jumpBuffer;
+        jumpBuffer.loadFromFile(JUMP_SOUND);
+        jumpSound.setBuffer(jumpBuffer);
+        sf::SoundBuffer notifBuffer;
+        notifBuffer.loadFromFile(NOTIF_SOUND);
+        notifSound.setBuffer(notifBuffer);
     }
 } // namespace swiftness
