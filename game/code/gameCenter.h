@@ -15,6 +15,7 @@
 #include "constants.h"
 #include "entity/squareEntity.h"
 #include "entity/plateformEntity.h"
+#include "audioManager.h"
 #include <vector>
 #include <map>
 #include <memory>
@@ -23,6 +24,7 @@
 namespace swiftness {
     struct GameCenter : gf::GameManager {
         GameCenter(gf::Font& font);
+        AudioManager audio;
         SelectLevel level;
         Menu menu;
         CreditScene credits;
