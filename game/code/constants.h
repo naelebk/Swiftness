@@ -25,8 +25,7 @@ namespace swiftness
     const std::string TILESETS_TSX_PATH = "../../ressources/levels/tilesets/";
     const std::string TEXTURE_SKIN_PATH = "../../ressources/levels/png/skin/selected.png";
     const std::string RESSOURCES_PATH = "../../ressources";
-    extern std::initializer_list<gf::Path> PATHS;
-    extern gf::ResourceManager manager;
+    const std::initializer_list<gf::Path> PATHS = {gf::Path(RESSOURCES_PATH), gf::Paths::getBasePath(), gf::Paths::getCurrentPath()};
 
     // Gravity
     constexpr float GRAVITY = 500.0f;

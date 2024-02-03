@@ -3,7 +3,7 @@
 namespace swiftness {
 
     GameCenter::GameCenter(gf::Font& font)
-    : GameManager("Swiftness", {RESSOURCES_PATH}) 
+    : GameManager("Swiftness", PATHS)
     , menu(*this)
     , start(*this)
     , font(font)
