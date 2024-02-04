@@ -9,6 +9,7 @@
 #include <gf/Paths.h>
 #include "scene/MenuScene.h"
 #include "scene/selectLevelScene.h"
+#include "scene/selectCustomLevelScene.h"
 #include "scene/startScene.h"
 #include "scene/pauseScene.h"
 #include "scene/creditScene.h"
@@ -25,6 +26,7 @@ namespace swiftness {
     struct GameCenter : gf::GameManager {
         GameCenter(gf::Font& font);
         SelectLevel level;
+        SelectCustomLevel custom;
         Menu menu;
         CreditScene credits;
         StartScene start;

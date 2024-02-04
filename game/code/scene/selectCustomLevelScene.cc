@@ -12,20 +12,17 @@ namespace swiftness {
     down("Down"),
     trigger("Trigger"),
     quit("Quit"),
-    level00(game, font, 0),
     level01(game, font, 1),
     level02(game, font, 2),
     level03(game, font, 3),
     level04(game, font, 4),
     level05(game, font, 5)
     {
-        for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
-            if (i >= 1 && i < MAX_LEVEL + 1) {
-                levels_b.emplace_back("Level " + std::to_string(i), font, 60);
-            } else if (i == 0) {
-                levels_b.emplace_back("Tutorial", font, 60);
-            } else {
+        for (int i = MIN_CUSTOM_LEVEL ; i < MAX_CUSTOM_LEVEL + 2 ; ++i) {
+            if (i == MAX_CUSTOM_LEVEL + 1) {
                 levels_b.emplace_back("Main Menu", font, 60);
+            } else {
+                levels_b.emplace_back("Custom level " + std::to_string(i), font, 60);
             }
         }
         setClearColor(gf::Color::Black);
@@ -62,79 +59,52 @@ namespace swiftness {
             button.setCallback(callback);
             widgets.addWidget(button);
         };
-        createButtons(levels_b[MAX_LEVEL + 1], [&] () {
+        createButtons(levels_b[MAX_LEVEL], [&] () {
             game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
         });
 
         createButtons(levels_b[0], [&] () {
-            level00.loadLevel(0);
-            game.replaceAllScenes(level00, pixel, gf::milliseconds(500));
+            level01.loadLevel(8);
+            game.mainTheme.stop();
+            game.levelTheme.play();
+            game.replaceAllScenes(level01, pixel, gf::milliseconds(500));
             
         });
 
         createButtons(levels_b[1], [&] () {
-            level01.loadLevel(1);
-            game.replaceAllScenes(level01, pixel, gf::milliseconds(500));
-        });
-
-        createButtons(levels_b[2], [&] () {
-            level02.loadLevel(2);
+            level02.loadLevel(9);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level02, pixel, gf::milliseconds(500));
         });
 
-        createButtons(levels_b[3], [&] () {
-            level03.loadLevel(3);
+        createButtons(levels_b[2], [&] () {
+            level03.loadLevel(10);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level03, pixel, gf::milliseconds(500));
         });
 
-        createButtons(levels_b[4], [&] () {
-            level04.loadLevel(4);
+        createButtons(levels_b[3], [&] () {
+            level04.loadLevel(11);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level04, pixel, gf::milliseconds(500));
         });
 
-        createButtons(levels_b[5], [&] () {
-            level05.loadLevel(5);
+        createButtons(levels_b[4], [&] () {
+            level05.loadLevel(12);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level05, pixel, gf::milliseconds(500));
         });
 
-        createButtons(levels_b[6], [&] () {
-            level06.loadLevel(6);
-            game.replaceAllScenes(level06, pixel, gf::milliseconds(500));
-        });
-
-        createButtons(levels_b[7], [&] () {
-            level07.loadLevel(7);
-            game.replaceAllScenes(level07, pixel, gf::milliseconds(500));
-        });
-
-        /*createButtons(levels_b[8], [&] () {
-            game.replaceAllScenes(level08, pixel, gf::milliseconds(500));
-        });
-
-        createButtons(levels_b[9], [&] () {
-            game.replaceAllScenes(level09, pixel, gf::milliseconds(500));
-        });
-
-        createButtons(levels_b[10], [&] () {
-            game.replaceAllScenes(level10, pixel, gf::milliseconds(500));
-        });*/
-
-
     }
 
-    SelectLevel::~SelectLevel() {}
-
-    gf::WidgetContainer SelectLevel::GameLevel_getWidgets() {
-        return widgets;
-    }
-
-    std::string getLevelNameByButton(gf::TextButtonWidget& button) {
-        std::string buttonName = button.getString();
-        return buttonName == "Tutorial" ? "level00.tmx" : buttonName + ".tmx";
-    }
+    SelectCustomLevel::~SelectCustomLevel() {}
 
     // Méthodes virtuelles privées héritant directement de gf::Scene
-    void SelectLevel::doHandleActions(gf::Window& window) {
+    void SelectCustomLevel::doHandleActions(gf::Window& window) {
         if (!window.isOpen()) return;
         if (up.isActive()) widgets.selectPreviousWidget();
         if (down.isActive()) widgets.selectNextWidget();
@@ -142,7 +112,7 @@ namespace swiftness {
         if (quit.isActive()) game.replaceScene(game.menu, trans, gf::milliseconds(500));
     }
 
-    void SelectLevel::doProcessEvent(gf::Event& event) {
+    void SelectCustomLevel::doProcessEvent(gf::Event& event) {
         switch(event.type) {
             case gf::EventType::MouseMoved:
                 widgets.pointTo(game.computeWindowToGameCoordinates(event.mouseCursor.coords, getHudView()));
@@ -152,7 +122,7 @@ namespace swiftness {
         }
     }
 
-    void SelectLevel::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
+    void SelectCustomLevel::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
         float size = 0.035f, space = 0.04f;
         gf::Vector2f bg_size (0.55f, 0.1f); 
         target.setView(getHudView());
@@ -160,7 +130,7 @@ namespace swiftness {
         float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
         int r_size = coords.getRelativeCharacterSize(size);
         float ne = 0.0f;
-        for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
+        for (int i = MIN_CUSTOM_LEVEL - 1 ; i < MAX_CUSTOM_LEVEL + 1 ; ++i) {
             ne = 0.1f + (size + space)*i;
             levels_b[i].setCharacterSize(r_size);
             levels_b[i].setPosition(coords.getRelativePoint({0.275f, ne}));
@@ -170,7 +140,7 @@ namespace swiftness {
         widgets.render(target, states);
 
     }
-    void SelectLevel::doShow() {
+    void SelectCustomLevel::doShow() {
         widgets.clear();
         for (gf::TextButtonWidget& b : levels_b) {
             b.setDefault();

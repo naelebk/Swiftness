@@ -58,6 +58,8 @@ namespace swiftness
     // Levels
     constexpr int MIN_LEVEL = 0;
     constexpr int MAX_LEVEL = 7;
+    constexpr int MIN_CUSTOM_LEVEL = 1;
+    constexpr int MAX_CUSTOM_LEVEL = 5;
 
     // Layers
     const int NB_TILE_LAYERS = 18;
