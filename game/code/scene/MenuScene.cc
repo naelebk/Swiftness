@@ -154,10 +154,10 @@ namespace swiftness {
     }
     void Menu::doShow() {
         widgets.clear();
-        choose_level.setDefault();
-        widgets.addWidget(choose_level);
         choose_custom_level.setDefault();
         widgets.addWidget(choose_custom_level);
+        choose_level.setDefault();
+        widgets.addWidget(choose_level);
         credits.setDefault();
         widgets.addWidget(credits);
         quit_b.setDefault();
