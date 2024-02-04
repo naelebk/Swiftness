@@ -7,6 +7,8 @@ NC='\033[0m'
 FILE="file.txt"
 PATH_SKIN="../../ressources/levels/png/skin"
 ext=".png"
+SFML="libsfml-dev"
+SFCONV="$(which sfconv)"
 
 # Fonction permettant de check les commandes
 check_cmd() {
@@ -40,6 +42,12 @@ check_cmd() {
         fi
     fi
 }
+
+if [[ -z "$SFCONV" ]]; then
+    echo -e "${RED}Erreur, vous devez installer $SFML préalablement avant d'exécuter le script.${NC}"
+    echo -e "${YELLOW}Synopsis : sudo COMMAND_FOR_INSTALL_A_PACKAGE $SFML${NC}"
+    exit 1
+fi
 clear
 echo -ne "${YELLOW}Accès au répertoire game..... ${NC}"
 cd game > "$FILE" 2>&1
