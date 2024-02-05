@@ -27,7 +27,7 @@ namespace swiftness
         timer = other.timer;
         m_gravityDirection = other.m_gravityDirection;
         m_walljump = other.m_walljump;
-        m_isFlying = other.m_isFlying;
+        m_isFlying = false;
         m_skin = std::make_unique<gf::Texture>(swiftness::TEXTURE_SKIN_PATH);
         m_faceDirection = other.m_faceDirection;
         m_rotation = other.m_rotation;
