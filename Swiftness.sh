@@ -7,8 +7,6 @@ NC='\033[0m'
 FILE="file.txt"
 PATH_SKIN="../../ressources/levels/png/skin"
 ext=".png"
-SFML="libsfml-dev"
-SFCONV="$(which sfconv)"
 
 # Fonction permettant de check les commandes
 check_cmd() {
@@ -43,11 +41,16 @@ check_cmd() {
     fi
 }
 
-if [[ -z "$SFCONV" ]]; then
-    echo -e "${RED}Erreur, vous devez installer $SFML préalablement avant d'exécuter le script.${NC}"
-    echo -e "${YELLOW}Synopsis : sudo COMMAND_FOR_INSTALL_A_PACKAGE $SFML${NC}"
-    exit 1
-fi
+# Arguments : premier : PATH_SKIN, second : skin, troisième : FILE
+renommage() {
+    echo -ne "${YELLOW}Fin du script, renommage du skin de départ..... ${NC}"
+    mv "$1/selected$ext" "$1/$2" > "$3" 2>&1
+    check_cmd "" "$FILE"
+    echo -ne "${YELLOW}Renommage en selected_cc$ext en selected$ext..... ${NC}"
+    mv "$1/selected_cc$ext" "$1/selected$ext" > "$3" 2>&1
+    check_cmd "" "$3"
+}
+
 clear
 echo -ne "${YELLOW}Accès au répertoire game..... ${NC}"
 cd game > "$FILE" 2>&1
@@ -79,27 +82,29 @@ echo -ne "${YELLOW}Application du skin pour le jeu..... ${NC}"
 mv "$PATH_SKIN/$skin" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
 check_cmd "" "$FILE"
 echo -ne "${YELLOW}Appel au script CMake pour création du Makefile..... ${NC}"
-cmake .. > "$FILE" 2>&1
-check_cmd "" $FILE
+SFML=$(cmake .. | grep "SFML")
+cm=$?
+if [[ -z "$SFML" ]]; then
+    echo -e "${RED}KO !\nErreur, vous devez installer SFML préalablement avant d'exécuter le script.${NC}"
+    echo -e "${YELLOW}Synopsis : sudo COMMAND_FOR_INSTALL_A_PACKAGE libsfml-dev${NC}"
+    renommage "$PATH_SKIN" "$skin" "$FILE"
+    exit 1
+elif [[ "$cm" -ne 0 ]]; then
+    echo -e "${RED}KO !${NC}"
+    renommage "$PATH_SKIN" "$skin" "$FILE"
+    exit 1
+else
+    echo -e "${GREEN}OK.${NC}"
+fi
 echo -e "${YELLOW}Compilation du projet pour production de l'exécutable..... ${NC}"
 make
 if [[ "$?" -eq 0 ]]; then
     echo -e "${GREEN}OK.${NC}"
 else
-    echo -ne "${YELLOW}Renommage en selected_cc$ext en selected$ext..... ${NC}"
-    mv "$PATH_SKIN/selected_cc$ext" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
-    check_cmd "" "$FILE"
-    echo -e "${RED}KO !${NC}"
+    renommage "$PATH_SKIN" "$skin" "$FILE"
     exit 1
 fi
 echo -ne "${YELLOW}Lancement du jeu..... ${NC}"
 ./swiftness > /dev/null 2>&1
-echo -ne "${YELLOW}Fin du script, renommage du skin de départ..... ${NC}"
-mv "$PATH_SKIN/selected$ext" "$PATH_SKIN/$skin" > "$FILE" 2>&1
-check_cmd "" "$FILE"
-if [[ -f "$PATH_SKIN/selected_cc$ext" ]]; then
-    echo -ne "${YELLOW}Renommage en selected_cc$ext en selected$ext..... ${NC}"
-    mv "$PATH_SKIN/selected_cc$ext" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
-    check_cmd "" "$FILE"
-fi
+renommage "$PATH_SKIN" "$skin" "$FILE"
 exit 0
