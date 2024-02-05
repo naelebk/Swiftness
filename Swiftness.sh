@@ -94,7 +94,6 @@ else
 fi
 echo -ne "${YELLOW}Lancement du jeu..... ${NC}"
 ./swiftness > /dev/null 2>&1
-check_cmd "" $FILE
 echo -ne "${YELLOW}Fin du script, renommage du skin de départ..... ${NC}"
 mv "$PATH_SKIN/selected$ext" "$PATH_SKIN/$skin" > "$FILE" 2>&1
 check_cmd "" "$FILE"
