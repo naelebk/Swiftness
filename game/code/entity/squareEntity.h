@@ -112,7 +112,7 @@ namespace swiftness
 
         void setPlateforms(std::vector<swiftness::PlateformEntity> plateforms) { m_plateforms=plateforms;};
 
-        void setIsFlying(bool isFlying) { m_isFlying=isFlying; };
+        void setIsFlying(bool isFlying);
 
 
         /**
