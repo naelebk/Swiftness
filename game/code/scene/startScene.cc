@@ -40,5 +40,6 @@ namespace swiftness {
         M_background.setAnchor(gf::Anchor::Center);
         M_background.setScale(backgroundScale);
         target.draw(M_background, states);
+        target.setView(getHudView());
     }
 }

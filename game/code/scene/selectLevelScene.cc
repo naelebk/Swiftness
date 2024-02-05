@@ -179,7 +179,7 @@ namespace swiftness {
         int r_size = coords.getRelativeCharacterSize(size);
         float ne = 0.0f;
         for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
-            ne = 0.1f + (size + space)*i;
+            ne = 0.05f + (size + space + 0.03f)*i;
             levels_b[i].setCharacterSize(r_size);
             levels_b[i].setPosition(coords.getRelativePoint({0.275f, ne}));
             levels_b[i].setParagraphWidth(width);

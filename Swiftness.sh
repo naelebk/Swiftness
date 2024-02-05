@@ -106,5 +106,13 @@ else
 fi
 echo -ne "${YELLOW}Lancement du jeu..... ${NC}"
 ./swiftness > /dev/null 2>&1
+if [[ "$?" -eq 0 ]]; then
+    echo -e "${GREEN}OK.${NC}"
+else
+    echo -e "${RED}KO !${NC}"
+    echo -ne "${YELLOW}Nettoyage des compilations..... ${NC}"
+    make clean > "$FILE" 2>&1
+    check_cmd "" "$FILE"
+fi
 renommage "$PATH_SKIN" "$skin" "$FILE"
 exit 0
