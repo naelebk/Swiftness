@@ -23,7 +23,7 @@ namespace swiftness
          *
          * @return Square the square
          */
-        static swiftness::Square initializeSquare(std::string nameFile);
+        static swiftness::Square& initializeSquare(std::string nameFile);
 
         /**
          * @brief initialization of the level

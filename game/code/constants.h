@@ -22,7 +22,6 @@ namespace swiftness
     // Resources
     const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
     const std::string LEVELS_TMX_PATH = "../../ressources/levels/maps/";
-    const std::string TILESETS_TSX_PATH = "../../ressources/levels/tilesets/";
     const std::string TEXTURE_SKIN_PATH = "../../ressources/levels/png/skin/selected.png";
     const std::string RESSOURCES_PATH = "../../ressources";
     const std::initializer_list<gf::Path> PATHS = {gf::Path(RESSOURCES_PATH), gf::Paths::getBasePath(), gf::Paths::getCurrentPath()};
@@ -35,7 +34,6 @@ namespace swiftness
 
     // Gravity
     constexpr float GRAVITY = 500.0f;
-    constexpr float GRAVITY_SQUARE = 500.0f;
 
     constexpr int SQUARE_SIZE=13.0f;
     // Speed

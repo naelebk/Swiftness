@@ -3,9 +3,36 @@
 namespace swiftness
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY_SQUARE), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection("down"), m_walljump(0.0f), m_isFlying(false), m_skin(std::make_shared<gf::Texture>(swiftness::TEXTURE_SKIN_PATH)), m_faceDirection(false), m_rotation(0)
+        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection("down"), m_walljump(0.0f), m_isFlying(false), m_skin(std::make_unique<gf::Texture>(swiftness::TEXTURE_SKIN_PATH)), m_faceDirection(false), m_rotation(0)
     {
     }
+
+    void Square::copyFrom(const Square& other) {
+        m_position = other.m_position;
+        m_position_start = other.m_position_start;
+        m_velocity = other.m_velocity;
+        m_size = other.m_size;
+        m_color = other.m_color;
+        gravity = other.gravity;
+        m_jump = other.m_jump;
+        nb_jumps = other.nb_jumps;
+        m_gravity = other.m_gravity;
+        horizontal_g = other.horizontal_g;
+        goLeft = other.goLeft;
+        goRight = other.goRight;
+        goUp = other.goUp;
+        goDown = other.goDown;
+        isOver = other.isOver;
+        nb_deaths = other.nb_deaths;
+        timer = other.timer;
+        m_gravityDirection = other.m_gravityDirection;
+        m_walljump = other.m_walljump;
+        m_isFlying = other.m_isFlying;
+        m_skin = std::make_unique<gf::Texture>(swiftness::TEXTURE_SKIN_PATH);
+        m_faceDirection = other.m_faceDirection;
+        m_rotation = other.m_rotation;
+    }
+
     gf::Vector2f Square::getPosition() const
     {
         return m_position;

@@ -68,12 +68,12 @@ namespace swiftness
         LevelInitializer::level level;
 
         level.plateform = initializePlateforms(nameFile);
-        level.square = initializeSquare(nameFile);
+        level.square.copyFrom(initializeSquare(nameFile));
 
         return level;
     }
 
-    swiftness::Square LevelInitializer::initializeSquare(std::string nameFile)
+    swiftness::Square& LevelInitializer::initializeSquare(std::string nameFile)
     {
         LevelGenerator levelGen(nameFile);
         return levelGen.getSquareEntity();

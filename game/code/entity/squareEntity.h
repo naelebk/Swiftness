@@ -44,6 +44,8 @@ namespace swiftness
          */
         Square(gf::Vector2f position, float size, gf::Color4f color, float gravity);
 
+        void copyFrom(const Square& other);
+
         /**
          * @brief Récupère la position du carré
         */
@@ -145,7 +147,7 @@ namespace swiftness
         // graphics
         bool m_faceDirection;
         float m_rotation;
-        std::shared_ptr<gf::Texture> m_skin;
+        std::unique_ptr<gf::Texture> m_skin;
     };
 }
 

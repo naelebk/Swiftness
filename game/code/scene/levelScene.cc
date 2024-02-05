@@ -123,7 +123,7 @@ namespace swiftness {
         }
         
         swiftness::LevelInitializer::level leveln = LevelInitializer::initializeLevel(lvl);
-        m_square = leveln.square;
+        m_square.copyFrom(leveln.square);
         m_plateform = leveln.plateform;
         m_square.setPlateforms(m_plateform);
     }
