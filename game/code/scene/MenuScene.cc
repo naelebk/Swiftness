@@ -15,6 +15,7 @@ namespace swiftness {
         quit_b("Quit", font),
         credits("Credits", font),
         choose_level("Choose level", font),
+        choose_custom_level("Custom level", font),
         questionmark_b("gf", font)
         {
             
@@ -68,6 +69,10 @@ namespace swiftness {
 
             createButtons(choose_level, [&] () {
                 game.replaceAllScenes(game.level, trans, gf::milliseconds(500));
+            });
+
+            createButtons(choose_custom_level, [&] () {
+                game.replaceAllScenes(game.custom, trans, gf::milliseconds(500));
             });
 
             // Maintenant le gestionnaire de création de boutons initialisé, on peut créer nos boutons
@@ -129,6 +134,11 @@ namespace swiftness {
         choose_level.setParagraphWidth(width);
         choose_level.setPadding(padding);
 
+        choose_custom_level.setCharacterSize(r_size);
+        choose_custom_level.setPosition(coords.getRelativePoint({0.275f, 0.225f}));
+        choose_custom_level.setParagraphWidth(width);
+        choose_custom_level.setPadding(padding);
+
         quit_b.setCharacterSize(r_size);
         quit_b.setPosition(coords.getRelativePoint({0.275f, 0.525f}));
         quit_b.setParagraphWidth(width);
@@ -144,6 +154,8 @@ namespace swiftness {
     }
     void Menu::doShow() {
         widgets.clear();
+        choose_custom_level.setDefault();
+        widgets.addWidget(choose_custom_level);
         choose_level.setDefault();
         widgets.addWidget(choose_level);
         credits.setDefault();

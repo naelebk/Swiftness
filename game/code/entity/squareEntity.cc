@@ -43,6 +43,12 @@ namespace swiftness
         m_velocity = velocity;
     }
 
+    void Square::setIsFlying(bool isFlying) {
+        m_isFlying=isFlying; 
+        m_velocity.x=0;
+        m_velocity.y=0;
+    }
+
     void Square::actionUp()
     {
         if (horizontal_g) {

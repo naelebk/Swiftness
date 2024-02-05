@@ -75,6 +75,7 @@ namespace swiftness {
             gf::TextButtonWidget quit_b;
             gf::TextButtonWidget credits;
             gf::TextButtonWidget choose_level;
+            gf::TextButtonWidget choose_custom_level;
             gf::TextButtonWidget questionmark_b;
             gf::WidgetContainer widgets;
             gf::ZoomBlurSegueEffect trans;

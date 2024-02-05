@@ -41,9 +41,6 @@ namespace swiftness {
             // Desctructeur
             ~SelectCustomLevel() override;
 
-            gf::WidgetContainer GameLevel_getWidgets();
-            std::string getLevelNameByButton(gf::TextButtonWidget& button);
-
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;
             void doRender (gf::RenderTarget& target, const gf::RenderStates &states) override;
@@ -60,12 +57,11 @@ namespace swiftness {
             gf::WidgetContainer widgets;
             std::vector<gf::TextButtonWidget> levels_b;
             gf::Vector2f m_camera;
-            levelScene level00;
             levelScene level01;
             levelScene level02;
             levelScene level03;
             levelScene level04;
-	    levelScene level05;
+	        levelScene level05;
             gf::ZoomBlurSegueEffect trans;
             gf::CheckerboardSegueEffect pixel;
 
