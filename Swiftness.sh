@@ -45,7 +45,7 @@ check_cmd() {
 renommage() {
     echo -ne "${YELLOW}Fin du script, renommage du skin de départ..... ${NC}"
     mv "$1/selected$ext" "$1/$2" > "$3" 2>&1
-    check_cmd "" "$FILE"
+    check_cmd "" "$3"
     echo -ne "${YELLOW}Renommage en selected_cc$ext en selected$ext..... ${NC}"
     mv "$1/selected_cc$ext" "$1/selected$ext" > "$3" 2>&1
     check_cmd "" "$3"
