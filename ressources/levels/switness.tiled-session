@@ -3,19 +3,19 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/level00.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
-        "level",
         "tilesets",
-        ".",
+        "Maps",
+        "Maps/custom",
         "maps/custom",
-        "levels",
+        "maps",
         "tileset",
         "testTmxValidator",
-        "maps",
+        "level",
         "Tilesets",
-        "Maps",
-        "Maps/custom"
+        ".",
+        "levels"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -478,8 +478,8 @@
             "scale": 0.75,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 209.33333333333337,
-                "y": 511.99999999999994
+                "x": 206.66666666666663,
+                "y": 509.3333333333333
             }
         },
         "maps/level01.tmx": {
@@ -510,24 +510,24 @@
             "scale": 0.9521722560975608,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 650.0924554732841,
-                "y": 328.722033219932
+                "x": 647.9919951971184,
+                "y": 326.6215729437663
             }
         },
         "maps/level05.tmx": {
             "scale": 1.4708806818181819,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 183.5634958957026,
-                "y": 277.38483824239495
+                "x": 182.8836310960889,
+                "y": 276.0251086431675
             }
         },
         "maps/level06.tmx": {
-            "scale": 0.8745777027027026,
-            "selectedLayer": 1,
+            "scale": 4,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 415.05746016417197,
-                "y": 465.3674553355867
+                "x": 174,
+                "y": 72
             }
         },
         "maps/level07.tmx": {
@@ -691,22 +691,21 @@
     "last.externalTilesetPath": "/home/juliengauthier410/l3/projet_swiftness/ressources/Levels/Tilesets",
     "last.imagePath": "/home/juliengauthier410/l3/projet_swiftness/ressources/levels/png",
     "openFiles": [
-        "maps/level00.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
+        "maps/level06.tmx",
         "maps/level00.tmx",
         "maps/level04.tmx",
+        "maps/level05.tmx",
         "maps/level02.tmx",
         "maps/level01.tmx",
-        "maps/level06.tmx",
         "testTmxValidator/tmxWrongEncoding.tmx",
         "testTmxValidator/tmxValid.tmx",
         "testTmxValidator/tmxMissingTileset.tmx",
         "testTmxValidator/tmxLayerMissing.tmx",
         "maps/custom/level_template.tmx",
-        "maps/custom/custom01.tmx",
-        "maps/custom/custom02.tmx"
+        "maps/custom/custom01.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
