@@ -44,10 +44,10 @@ check_cmd() {
 # Arguments : premier : PATH_SKIN, second : skin, troisième : FILE
 renommage() {
     echo -ne "${YELLOW}Fin du script, renommage du skin de départ..... ${NC}"
-    mv "$1/selected$ext" "$1/$2" > "$3" 2>&1
+    cp "$1/selected$ext" "$1/$2" > "$3" 2>&1
     check_cmd "" "$3"
     echo -ne "${YELLOW}Renommage en selected_cc$ext en selected$ext..... ${NC}"
-    mv "$1/selected_cc$ext" "$1/selected$ext" > "$3" 2>&1
+    cp "$1/selected_cc$ext" "$1/selected$ext" > "$3" 2>&1
     check_cmd "" "$3"
 }
 
@@ -75,11 +75,11 @@ check_cmd "choix du skin, le choix en question : $skin"
 skin="$skin$ext"
 if [[ -f "$PATH_SKIN/selected$ext" ]]; then
     echo -ne "${YELLOW}Le fichier selected$ext existait déjà, renommage en selected_cc$ext..... ${NC}"
-    mv "$PATH_SKIN/selected$ext" "$PATH_SKIN/selected_cc$ext" > "$FILE" 2>&1
+    cp "$PATH_SKIN/selected$ext" "$PATH_SKIN/selected_cc$ext" > "$FILE" 2>&1
     check_cmd "" "$FILE"
 fi
 echo -ne "${YELLOW}Application du skin pour le jeu..... ${NC}"
-mv "$PATH_SKIN/$skin" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
+cp "$PATH_SKIN/$skin" "$PATH_SKIN/selected$ext" > "$FILE" 2>&1
 check_cmd "" "$FILE"
 echo -ne "${YELLOW}Appel au script CMake pour création du Makefile..... ${NC}"
 SFML=$(cmake .. | grep "SFML")
