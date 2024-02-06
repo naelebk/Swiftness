@@ -59,6 +59,8 @@ namespace swiftness {
             // Check de la valeur de level tout de même, car sinon c po drôle
             void loadLevel(int t_level);
 
+            void customLoadLevel(int t_level);
+
         private:
             GameCenter& game;
             gf::Font& m_font;

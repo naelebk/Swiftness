@@ -59,12 +59,12 @@ namespace swiftness {
             button.setCallback(callback);
             widgets.addWidget(button);
         };
-        createButtons(levels_b[MAX_LEVEL], [&] () {
+        createButtons(levels_b[MAX_CUSTOM_LEVEL], [&] () {
             game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
         });
 
         createButtons(levels_b[0], [&] () {
-            level01.loadLevel(8);
+            level01.customLoadLevel(1);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level01, pixel, gf::milliseconds(500));
@@ -72,28 +72,28 @@ namespace swiftness {
         });
 
         createButtons(levels_b[1], [&] () {
-            level02.loadLevel(9);
+            level01.customLoadLevel(2);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level02, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[2], [&] () {
-            level03.loadLevel(10);
+            level01.customLoadLevel(3);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level03, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[3], [&] () {
-            level04.loadLevel(11);
+            level01.customLoadLevel(4);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level04, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[4], [&] () {
-            level05.loadLevel(12);
+            level01.customLoadLevel(5);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level05, pixel, gf::milliseconds(500));

@@ -19,7 +19,9 @@ namespace swiftness {
     level04(game, font, 4),
     level05(game, font, 5),
     level06(game, font, 6),
-    level07(game, font, 7)
+    level07(game, font, 7),
+    level08(game, font, 8),
+    level09(game, font, 9)
     {
         for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
             if (i >= 1 && i < MAX_LEVEL + 1) {
@@ -125,15 +127,21 @@ namespace swiftness {
             game.replaceAllScenes(level07, pixel, gf::milliseconds(500));
         });
 
-        /*createButtons(levels_b[8], [&] () {
+        createButtons(levels_b[8], [&] () {
+            level08.loadLevel(8);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level08, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[9], [&] () {
+            level09.loadLevel(9);
+            game.mainTheme.stop();
+            game.levelTheme.play();
             game.replaceAllScenes(level09, pixel, gf::milliseconds(500));
         });
 
-        createButtons(levels_b[10], [&] () {
+        /*createButtons(levels_b[10], [&] () {
             game.replaceAllScenes(level10, pixel, gf::milliseconds(500));
         });*/
 
@@ -171,7 +179,7 @@ namespace swiftness {
     }
 
     void SelectLevel::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
-        float size = 0.035f, space = 0.04f;
+        float size = 0.025f, space = 0.03f;
         gf::Vector2f bg_size (0.55f, 0.1f); 
         target.setView(getHudView());
         gf::Coordinates coords(target);

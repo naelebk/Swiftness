@@ -68,9 +68,9 @@ namespace swiftness {
             levelScene level05;
             levelScene level06;
             levelScene level07;
-            /*levelScene level08;
+            levelScene level08;
             levelScene level09;
-            levelScene level10;*/
+            /*levelScene level10;*/
             gf::ZoomBlurSegueEffect trans;
             gf::CheckerboardSegueEffect pixel;
 

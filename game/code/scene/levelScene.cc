@@ -128,6 +128,26 @@ namespace swiftness {
         m_square.setPlateforms(m_plateform);
     }
 
+    void levelScene::customLoadLevel(int t_level) {
+        if (t_level < 0) {
+            exit(0);
+        }
+        updateLevel(t_level);
+        std::string lvl = "";
+        if (t_level >= 0 && t_level < 10) {
+            lvl = "custom/custom0" + std::to_string(t_level) + ".tmx";
+            std::cout << GREEN << "Level -> 0" << std::to_string(t_level) << NC << std::endl;
+        } else {
+            lvl = "custom/custom" + std::to_string(t_level) + ".tmx";
+            std::cout << GREEN << "Level -> " << std::to_string(t_level) << NC << std::endl;
+        }
+        
+        swiftness::LevelInitializer::level leveln = LevelInitializer::initializeLevel(lvl);
+        m_square.copyFrom(leveln.square);
+        m_plateform = leveln.plateform;
+        m_square.setPlateforms(m_plateform);
+    }
+
     void levelScene::doHandleActions(gf::Window& window) {
         if (!isActive()) pause();
         if (Pause.isActive()) {
