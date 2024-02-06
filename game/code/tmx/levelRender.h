@@ -33,7 +33,7 @@ namespace swiftness
              * @param layerEntity
              * @param window
             */
-            void renderLevel(gf::ResourceManager& resource, swiftness::LevelData& layerData, std::string nameFile, gf::RenderTarget &target, std::string gravity);
+            void renderLevel(gf::ResourceManager& resource, swiftness::LevelData& layerData, gf::RenderTarget &target, std::string gravity);
     };
 }; // namespace swiftness
 

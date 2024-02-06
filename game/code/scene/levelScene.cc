@@ -8,12 +8,15 @@
 namespace swiftness {
     // Déclaration en seconde instance du constructeur et du destructeur,
     // de levelScene (interface graphique)
-    levelScene::levelScene(GameCenter& game, gf::Font& font, int level) : 
-    gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
-    m_font(font), 
-    game(game),
-    m_levelNumber(level),
-    m_levelData("level0" + std::to_string(m_levelNumber) + ".tmx")
+    levelScene::levelScene(GameCenter& game, gf::Font& font, int level, bool custom) 
+    : gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT))
+    , m_font(font)
+    , game(game)
+    , m_custom(custom)
+    , m_levelNumber(level)
+    // , m_levelData("custom/custom0" + std::to_string(m_levelNumber) + ".tmx")
+    // , m_levelData("level0" + std::to_string(m_levelNumber) + ".tmx")
+    , m_levelData((custom ? "custom/custom0" : "level0") + std::to_string(m_levelNumber) + ".tmx")
     , up("up")
     , down("down")
     , left("left")
@@ -249,7 +252,8 @@ namespace swiftness {
         target.clear(gf::Color::fromRgb(0.2, 0.2, 0.2));
         target.setView(cam);
         swiftness::LevelRender renderLevel;
-        renderLevel.renderLevel(game.resources, m_levelData, "level0" + std::to_string(m_levelNumber) + ".tmx", target, m_square.getGravity());
+        renderLevel.renderLevel(game.resources, m_levelData, target, m_square.getGravity());
+        // std::cout << "level name : " << (m_custom ? "custom0" : "level0") + std::to_string(m_levelNumber) + ".tmx" << std::endl; 
         m_square.render(target, states);
         m_square.renderHUD(target, SCREEN_WIDTH, SCREEN_HEIGHT, m_camera);
     }

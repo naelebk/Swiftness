@@ -39,7 +39,7 @@ namespace swiftness {
     class levelScene : public gf::Scene {
         public:
             // Constructeur
-            levelScene(GameCenter& game, gf::Font& font, int level);
+            levelScene(GameCenter& game, gf::Font& font, int level, bool custom);
             // Méthodes virtuelles privées héritant directement de gf::Scene
             void doHandleActions(gf::Window& window) override;
             void doRender (gf::RenderTarget& target, const gf::RenderStates &states) override;
@@ -81,7 +81,7 @@ namespace swiftness {
             gf::Vector2f m_camera;
             float map_width, map_height, tile_width, tile_height, xcamera, ycamera;
             int konami, konami2;
-            bool canFly, commandsChange;
+            bool canFly, commandsChange, m_custom;
             gf::ZoomBlurSegueEffect trans;
     };
 }

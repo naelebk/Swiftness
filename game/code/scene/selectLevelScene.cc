@@ -12,16 +12,16 @@ namespace swiftness {
     down("Down"),
     trigger("Trigger"),
     quit("Quit"),
-    level00(game, font, 0),
-    level01(game, font, 1),
-    level02(game, font, 2),
-    level03(game, font, 3),
-    level04(game, font, 4),
-    level05(game, font, 5),
-    level06(game, font, 6),
-    level07(game, font, 7),
-    level08(game, font, 8),
-    level09(game, font, 9)
+    level00(game, font, 0, false),
+    level01(game, font, 1, false),
+    level02(game, font, 2, false),
+    level03(game, font, 3, false),
+    level04(game, font, 4, false),
+    level05(game, font, 5, false),
+    level06(game, font, 6, false),
+    level07(game, font, 7, false),
+    level08(game, font, 8, false),
+    level09(game, font, 9, false)
     {
         for (int i = 0 ; i < MAX_LEVEL + 2 ; ++i) {
             if (i >= 1 && i < MAX_LEVEL + 1) {

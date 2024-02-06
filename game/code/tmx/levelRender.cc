@@ -38,7 +38,7 @@ namespace swiftness
         // logFile.close(); // Fermer le fichier de log.
     }
 
-    void LevelRender::renderLevel(gf::ResourceManager& resource, swiftness::LevelData& levelData, std::string nameFile, gf::RenderTarget &target, std::string gravity)
+    void LevelRender::renderLevel(gf::ResourceManager& resource, swiftness::LevelData& levelData, gf::RenderTarget &target, std::string gravity)
     {
         for (int i = 0; i < swiftness::NB_TILE_LAYERS; i++)
         {
