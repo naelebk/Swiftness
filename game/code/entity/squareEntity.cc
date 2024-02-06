@@ -861,6 +861,7 @@ namespace swiftness
                 m_rotation = 0;
                 nb_deaths += 1;
                 m_gravityDirection = "down";
+                horizontal_g=false;
                 return;
             }
             // close the game
