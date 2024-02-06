@@ -72,28 +72,28 @@ namespace swiftness {
         });
 
         createButtons(levels_b[1], [&] () {
-            level01.customLoadLevel(2);
+            level02.customLoadLevel(2);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level02, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[2], [&] () {
-            level01.customLoadLevel(3);
+            level03.customLoadLevel(3);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level03, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[3], [&] () {
-            level01.customLoadLevel(4);
+            level04.customLoadLevel(4);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level04, pixel, gf::milliseconds(500));
         });
 
         createButtons(levels_b[4], [&] () {
-            level01.customLoadLevel(5);
+            level05.customLoadLevel(5);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level05, pixel, gf::milliseconds(500));
