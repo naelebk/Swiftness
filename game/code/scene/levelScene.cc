@@ -126,7 +126,6 @@ namespace swiftness {
             lvl = "level" + std::to_string(t_level) + ".tmx";
             std::cout << GREEN << "Level -> " << std::to_string(t_level) << NC << std::endl;
         }
-        
         swiftness::LevelInitializer::level leveln = LevelInitializer::initializeLevel(lvl);
         m_level.square.copyFrom(leveln.square);
         m_level.plateform = leveln.plateform;

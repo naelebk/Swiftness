@@ -6,7 +6,7 @@ namespace swiftness
     std::vector<swiftness::PlateformEntity> LevelInitializer::initializePlateforms(std::string nameFile)
     {
         std::vector<swiftness::PlateformEntity> plateform;
-
+        std::cout << "Depuis initializePlateforms\n";
         LevelGenerator levelGen(nameFile);
 
         int index = 0;
@@ -66,7 +66,7 @@ namespace swiftness
     LevelInitializer::level LevelInitializer::initializeLevel(std::string nameFile)
     {
         LevelInitializer::level level;
-
+        std::cout << "Depuis initializeLevel\n";
         level.plateform = initializePlateforms(nameFile);
         level.square.copyFrom(initializeSquare(nameFile));
 
@@ -75,6 +75,7 @@ namespace swiftness
 
     swiftness::Square& LevelInitializer::initializeSquare(std::string nameFile)
     {
+        std::cout << "Depuis initializeSquare\n";
         LevelGenerator levelGen(nameFile);
         return levelGen.getSquareEntity();
     }

@@ -70,72 +70,100 @@ namespace swiftness {
             game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
         });
 
+        std::cout << "Depuis selectLevelScene\n";
+        level00.loadLevel(0);
+
         createButtons(levels_b[0], [&] () {
-            level00.loadLevel(0);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level00, pixel, gf::milliseconds(500));
             
         });
 
+        std::cout << "Depuis selectLevelScene\n";
+        level01.loadLevel(1);
+
         createButtons(levels_b[1], [&] () {
-            level01.loadLevel(1);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level01, pixel, gf::milliseconds(500));
         });
 
+
+        std::cout << "Depuis selectLevelScene\n";
+        level02.loadLevel(2);
+        
         createButtons(levels_b[2], [&] () {
-            level02.loadLevel(2);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level02, pixel, gf::milliseconds(500));
         });
 
+
+        std::cout << "Depuis selectLevelScene\n";
+        level03.loadLevel(3);
+
         createButtons(levels_b[3], [&] () {
-            level03.loadLevel(3);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level03, pixel, gf::milliseconds(500));
         });
 
+
+        std::cout << "Depuis selectLevelScene\n";
+        level04.loadLevel(4);
+
         createButtons(levels_b[4], [&] () {
-            level04.loadLevel(4);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level04, pixel, gf::milliseconds(500));
         });
 
+
+        std::cout << "Depuis selectLevelScene\n";
+        level05.loadLevel(5);
+
         createButtons(levels_b[5], [&] () {
-            level05.loadLevel(5);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level05, pixel, gf::milliseconds(500));
         });
 
+
+        std::cout << "Depuis selectLevelScene\n";
+        level06.loadLevel(6);
+
         createButtons(levels_b[6], [&] () {
-            level06.loadLevel(6);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level06, pixel, gf::milliseconds(500));
         });
 
+
+        std::cout << "Depuis selectLevelScene\n";
+        level07.loadLevel(7);
+
         createButtons(levels_b[7], [&] () {
-            level07.loadLevel(7);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level07, pixel, gf::milliseconds(500));
         });
 
+
+        std::cout << "Depuis selectLevelScene\n";
+        level08.loadLevel(8);
+
         createButtons(levels_b[8], [&] () {
-            level08.loadLevel(8);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level08, pixel, gf::milliseconds(500));
         });
 
+
+        std::cout << "Depuis selectLevelScene\n";
+        level09.loadLevel(9);
+
         createButtons(levels_b[9], [&] () {
-            level09.loadLevel(9);
             game.mainTheme.stop();
             game.levelTheme.play();
             game.replaceAllScenes(level09, pixel, gf::milliseconds(500));
