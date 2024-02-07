@@ -48,8 +48,8 @@ namespace swiftness {
             // Getter du niveau
             int getLevel();
 
-            swiftness::Square& getSquare() { return m_square; };
-            std::vector<swiftness::PlateformEntity> getPlateforms() { return m_plateform; };
+            swiftness::Square& getSquare() { return m_level.square; };
+            std::vector<swiftness::PlateformEntity> getPlateforms() { return m_level.plateform; };
 
             // Update the scene with the menu
             void updateLevel(int s_level);
@@ -75,9 +75,8 @@ namespace swiftness {
             gf::Action jump;
             gf::Action Pause;
             int m_levelNumber;
-            std::vector<swiftness::PlateformEntity> m_plateform;
-            swiftness::Square m_square;
             swiftness::LevelData m_levelData;
+            swiftness::LevelInitializer::level m_level;
             gf::Vector2f m_camera;
             float map_width, map_height, tile_width, tile_height, xcamera, ycamera;
             int konami, konami2;
