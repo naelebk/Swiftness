@@ -147,7 +147,6 @@ namespace swiftness
         // graphics
         bool m_faceDirection;
         float m_rotation;
-        std::unique_ptr<gf::Texture> m_skin;
     };
 }
 

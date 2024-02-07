@@ -3,7 +3,7 @@
 namespace swiftness
 {
     Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection("down"), m_walljump(0.0f), m_isFlying(false), m_skin(std::make_unique<gf::Texture>(swiftness::TEXTURE_SKIN_PATH)), m_faceDirection(false), m_rotation(0)
+        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection("down"), m_walljump(0.0f), m_isFlying(false), m_faceDirection(false), m_rotation(0)
     {
     }
 
@@ -28,7 +28,6 @@ namespace swiftness
         m_gravityDirection = other.m_gravityDirection;
         m_walljump = other.m_walljump;
         m_isFlying = false;
-        m_skin = std::make_unique<gf::Texture>(swiftness::TEXTURE_SKIN_PATH);
         m_faceDirection = other.m_faceDirection;
         m_rotation = other.m_rotation;
     }
@@ -770,7 +769,8 @@ namespace swiftness
             shape.setScale({1.0f, 1.0f});
         }
         // shape.setColor(m_color);
-        shape.setTexture(*m_skin);
+        gf::Texture texture(TEXTURE_SKIN_PATH);
+        shape.setTexture(texture);
         shape.setAnchor(gf::Anchor::Center);
         target.draw(shape);
     }

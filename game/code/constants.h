@@ -22,9 +22,11 @@ namespace swiftness
     // Resources
     const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
     const std::string LEVELS_TMX_PATH = "../../ressources/levels/maps/";
-    const std::string TEXTURE_SKIN_PATH = "../../ressources/levels/png/skin/selected.png";
+    // const std::string TEXTURE_SKIN_PATH = "../../ressources/levels/png/skin/selected.png";
+    const gf::Path TEXTURE_SKIN_PATH = gf::Path("../../ressources/levels/png/skin/selected.png");
     const std::string RESSOURCES_PATH = "../../ressources";
     const std::initializer_list<gf::Path> PATHS = {gf::Path(RESSOURCES_PATH), gf::Paths::getBasePath(), gf::Paths::getCurrentPath()};
+    // const gf::Texture& SKIN_TEXTURE(TEXTURE_SKIN_PATH);
 
     // Audio
     const std::string MAIN_THEME = "../../ressources/music/MainTheme.wav";
