@@ -68,7 +68,15 @@ namespace swiftness {
         int r_size = coords.getRelativeCharacterSize(size);
         gf::Text developper("", font, 55);
         developper.setParagraphWidth(100.0f);
-        //developper.setAlignment(gf::Alignment::Justify);
+        /* crédits :
+        - section "developpement C++ (Nael embarki, Théo humbert, Julien gauthier)"
+        - section "developpement shell (Nael embarki)" ?
+        - section "developpement python (Julien gauthier)" ?
+        - section "référent (Julien bernard/jube)"
+        - section "graphiste (Julien gauthier, Milo gauthier)"
+        - section "musique (Julien gauthier)"
+        - section "logo à mettre (gf, sfml)"
+        */
         developper.setString("Developpers :\nEMBARKI Naël\nGAUTHIER Julien\nHUMBERT Théo\nReferent :\nM. Julien BERNARD\n(alias jube)");
         developper.setColor(gf::Color::Yellow);
         developper.setPosition(coords.getRelativePoint({ 0.5f, 0.4f}));

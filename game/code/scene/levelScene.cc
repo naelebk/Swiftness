@@ -96,17 +96,8 @@ namespace swiftness
             exit(0);
         }
         updateLevel(t_level);
-        std::string lvl = "";
-        if (t_level >= 0 && t_level < 10)
-        {
-            lvl = "level_" + std::to_string(t_level) + ".tmx";
-            std::cout << GREEN << "Level -> 0" << std::to_string(t_level) << NC << std::endl;
-        }
-        else
-        {
-            lvl = "level" + std::to_string(t_level) + ".tmx";
-            std::cout << GREEN << "Level -> " << std::to_string(t_level) << NC << std::endl;
-        }
+        std::string lvl = "level_" + std::to_string(t_level) + ".tmx";
+        std::cout << GREEN << "Level -> " << std::to_string(t_level) << NC << std::endl;
 
         m_level.getSquareEntity().setPlateforms(m_level.getPlateforms());
     }
@@ -118,17 +109,8 @@ namespace swiftness
             exit(0);
         }
         updateLevel(t_level);
-        std::string lvl = "";
-        if (t_level >= 0 && t_level < 10)
-        {
-            lvl = "custom/custom_" + std::to_string(t_level) + ".tmx";
-            std::cout << GREEN << "Level -> 0" << std::to_string(t_level) << NC << std::endl;
-        }
-        else
-        {
-            lvl = "custom/custom" + std::to_string(t_level) + ".tmx";
-            std::cout << GREEN << "Level -> " << std::to_string(t_level) << NC << std::endl;
-        }
+        std::string lvl = "custom/custom_" + std::to_string(t_level) + ".tmx";
+        std::cout << GREEN << "Level -> 0" << std::to_string(t_level) << NC << std::endl;
 
         m_level.getSquareEntity().setPlateforms(m_level.getPlateforms());
     }

@@ -124,46 +124,46 @@ namespace swiftness {
         float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
         int r_size = coords.getRelativeCharacterSize(size);
 
+        choose_level.setCharacterSize(r_size);
+        choose_level.setPosition(coords.getRelativePoint({0.275f, 0.225f}));
+        choose_level.setParagraphWidth(width);
+        choose_level.setPadding(padding);
+
+        choose_custom_level.setCharacterSize(r_size);
+        choose_custom_level.setPosition(coords.getRelativePoint({0.275f, 0.325f}));
+        choose_custom_level.setParagraphWidth(width);
+        choose_custom_level.setPadding(padding);
+
         credits.setCharacterSize(r_size);
         credits.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
         credits.setParagraphWidth(width);
         credits.setPadding(padding);
 
-        choose_level.setCharacterSize(r_size);
-        choose_level.setPosition(coords.getRelativePoint({0.275f, 0.325f}));
-        choose_level.setParagraphWidth(width);
-        choose_level.setPadding(padding);
-
-        choose_custom_level.setCharacterSize(r_size);
-        choose_custom_level.setPosition(coords.getRelativePoint({0.275f, 0.225f}));
-        choose_custom_level.setParagraphWidth(width);
-        choose_custom_level.setPadding(padding);
-
-        quit_b.setCharacterSize(r_size);
-        quit_b.setPosition(coords.getRelativePoint({0.275f, 0.525f}));
-        quit_b.setParagraphWidth(width);
-        quit_b.setPadding(padding);
-
         questionmark_b.setCharacterSize(r_size);
-        questionmark_b.setPosition(coords.getRelativePoint({0.275f, 0.625f}));
+        questionmark_b.setPosition(coords.getRelativePoint({0.275f, 0.525f}));
         questionmark_b.setParagraphWidth(width);
         questionmark_b.setPadding(padding);
+
+        quit_b.setCharacterSize(r_size);
+        quit_b.setPosition(coords.getRelativePoint({0.275f, 0.625f}));
+        quit_b.setParagraphWidth(width);
+        quit_b.setPadding(padding);
 
         widgets.render(target, states);
 
     }
     void Menu::doShow() {
         widgets.clear();
-        choose_custom_level.setDefault();
-        widgets.addWidget(choose_custom_level);
         choose_level.setDefault();
         widgets.addWidget(choose_level);
+        choose_custom_level.setDefault();
+        widgets.addWidget(choose_custom_level);
         credits.setDefault();
         widgets.addWidget(credits);
-        quit_b.setDefault();
-        widgets.addWidget(quit_b);
         questionmark_b.setDefault();
         widgets.addWidget(questionmark_b);
+        quit_b.setDefault();
+        widgets.addWidget(quit_b);
         widgets.selectNextWidget();
     }
 
