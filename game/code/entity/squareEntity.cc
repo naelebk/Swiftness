@@ -2,8 +2,8 @@
 
 namespace swiftness
 {
-    Square::Square(gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection("down"), m_walljump(0.0f), m_isFlying(false), m_faceDirection(false), m_rotation(0)
+    Square::Square(gf::ResourceManager& resources, gf::Vector2f position, float size, gf::Color4f color, float gravity)
+        : m_resources(resources), m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection("down"), m_walljump(0.0f), m_isFlying(false), m_faceDirection(false), m_rotation(0)
     {
     }
 
@@ -769,7 +769,7 @@ namespace swiftness
             shape.setScale({1.0f, 1.0f});
         }
         // shape.setColor(m_color);
-        gf::Texture texture(TEXTURE_SKIN_PATH);
+        gf::Texture& texture = m_resources.getTexture(TEXTURE_SKIN_PATH);
         shape.setTexture(texture);
         shape.setAnchor(gf::Anchor::Center);
         target.draw(shape);

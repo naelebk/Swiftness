@@ -16,7 +16,7 @@ namespace swiftness {
     , m_levelNumber(level)
     // , m_level.getLevelData()("custom/custom0" + std::to_string(m_levelNumber) + ".tmx")
     // , m_level.getLevelData()("level0" + std::to_string(m_levelNumber) + ".tmx")
-    , m_level((custom ? "custom/custom0" : "level0") + std::to_string(m_levelNumber) + ".tmx")
+    , m_level(game.resources, (custom ? "custom/custom0" : "level0") + std::to_string(m_levelNumber) + ".tmx")
     , up("up")
     , down("down")
     , left("left")

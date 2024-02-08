@@ -12,7 +12,7 @@ namespace swiftness
     class LevelGenerator
     {
     public:
-        LevelGenerator(std::string nameFile);
+        LevelGenerator(gf::ResourceManager& resources, std::string nameFile);
 
         /**
          * @brief Load a tmx file

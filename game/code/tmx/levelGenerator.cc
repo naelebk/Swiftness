@@ -3,11 +3,11 @@
 namespace swiftness
 {
 
-    LevelGenerator::LevelGenerator(std::string nameFile)
-        : m_nameFile(nameFile), m_levelData(nameFile), m_squareEntity(m_levelData.getEntrance(), SQUARE_SIZE, gf::Color::Red, GRAVITY), m_plateforms()
+    LevelGenerator::LevelGenerator(gf::ResourceManager& resources, std::string nameFile)
+        : m_nameFile(nameFile), m_levelData(nameFile), m_squareEntity(resources, m_levelData.getEntrance(), SQUARE_SIZE, gf::Color::Red, GRAVITY), m_plateforms()
     {
         m_plateforms = initializePlateforms();
-        std::cout << swiftness::YELLOW << "LevelData" << nameFile << "\t\t[GENERATED]" << swiftness::NC << std::endl;
+        std::cout << swiftness::YELLOW << "LevelGenerator for " << nameFile << "\t\t[LOADED]\n" << swiftness::NC << std::endl;
     }
 
     std::vector<swiftness::PlateformEntity> LevelGenerator::generateVerticalPlateform(LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms)

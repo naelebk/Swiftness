@@ -42,7 +42,7 @@ namespace swiftness
          * @param color
          * @param gravity
          */
-        Square(gf::Vector2f position, float size, gf::Color4f color, float gravity);
+        Square(gf::ResourceManager& resources, gf::Vector2f position, float size, gf::Color4f color, float gravity);
 
         void copyFrom(const Square& other);
 
@@ -123,6 +123,7 @@ namespace swiftness
         void collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp,float dt);
 
     private:
+        gf::ResourceManager& m_resources;
         gf::Vector2f m_position, m_position_start; // Centre du carré
         gf::Vector2f m_velocity;
         float m_size;
