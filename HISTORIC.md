@@ -216,3 +216,21 @@
 >
 >- lorsque le murs est traversable, la texture change
 >
+
+## And now... MUSIC
+
+>
+>> *01/02/2024*
+>> **Julien**
+>
+>- utilisation de sfml/audio pour ajouter une musique au menu et une musique pendant les niveaux
+>
+
+## REFACTORING
+
+>
+>> *02/2024*
+>> **Everyone**
+>
+>- le code est mieux gérer, on utilise un seul resources manager pour toute les texture et scene
+>
