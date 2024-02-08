@@ -13,7 +13,6 @@ add_executable(swiftness
   ./code/constants.cc
   ./code/gameCenter.cc
   ./code/audioManager.cc
-  ./code/main.cc
   ./code/scene/creditScene.cc
   ./code/scene/selectLevelScene.cc
   ./code/scene/selectCustomLevelScene.cc
@@ -22,12 +21,12 @@ add_executable(swiftness
   ./code/scene/startScene.cc
   ./code/scene/pauseScene.cc
   ./code/tmx/layerData.cc
-  ./code/tmx/levelInitializer.cc
   ./code/tmx/levelData.cc
   ./code/tmx/levelGenerator.cc
   ./code/tmx/levelRender.cc
   ./code/entity/squareEntity.cc
   ./code/entity/plateformEntity.cc
+  ./code/main.cc
 )
 
 # Inclure les répertoires d'en-têtes

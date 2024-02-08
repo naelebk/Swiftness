@@ -4,18 +4,18 @@ namespace swiftness
 {
 
     LevelGenerator::LevelGenerator(std::string nameFile)
-        : m_name(nameFile), m_levelData(nameFile), m_squareEntity(m_levelData.getEntrance(), SQUARE_SIZE, gf::Color::Red, GRAVITY)
+        : m_nameFile(nameFile), m_levelData(nameFile), m_squareEntity(m_levelData.getEntrance(), SQUARE_SIZE, gf::Color::Red, GRAVITY), m_plateforms()
     {
+        m_plateforms = initializePlateforms();
         std::cout << swiftness::YELLOW << "LevelData" << nameFile << "\t\t[GENERATED]" << swiftness::NC << std::endl;
     }
 
-    std::vector<swiftness::PlateformEntity> LevelGenerator::generateVerticalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateVerticalPlateform(LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms)
     {
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
         gf::Vector2f mapSize = m_levelData.getMapSize();
         gf::Vector2f tileSize = m_levelData.getTileSize();
-        
 
         if (layer)
         {
@@ -24,7 +24,6 @@ namespace swiftness
             {
                 color = true;
             }
-            int platformIndex = index;
             for (int x = 0; x < mapSize.width; x++)
             {
                 int y = 0;
@@ -49,7 +48,6 @@ namespace swiftness
                             plateform = PlateformEntity(position, height, length, gf::Color::Yellow);
                         }
                         verticalPlateforms.push_back(plateform);
-                        platformIndex++;
                     }
                     y++;
                 }
@@ -58,9 +56,9 @@ namespace swiftness
         return verticalPlateforms;
     }
 
-    std::vector<swiftness::PlateformEntity> LevelGenerator::generateHorizontalPlateform(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> horizontalPlateforms)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateHorizontalPlateform(LayerName layerName, std::vector<swiftness::PlateformEntity> horizontalPlateforms)
     {
-        
+
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
         gf::Vector2f mapSize = m_levelData.getMapSize();
@@ -73,7 +71,7 @@ namespace swiftness
             {
                 color = true;
             }
-            int platformIndex = index;
+
             for (int y = 0; y < mapSize.height; y++)
             {
                 int x = 0;
@@ -98,7 +96,6 @@ namespace swiftness
                             plateform = PlateformEntity(position, height, length, gf::Color::Yellow);
                         }
                         horizontalPlateforms.push_back(plateform);
-                        platformIndex++;
                     }
                     x++;
                 }
@@ -107,7 +104,7 @@ namespace swiftness
         return horizontalPlateforms;
     }
 
-    std::vector<swiftness::PlateformEntity> LevelGenerator::generateBlocPlateforms(int index, LayerName layerName, std::vector<swiftness::PlateformEntity> blocPlateforms)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateBlocPlateforms(LayerName layerName, std::vector<swiftness::PlateformEntity> blocPlateforms)
     {
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
@@ -121,7 +118,7 @@ namespace swiftness
             {
                 color = true;
             }
-            int platformIndex = index;
+
             for (int y = 0; y < mapSize.height; y++)
             {
                 for (int x = 0; x < mapSize.width; x++)
@@ -167,8 +164,6 @@ namespace swiftness
                                 cells[ix + iy * mapSize.width].gid = 0;
                             }
                         }
-
-                        platformIndex++;
                     }
                 }
             }
@@ -176,9 +171,9 @@ namespace swiftness
         return blocPlateforms;
     }
 
-    std::vector<swiftness::PlateformEntity> LevelGenerator::generateBorder(int index,std::vector<swiftness::PlateformEntity> invisiblePlateforms)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateBorder(std::vector<swiftness::PlateformEntity> invisiblePlateforms)
     {
-    
+
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(LayerName::Border);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(LayerName::Border);
         gf::Vector2f mapSize = m_levelData.getMapSize();
@@ -186,7 +181,7 @@ namespace swiftness
 
         if (layer)
         {
-            int platformIndex = index;
+
             for (int y = 0; y < mapSize.height; y++)
             {
                 for (int x = 0; x < mapSize.width; x++)
@@ -227,8 +222,6 @@ namespace swiftness
                                 cells[ix + iy * mapSize.width].gid = 0;
                             }
                         }
-
-                        platformIndex++;
                     }
                 }
             }
@@ -236,14 +229,14 @@ namespace swiftness
         return invisiblePlateforms;
     }
 
-    std::vector<swiftness::PlateformEntity> LevelGenerator::generateGravitySwitchs(int index,std::vector<swiftness::PlateformEntity> gravitySwitchs)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateGravitySwitchs(std::vector<swiftness::PlateformEntity> gravitySwitchs)
     {
         std::vector<std::unique_ptr<gf::TmxObject>> objects = m_levelData.getLayersEntity().getObjectsOfaLayer(LayerName::gravity_switch);
 
-        int platformIndex = index;
         for (const auto &objPtr : objects)
         {
-            if (objPtr->visible) {
+            if (objPtr->visible)
+            {
                 gf::TmxRectangle *rect = static_cast<gf::TmxRectangle *>(objPtr.get());
                 if (objPtr)
                 {
@@ -271,19 +264,16 @@ namespace swiftness
                     position.y += height / 2;
                     PlateformEntity plateform(position, height, width, color);
                     gravitySwitchs.push_back(plateform);
-                    platformIndex++;
                 }
             }
         }
         return gravitySwitchs;
-
     }
 
-    std::vector<swiftness::PlateformEntity> LevelGenerator::generateGravityWalls(int index,std::vector<swiftness::PlateformEntity> gravityWalls)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateGravityWalls(std::vector<swiftness::PlateformEntity> gravityWalls)
     {
         std::vector<std::unique_ptr<gf::TmxObject>> objects = m_levelData.getLayersEntity().getObjectsOfaLayer(LayerName::gravity_walls);
 
-        int platformIndex = index;
         for (const auto &objPtr : objects)
         {
             gf::TmxRectangle *rect = static_cast<gf::TmxRectangle *>(objPtr.get());
@@ -292,19 +282,19 @@ namespace swiftness
                 gf::Color4f color;
                 if (objPtr.get()->type == "down")
                 {
-                    color = gf::Color::fromRgb(100,100,10);
+                    color = gf::Color::fromRgb(100, 100, 10);
                 }
                 else if (objPtr.get()->type == "up")
                 {
-                    color = gf::Color::fromRgb(100,100,20);
+                    color = gf::Color::fromRgb(100, 100, 20);
                 }
                 else if (objPtr.get()->type == "left")
                 {
-                    color = gf::Color::fromRgb(100,100,30);
+                    color = gf::Color::fromRgb(100, 100, 30);
                 }
                 else if (objPtr.get()->type == "right")
                 {
-                    color = gf::Color::fromRgb(100,100,40);
+                    color = gf::Color::fromRgb(100, 100, 40);
                 }
                 int width = rect->size.width;
                 int height = rect->size.height;
@@ -313,13 +303,13 @@ namespace swiftness
                 position.y += height / 2;
                 PlateformEntity plateform(position, height, width, color);
                 gravityWalls.push_back(plateform);
-                platformIndex++;
             }
         }
         return gravityWalls;
     }
 
-    std::vector<swiftness::PlateformEntity> LevelGenerator::generateExit(int index, std::vector<swiftness::PlateformEntity> exit) {
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generateExit(std::vector<swiftness::PlateformEntity> exit)
+    {
         gf::Vector2f position = m_levelData.getExit();
         int width = m_levelData.getTileSize().width;
         int height = m_levelData.getTileSize().height;
@@ -327,6 +317,59 @@ namespace swiftness
         PlateformEntity plateform(position, height, width, gf::Color::Black);
         exit.push_back(plateform);
         return exit;
+    }
+
+    std::vector<swiftness::PlateformEntity> LevelGenerator::initializePlateforms() 
+    {
+        std::vector<swiftness::PlateformEntity> plateform;
+        plateform = generateVerticalPlateform(LayerName::Collision_v,plateform);
+        std::cout << swiftness::BOLD << "Vertical plateform\t[GENERATED]" << std::endl;
+        
+
+        // Ajout des plateformes horizontales
+        plateform = generateHorizontalPlateform(LayerName::Collision_h,plateform);
+        std::cout << "Horizontal plateform\t[GENERATED]" << std::endl;
+        
+
+        // Ajout des plateformes bloc
+        plateform = generateBlocPlateforms(LayerName::Collision_bloc,plateform);
+        std::cout << "Bloc plateform\t\t[GENERATED]" << std::endl;
+        
+        // Ajout des plateformes tueuses !!
+
+        // Ajout des plateformes verticales
+        plateform = generateVerticalPlateform(LayerName::Wall_of_death_v,plateform);
+        std::cout << "Vertical death\t\t[GENERATED]" << std::endl;
+        
+
+        // Ajout des plateformes horizontales
+        plateform = generateHorizontalPlateform(LayerName::Wall_of_death_h,plateform);
+        std::cout << "Horizontal death\t[GENERATED]" << std::endl;
+        
+
+        // Ajout des plateformes bloc
+        plateform = generateBlocPlateforms(LayerName::Wall_of_death_bloc,plateform);
+        std::cout << "Bloc death\t\t[GENERATED]" << std::endl;
+        
+
+        // Ajout des gravity switch
+        plateform = generateGravitySwitchs(plateform);
+        std::cout << "Gravity switch\t\t[GENERATED]" << std::endl;
+        
+
+        // ajout des murs invisible
+        plateform = generateBorder(plateform);
+        std::cout << "Border\t\t\t[GENERATED]" << std::endl;
+
+        // Ajout des gravity walls
+        plateform = generateGravityWalls(plateform);
+        std::cout << "Gravity wall\t\t[GENERATED]" << std::endl;
+
+        // Ajout de la sortie
+        plateform = generateExit(plateform);
+        std::cout << "Exit\t\t\t[GENERATED]" << swiftness::NC << std::endl;
+
+        return plateform;
     }
 
 } // namespace swiftness

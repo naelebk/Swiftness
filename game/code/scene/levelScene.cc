@@ -14,10 +14,9 @@ namespace swiftness {
     , game(game)
     , m_custom(custom)
     , m_levelNumber(level)
-    // , m_levelData("custom/custom0" + std::to_string(m_levelNumber) + ".tmx")
-    // , m_levelData("level0" + std::to_string(m_levelNumber) + ".tmx")
-    , m_levelData((custom ? "custom/custom0" : "level0") + std::to_string(m_levelNumber) + ".tmx")
-    , m_level()
+    // , m_level.getLevelData()("custom/custom0" + std::to_string(m_levelNumber) + ".tmx")
+    // , m_level.getLevelData()("level0" + std::to_string(m_levelNumber) + ".tmx")
+    , m_level((custom ? "custom/custom0" : "level0") + std::to_string(m_levelNumber) + ".tmx")
     , up("up")
     , down("down")
     , left("left")
@@ -28,18 +27,17 @@ namespace swiftness {
     , leftJump("leftJump")
     , rightJump("rightJump")
     , Pause("pause")
-    , map_width(m_levelData.getMapSize().x)
-    , map_height(m_levelData.getMapSize().y)
-    , tile_width(m_levelData.getTileSize().x)
-    , tile_height(m_levelData.getTileSize().y)
-    , xcamera(m_level.square.getPosition().x)
-    , ycamera(m_level.square.getPosition().y)
+    , map_width(m_level.getLevelData().getMapSize().x)
+    , map_height(m_level.getLevelData().getMapSize().y)
+    , tile_width(m_level.getLevelData().getTileSize().x)
+    , tile_height(m_level.getLevelData().getTileSize().y)
+    , xcamera(m_level.getSquareEntity().getPosition().x)
+    , ycamera(m_level.getSquareEntity().getPosition().y)
     , konami(0)
     , konami2(0)
     , canFly(false)
     , commandsChange(false)
      {
-        m_level = LevelInitializer::initializeLevel((custom ? "custom/custom0" : "level0") + std::to_string(m_levelNumber) + ".tmx");
         gf::Gamepad::initialize();
 
         up.setContinuous();
@@ -126,10 +124,10 @@ namespace swiftness {
             lvl = "level" + std::to_string(t_level) + ".tmx";
             std::cout << GREEN << "Level -> " << std::to_string(t_level) << NC << std::endl;
         }
-        swiftness::LevelInitializer::level leveln = LevelInitializer::initializeLevel(lvl);
-        m_level.square.copyFrom(leveln.square);
-        m_level.plateform = leveln.plateform;
-        m_level.square.setPlateforms(m_level.plateform);
+        
+        
+        
+        m_level.getSquareEntity().setPlateforms(m_level.getPlateforms());
     }
 
     void levelScene::customLoadLevel(int t_level) {
@@ -146,10 +144,7 @@ namespace swiftness {
             std::cout << GREEN << "Level -> " << std::to_string(t_level) << NC << std::endl;
         }
         
-        swiftness::LevelInitializer::level leveln = LevelInitializer::initializeLevel(lvl);
-        m_level.square.copyFrom(leveln.square);
-        m_level.plateform = leveln.plateform;
-        m_level.square.setPlateforms(m_level.plateform);
+        m_level.getSquareEntity().setPlateforms(m_level.getPlateforms());
     }
 
     void levelScene::doHandleActions(gf::Window& window) {
@@ -161,27 +156,27 @@ namespace swiftness {
         }
         if (!commandsChange) {
             if(up.isActive()) {
-                m_level.square.actionUp();
+                m_level.getSquareEntity().actionUp();
             } else {
-                m_level.square.actionUpRelease();
+                m_level.getSquareEntity().actionUpRelease();
             }
             if(down.isActive()){
-                m_level.square.actionDown();
+                m_level.getSquareEntity().actionDown();
             } else {
-                m_level.square.actionDownRelease();
+                m_level.getSquareEntity().actionDownRelease();
             }
             if(left.isActive()){
-                m_level.square.actionLeft();
+                m_level.getSquareEntity().actionLeft();
             } else {
-                m_level.square.actionLeftRelease();
+                m_level.getSquareEntity().actionLeftRelease();
             }
             if (right.isActive()) {
-                m_level.square.actionRight();
+                m_level.getSquareEntity().actionRight();
             } else {
-                m_level.square.actionRightRelease();
+                m_level.getSquareEntity().actionRightRelease();
             }
             if (upJump.isActive()) {
-                m_level.square.actionUpJump();
+                m_level.getSquareEntity().actionUpJump();
                 if (konami == 0) {
                     konami++;
                 } else if (konami == 1) {
@@ -203,7 +198,7 @@ namespace swiftness {
                 }
             }
             if (leftJump.isActive()) {
-                m_level.square.actionLeftJump();
+                m_level.getSquareEntity().actionLeftJump();
                 if (konami == 4) {
                     konami++;
                 } else if (konami == 6) {
@@ -213,7 +208,7 @@ namespace swiftness {
                 }
             }
             if (rightJump.isActive()) {
-                m_level.square.actionRightJump();
+                m_level.getSquareEntity().actionRightJump();
                 if (konami == 5) {
                     konami++;
                 } else if (konami == 7) {
@@ -223,7 +218,7 @@ namespace swiftness {
                 }
             }
             if (jump.isActive()) {
-                m_level.square.actionJump();
+                m_level.getSquareEntity().actionJump();
                 if (konami == 8) {
                     konami++;
                 } else if (konami == 9) {
@@ -233,13 +228,13 @@ namespace swiftness {
                 }
             }
         } else {
-            up.isActive() ? m_level.square.actionDown() : m_level.square.actionDownRelease();
-            right.isActive() ? m_level.square.actionUp() : m_level.square.actionUpRelease();
-            down.isActive() ? m_level.square.actionLeft() : m_level.square.actionLeftRelease();
-            left.isActive() ? m_level.square.actionRight() : m_level.square.actionRightRelease();
+            up.isActive() ? m_level.getSquareEntity().actionDown() : m_level.getSquareEntity().actionDownRelease();
+            right.isActive() ? m_level.getSquareEntity().actionUp() : m_level.getSquareEntity().actionUpRelease();
+            down.isActive() ? m_level.getSquareEntity().actionLeft() : m_level.getSquareEntity().actionLeftRelease();
+            left.isActive() ? m_level.getSquareEntity().actionRight() : m_level.getSquareEntity().actionRightRelease();
         }
         if (konami == 10) {
-            m_level.square.setIsFlying(true);
+            m_level.getSquareEntity().setIsFlying(true);
             canFly = true;
             commandsChange = true; 
             konami = -1;
@@ -253,25 +248,25 @@ namespace swiftness {
         target.clear(gf::Color::fromRgb(0.2, 0.2, 0.2));
         target.setView(cam);
         swiftness::LevelRender renderLevel;
-        renderLevel.renderLevel(game.resources, m_levelData, target, m_level.square.getGravity());
+        renderLevel.renderLevel(game.resources, m_level.getLevelData(), target, m_level.getSquareEntity().getGravity());
         // std::cout << "level name : " << (m_custom ? "custom0" : "level0") + std::to_string(m_levelNumber) + ".tmx" << std::endl; 
-        m_level.square.render(target, states);
-        m_level.square.renderHUD(target, SCREEN_WIDTH, SCREEN_HEIGHT, m_camera);
+        m_level.getSquareEntity().render(target, states);
+        m_level.getSquareEntity().renderHUD(target, SCREEN_WIDTH, SCREEN_HEIGHT, m_camera);
     }
 
     void levelScene::doUpdate(gf::Time time) {
-        m_level.square.update(time);
-        if (m_level.square.getLevelOver()) {
+        m_level.getSquareEntity().update(time);
+        if (m_level.getSquareEntity().getLevelOver()) {
             game.levelTheme.stop();
             game.mainTheme.play();
             game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
         }
-        map_width=m_levelData.getMapSize().x;
-        map_height=m_levelData.getMapSize().y;
-        tile_width=m_levelData.getTileSize().x;
-        tile_height=m_levelData.getTileSize().y;
-        xcamera=m_level.square.getPosition().x;
-        ycamera=m_level.square.getPosition().y;
+        map_width=m_level.getLevelData().getMapSize().x;
+        map_height=m_level.getLevelData().getMapSize().y;
+        tile_width=m_level.getLevelData().getTileSize().x;
+        tile_height=m_level.getLevelData().getTileSize().y;
+        xcamera=m_level.getSquareEntity().getPosition().x;
+        ycamera=m_level.getSquareEntity().getPosition().y;
         xcamera=gf::clamp(xcamera,SCREEN_WIDTH/2+tile_width,map_width*tile_width-SCREEN_WIDTH/2-tile_width);
         ycamera=gf::clamp(ycamera,SCREEN_HEIGHT/2+tile_height,map_height*tile_height-SCREEN_HEIGHT/2-tile_height);
         m_camera = {xcamera, ycamera};

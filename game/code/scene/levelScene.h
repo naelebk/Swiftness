@@ -31,7 +31,7 @@
 #include "../constants.h"
 #include "../entity/plateformEntity.h"
 #include "../entity/squareEntity.h"
-#include "../tmx/levelInitializer.h"
+#include "../tmx/levelGenerator.h"
 #include "../tmx/levelRender.h"
 #include "pauseScene.h"
 namespace swiftness {
@@ -48,8 +48,8 @@ namespace swiftness {
             // Getter du niveau
             int getLevel();
 
-            swiftness::Square& getSquare() { return m_level.square; };
-            std::vector<swiftness::PlateformEntity> getPlateforms() { return m_level.plateform; };
+            swiftness::Square& getSquare() { return m_level.getSquareEntity(); };
+            std::vector<swiftness::PlateformEntity> getPlateforms() { return m_level.getPlateforms(); };
 
             // Update the scene with the menu
             void updateLevel(int s_level);
@@ -75,8 +75,7 @@ namespace swiftness {
             gf::Action jump;
             gf::Action Pause;
             int m_levelNumber;
-            swiftness::LevelData m_levelData;
-            swiftness::LevelInitializer::level m_level;
+            swiftness::LevelGenerator m_level;
             gf::Vector2f m_camera;
             float map_width, map_height, tile_width, tile_height, xcamera, ycamera;
             int konami, konami2;

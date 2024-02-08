@@ -1,6 +1,5 @@
 #include "entity/squareEntity.h"
 #include "entity/plateformEntity.h"
-#include "tmx/levelInitializer.h"
 #include "constants.h"
 #include "scene/levelScene.h"
 #include "tmx/levelRender.h"
