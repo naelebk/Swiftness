@@ -1,0 +1,27 @@
+Entity : Herite de gf/Entity
+
+plateformEntity
+SquareEntity
+
+---
+
+Scene :
+
+---
+
+TMX : gestion des fichiers .tmx
+
+LayerData	T	LevelData
+			|
+			|
+			v
+		LevelGenerator
+
+[ LevelRender ]
+
+---
+
+audioManager 	-> gère les 2 musique du jeux
+constants		-> les constants du jeux (les chemins, les constants de gravité, ...)
+gameCenter		-> gestion de toutes les scenes
+main			-> main program

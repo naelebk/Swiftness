@@ -1,3 +1,0 @@
-vector2i (#include <gf/Vector.h> | gf::vector2i) : un vecteur prenant 2 int pour x et y
-
-
