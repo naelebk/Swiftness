@@ -34,6 +34,8 @@ namespace swiftness
          */
         static std::vector<swiftness::PlateformEntity> initializePlateforms(std::string nameFile);
 
+        LevelGenerator levelGen;
+
     public:
         struct level
         {
