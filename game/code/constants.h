@@ -29,7 +29,7 @@ namespace swiftness
     // const gf::Texture& SKIN_TEXTURE(TEXTURE_SKIN_PATH);
 
     // Audio
-    const std::string MAIN_THEME = "../../ressources/music/MainTheme.wav";
+    const std::string MAIN_THEME = "../../ressources/music/MainTheme.ogg";
     const std::string LEVEL_THEME = "../../ressources/music/LevelTheme.wav";
     const std::string JUMP_SOUND = "../../ressources/sounds/jump.wav";
     const std::string NOTIF_SOUND = "../../ressources/sounds/notif.wav";
