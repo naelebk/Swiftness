@@ -2,34 +2,32 @@
 
 namespace swiftness
 {
-    Square::Square(gf::ResourceManager& resources, gf::Vector2f position, float size, gf::Color4f color, float gravity)
+    Square::Square(gf::ResourceManager &resources, gf::Vector2f position, float size, gf::Color4f color, float gravity)
         : m_resources(resources), m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection("down"), m_walljump(0.0f), m_isFlying(false), m_faceDirection(false), m_rotation(0)
     {
     }
 
-    void Square::copyFrom(const Square& other) {
-        m_position = other.m_position;
-        m_position_start = other.m_position_start;
-        m_velocity = other.m_velocity;
-        m_size = other.m_size;
-        m_color = other.m_color;
-        gravity = other.gravity;
-        m_jump = other.m_jump;
-        nb_jumps = other.nb_jumps;
-        m_gravity = other.m_gravity;
-        horizontal_g = other.horizontal_g;
-        goLeft = other.goLeft;
-        goRight = other.goRight;
-        goUp = other.goUp;
-        goDown = other.goDown;
-        isOver = other.isOver;
-        nb_deaths = other.nb_deaths;
-        timer = other.timer;
-        m_gravityDirection = other.m_gravityDirection;
-        m_walljump = other.m_walljump;
+    void Square::reset(gf::Vector2f entrance)
+    {
+        m_position = entrance;
+        m_position_start = entrance;
+        m_velocity = gf::Vector2f(0, 0);
+        m_jump = false;
+        nb_jumps = 0;
+        m_gravity = 1;
+        horizontal_g = false;
+        goLeft = false;
+        goRight = false;
+        goUp = false;
+        goDown = false;
+        isOver = false;
+        nb_deaths = 0;
+        timer = 0.0f;
+        m_gravityDirection = "down";
+        m_walljump = 0.0f;
         m_isFlying = false;
-        m_faceDirection = other.m_faceDirection;
-        m_rotation = other.m_rotation;
+        m_faceDirection = false;
+        m_rotation = 0;
     }
 
     gf::Vector2f Square::getPosition() const
@@ -42,19 +40,23 @@ namespace swiftness
         m_velocity = velocity;
     }
 
-    void Square::setIsFlying(bool isFlying) {
-        m_isFlying=isFlying; 
-        m_velocity.x=0;
-        m_velocity.y=0;
+    void Square::setIsFlying(bool isFlying)
+    {
+        m_isFlying = isFlying;
+        m_velocity.x = 0;
+        m_velocity.y = 0;
     }
 
     void Square::actionUp()
     {
-        if (horizontal_g) {
-            if (m_gravityDirection == "right") {
+        if (horizontal_g)
+        {
+            if (m_gravityDirection == "right")
+            {
                 m_faceDirection = false;
             }
-            else {
+            else
+            {
                 m_faceDirection = true;
             }
         }
@@ -114,11 +116,14 @@ namespace swiftness
     }
     void Square::actionDown()
     {
-        if (horizontal_g) {
-            if (m_gravityDirection == "right") {
+        if (horizontal_g)
+        {
+            if (m_gravityDirection == "right")
+            {
                 m_faceDirection = true;
             }
-            else {
+            else
+            {
                 m_faceDirection = false;
             }
         }
@@ -139,11 +144,14 @@ namespace swiftness
     }
     void Square::actionLeft()
     {
-        if (!horizontal_g) {
-            if (m_gravityDirection == "down") {
+        if (!horizontal_g)
+        {
+            if (m_gravityDirection == "down")
+            {
                 m_faceDirection = true;
             }
-            else {
+            else
+            {
                 m_faceDirection = false;
             }
         }
@@ -217,11 +225,14 @@ namespace swiftness
     }
     void Square::actionRight()
     {
-        if (!horizontal_g) {
-            if (m_gravityDirection == "down") {
+        if (!horizontal_g)
+        {
+            if (m_gravityDirection == "down")
+            {
                 m_faceDirection = false;
             }
-            else {
+            else
+            {
                 m_faceDirection = true;
             }
         }
@@ -497,7 +508,7 @@ namespace swiftness
         // Vérifiez les collisions avec la plateforme
         for (auto &plateform : m_plateforms)
         {
-            collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(), plateform.getColor(), walljumpLeft, walljumpRight, wallJumpDown, walljumpUp,dt);
+            collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(), plateform.getColor(), walljumpLeft, walljumpRight, wallJumpDown, walljumpUp, dt);
         }
     }
 
@@ -752,7 +763,7 @@ namespace swiftness
         return false;
     }
 
-    void Square::render(gf::RenderTarget &target, const gf::RenderStates& states)
+    void Square::render(gf::RenderTarget &target, const gf::RenderStates &states)
     {
         gf::RectangleShape shape({m_size, m_size});
         shape.setPosition(m_position);
@@ -761,15 +772,16 @@ namespace swiftness
         {
             shape.setScale({-1.0f, 1.0f});
         }
-        else  if (m_faceDirection && horizontal_g)
+        else if (m_faceDirection && horizontal_g)
         {
             shape.setScale({-1.0f, 1.0f});
         }
-        else {
+        else
+        {
             shape.setScale({1.0f, 1.0f});
         }
         // shape.setColor(m_color);
-        gf::Texture& texture = m_resources.getTexture(TEXTURE_SKIN_PATH);
+        gf::Texture &texture = m_resources.getTexture(TEXTURE_SKIN_PATH);
         shape.setTexture(texture);
         shape.setAnchor(gf::Anchor::Center);
         target.draw(shape);
@@ -789,7 +801,7 @@ namespace swiftness
     }
 
     // empeche le carré de traverser une plateforme
-    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength, gf::Color4f color, bool wallLeft, bool wallRight, bool wallDown, bool wallUp,float dt)
+    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength, gf::Color4f color, bool wallLeft, bool wallRight, bool wallDown, bool wallUp, float dt)
     {
         // Supposons que la classe Square ait des membres m_position (position centrale du carré),
         // m_size (longueur d'un côté du carré), et m_velocity (vecteur de mouvement du carré)
@@ -833,17 +845,21 @@ namespace swiftness
         float speedX = dt * m_velocity.x;
         float speedY = dt * m_velocity.y;
 
-        if(speedX<0 && squareLeft+speedX>plateformLeft){
-            plateformLeft+=speedX*2;
+        if (speedX < 0 && squareLeft + speedX > plateformLeft)
+        {
+            plateformLeft += speedX * 2;
         }
-        if(speedX>0 && squareRight-speedX<plateformRight){
-            plateformRight+=speedX*2;
+        if (speedX > 0 && squareRight - speedX < plateformRight)
+        {
+            plateformRight += speedX * 2;
         }
-        if(speedY>0 && squareBottom-speedY<plateformBottom){
-            plateformBottom+=speedY*2;
+        if (speedY > 0 && squareBottom - speedY < plateformBottom)
+        {
+            plateformBottom += speedY * 2;
         }
-        if(speedY<0 && squareTop-speedY>plateformTop){
-            plateformTop+=speedY*2;
+        if (speedY < 0 && squareTop - speedY > plateformTop)
+        {
+            plateformTop += speedY * 2;
         }
 
         // Vérifiez la collision
@@ -861,7 +877,7 @@ namespace swiftness
                 m_rotation = 0;
                 nb_deaths += 1;
                 m_gravityDirection = "down";
-                horizontal_g=false;
+                horizontal_g = false;
                 return;
             }
             // close the game

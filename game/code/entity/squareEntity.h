@@ -44,7 +44,11 @@ namespace swiftness
          */
         Square(gf::ResourceManager& resources, gf::Vector2f position, float size, gf::Color4f color, float gravity);
 
-        void copyFrom(const Square& other);
+        /**
+         * @brief Reset les paramètres du carré
+        */
+        void reset(gf::Vector2f position);
+        
 
         /**
          * @brief Récupère la position du carré

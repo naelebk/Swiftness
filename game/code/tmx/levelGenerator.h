@@ -43,6 +43,11 @@ namespace swiftness
         std::string getNameFile() { return m_nameFile; };
 
         /**
+         * @brief reset the level
+        */
+        void resetLevel();
+
+        /**
          * @brief generate the vertical plateform
          *
          * @return std::map<int, StaticPlateform> the vertical plateform

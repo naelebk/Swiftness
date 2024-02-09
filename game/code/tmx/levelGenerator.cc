@@ -10,6 +10,13 @@ namespace swiftness
         std::cout << swiftness::YELLOW << "LevelGenerator for " << nameFile << "\t\t[LOADED]\n" << swiftness::NC << std::endl;
     }
 
+    void LevelGenerator::resetLevel()
+    {
+        if (m_squareEntity.getLevelOver() == true) {
+            m_squareEntity.reset(m_levelData.getEntrance());
+        }
+    }
+
     std::vector<swiftness::PlateformEntity> LevelGenerator::generateVerticalPlateform(LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms)
     {
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
