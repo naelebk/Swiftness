@@ -28,7 +28,7 @@ namespace swiftness
         {
             if (i >= 1 && i < MAX_LEVEL + 1)
             {
-                levels_b.emplace_back("Level " + std::to_string(i), font, 60);
+                levels_b.emplace_back(std::to_string(i), font, 60);
             }
             else if (i == 0)
             {
@@ -199,20 +199,20 @@ namespace swiftness
 
     void SelectLevel::doRender(gf::RenderTarget &target, const gf::RenderStates &states)
     {
-        float size = 0.025f, space = 0.03f;
+        float size = 0.025f, size2 = size/4, space = 0.03f;
         gf::Vector2f bg_size(0.55f, 0.1f);
         target.setView(getHudView());
         gf::Coordinates coords(target);
         float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
         int r_size = coords.getRelativeCharacterSize(size);
-        float ne = 0.0f;
-        for (int i = 0; i < MAX_LEVEL + 2; ++i)
+        float ne = 0.0f, ne2 = 0.025f;
+        for (int i = 0; i < MAX_LEVEL + 2; ++i) 
         {
-            ne = 0.05f + (size + space + 0.03f) * i;
+            ne = 0.05f + (size-0.01f + space + 0.03f) * i;
             levels_b[i].setCharacterSize(r_size);
             levels_b[i].setPosition(coords.getRelativePoint({0.275f, ne}));
             levels_b[i].setParagraphWidth(width);
-            levels_b[i].setPadding(padding);
+            levels_b[i].setPadding(padding-0.05f);
         }
         widgets.render(target, states);
     }
