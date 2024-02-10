@@ -1,0 +1,39 @@
++-----------------------------------------+
+| Gestion des textures et des fichier tmx |
++-----------------------------------------+
+
+prérequis : parler du jeu hag qui nous à servit de base pour la conception de notre jeu
+
+
+
+
+  - L'idée derrière cette conception à été de pouvoir crée à partir d'un fichier externe (no code) l'entièreté d'un niveau avec tous ces éléments
+
+  - on avait pensé à faire un fichier texte ou chaque symbole représenterais un élément distinct de notre niveau mais notre choix c'est porté sur les fichier .tmx
+
+  - l'avantage de ces fichier, c'est qu'avec le logiciel Tiled, on à pu visualiser le résultat finale attendu avec les texture (des fichier de tileset crée à partir d'image .png)
+
+  - Tiled nous a aussi permit de faire une configuration poussé de la structure de notre niveau en ajoutant des layers de tuile et d'objet
+
+  - pour crée un niveau, on à séparer chaque élément dans différente layers, par exemple les murs normaux était ajouter au layers collision et les murs qui nous tue était dans wall_of_death
+
+  - pour les élément se référent à la gravité, on à utiliser les layers objet pour crée des objet avec un élément class de la taille souhaité. la classe à ensuite servit à orienté l'objet dans le jeux (par exemple, la classe up faisait des bouton qui changeait la gravité vers le haut et des porte qui s'ouvrait avec ce changement de gravité)
+
+  - GF offre de parser un fichier tmx en tileLayers. grace à ça on à pu exploité toute nos layer
+
+  - une fois que le niveau était crée sur tiled (et donc qu'un .tmx était crée avec les bons tileset), on à construit 4 classes
+
+    * layerData : pour charger le fichier tmx et récupérer au choix une tileLayer ou une objectLayer grace au nom de celle-ci
+    * levelData : les data du niveau (nom, layerData, entrée, sortie, centre du niveau)
+    * levelGenerator : pour crée le niveau à partir du fichier .tmx
+    * levelRender : pour afficher le niveau avec les texture
+
+  - on à crée des fonction qui lisait l'encodage csv des tileLayer pour construire des plateforme
+  - on à crée des fonction qui utilisait les taille des objet (width et height) pour construire des plateforme bouton
+  - l'entrée et la sortie du niveau était défini en fonction de la layer IO et de 2 texture spécifique, en se servant de leur place dans la map csv de la layer, on à pu construire la plateforme de fin et configurer les coordonné d'apparition du cube
+
+  - enfin dans layerRender, on appelle des fonction de gf qui permette d'afficher les texture d'un fichier .tmx
+
+  - le niveau est chargé une fois au démarage de l'application et ensuite, on se sert exclusivement des scene et d'une fonction de reset dans levelGenerator ce qui permet de ne pas recharger une .tmx plusieur fois en jeu
+
+  - les texture du carré sont gérer à part directement dans sa classe en appelant la fonction getTexture du ressourcesManager de GF
