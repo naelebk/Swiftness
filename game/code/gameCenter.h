@@ -11,7 +11,7 @@
 #include "scene/selectLevelScene.h"
 #include "scene/selectCustomLevelScene.h"
 #include "scene/startScene.h"
-#include "scene/pauseScene.h"
+//#include "scene/pauseScene.h"
 #include "scene/creditScene.h"
 #include "constants.h"
 #include "entity/squareEntity.h"
@@ -30,7 +30,7 @@ namespace swiftness {
         Menu menu;
         CreditScene credits;
         StartScene start;
-        pauseScene s_pause;
+        //pauseScene s_pause;
         gf::Font& font;
         AudioManager audioManager;
         sf::Music& mainTheme;

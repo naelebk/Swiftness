@@ -75,6 +75,7 @@ namespace swiftness {
             gf::Action jump;
             gf::Action Pause;
             int m_levelNumber;
+            pauseScene s_pause;
             swiftness::LevelGenerator m_level;
             gf::Vector2f m_camera;
             float map_width, map_height, tile_width, tile_height, xcamera, ycamera;

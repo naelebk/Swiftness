@@ -2,10 +2,11 @@
 #include "../gameCenter.h"
 
 namespace swiftness {
-    pauseScene::pauseScene(GameCenter& game, gf::Font& font) :
+    pauseScene::pauseScene(GameCenter& game, gf::Font& font, LevelGenerator& level) :
     gf::Scene(gf::Vector2i(WINDOW_WIDTH, WINDOW_HEIGHT)),
     game(game),
     font(font),
+    m_level(level),
     up("Up"),
     background(game.resources.getTexture("command.png")),
     down("Down"),
@@ -44,6 +45,8 @@ namespace swiftness {
         };
 
         createButtons(quit_b, [&] () {
+            m_level.getSquareEntity().setIsFlying(false);
+            m_level.resetLevel();
             game.levelTheme.stop();
             game.mainTheme.play();
             game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));

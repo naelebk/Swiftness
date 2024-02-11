@@ -14,7 +14,7 @@ namespace swiftness
           // , m_level.getLevelData()("custom/custom_" + std::to_string(m_levelNumber) + ".tmx")
           // , m_level.getLevelData()("level_" + std::to_string(m_levelNumber) + ".tmx")
           ,
-          m_level(game.resources, (custom ? "custom/custom_" : "level_") + std::to_string(m_levelNumber) + ".tmx"), up("up"), down("down"), left("left"), right("right"), jump("jump"), upJump("upJump"), downJump("downJump"), leftJump("leftJump"), rightJump("rightJump"), Pause("pause"), map_width(m_level.getLevelData().getMapSize().x), map_height(m_level.getLevelData().getMapSize().y), tile_width(m_level.getLevelData().getTileSize().x), tile_height(m_level.getLevelData().getTileSize().y), xcamera(m_level.getSquareEntity().getPosition().x), ycamera(m_level.getSquareEntity().getPosition().y), konami(0), konami2(0), canFly(false), commandsChange(false)
+          m_level(game.resources, (custom ? "custom/custom_" : "level_") + std::to_string(m_levelNumber) + ".tmx"), up("up"), down("down"), left("left"), right("right"), jump("jump"), upJump("upJump"), downJump("downJump"), leftJump("leftJump"), rightJump("rightJump"), Pause("pause"), map_width(m_level.getLevelData().getMapSize().x), map_height(m_level.getLevelData().getMapSize().y), tile_width(m_level.getLevelData().getTileSize().x), tile_height(m_level.getLevelData().getTileSize().y), xcamera(m_level.getSquareEntity().getPosition().x), ycamera(m_level.getSquareEntity().getPosition().y), konami(0), konami2(0), canFly(false), commandsChange(false), s_pause(game, m_font, m_level)
     {
         gf::Gamepad::initialize();
 
@@ -122,7 +122,7 @@ namespace swiftness
         if (Pause.isActive())
         {
             isPaused() ? resume() : pause();
-            game.pushScene(game.s_pause);
+            game.pushScene(s_pause);
             return;
         }
         if (!commandsChange)

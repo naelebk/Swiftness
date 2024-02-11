@@ -10,7 +10,7 @@ namespace swiftness {
     , credits(*this, font)
     , level(*this, font)
     , custom(*this, font)
-    , s_pause(*this, font) 
+    /*, s_pause(*this, font)*/ 
     , audioManager()
     , mainTheme(audioManager.getMainTheme())
     , levelTheme(audioManager.getLevelTheme())

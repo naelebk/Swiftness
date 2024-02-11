@@ -32,12 +32,13 @@
 #include <gf/Coordinates.h>
 #include <cstdlib>
 #include <gf/Sprite.h>
+#include "../tmx/levelGenerator.h"
 
 namespace swiftness {
     struct GameCenter;
     class pauseScene : public gf::Scene {
         public:
-            pauseScene(GameCenter& game, gf::Font& font);
+            pauseScene(GameCenter& game, gf::Font& font, LevelGenerator& level);
             ~pauseScene();
 
             // Méthodes virtuelles privées héritant directement de gf::Scene
@@ -57,6 +58,7 @@ namespace swiftness {
             gf::Texture& background;
             gf::WidgetContainer widgets;
             gf::ZoomBlurSegueEffect trans;
+            swiftness::LevelGenerator& m_level;
     };
 }
 
