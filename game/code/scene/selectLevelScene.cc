@@ -24,21 +24,13 @@ namespace swiftness
                                                                  level09(game, font, 9, false),
                                                                  level10(game, font, 10, false)
     {
-        for (int i = 0; i < MAX_LEVEL + 2; ++i)
+        levels_b.emplace_back("Tutorial", font, 60);
+        for (int i = 1; i < MAX_LEVEL; ++i)
         {
-            if (i >= 1 && i < MAX_LEVEL + 1)
-            {
-                levels_b.emplace_back(std::to_string(i), font, 60);
-            }
-            else if (i == 0)
-            {
-                levels_b.emplace_back("Tutorial", font, 60);
-            }
-            else
-            {
-                levels_b.emplace_back("Main Menu", font, 60);
-            }
+            levels_b.emplace_back("0" + std::to_string(i), font, 60);
         }
+        levels_b.emplace_back("10", font, 60);
+        levels_b.emplace_back("Main Menu", font, 60);
         setClearColor(gf::Color::Black);
 
         quit.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::B);
@@ -61,7 +53,7 @@ namespace swiftness
         trigger.addMouseButtonControl(gf::MouseButton::Left);
         addAction(trigger);
 
-        auto createButtons = [&](gf::TextButtonWidget &button, auto callback)
+        auto createButtons = [&](gf::TextButtonWidget &button, auto callback, float padding, gf::Vector2f pos)
         {
             button.setDefaultTextColor(gf::Color::Black);
             button.setDefaultBackgroundColor(gf::Color::Gray(0.7f));
@@ -69,22 +61,19 @@ namespace swiftness
             button.setSelectedBackgroundColor(gf::Color::Green);
             button.setDisabledTextColor(gf::Color::Black);
             button.setDisabledBackgroundColor(gf::Color::Red);
-            button.setAnchor(gf::Anchor::TopLeft);
-            button.setAlignment(gf::Alignment::Center);
+            button.setAnchor(gf::Anchor::Center);
+            button.setPosition(pos); // pour la position du bouton
+            button.setPadding(padding); // pour la taille du bouton
             button.setCallback(callback);
             widgets.addWidget(button);
         };
-        createButtons(levels_b[MAX_LEVEL + 1], [&]()
-                      { game.replaceAllScenes(game.menu, trans, gf::milliseconds(500)); });
+
+        auto calculateXPos = [&](int i, int max)
+        {
+            return 550.0f + (i - 1) * 500.0f / (max - 1);
+        };
+
         level00.loadLevel(0);
-
-        createButtons(levels_b[0], [&]()
-                      {
-                          game.mainTheme.stop();
-                          game.levelTheme.play();
-                          game.replaceAllScenes(level00, pixel, gf::milliseconds(500));
-                      });
-
         level01.loadLevel(1);
         level02.loadLevel(2);
         level03.loadLevel(3);
@@ -95,66 +84,111 @@ namespace swiftness
         level08.loadLevel(8);
         level09.loadLevel(9);
         level10.loadLevel(10);
+        float verticalPadding = 50.0f;
+        float buttonHeight = 150.0f;
+        float totalContentHeight = buttonHeight * 3 + verticalPadding * 2;
+        float startHeight = (WINDOW_HEIGHT - totalContentHeight) / 2;
+        float yPos = startHeight + buttonHeight + verticalPadding;
 
-        createButtons(levels_b[1], [&]()
-                      {
+        // button tutorial
+        createButtons(
+            levels_b[0], [&]()
+            {
+                          game.mainTheme.stop();
+                          game.levelTheme.play();
+                          game.replaceAllScenes(level00, pixel, gf::milliseconds(500)); },
+            5.0f, {800.0f, startHeight});
+
+        // button level 1 to 5
+        createButtons(
+            levels_b[1], [&]()
+            {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level01, pixel, gf::milliseconds(500)); });
+            game.replaceAllScenes(level01, pixel, gf::milliseconds(500)); },
+            5.0f, {calculateXPos(1, 5), yPos});
 
-        createButtons(levels_b[2], [&]()
-                      {
+        createButtons(
+            levels_b[2], [&]()
+            {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level02, pixel, gf::milliseconds(500)); });
+            game.replaceAllScenes(level02, pixel, gf::milliseconds(500)); },
+            5.0f, {calculateXPos(2, 5), yPos});
 
-        createButtons(levels_b[3], [&]()
-                      {
+        createButtons(
+            levels_b[3], [&]()
+            {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level03, pixel, gf::milliseconds(500)); });
+            game.replaceAllScenes(level03, pixel, gf::milliseconds(500)); },
+            5.0f, {calculateXPos(3, 5), yPos});
 
-        createButtons(levels_b[4], [&]()
-                      {
+        createButtons(
+            levels_b[4], [&]()
+            {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level04, pixel, gf::milliseconds(500)); });
+            game.replaceAllScenes(level04, pixel, gf::milliseconds(500)); },
+            5.0f, {calculateXPos(4, 5), yPos});
 
-        createButtons(levels_b[5], [&]()
-                      {
+        createButtons(
+            levels_b[5], [&]()
+            {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level05, pixel, gf::milliseconds(500)); });
+            game.replaceAllScenes(level05, pixel, gf::milliseconds(500)); },
+            5.0f, {calculateXPos(5, 5), yPos});
 
-        createButtons(levels_b[6], [&]()
-                      {
+        // button level 6 to 10
+        yPos += buttonHeight + verticalPadding;
+        createButtons(
+            levels_b[6], [&]()
+            {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level06, pixel, gf::milliseconds(500)); });
+            game.replaceAllScenes(level06, pixel, gf::milliseconds(500)); },
+            5.0f, {calculateXPos(1, 5), yPos});
 
-        createButtons(levels_b[7], [&]()
-                      {
+        createButtons(
+            levels_b[7], [&]()
+            {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level07, pixel, gf::milliseconds(500)); });
+            game.replaceAllScenes(level07, pixel, gf::milliseconds(500)); },
+            5.0f, {calculateXPos(2, 5), yPos});
 
-        createButtons(levels_b[8], [&]()
-                      {
+        createButtons(
+            levels_b[8], [&]()
+            {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level08, pixel, gf::milliseconds(500)); });
+            game.replaceAllScenes(level08, pixel, gf::milliseconds(500)); },
+            5.0f, {calculateXPos(3, 5), yPos});
 
-        createButtons(levels_b[9], [&]()
-                      {
+        createButtons(
+            levels_b[9], [&]()
+            {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level09, pixel, gf::milliseconds(500)); });
+            game.replaceAllScenes(level09, pixel, gf::milliseconds(500)); },
+            5.0f, {calculateXPos(4, 5), yPos});
 
-        createButtons(levels_b[10], [&]()
-                      {
+        createButtons(
+            levels_b[10], [&]()
+            {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level10, pixel, gf::milliseconds(500)); });
+            game.replaceAllScenes(level10, pixel, gf::milliseconds(500)); },
+            5.0f, {calculateXPos(5, 5), yPos});
+
+        yPos += buttonHeight + verticalPadding;
+        
+        // button main menu
+        createButtons(
+            levels_b[MAX_LEVEL + 1], [&]()
+            { game.replaceAllScenes(game.menu, trans, gf::milliseconds(500)); },
+            5.0f, {800.0f, yPos});
     }
 
     SelectLevel::~SelectLevel() {}
@@ -199,21 +233,13 @@ namespace swiftness
 
     void SelectLevel::doRender(gf::RenderTarget &target, const gf::RenderStates &states)
     {
-        float size = 0.025f, size2 = size/4, space = 0.03f;
+        float size = 0.025f, size2 = size / 4, space = 0.03f;
         gf::Vector2f bg_size(0.55f, 0.1f);
         target.setView(getHudView());
         gf::Coordinates coords(target);
         float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
         int r_size = coords.getRelativeCharacterSize(size);
         float ne = 0.0f, ne2 = 0.025f;
-        for (int i = 0; i < MAX_LEVEL + 2; ++i) 
-        {
-            ne = 0.05f + (size-0.01f + space + 0.03f) * i;
-            levels_b[i].setCharacterSize(r_size);
-            levels_b[i].setPosition(coords.getRelativePoint({0.275f, ne}));
-            levels_b[i].setParagraphWidth(width);
-            levels_b[i].setPadding(padding-0.05f);
-        }
         widgets.render(target, states);
     }
     void SelectLevel::doShow()
