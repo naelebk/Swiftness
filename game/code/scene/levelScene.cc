@@ -78,6 +78,8 @@ namespace swiftness
         jump.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
         jump.addKeycodeKeyControl(gf::Keycode::Space);
         addAction(jump);
+
+        m_level.resetLevel();
     }
 
     int levelScene::getLevel() { return m_levelNumber; }

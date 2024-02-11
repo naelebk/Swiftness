@@ -12,9 +12,7 @@ namespace swiftness
 
     void LevelGenerator::resetLevel()
     {
-        if (m_squareEntity.getLevelOver() == true) {
-            m_squareEntity.reset(m_levelData.getEntrance());
-        }
+        m_squareEntity.reset(m_levelData.getEntrance());
     }
 
     std::vector<swiftness::PlateformEntity> LevelGenerator::generateVerticalPlateform(LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms)
