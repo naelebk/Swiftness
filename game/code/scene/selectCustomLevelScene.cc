@@ -73,6 +73,11 @@ namespace swiftness {
         float totalContentHeight = buttonHeight * 3 + verticalPadding * 2;
         float startHeight = (WINDOW_HEIGHT - totalContentHeight) / 2;
         float yPos = startHeight + buttonHeight + verticalPadding;
+        level01.customLoadLevel(1);
+        level02.customLoadLevel(2);
+        level03.customLoadLevel(3);
+        level04.customLoadLevel(4);
+        level05.customLoadLevel(5);
 
         yPos += buttonHeight + verticalPadding;
 
