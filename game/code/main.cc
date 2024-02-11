@@ -1,4 +1,4 @@
-#include "entity/squareEntity.h"
+#include "entity/heroEntity.h"
 #include "entity/plateformEntity.h"
 #include "constants.h"
 #include "scene/levelScene.h"
