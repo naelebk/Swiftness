@@ -28,7 +28,7 @@
 #include <vector>
 #include "../constants.h"
 #include "../entity/plateformEntity.h"
-#include "../entity/squareEntity.h"
+#include "../entity/heroEntity.h"
 #include "levelScene.h"
 
 namespace swiftness {

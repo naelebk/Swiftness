@@ -14,7 +14,7 @@
 //#include "scene/pauseScene.h"
 #include "scene/creditScene.h"
 #include "constants.h"
-#include "entity/squareEntity.h"
+#include "entity/heroEntity.h"
 #include "entity/plateformEntity.h"
 #include "audioManager.h"
 #include <vector>

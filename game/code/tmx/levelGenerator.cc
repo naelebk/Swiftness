@@ -4,7 +4,7 @@ namespace swiftness
 {
 
     LevelGenerator::LevelGenerator(gf::ResourceManager& resources, std::string nameFile)
-        : m_nameFile(nameFile), m_levelData(nameFile), m_squareEntity(resources, m_levelData.getEntrance(), SQUARE_SIZE, gf::Color::Red, GRAVITY), m_plateforms()
+        : m_nameFile(nameFile), m_levelData(nameFile), m_squareEntity(resources, m_levelData.getEntrance(), gf::Color::Red, GRAVITY), m_plateforms()
     {
         m_plateforms = initializePlateforms();
         std::cout << swiftness::YELLOW << "LevelGenerator for " << nameFile << "\t\t[LOADED]\n" << swiftness::NC << std::endl;

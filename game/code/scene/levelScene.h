@@ -30,7 +30,7 @@
 #include <vector>
 #include "../constants.h"
 #include "../entity/plateformEntity.h"
-#include "../entity/squareEntity.h"
+#include "../entity/heroEntity.h"
 #include "../tmx/levelGenerator.h"
 #include "../tmx/levelRender.h"
 #include "pauseScene.h"
@@ -48,7 +48,7 @@ namespace swiftness {
             // Getter du niveau
             int getLevel();
 
-            swiftness::Square& getSquare() { return m_level.getSquareEntity(); };
+            swiftness::Hero& getSquare() { return m_level.getSquareEntity(); };
             std::vector<swiftness::PlateformEntity> getPlateforms() { return m_level.getPlateforms(); };
 
             // Update the scene with the menu

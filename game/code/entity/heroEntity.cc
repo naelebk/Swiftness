@@ -1,13 +1,15 @@
-#include "squareEntity.h"
+#include "heroEntity.h"
 
 namespace swiftness
 {
-    Square::Square(gf::ResourceManager &resources, gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_resources(resources), m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection(DOWN), m_walljump(0.0f), m_isFlying(false), m_faceDirection(false), m_rotation(0)
+    Hero::Hero(gf::ResourceManager &resources, gf::Vector2f position, gf::Color4f color, float gravity)
+        : m_resources(resources), m_position(position), m_position_start(position), m_velocity(0, 0), m_size(), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection(DOWN), m_walljump(0.0f), m_isFlying(false), m_faceDirection(false), m_rotation(0)
     {
+        setSize();
+        std::cout << "Square size : " << m_size.width << " " << m_size.height << std::endl;
     }
 
-    void Square::reset(gf::Vector2f entrance)
+    void Hero::reset(gf::Vector2f entrance)
     {
         m_position = entrance;
         m_position_start = entrance;
@@ -30,24 +32,35 @@ namespace swiftness
         m_rotation = 0;
     }
 
-    gf::Vector2f Square::getPosition() const
+    gf::Vector2f Hero::getPosition() const
     {
         return m_position;
     }
 
-    void Square::setVelocity(gf::Vector2f velocity)
+    void Hero::setVelocity(gf::Vector2f velocity)
     {
         m_velocity = velocity;
     }
 
-    void Square::setIsFlying(bool isFlying)
+    void Hero::setSize() {
+        gf::Vector2i size = m_resources.getTexture(TEXTURE_SKIN_PATH).getSize();
+        if (size.width > size.height) {
+            m_size = gf::Vector2i(SQUARE_SIZE+7, SQUARE_SIZE);
+        } else if (size.width < size.height) {
+            m_size = gf::Vector2i(SQUARE_SIZE, SQUARE_SIZE+7);
+        } else {
+            m_size = gf::Vector2i(SQUARE_SIZE, SQUARE_SIZE);
+        }
+    }
+
+    void Hero::setIsFlying(bool isFlying)
     {
         m_isFlying = isFlying;
         m_velocity.x = 0;
         m_velocity.y = 0;
     }
 
-    void Square::actionUp()
+    void Hero::actionUp()
     {
         if (horizontal_g)
         {
@@ -67,7 +80,7 @@ namespace swiftness
         }
     }
 
-    void Square::actionUpJump()
+    void Hero::actionUpJump()
     {
         if (!horizontal_g && !m_isFlying)
         {
@@ -103,7 +116,7 @@ namespace swiftness
         }
     }
 
-    void Square::actionUpRelease()
+    void Hero::actionUpRelease()
     {
         if ((m_isFlying || horizontal_g) && goUp)
         {
@@ -114,7 +127,7 @@ namespace swiftness
         }
         goUp = false;
     }
-    void Square::actionDown()
+    void Hero::actionDown()
     {
         if (horizontal_g)
         {
@@ -131,7 +144,7 @@ namespace swiftness
         if (m_isFlying || (horizontal_g && m_velocity.y > -SPEED_SQUARE && m_walljump == 0.0f))
             m_velocity.y = SPEED_SQUARE;
     }
-    void Square::actionDownRelease()
+    void Hero::actionDownRelease()
     {
         if ((m_isFlying || horizontal_g) && goDown)
         {
@@ -142,7 +155,7 @@ namespace swiftness
         }
         goDown = false;
     }
-    void Square::actionLeft()
+    void Hero::actionLeft()
     {
         if (!horizontal_g)
         {
@@ -162,13 +175,13 @@ namespace swiftness
         }
     }
 
-    void Square::squareReset()
+    void Hero::squareReset()
     {
         m_velocity.x = 0;
         m_velocity.y = 0;
     }
 
-    void Square::actionLeftJump()
+    void Hero::actionLeftJump()
     {
         if (horizontal_g && !m_isFlying)
         {
@@ -212,7 +225,7 @@ namespace swiftness
             }
         }
     }
-    void Square::actionLeftRelease()
+    void Hero::actionLeftRelease()
     {
         if ((m_isFlying || !horizontal_g) && goLeft)
         {
@@ -223,7 +236,7 @@ namespace swiftness
         }
         goLeft = false;
     }
-    void Square::actionRight()
+    void Hero::actionRight()
     {
         if (!horizontal_g)
         {
@@ -243,7 +256,7 @@ namespace swiftness
         }
     }
 
-    void Square::actionRightJump()
+    void Hero::actionRightJump()
     {
         if (horizontal_g && !m_isFlying)
         {
@@ -287,7 +300,7 @@ namespace swiftness
             }
         }
     }
-    void Square::actionRightRelease()
+    void Hero::actionRightRelease()
     {
         if ((m_isFlying || !horizontal_g) && goRight)
         {
@@ -298,7 +311,7 @@ namespace swiftness
         }
         goRight = false;
     }
-    void Square::actionJump()
+    void Hero::actionJump()
     {
         if (m_isFlying)
         {
@@ -424,7 +437,7 @@ namespace swiftness
         }
     }
 
-    void Square::update(gf::Time time)
+    void Hero::update(gf::Time time)
     {
         float dt = time.asSeconds();
         bool walljumpRight = canWallJumpRight();
@@ -512,13 +525,13 @@ namespace swiftness
         }
     }
 
-    bool Square::isPlateform(PlateformEntity plateform)
+    bool Hero::isPlateform(PlateformEntity plateform)
     {
         auto color = plateform.getColor();
         return color != gf::Color::Yellow && color != gf::Color::Orange && color != gf::Color::Rose && color != gf::Color::Green && color != gf::Color::Black && color != gf::Color::Cyan && !(color == gf::Color::fromRgb(100, 100, 10) && m_gravityDirection == DOWN) && !(color == gf::Color::fromRgb(100, 100, 20) && m_gravityDirection == UP) && !(color == gf::Color::fromRgb(100, 100, 30) && m_gravityDirection == LEFT) && !(color == gf::Color::fromRgb(100, 100, 40) && m_gravityDirection == RIGHT);
     }
 
-    bool Square::canJump()
+    bool Hero::canJump()
     {
         for (auto &plateform : m_plateforms)
         {
@@ -527,10 +540,10 @@ namespace swiftness
                 gf::Vector2f plateformPosition = plateform.getPosition();
                 float plateformHeight = plateform.getHeight();
                 float plateformLength = plateform.getLength();
-                float squareLeft = m_position.x - m_size / 2;
-                float squareRight = m_position.x + m_size / 2;
-                float squareTop = m_position.y - m_size / 2 - 1;
-                float squareBottom = m_position.y + m_size / 2 + 1;
+                float squareLeft = m_position.x - m_size.width / 2;
+                float squareRight = m_position.x + m_size.width / 2;
+                float squareTop = m_position.y - m_size.height / 2 - 1;
+                float squareBottom = m_position.y + m_size.height / 2 + 1;
 
                 // Calculez les limites de la plateforme en utilisant sa position centrale
                 float plateformLeft = plateformPosition.x - plateformLength / 2;
@@ -571,7 +584,7 @@ namespace swiftness
         return false;
     }
 
-    bool Square::canWallJumpRight()
+    bool Hero::canWallJumpRight()
     {
         for (auto &plateform : m_plateforms)
         {
@@ -580,10 +593,10 @@ namespace swiftness
                 gf::Vector2f plateformPosition = plateform.getPosition();
                 float plateformHeight = plateform.getHeight();
                 float plateformLength = plateform.getLength();
-                float squareLeft = m_position.x - m_size / 2;
-                float squareRight = m_position.x + m_size / 2 + 1;
-                float squareTop = m_position.y - m_size / 2;
-                float squareBottom = m_position.y + m_size / 2;
+                float squareLeft = m_position.x - m_size.width / 2;
+                float squareRight = m_position.x + m_size.width / 2 + 1;
+                float squareTop = m_position.y - m_size.height / 2;
+                float squareBottom = m_position.y + m_size.height / 2;
 
                 // Calculez les limites de la plateforme en utilisant sa position centrale
                 float plateformLeft = plateformPosition.x - plateformLength / 2;
@@ -619,7 +632,7 @@ namespace swiftness
         return false;
     }
 
-    bool Square::canWallJumpLeft()
+    bool Hero::canWallJumpLeft()
     {
         for (auto &plateform : m_plateforms)
         {
@@ -628,10 +641,10 @@ namespace swiftness
                 gf::Vector2f plateformPosition = plateform.getPosition();
                 float plateformHeight = plateform.getHeight();
                 float plateformLength = plateform.getLength();
-                float squareLeft = m_position.x - m_size / 2 - 1;
-                float squareRight = m_position.x + m_size / 2;
-                float squareTop = m_position.y - m_size / 2;
-                float squareBottom = m_position.y + m_size / 2;
+                float squareLeft = m_position.x - m_size.width / 2 - 1;
+                float squareRight = m_position.x + m_size.width / 2;
+                float squareTop = m_position.y - m_size.height / 2;
+                float squareBottom = m_position.y + m_size.height / 2;
 
                 // Calculez les limites de la plateforme en utilisant sa position centrale
                 float plateformLeft = plateformPosition.x - plateformLength / 2;
@@ -667,7 +680,7 @@ namespace swiftness
         return false;
     }
 
-    bool Square::canWallJumpUp()
+    bool Hero::canWallJumpUp()
     {
         for (auto &plateform : m_plateforms)
         {
@@ -676,10 +689,10 @@ namespace swiftness
                 gf::Vector2f plateformPosition = plateform.getPosition();
                 float plateformHeight = plateform.getHeight();
                 float plateformLength = plateform.getLength();
-                float squareLeft = m_position.x - m_size / 2;
-                float squareRight = m_position.x + m_size / 2;
-                float squareTop = m_position.y - m_size / 2 - 1;
-                float squareBottom = m_position.y + m_size / 2;
+                float squareLeft = m_position.x - m_size.width / 2;
+                float squareRight = m_position.x + m_size.width / 2;
+                float squareTop = m_position.y - m_size.height / 2 - 1;
+                float squareBottom = m_position.y + m_size.height / 2;
 
                 // Calculez les limites de la plateforme en utilisant sa position centrale
                 float plateformLeft = plateformPosition.x - plateformLength / 2;
@@ -715,7 +728,7 @@ namespace swiftness
         return false;
     }
 
-    bool Square::canWallJumpDown()
+    bool Hero::canWallJumpDown()
     {
         for (auto &plateform : m_plateforms)
         {
@@ -724,10 +737,10 @@ namespace swiftness
                 gf::Vector2f plateformPosition = plateform.getPosition();
                 float plateformHeight = plateform.getHeight();
                 float plateformLength = plateform.getLength();
-                float squareLeft = m_position.x - m_size / 2;
-                float squareRight = m_position.x + m_size / 2;
-                float squareTop = m_position.y - m_size / 2;
-                float squareBottom = m_position.y + m_size / 2 + 1;
+                float squareLeft = m_position.x - m_size.width / 2;
+                float squareRight = m_position.x + m_size.width / 2;
+                float squareTop = m_position.y - m_size.height / 2;
+                float squareBottom = m_position.y + m_size.height / 2 + 1;
 
                 // Calculez les limites de la plateforme en utilisant sa position centrale
                 float plateformLeft = plateformPosition.x - plateformLength / 2;
@@ -763,9 +776,9 @@ namespace swiftness
         return false;
     }
 
-    void Square::render(gf::RenderTarget &target, const gf::RenderStates &states)
+    void Hero::render(gf::RenderTarget &target, const gf::RenderStates &states)
     {
-        gf::RectangleShape shape({m_size, m_size});
+        gf::RectangleShape shape({(float)(m_size.width), (float)(m_size.height)});
         shape.setPosition(m_position);
         shape.setRotation(m_rotation);
         if (m_faceDirection && !horizontal_g)
@@ -787,7 +800,7 @@ namespace swiftness
         target.draw(shape);
     }
 
-    void Square::renderHUD(gf::RenderTarget &target, float width, float height, gf::Vector2f pos)
+    void Hero::renderHUD(gf::RenderTarget &target, float width, float height, gf::Vector2f pos)
     {
         gf::Font font(PATH_FONT);
         gf::Text deathText;
@@ -801,15 +814,15 @@ namespace swiftness
     }
 
     // empeche le carré de traverser une plateforme
-    void Square::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength, gf::Color4f color, bool wallLeft, bool wallRight, bool wallDown, bool wallUp, float dt)
+    void Hero::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength, gf::Color4f color, bool wallLeft, bool wallRight, bool wallDown, bool wallUp, float dt)
     {
         // Supposons que la classe Square ait des membres m_position (position centrale du carré),
         // m_size (longueur d'un côté du carré), et m_velocity (vecteur de mouvement du carré)
         // Calculez les limites du carré en utilisant sa position centrale
-        float squareLeft = m_position.x - m_size / 2;
-        float squareRight = m_position.x + m_size / 2;
-        float squareTop = m_position.y - m_size / 2;
-        float squareBottom = m_position.y + m_size / 2;
+        float squareLeft = m_position.x - m_size.width / 2;
+        float squareRight = m_position.x + m_size.width / 2;
+        float squareTop = m_position.y - m_size.height / 2;
+        float squareBottom = m_position.y + m_size.height / 2;
 
         if (color == gf::Color::Yellow)
         {

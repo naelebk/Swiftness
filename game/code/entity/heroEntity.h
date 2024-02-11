@@ -27,13 +27,13 @@
 
 namespace swiftness
 {
-    class Square : public gf::Entity
+    class Hero : public gf::Entity
     {
     public:
         /**
          * default constructor
         */
-        Square() = default;
+        Hero() = default;
         
         /**
          * @brief Construct a new Square object
@@ -43,7 +43,7 @@ namespace swiftness
          * @param color
          * @param gravity
          */
-        Square(gf::ResourceManager& resources, gf::Vector2f position, float size, gf::Color4f color, float gravity);
+        Hero(gf::ResourceManager& resources, gf::Vector2f position, gf::Color4f color, float gravity);
 
         /**
          * @brief Reset les paramètres du carré
@@ -56,12 +56,21 @@ namespace swiftness
         */
         gf::Vector2f getPosition() const;
 
-        float getSize() const { return m_size; };
+        
+        /**
+         * @brief Récupère la taille du carré
+        */
+        gf::Vector2i getSize() const { return m_size; };
 
         /**
          * @brief Définit la vitesse du carré
         */
         void setVelocity(gf::Vector2f velocity);
+
+        /**
+         * @brief set the size of the square
+        */
+       void setSize();
 
         /**
          * @brief Met à jour la position du carré
@@ -131,7 +140,7 @@ namespace swiftness
         gf::ResourceManager& m_resources;
         gf::Vector2f m_position, m_position_start; // Centre du carré
         gf::Vector2f m_velocity;
-        float m_size;
+        gf::Vector2i m_size;
         gf::Color4f m_color;
         float gravity;
         GravityDirection m_gravityDirection;

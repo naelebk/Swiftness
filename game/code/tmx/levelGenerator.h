@@ -3,7 +3,7 @@
 #define LEVEL_GENERATOR_H
 
 #include "levelData.h"
-#include "../entity/squareEntity.h"
+#include "../entity/heroEntity.h"
 #include "../constants.h"
 #include <iostream>
 namespace swiftness
@@ -24,9 +24,9 @@ namespace swiftness
         /**
          * @brief Get the square of the level
          *
-         * @return Square the square of the level
+         * @return Hero the square of the level
          */
-        Square &getSquareEntity() { return m_squareEntity; };
+        Hero &getSquareEntity() { return m_squareEntity; };
 
         /**
          * @brief Get the plateforms of the level
@@ -115,7 +115,7 @@ namespace swiftness
     private:
         std::string m_nameFile;
         LevelData m_levelData;
-        Square m_squareEntity;
+        Hero m_squareEntity;
         std::vector<swiftness::PlateformEntity> m_plateforms;
     };
 

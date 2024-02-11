@@ -24,7 +24,7 @@ add_executable(swiftness
   ./code/tmx/levelData.cc
   ./code/tmx/levelGenerator.cc
   ./code/tmx/levelRender.cc
-  ./code/entity/squareEntity.cc
+  ./code/entity/heroEntity.cc
   ./code/entity/plateformEntity.cc
   ./code/main.cc
 )
