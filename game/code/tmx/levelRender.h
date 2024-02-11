@@ -4,6 +4,7 @@
 
 #include "levelData.h"
 #include "../constants.h"
+#include "../gravity.h"
 #include <gf/Vector.h>
 #include <gf/Drawable.h>
 #include <gf/Text.h>
@@ -25,7 +26,7 @@ namespace swiftness
              * @param window
              * @param layerName
              */
-            void renderLayer(gf::ResourceManager& resource, LevelData &levelData, gf::RenderTarget &target, LayerName layerName, std::string gravity);
+            void renderLayer(gf::ResourceManager& resource, LevelData &levelData, gf::RenderTarget &target, LayerName layerName, GravityDirection gravity);
 
             /**
              * @brief render a level
@@ -33,7 +34,7 @@ namespace swiftness
              * @param layerEntity
              * @param window
             */
-            void renderLevel(gf::ResourceManager& resource, swiftness::LevelData& layerData, gf::RenderTarget &target, std::string gravity);
+            void renderLevel(gf::ResourceManager& resource, swiftness::LevelData& layerData, gf::RenderTarget &target, GravityDirection gravity);
     };
 }; // namespace swiftness
 

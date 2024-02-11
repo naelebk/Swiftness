@@ -3,7 +3,7 @@
 namespace swiftness
 {
     Square::Square(gf::ResourceManager &resources, gf::Vector2f position, float size, gf::Color4f color, float gravity)
-        : m_resources(resources), m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection("down"), m_walljump(0.0f), m_isFlying(false), m_faceDirection(false), m_rotation(0)
+        : m_resources(resources), m_position(position), m_position_start(position), m_velocity(0, 0), m_size(size), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection(DOWN), m_walljump(0.0f), m_isFlying(false), m_faceDirection(false), m_rotation(0)
     {
     }
 
@@ -23,7 +23,7 @@ namespace swiftness
         isOver = false;
         nb_deaths = 0;
         timer = 0.0f;
-        m_gravityDirection = "down";
+        m_gravityDirection = DOWN;
         m_walljump = 0.0f;
         m_isFlying = false;
         m_faceDirection = false;
@@ -51,7 +51,7 @@ namespace swiftness
     {
         if (horizontal_g)
         {
-            if (m_gravityDirection == "right")
+            if (m_gravityDirection == RIGHT)
             {
                 m_faceDirection = false;
             }
@@ -118,7 +118,7 @@ namespace swiftness
     {
         if (horizontal_g)
         {
-            if (m_gravityDirection == "right")
+            if (m_gravityDirection == RIGHT)
             {
                 m_faceDirection = true;
             }
@@ -146,7 +146,7 @@ namespace swiftness
     {
         if (!horizontal_g)
         {
-            if (m_gravityDirection == "down")
+            if (m_gravityDirection == DOWN)
             {
                 m_faceDirection = true;
             }
@@ -227,7 +227,7 @@ namespace swiftness
     {
         if (!horizontal_g)
         {
-            if (m_gravityDirection == "down")
+            if (m_gravityDirection == DOWN)
             {
                 m_faceDirection = false;
             }
@@ -515,7 +515,7 @@ namespace swiftness
     bool Square::isPlateform(PlateformEntity plateform)
     {
         auto color = plateform.getColor();
-        return color != gf::Color::Yellow && color != gf::Color::Orange && color != gf::Color::Rose && color != gf::Color::Green && color != gf::Color::Black && color != gf::Color::Cyan && !(color == gf::Color::fromRgb(100, 100, 10) && m_gravityDirection == "down") && !(color == gf::Color::fromRgb(100, 100, 20) && m_gravityDirection == "up") && !(color == gf::Color::fromRgb(100, 100, 30) && m_gravityDirection == "left") && !(color == gf::Color::fromRgb(100, 100, 40) && m_gravityDirection == "right");
+        return color != gf::Color::Yellow && color != gf::Color::Orange && color != gf::Color::Rose && color != gf::Color::Green && color != gf::Color::Black && color != gf::Color::Cyan && !(color == gf::Color::fromRgb(100, 100, 10) && m_gravityDirection == DOWN) && !(color == gf::Color::fromRgb(100, 100, 20) && m_gravityDirection == UP) && !(color == gf::Color::fromRgb(100, 100, 30) && m_gravityDirection == LEFT) && !(color == gf::Color::fromRgb(100, 100, 40) && m_gravityDirection == RIGHT);
     }
 
     bool Square::canJump()
@@ -876,7 +876,7 @@ namespace swiftness
                 m_gravity = 1;
                 m_rotation = 0;
                 nb_deaths += 1;
-                m_gravityDirection = "down";
+                m_gravityDirection = DOWN;
                 horizontal_g = false;
                 return;
             }
@@ -891,7 +891,7 @@ namespace swiftness
             // gravity switch up
             else if (color == gf::Color::Cyan)
             {
-                m_gravityDirection = "up";
+                m_gravityDirection = UP;
                 m_rotation = gf::Pi;
                 m_gravity = -1;
                 if (horizontal_g)
@@ -910,7 +910,7 @@ namespace swiftness
             // gravity switch down
             else if (color == gf::Color::Rose)
             {
-                m_gravityDirection = "down";
+                m_gravityDirection = DOWN;
                 m_rotation = 0;
                 m_gravity = 1;
                 if (horizontal_g)
@@ -929,7 +929,7 @@ namespace swiftness
             // gravity switch left
             else if (color == gf::Color::Green)
             {
-                m_gravityDirection = "left";
+                m_gravityDirection = LEFT;
                 m_rotation = gf::Pi / 2;
                 m_gravity = -1;
                 if (!horizontal_g)
@@ -948,7 +948,7 @@ namespace swiftness
             // gravity switch right
             else if (color == gf::Color::Orange)
             {
-                m_gravityDirection = "right";
+                m_gravityDirection = RIGHT;
                 m_rotation = -gf::Pi / 2;
                 if (!horizontal_g)
                 {
@@ -966,26 +966,26 @@ namespace swiftness
             }
             // plateforme that can be passed through
             // wall down
-            else if (color == gf::Color::fromRgb(100, 100, 10) && m_gravityDirection == "down")
+            else if (color == gf::Color::fromRgb(100, 100, 10) && m_gravityDirection == DOWN)
             {
                 // si la gravité est vers le bas, la plateforme est intangible
                 return;
             }
             // wall up
-            else if (color == gf::Color::fromRgb(100, 100, 20) && m_gravityDirection == "up")
+            else if (color == gf::Color::fromRgb(100, 100, 20) && m_gravityDirection == UP)
             {
                 // si la gravité est vers le haut, la plateforme est intangible
                 return;
             }
 
             // wall left
-            else if (color == gf::Color::fromRgb(100, 100, 30) && m_gravityDirection == "left")
+            else if (color == gf::Color::fromRgb(100, 100, 30) && m_gravityDirection == LEFT)
             {
                 // si la gravité est vers la gauche, la plateforme est intangible
                 return;
             }
             // wall right
-            else if (color == gf::Color::fromRgb(100, 100, 40) && m_gravityDirection == "right")
+            else if (color == gf::Color::fromRgb(100, 100, 40) && m_gravityDirection == RIGHT)
             {
                 // si la gravité est vers la droite, la plateforme est intangible
                 return;

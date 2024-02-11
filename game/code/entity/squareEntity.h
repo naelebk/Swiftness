@@ -23,6 +23,7 @@
 #include <gf/Action.h>
 #include "plateformEntity.h"
 #include "../constants.h"
+#include "../gravity.h"
 
 namespace swiftness
 {
@@ -114,7 +115,7 @@ namespace swiftness
 
         float getTimer() { return timer; };
 
-        std::string getGravity() { return m_gravityDirection; };
+        GravityDirection getGravity() { return m_gravityDirection; };
 
         void setPlateforms(std::vector<swiftness::PlateformEntity> plateforms) { m_plateforms=plateforms;};
 
@@ -133,7 +134,7 @@ namespace swiftness
         float m_size;
         gf::Color4f m_color;
         float gravity;
-        std::string m_gravityDirection;
+        GravityDirection m_gravityDirection;
         bool m_jump;
         int nb_jumps;
         float m_walljump;
