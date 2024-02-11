@@ -276,6 +276,10 @@ namespace swiftness
         m_level.getSquareEntity().update(time);
         if (m_level.getSquareEntity().getLevelOver())
         {
+            m_level.getSquareEntity().setIsFlying(false);
+            canFly = false;
+            commandsChange = false;
+            konami = -1;
             game.levelTheme.stop();
             game.mainTheme.play();
             m_level.resetLevel();
