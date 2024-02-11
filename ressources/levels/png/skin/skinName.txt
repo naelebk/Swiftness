@@ -4,5 +4,4 @@ jake
 le_baguette
 kirbo
 meat_boy
-32X48
-48X32
+abed

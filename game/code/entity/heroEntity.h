@@ -154,6 +154,7 @@ namespace swiftness
         bool goUp;
         bool goDown;
         bool isOver;
+        bool wasHorizontal;
         int nb_deaths;
         float timer;
         std::vector<swiftness::PlateformEntity> m_plateforms;

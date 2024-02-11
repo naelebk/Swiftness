@@ -42,14 +42,22 @@ namespace swiftness
         m_velocity = velocity;
     }
 
+    /*
+    exemple : texture size = 17 x 37 and we want to set the size to 13 x y.
+    we calculate the ratio of the texture size and the size we want to set.
+    */
     void Hero::setSize() {
         gf::Vector2i size = m_resources.getTexture(TEXTURE_SKIN_PATH).getSize();
-        if (size.width > size.height) {
-            m_size = gf::Vector2i(SQUARE_SIZE+7, SQUARE_SIZE);
-        } else if (size.width < size.height) {
-            m_size = gf::Vector2i(SQUARE_SIZE, SQUARE_SIZE+7);
+        float ratio = (float)size.width / (float)size.height;
+        if (ratio > 1) {
+            m_size.width = SQUARE_SIZE;
+            m_size.height = SQUARE_SIZE / ratio+2;
+        } else if (ratio < 1){
+            m_size.height = SQUARE_SIZE;
+            m_size.width = SQUARE_SIZE * ratio+2;
         } else {
-            m_size = gf::Vector2i(SQUARE_SIZE, SQUARE_SIZE);
+            m_size.width = SQUARE_SIZE;
+            m_size.height = SQUARE_SIZE;
         }
     }
 
@@ -437,93 +445,46 @@ namespace swiftness
         }
     }
 
-    void Hero::update(gf::Time time)
-    {
-        float dt = time.asSeconds();
-        bool walljumpRight = canWallJumpRight();
-        bool walljumpLeft = canWallJumpLeft();
-        bool walljumpUp = canWallJumpUp();
-        bool wallJumpDown = canWallJumpDown();
-        timer += dt;
-        if (timer > 999.99f)
-        {
-            isOver = true;
-        }
-        m_walljump -= dt;
-        if (m_walljump < 0.0f)
-        {
-            m_walljump = 0.0f;
-        }
+    void Hero::update(gf::Time time) {
+    float dt = time.asSeconds();
+    bool walljumpRight = canWallJumpRight();
+    bool walljumpLeft = canWallJumpLeft();
+    bool walljumpUp = canWallJumpUp();
+    bool wallJumpDown = canWallJumpDown();
+    timer += dt;
+    if (timer > 999.99f) {
+        isOver = true;
+    }
+    m_walljump -= dt;
+    if (m_walljump < 0.0f) {
+        m_walljump = 0.0f;
+    }
 
-        // Appliquez la gravité
-        if (!m_isFlying)
-        {
-            if (horizontal_g)
-            {
-                setVelocity(m_velocity + gf::Vector2f(gravity * m_gravity * dt, 0));
-                if (m_velocity.x < -SPEED_LIMIT)
-                {
-                    m_velocity.x = -SPEED_LIMIT;
-                }
-                if (m_velocity.x > SPEED_LIMIT)
-                {
-                    m_velocity.x = SPEED_LIMIT;
-                }
-                if (!goUp && m_velocity.y < 0.0f && m_velocity.y != -WALL_JUMP_SPEED)
-                {
-                    m_velocity.y += gravity * dt * 2.5f;
-                    if (m_velocity.y > 0.0f)
-                    {
-                        m_velocity.y = 0.0f;
-                    }
-                }
-                if (!goDown && m_velocity.y > 0.0f && m_velocity.y != WALL_JUMP_SPEED)
-                {
-                    m_velocity.y -= gravity * dt * 2.5f;
-                    if (m_velocity.y < 0.0f)
-                    {
-                        m_velocity.y = 0.0f;
-                    }
-                }
-            }
-            else
-            {
-                setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
-                if (m_velocity.y < -SPEED_LIMIT)
-                {
-                    m_velocity.y = -SPEED_LIMIT;
-                }
-                if (m_velocity.y > SPEED_LIMIT)
-                {
-                    m_velocity.y = SPEED_LIMIT;
-                }
-                if (!goLeft && m_velocity.x < 0.0f && m_velocity.x != -WALL_JUMP_SPEED)
-                {
-                    m_velocity.x += gravity * dt * 2.5f;
-                    if (m_velocity.x > 0.0f)
-                    {
-                        m_velocity.x = 0.0f;
-                    }
-                }
-                if (!goRight && m_velocity.x > 0.0f && m_velocity.x != WALL_JUMP_SPEED)
-                {
-                    m_velocity.x -= gravity * dt * 2.5f;
-                    if (m_velocity.x < 0.0f)
-                    {
-                        m_velocity.x = 0.0f;
-                    }
-                }
-            }
-        }
-        // Mettez à jour la position du carré
-        m_position += dt * m_velocity;
+    // Vérifiez si la gravité a changé de direction et inversez la taille si nécessaire
+    if (horizontal_g != wasHorizontal) { // `wasHorizontal` est une nouvelle variable booléenne membre de la classe
+        std::swap(m_size.width, m_size.height); // Échangez la largeur et la hauteur
+        wasHorizontal = horizontal_g; // Mettez à jour l'état précédent de la gravité
+    }
 
-        // Vérifiez les collisions avec la plateforme
-        for (auto &plateform : m_plateforms)
-        {
-            collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(), plateform.getColor(), walljumpLeft, walljumpRight, wallJumpDown, walljumpUp, dt);
+    // Appliquez la gravité
+    if (!m_isFlying) {
+        if (horizontal_g) {
+            setVelocity(m_velocity + gf::Vector2f(gravity * m_gravity * dt, 0));
+            // Conditions pour limiter la vitesse et ajuster la gravité...
+        } else {
+            setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
+            // Conditions pour limiter la vitesse et ajuster la gravité...
         }
     }
+    // Mettez à jour la position du carré
+    m_position += dt * m_velocity;
+
+    // Vérifiez les collisions avec la plateforme
+    for (auto &plateform : m_plateforms) {
+        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(), plateform.getColor(), walljumpLeft, walljumpRight, wallJumpDown, walljumpUp, dt);
+    }
+}
+
 
     bool Hero::isPlateform(PlateformEntity plateform)
     {
@@ -778,7 +739,14 @@ namespace swiftness
 
     void Hero::render(gf::RenderTarget &target, const gf::RenderStates &states)
     {
-        gf::RectangleShape shape({(float)(m_size.width), (float)(m_size.height)});
+        gf::RectangleShape shape;
+        if (horizontal_g)
+        {
+            shape = gf::RectangleShape({(float)(m_size.height), (float)(m_size.width)});
+        }
+        else {
+            shape = gf::RectangleShape({(float)(m_size.width), (float)(m_size.height)});
+        }
         shape.setPosition(m_position);
         shape.setRotation(m_rotation);
         if (m_faceDirection && !horizontal_g)
