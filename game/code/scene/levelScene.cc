@@ -140,7 +140,6 @@ namespace swiftness
         if (Pause.isActive())
         {
             resetAllActions();
-            
             isPaused() ? resume() : pause();
             game.pushScene(s_pause);
             return;
