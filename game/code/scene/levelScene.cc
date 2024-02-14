@@ -119,14 +119,15 @@ namespace swiftness
 
     void levelScene::doHandleActions(gf::Window &window)
     {
-        if (!isActive())
-            pause();
         if (Pause.isActive())
         {
             isPaused() ? resume() : pause();
             game.pushScene(s_pause);
             return;
         }
+	if (isPaused()) {
+		return;
+	}
         if (!commandsChange)
         {
             if (up.isActive())

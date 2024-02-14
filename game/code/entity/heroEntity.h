@@ -31,11 +31,6 @@ namespace swiftness
     {
     public:
         /**
-         * default constructor
-        */
-        Hero() = default;
-        
-        /**
          * @brief Construct a new Square object
          *
          * @param position

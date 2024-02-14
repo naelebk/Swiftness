@@ -94,6 +94,7 @@ namespace swiftness
         createButtons(
             levels_b[0], [&]()
             {
+			  
                           game.mainTheme.stop();
                           game.levelTheme.play();
                           game.replaceAllScenes(level00, pixel, gf::milliseconds(500)); },
