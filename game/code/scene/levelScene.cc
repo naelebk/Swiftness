@@ -117,8 +117,26 @@ namespace swiftness
         m_level.getSquareEntity().setPlateforms(m_level.getPlateforms());
     }
 
+    void levelScene::resetAllActions() {
+        up.setInstantaneous();
+        up.reset();
+        right.setInstantaneous();
+        right.reset();
+        left.setInstantaneous();
+        left.reset();
+        down.setInstantaneous();
+        down.reset();
+    }
+
     void levelScene::doHandleActions(gf::Window &window)
     {
+        if (up.isInstantaneous() && left.isInstantaneous() && right.isInstantaneous() && down.isInstantaneous()) {
+            up.setContinuous();
+            down.setContinuous();
+            left.setContinuous();
+            right.setContinuous();
+        }
+        if (!isActive()) return;
         if (Pause.isActive())
         {
             isPaused() ? resume() : pause();
@@ -265,8 +283,7 @@ namespace swiftness
     void levelScene::doRender(gf::RenderTarget &target, const gf::RenderStates &states)
     {
         gf::ExtendView cam(m_camera, {SCREEN_WIDTH, SCREEN_HEIGHT});
-        isPaused() ? target.clear(gf::Color::Blue) : canFly &&commandsChange ? target.clear(gf::Color::Violet /*a*/)
-                                                                             : target.clear(gf::Color::fromRgb(0.2, 0.2, 0.2));
+        canFly &&commandsChange ? target.clear(gf::Color::Violet/*a*/) : target.clear(gf::Color::fromRgb(0.2, 0.2, 0.2));
         target.setView(cam);
         swiftness::LevelRender renderLevel;
         renderLevel.renderLevel(game.resources, m_level.getLevelData(), target, m_level.getSquareEntity().getGravity());
@@ -286,6 +303,7 @@ namespace swiftness
             game.levelTheme.stop();
             game.mainTheme.play();
             m_level.resetLevel();
+            resetAllActions();
             game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
         }
         map_width = m_level.getLevelData().getMapSize().x;

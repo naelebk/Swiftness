@@ -54,6 +54,8 @@ namespace swiftness {
             // Update the scene with the menu
             void updateLevel(int s_level);
 
+            void resetAllActions();
+
             // Cette seconde fonction permet, dans une fenêtre graphique ou non selon le premier booléen,
             // de charger les différents paramètres du jeu en fonction du level
             // Check de la valeur de level tout de même, car sinon c po drôle
