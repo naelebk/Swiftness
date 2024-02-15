@@ -470,7 +470,7 @@ namespace swiftness
     if (!m_isFlying) {
         if (horizontal_g) {
             setVelocity(m_velocity + gf::Vector2f(gravity * m_gravity * dt, 0));
-            if (!goUp && m_velocity.y < 0.0f && m_velocity.y != WALL_JUMP_SPEED) {
+            if (!goUp && m_velocity.y < 0.0f && m_velocity.y != -WALL_JUMP_SPEED) {
                 m_velocity.y += gravity * 2.5f * dt;
                 if (m_velocity.y > 0.0f) m_velocity.y = 0.0f;    
             }
@@ -481,7 +481,7 @@ namespace swiftness
             // Conditions pour limiter la vitesse et ajuster la gravité...
         } else {
             setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
-            if (!goLeft && m_velocity.x < 0.0f && m_velocity.x != WALL_JUMP_SPEED) {
+            if (!goLeft && m_velocity.x < 0.0f && m_velocity.x != -WALL_JUMP_SPEED) {
                 m_velocity.x += gravity * 2.5f * dt;
                 if (m_velocity.x > 0.0f) m_velocity.x = 0.0f;    
             }
