@@ -62,8 +62,7 @@ namespace swiftness
             button.setDisabledTextColor(gf::Color::Black);
             button.setDisabledBackgroundColor(gf::Color::Red);
             button.setAnchor(gf::Anchor::Center);
-            //button.setPosition(pos); // pour la position du bouton
-            button.setPadding(5.0f); // pour la taille du bouton
+            button.setPadding(5.0f);
             button.setCallback(callback);
             widgets.addWidget(button);
         };
@@ -237,33 +236,37 @@ namespace swiftness
 
     void SelectLevel::doRender(gf::RenderTarget &target, const gf::RenderStates &states)
     {
-        auto calculateXPos = [&](int i, int max)
-        {
-            return 550.0f + (i - 1) * 500.0f / (max - 1);
-        };
         float verticalPadding = 50.0f;
         float buttonHeight = 150.0f;
-        float totalContentHeight = buttonHeight * 3 + verticalPadding * 2;
-        float startHeight = (WINDOW_HEIGHT - totalContentHeight) / 2;
-        float yPos = startHeight + buttonHeight + verticalPadding;
-        float size = 0.025f, size2 = size / 4, space = 0.03f;
         gf::Vector2f bg_size(0.55f, 0.1f);
         target.setView(getHudView());
         gf::Coordinates coords(target);
-        levels_b[0].setPosition({800.0f, startHeight});
-        levels_b[1].setPosition({calculateXPos(1, 5), yPos});
-        levels_b[2].setPosition({calculateXPos(2, 5), yPos});
-        levels_b[3].setPosition({calculateXPos(3, 5), yPos});
-        levels_b[4].setPosition({calculateXPos(4, 5), yPos});
-        levels_b[5].setPosition({calculateXPos(5, 5), yPos});
-        yPos += buttonHeight + verticalPadding;
-        levels_b[6].setPosition({calculateXPos(1, 5), yPos});
-        levels_b[7].setPosition({calculateXPos(2, 5), yPos});
-        levels_b[8].setPosition({calculateXPos(3, 5), yPos});
-        levels_b[9].setPosition({calculateXPos(4, 5), yPos});
-        levels_b[10].setPosition({calculateXPos(5, 5), yPos});
-        yPos += buttonHeight + verticalPadding;
-        levels_b[MAX_LEVEL + 1].setPosition({800.0f, yPos});
+        auto calculateXPos = [&](int i, int max, gf::Coordinates coords)
+        {
+            return coords.getRelativePoint(bg_size - 0.375f).x + (i - 1) * coords.getRelativePoint(bg_size + 0.1f).x / (max - 1);
+        };
+        auto bigButton = [&](gf::Coordinates coords)
+        {
+            return coords.getRelativePoint(bg_size - 0.05f).x;
+        };
+        float totalContentHeight = buttonHeight * 3 + verticalPadding * 2;
+        float startHeight = (WINDOW_HEIGHT - totalContentHeight) / 2;
+        float yPos = coords.getRelativePoint(bg_size + 0.25f).y;
+        float size = 0.025f, size2 = size / 4, space = 0.03f;
+        levels_b[0].setPosition({bigButton(coords), coords.getRelativePoint(bg_size).y});
+        levels_b[1].setPosition({calculateXPos(1, 5, coords), yPos});
+        levels_b[2].setPosition({calculateXPos(2, 5, coords), yPos});
+        levels_b[3].setPosition({calculateXPos(3, 5, coords), yPos});
+        levels_b[4].setPosition({calculateXPos(4, 5, coords), yPos});
+        levels_b[5].setPosition({calculateXPos(5, 5, coords), yPos});
+        yPos = coords.getRelativePoint(bg_size + 0.5f).y;
+        levels_b[6].setPosition({calculateXPos(1, 5, coords), yPos});
+        levels_b[7].setPosition({calculateXPos(2, 5, coords), yPos});
+        levels_b[8].setPosition({calculateXPos(3, 5, coords), yPos});
+        levels_b[9].setPosition({calculateXPos(4, 5, coords), yPos});
+        levels_b[10].setPosition({calculateXPos(5, 5, coords), yPos});
+        yPos = coords.getRelativePoint(bg_size + 0.75f).y;
+        levels_b[MAX_LEVEL + 1].setPosition({bigButton(coords), yPos});
         widgets.render(target, states);
     }
     void SelectLevel::doShow()
