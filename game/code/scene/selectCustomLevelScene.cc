@@ -47,7 +47,7 @@ namespace swiftness {
         trigger.addMouseButtonControl(gf::MouseButton::Left);
         addAction(trigger);
 
-        auto createButtons = [&](gf::TextButtonWidget &button, auto callback, float padding, gf::Vector2f pos)
+        auto createButtons = [&](gf::TextButtonWidget &button, auto callback)
         {
             button.setDefaultTextColor(gf::Color::Black);
             button.setDefaultBackgroundColor(gf::Color::Gray(0.7f));
@@ -56,76 +56,70 @@ namespace swiftness {
             button.setDisabledTextColor(gf::Color::Black);
             button.setDisabledBackgroundColor(gf::Color::Red);
             button.setAnchor(gf::Anchor::Center);
-            button.setPosition(pos); // pour la position du bouton
-            button.setPadding(padding); // pour la taille du bouton
+            button.setPadding(5.0f);
             button.setCallback(callback);
             widgets.addWidget(button);
         };
 
-        auto calculateXPos = [&](int i, int max)
-        {
-            return 550.0f + (i - 1) * 500.0f / (max - 1);
-        };
-
-
-        float verticalPadding = 50.0f;
-        float buttonHeight = 150.0f;
-        float totalContentHeight = buttonHeight * 3 + verticalPadding * 2;
-        float startHeight = (WINDOW_HEIGHT - totalContentHeight) / 2;
-        float yPos = startHeight + buttonHeight + verticalPadding;
         level01.customLoadLevel(1);
         level02.customLoadLevel(2);
         level03.customLoadLevel(3);
         level04.customLoadLevel(4);
         level05.customLoadLevel(5);
 
-        yPos += buttonHeight + verticalPadding;
 
-        createButtons(levels_b[MAX_CUSTOM_LEVEL], [&] () { 
-            game.replaceAllScenes(game.menu, trans, gf::milliseconds(500)); },
-            5.0f, {800.0f, yPos});
+        createButtons(
+            levels_b[MAX_CUSTOM_LEVEL], [&]()
+            { game.replaceAllScenes(game.menu, trans, gf::milliseconds(500)); 
+            }
+        );
 
-        yPos -= buttonHeight + verticalPadding;    
 
         createButtons(
             levels_b[0], [&]()
             {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level01, pixel, gf::milliseconds(500)); },
-            5.0f, {calculateXPos(1, 5), yPos});
+            game.replaceAllScenes(level01, pixel, gf::milliseconds(500));
+            }
+        );
 
+        // button level 1 to 5
         createButtons(
             levels_b[1], [&]()
             {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level02, pixel, gf::milliseconds(500)); },
-            5.0f, {calculateXPos(2, 5), yPos});
+            game.replaceAllScenes(level02, pixel, gf::milliseconds(500)); 
+            }
+        );
 
         createButtons(
             levels_b[2], [&]()
             {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level03, pixel, gf::milliseconds(500)); },
-            5.0f, {calculateXPos(3, 5), yPos});
+            game.replaceAllScenes(level03, pixel, gf::milliseconds(500)); 
+            }
+        );
 
         createButtons(
             levels_b[3], [&]()
             {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level04, pixel, gf::milliseconds(500)); },
-            5.0f, {calculateXPos(4, 5), yPos});
+            game.replaceAllScenes(level04, pixel, gf::milliseconds(500)); 
+            }
+        );
 
         createButtons(
             levels_b[4], [&]()
             {
             game.mainTheme.stop();
             game.levelTheme.play();
-            game.replaceAllScenes(level05, pixel, gf::milliseconds(500)); },
-            5.0f, {calculateXPos(5, 5), yPos});    
+            game.replaceAllScenes(level05, pixel, gf::milliseconds(500)); 
+            }
+        );    
 
     }
 
@@ -150,16 +144,33 @@ namespace swiftness {
         }
     }
 
-    void SelectCustomLevel::doRender(gf::RenderTarget& target, const gf::RenderStates &states) {
-        float size = 0.035f, space = 0.04f;
-        gf::Vector2f bg_size (0.55f, 0.1f); 
+    void SelectCustomLevel::doRender(gf::RenderTarget &target, const gf::RenderStates &states)
+    {
+        float verticalPadding = 50.0f;
+        float buttonHeight = 150.0f;
+        gf::Vector2f bg_size(0.55f, 0.1f);
         target.setView(getHudView());
         gf::Coordinates coords(target);
-        float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
-        int r_size = coords.getRelativeCharacterSize(size);
-        float ne = 0.0f;       
+        auto calculateXPos = [&](int i, int max, gf::Coordinates coords)
+        {
+            return coords.getRelativePoint(bg_size - 0.375f).x + (i - 1) * coords.getRelativePoint(bg_size + 0.1f).x / (max - 1);
+        };
+        auto bigButton = [&](gf::Coordinates coords)
+        {
+            return coords.getRelativePoint(bg_size - 0.05f).x;
+        };
+        float totalContentHeight = buttonHeight * 3 + verticalPadding * 2;
+        float startHeight = (WINDOW_HEIGHT - totalContentHeight) / 2;
+        float yPos = coords.getRelativePoint(bg_size + 0.25f).y;
+        float size = 0.025f, size2 = size / 4, space = 0.03f;
+        levels_b[0].setPosition({calculateXPos(1, 5, coords), yPos});
+        levels_b[1].setPosition({calculateXPos(2, 5, coords), yPos});
+        levels_b[2].setPosition({calculateXPos(3, 5, coords), yPos});
+        levels_b[3].setPosition({calculateXPos(4, 5, coords), yPos});
+        levels_b[4].setPosition({calculateXPos(5, 5, coords), yPos});
+        yPos = coords.getRelativePoint(bg_size + 0.75f).y;
+        levels_b[MAX_CUSTOM_LEVEL].setPosition({bigButton(coords), yPos});
         widgets.render(target, states);
-
     }
     void SelectCustomLevel::doShow() {
         widgets.clear();
