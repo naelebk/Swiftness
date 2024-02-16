@@ -10,6 +10,8 @@ namespace swiftness
                                                                  game(game),
                                                                  up("Up"),
                                                                  down("Down"),
+                                                                 left("Left"),
+                                                                 right("Right"),
                                                                  trigger("Trigger"),
                                                                  quit("Quit"),
                                                                  level00(game, font, 0, false),
@@ -46,6 +48,16 @@ namespace swiftness
         down.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftY, gf::GamepadAxisDirection::Positive);
         down.addScancodeKeyControl(gf::Scancode::Down);
         addAction(down);
+
+        left.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadLeft);
+        left.addScancodeKeyControl(gf::Scancode::Left);
+        left.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Negative);
+        addAction(left);
+
+        right.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::DPadRight);
+        right.addScancodeKeyControl(gf::Scancode::Right);
+        right.addGamepadAxisControl(gf::AnyGamepad, gf::GamepadAxis::LeftX, gf::GamepadAxisDirection::Positive);
+        addAction(right);
 
         trigger.addGamepadButtonControl(gf::AnyGamepad, gf::GamepadButton::A);
         trigger.addScancodeKeyControl(gf::Scancode::Return);
@@ -207,9 +219,9 @@ namespace swiftness
     {
         if (!window.isOpen())
             return;
-        if (up.isActive())
+        if (up.isActive() || left.isActive())
             widgets.selectPreviousWidget();
-        if (down.isActive())
+        if (down.isActive() || right.isActive())
             widgets.selectNextWidget();
         if (trigger.isActive())
             widgets.triggerAction();
