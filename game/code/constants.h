@@ -22,11 +22,9 @@ namespace swiftness
     // Resources
     const std::string PATH_FONT = "../../ressources/font/KarmaFuture.ttf";
     const std::string LEVELS_TMX_PATH = "../../ressources/levels/maps/";
-    // const std::string TEXTURE_SKIN_PATH = "../../ressources/levels/png/skin/selected.png";
     const gf::Path TEXTURE_SKIN_PATH = gf::Path("../../ressources/levels/png/skin/selected.png");
     const std::string RESSOURCES_PATH = "../../ressources";
     const std::initializer_list<gf::Path> PATHS = {gf::Path(RESSOURCES_PATH), gf::Paths::getBasePath(), gf::Paths::getCurrentPath()};
-    // const gf::Texture& SKIN_TEXTURE(TEXTURE_SKIN_PATH);
 
     // Audio
     const std::string MAIN_THEME = "../../ressources/music/MainTheme.ogg";
@@ -63,7 +61,7 @@ namespace swiftness
     constexpr int MAX_CUSTOM_LEVEL = 5;
 
     // Layers
-    const int NB_TILE_LAYERS = 18;
+    const int NB_TILE_LAYERS = 14;
 
     enum class PlateformType
     {
@@ -178,12 +176,8 @@ namespace swiftness
     {
         IO,
         Border,
-        Wall_of_death_v,
-        Wall_of_death_h,
-        Wall_of_death_bloc,
-        Collision_v,
-        Collision_h,
-        Collision_bloc,
+        Wall_of_death,
+        Collision,
         Gw_blue,
         Gw_rose,
         Gw_green,

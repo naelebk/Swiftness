@@ -12,7 +12,7 @@ namespace swiftness
     class LevelGenerator
     {
     public:
-        LevelGenerator(gf::ResourceManager& resources, std::string nameFile);
+        LevelGenerator(gf::ResourceManager &resources, std::string nameFile);
 
         /**
          * @brief Load a tmx file
@@ -33,7 +33,7 @@ namespace swiftness
          *
          * @return std::map<int, StaticPlateform> the plateforms of the level
          */
-        std::vector<swiftness::PlateformEntity>& getPlateforms() { return m_plateforms; };
+        std::vector<swiftness::PlateformEntity> &getPlateforms() { return m_plateforms; };
 
         /**
          * @brief Get the name of the tmx file
@@ -44,22 +44,8 @@ namespace swiftness
 
         /**
          * @brief reset the level
-        */
+         */
         void resetLevel();
-
-        /**
-         * @brief generate the vertical plateform
-         *
-         * @return std::map<int, StaticPlateform> the vertical plateform
-         */
-        std::vector<swiftness::PlateformEntity> generateVerticalPlateform(LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms);
-
-        /**
-         * @brief generate the horizontal plateform
-         *
-         * @return std::map<int, StaticPlateform> the horizontal plateform
-         */
-        std::vector<swiftness::PlateformEntity> generateHorizontalPlateform(LayerName layerName, std::vector<swiftness::PlateformEntity> horizontalPlateforms);
 
         /**
          * @brief generate the bloc plateform
@@ -68,7 +54,7 @@ namespace swiftness
          *
          * @return std::map<int, StaticPlateform> the bloc plateform
          */
-        std::vector<swiftness::PlateformEntity> generateBlocPlateforms(LayerName layerName, std::vector<swiftness::PlateformEntity> blocPlateforms);
+        std::vector<swiftness::PlateformEntity> generatePlateforms(LayerName layerName, std::vector<swiftness::PlateformEntity> blocPlateforms);
 
         /**
          * @brief generate Border of the map

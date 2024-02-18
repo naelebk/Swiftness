@@ -3,11 +3,12 @@
 namespace swiftness
 {
 
-    LevelGenerator::LevelGenerator(gf::ResourceManager& resources, std::string nameFile)
+    LevelGenerator::LevelGenerator(gf::ResourceManager &resources, std::string nameFile)
         : m_nameFile(nameFile), m_levelData(nameFile), m_squareEntity(resources, m_levelData.getEntrance(), gf::Color::Red, GRAVITY), m_plateforms()
     {
         m_plateforms = initializePlateforms();
-        std::cout << swiftness::YELLOW << "LevelGenerator for " << nameFile << "\t\t[LOADED]\n" << swiftness::NC << std::endl;
+        std::cout << swiftness::YELLOW << "LevelGenerator for " << nameFile << "\t\t[LOADED]\n"
+                  << swiftness::NC << std::endl;
     }
 
     void LevelGenerator::resetLevel()
@@ -15,7 +16,7 @@ namespace swiftness
         m_squareEntity.reset(m_levelData.getEntrance());
     }
 
-    std::vector<swiftness::PlateformEntity> LevelGenerator::generateVerticalPlateform(LayerName layerName, std::vector<swiftness::PlateformEntity> verticalPlateforms)
+    std::vector<swiftness::PlateformEntity> LevelGenerator::generatePlateforms(LayerName layerName, std::vector<swiftness::PlateformEntity> blocPlateforms)
     {
         gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
         std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
@@ -25,101 +26,7 @@ namespace swiftness
         if (layer)
         {
             bool color = false;
-            if (layerName == LayerName::Wall_of_death_v)
-            {
-                color = true;
-            }
-            for (int x = 0; x < mapSize.width; x++)
-            {
-                int y = 0;
-                while (y < mapSize.height)
-                {
-                    gf::TmxCell &cell = cells[x + y * mapSize.width];
-                    if (cell.gid != 0)
-                    {
-                        float height = tileSize.height;
-                        float length = tileSize.width;
-
-                        while (y + 1 < mapSize.height && cells[x + (y + 1) * mapSize.width].gid != 0)
-                        {
-                            y++;
-                            height += tileSize.height;
-                        }
-
-                        gf::Vector2f position = gf::Vector2f(x * tileSize.width + tileSize.width / 2, y * tileSize.height - height / 2 + tileSize.height);
-                        PlateformEntity plateform = PlateformEntity(position, height, length, gf::Color::Blue);
-                        if (color)
-                        {
-                            plateform = PlateformEntity(position, height, length, gf::Color::Yellow);
-                        }
-                        verticalPlateforms.push_back(plateform);
-                    }
-                    y++;
-                }
-            }
-        }
-        return verticalPlateforms;
-    }
-
-    std::vector<swiftness::PlateformEntity> LevelGenerator::generateHorizontalPlateform(LayerName layerName, std::vector<swiftness::PlateformEntity> horizontalPlateforms)
-    {
-
-        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
-        std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
-        gf::Vector2f mapSize = m_levelData.getMapSize();
-        gf::Vector2f tileSize = m_levelData.getTileSize();
-
-        if (layer)
-        {
-            bool color = false;
-            if (layerName == LayerName::Wall_of_death_h)
-            {
-                color = true;
-            }
-
-            for (int y = 0; y < mapSize.height; y++)
-            {
-                int x = 0;
-                while (x < mapSize.width)
-                {
-                    gf::TmxCell &cell = cells[x + y * mapSize.width];
-                    if (cell.gid != 0)
-                    {
-                        float height = tileSize.height;
-                        float length = tileSize.width;
-
-                        while (x + 1 < mapSize.width && cells[(x + 1) + y * mapSize.width].gid != 0)
-                        {
-                            x++;
-                            length += tileSize.width;
-                        }
-
-                        gf::Vector2f position = gf::Vector2f(x * tileSize.width - length / 2 + tileSize.width, y * tileSize.height + tileSize.height / 2);
-                        PlateformEntity plateform = PlateformEntity(position, height, length, gf::Color::Blue);
-                        if (color)
-                        {
-                            plateform = PlateformEntity(position, height, length, gf::Color::Yellow);
-                        }
-                        horizontalPlateforms.push_back(plateform);
-                    }
-                    x++;
-                }
-            }
-        }
-        return horizontalPlateforms;
-    }
-
-    std::vector<swiftness::PlateformEntity> LevelGenerator::generateBlocPlateforms(LayerName layerName, std::vector<swiftness::PlateformEntity> blocPlateforms)
-    {
-        gf::TmxTileLayer *layer = m_levelData.getLayersEntity().getTileLayerByName(layerName);
-        std::vector<gf::TmxCell> cells = m_levelData.getLayersEntity().getCellsOfaLayer(layerName);
-        gf::Vector2f mapSize = m_levelData.getMapSize();
-        gf::Vector2f tileSize = m_levelData.getTileSize();
-
-        if (layer)
-        {
-            bool color = false;
-            if (layerName == LayerName::Wall_of_death_bloc)
+            if (layerName == LayerName::Wall_of_death)
             {
                 color = true;
             }
@@ -324,43 +231,21 @@ namespace swiftness
         return exit;
     }
 
-    std::vector<swiftness::PlateformEntity> LevelGenerator::initializePlateforms() 
+    std::vector<swiftness::PlateformEntity> LevelGenerator::initializePlateforms()
     {
         std::vector<swiftness::PlateformEntity> plateform;
-        plateform = generateVerticalPlateform(LayerName::Collision_v,plateform);
-        std::cout << swiftness::BOLD << "Vertical plateform\t[GENERATED]" << std::endl;
-        
 
-        // Ajout des plateformes horizontales
-        plateform = generateHorizontalPlateform(LayerName::Collision_h,plateform);
-        std::cout << "Horizontal plateform\t[GENERATED]" << std::endl;
-        
-
-        // Ajout des plateformes bloc
-        plateform = generateBlocPlateforms(LayerName::Collision_bloc,plateform);
+        // Ajout des plateformes
+        plateform = generatePlateforms(LayerName::Collision, plateform);
         std::cout << "Bloc plateform\t\t[GENERATED]" << std::endl;
-        
+
         // Ajout des plateformes tueuses !!
-
-        // Ajout des plateformes verticales
-        plateform = generateVerticalPlateform(LayerName::Wall_of_death_v,plateform);
-        std::cout << "Vertical death\t\t[GENERATED]" << std::endl;
-        
-
-        // Ajout des plateformes horizontales
-        plateform = generateHorizontalPlateform(LayerName::Wall_of_death_h,plateform);
-        std::cout << "Horizontal death\t[GENERATED]" << std::endl;
-        
-
-        // Ajout des plateformes bloc
-        plateform = generateBlocPlateforms(LayerName::Wall_of_death_bloc,plateform);
+        plateform = generatePlateforms(LayerName::Wall_of_death, plateform);
         std::cout << "Bloc death\t\t[GENERATED]" << std::endl;
-        
 
         // Ajout des gravity switch
         plateform = generateGravitySwitchs(plateform);
         std::cout << "Gravity switch\t\t[GENERATED]" << std::endl;
-        
 
         // ajout des murs invisible
         plateform = generateBorder(plateform);

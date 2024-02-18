@@ -3,19 +3,19 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/level08.tmx",
+    "activeFile": "",
     "expandedProjectPaths": [
-        "Maps/custom",
-        "level",
-        "testTmxValidator",
-        "Maps",
-        "maps/custom",
         "Tilesets",
-        "levels",
-        "maps",
-        "tileset",
         "tilesets",
-        "."
+        ".",
+        "maps/custom",
+        "testTmxValidator",
+        "Maps/custom",
+        "levels",
+        "tileset",
+        "maps",
+        "Maps",
+        "level"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -458,12 +458,52 @@
                 "y": 176.0849830999517
             }
         },
+        "maps/custom/custom_1.tmx": {
+            "scale": 5.355625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80.10269576379974,
+                "y": 80.00933597852725
+            }
+        },
+        "maps/custom/custom_2.tmx": {
+            "scale": 5.355625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80.10269576379974,
+                "y": 80.00933597852725
+            }
+        },
+        "maps/custom/custom_3.tmx": {
+            "scale": 5.355625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80.10269576379974,
+                "y": 80.00933597852725
+            }
+        },
+        "maps/custom/custom_4.tmx": {
+            "scale": 5.355625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80.10269576379974,
+                "y": 80.00933597852725
+            }
+        },
+        "maps/custom/custom_5.tmx": {
+            "scale": 5.355625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80.10269576379974,
+                "y": 80.00933597852725
+            }
+        },
         "maps/custom/custom_template.tmx": {
             "scale": 1.4708806818181819,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 256.30902945436986,
-                "y": 278.06470304200866
+                "x": 255.62916465475612,
+                "y": 277.72477064220186
             }
         },
         "maps/custom/level_template.tmx": {
@@ -544,6 +584,94 @@
             "viewCenter": {
                 "x": 190.33333333333331,
                 "y": 120
+            }
+        },
+        "maps/level_0.tmx": {
+            "scale": 0.8638104838709677,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 336.87944917726696,
+                "y": 496.05788306686907
+            }
+        },
+        "maps/level_1.tmx": {
+            "scale": 1.0869455645161288,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 496.80500811500127,
+                "y": 336.2633897519129
+            }
+        },
+        "maps/level_10.tmx": {
+            "scale": 2.4343749999999997,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 186.90629011553276,
+                "y": 154.65982028241336
+            }
+        },
+        "maps/level_2.tmx": {
+            "scale": 0.653125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.38277511961724,
+                "y": 656.0765550239234
+            }
+        },
+        "maps/level_3.tmx": {
+            "scale": 1.1003528225806452,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 496.20447986807744,
+                "y": 336.710182767624
+            }
+        },
+        "maps/level_4.tmx": {
+            "scale": 0.8319740853658536,
+            "selectedLayer": 12,
+            "viewCenter": {
+                "x": 656.2704411158446,
+                "y": 176.08721542760298
+            }
+        },
+        "maps/level_5.tmx": {
+            "scale": 2.4343749999999997,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 184.03080872913995,
+                "y": 176.02053915275997
+            }
+        },
+        "maps/level_6.tmx": {
+            "scale": 1.3119591346153845,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 416.171499244194,
+                "y": 296.1220283083689
+            }
+        },
+        "maps/level_7.tmx": {
+            "scale": 0.6688419117647059,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 816.3364023636112,
+                "y": 337.14992441940353
+            }
+        },
+        "maps/level_8.tmx": {
+            "scale": 0.8422453703703703,
+            "selectedLayer": 10,
+            "viewCenter": {
+                "x": 648.2671430534562,
+                "y": 321.16531537721585
+            }
+        },
+        "maps/level_9.tmx": {
+            "scale": 2.4343749999999997,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 184.03080872913995,
+                "y": 148.90885750962772
             }
         },
         "maps/level_template.tmx": {
@@ -660,7 +788,7 @@
             "scaleInEditor": 1
         },
         "tilesets/03_futuristic_city.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 4,
             "scaleInEditor": 1
         },
         "tilesets/04_gravity_switch.tsx": {
@@ -672,7 +800,7 @@
             "scaleInEditor": 1
         },
         "tilesets/06_wall_of_death.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 5.5,
             "scaleInEditor": 1
         },
         "tilesets/07_gravity_walls.tsx": {
@@ -684,7 +812,7 @@
             "scaleInEditor": 1
         },
         "tilesets/09_arrow.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 4,
             "scaleInEditor": 1
         },
         "tilesets/10_alpha.tsx": {
@@ -704,22 +832,21 @@
     "map.tileWidth": 16,
     "map.width": 10,
     "openFiles": [
-        "maps/level08.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
-        "maps/level08.tmx",
-        "maps/level06.tmx",
-        "maps/level00.tmx",
-        "maps/level04.tmx",
-        "maps/level05.tmx",
-        "maps/level02.tmx",
-        "maps/level01.tmx",
-        "testTmxValidator/tmxWrongEncoding.tmx",
-        "testTmxValidator/tmxValid.tmx",
-        "testTmxValidator/tmxMissingTileset.tmx",
-        "testTmxValidator/tmxLayerMissing.tmx",
-        "maps/custom/level_template.tmx"
+        "maps/custom/custom_5.tmx",
+        "maps/custom/custom_4.tmx",
+        "maps/custom/custom_3.tmx",
+        "maps/custom/custom_2.tmx",
+        "maps/custom/custom_1.tmx",
+        "maps/custom/custom_template.tmx",
+        "maps/level_8.tmx",
+        "maps/level_9.tmx",
+        "maps/level_7.tmx",
+        "maps/level_6.tmx",
+        "maps/level_5.tmx",
+        "maps/level_4.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
