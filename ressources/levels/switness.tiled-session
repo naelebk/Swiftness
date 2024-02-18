@@ -5,17 +5,17 @@
     },
     "activeFile": "",
     "expandedProjectPaths": [
-        "Tilesets",
-        "tilesets",
-        ".",
-        "maps/custom",
-        "testTmxValidator",
-        "Maps/custom",
         "levels",
-        "tileset",
         "maps",
         "Maps",
-        "level"
+        "testTmxValidator",
+        "Tilesets",
+        "tilesets",
+        "Maps/custom",
+        "level",
+        "tileset",
+        "maps/custom",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -660,10 +660,10 @@
         },
         "maps/level_8.tmx": {
             "scale": 0.8422453703703703,
-            "selectedLayer": 10,
+            "selectedLayer": 13,
             "viewCenter": {
-                "x": 648.2671430534562,
-                "y": 321.16531537721585
+                "x": 647.0798405936513,
+                "y": 319.978012917411
             }
         },
         "maps/level_9.tmx": {
@@ -835,13 +835,13 @@
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
+        "maps/level_8.tmx",
         "maps/custom/custom_5.tmx",
         "maps/custom/custom_4.tmx",
         "maps/custom/custom_3.tmx",
         "maps/custom/custom_2.tmx",
         "maps/custom/custom_1.tmx",
         "maps/custom/custom_template.tmx",
-        "maps/level_8.tmx",
         "maps/level_9.tmx",
         "maps/level_7.tmx",
         "maps/level_6.tmx",
