@@ -51,6 +51,8 @@ namespace swiftness {
             gf::Font& font;
             gf::Action up;
             gf::Action down;
+            gf::Action left;
+            gf::Action right;
             gf::Action trigger;
             gf::Action quit;
             gf::WidgetContainer widgets;
