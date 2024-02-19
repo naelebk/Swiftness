@@ -129,7 +129,7 @@ namespace swiftness
         /**
          * @brief Gère les collisions avec la plateforme
         */
-        void collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp,float dt);
+        void collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength,gf::Color4f color,bool wallLeft,bool wallRight,bool wallDown,bool wallUp,gf::Vector2f old_pos);
 
     private:
         gf::ResourceManager& m_resources;

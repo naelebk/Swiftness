@@ -493,11 +493,12 @@ namespace swiftness
         }
     }
     // Mettez à jour la position du carré
+    auto old_pos=m_position;
     m_position += dt * m_velocity;
 
     // Vérifiez les collisions avec la plateforme
     for (auto &plateform : m_plateforms) {
-        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(), plateform.getColor(), walljumpLeft, walljumpRight, wallJumpDown, walljumpUp, dt);
+        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(), plateform.getColor(), walljumpLeft, walljumpRight, wallJumpDown, walljumpUp,old_pos);
     }
 }
 
@@ -798,7 +799,7 @@ namespace swiftness
     }
 
     // empeche le carré de traverser une plateforme
-    void Hero::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength, gf::Color4f color, bool wallLeft, bool wallRight, bool wallDown, bool wallUp, float dt)
+    void Hero::collideWithPlateform(gf::Vector2f plateformPosition, float plateformHeight, float plateformLength, gf::Color4f color, bool wallLeft, bool wallRight, bool wallDown, bool wallUp, gf::Vector2f old_pos)
     {
         // Supposons que la classe Square ait des membres m_position (position centrale du carré),
         // m_size (longueur d'un côté du carré), et m_velocity (vecteur de mouvement du carré)
@@ -839,8 +840,8 @@ namespace swiftness
         float plateformTop = plateformPosition.y - plateformHeight / 2;
         float plateformBottom = plateformPosition.y + plateformHeight / 2;
 
-        float speedX = dt * m_velocity.x;
-        float speedY = dt * m_velocity.y;
+        float speedX = m_position.x-old_pos.x;
+        float speedY = m_position.y-old_pos.y;
 
         if (speedX < 0 && squareLeft + speedX > plateformLeft)
         {
