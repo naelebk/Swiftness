@@ -843,19 +843,19 @@ namespace swiftness
         float speedX = m_position.x-old_pos.x;
         float speedY = m_position.y-old_pos.y;
 
-        if (speedX < 0 && old_pos.x > plateformLeft)
+        if (speedX < 0 && old_pos.x >= plateformLeft)
         {
             plateformLeft += speedX * 2;
         }
-        if (speedX > 0 && old_pos.x < plateformRight)
+        if (speedX > 0 && old_pos.x <= plateformRight)
         {
             plateformRight += speedX * 2;
         }
-        if (speedY > 0 && old_pos.y < plateformBottom)
+        if (speedY > 0 && old_pos.y <= plateformBottom)
         {
             plateformBottom += speedY * 2;
         }
-        if (speedY < 0 && old_pos.y > plateformTop)
+        if (speedY < 0 && old_pos.y >= plateformTop)
         {
             plateformTop += speedY * 2;
         }
