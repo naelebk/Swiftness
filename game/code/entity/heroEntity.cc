@@ -843,19 +843,19 @@ namespace swiftness
         float speedX = m_position.x-old_pos.x;
         float speedY = m_position.y-old_pos.y;
 
-        if (speedX < 0 && squareLeft + speedX > plateformLeft)
+        if (speedX < 0 && old_pos.x > plateformLeft)
         {
             plateformLeft += speedX * 2;
         }
-        if (speedX > 0 && squareRight - speedX < plateformRight)
+        if (speedX > 0 && old_pos.x < plateformRight)
         {
             plateformRight += speedX * 2;
         }
-        if (speedY > 0 && squareBottom - speedY < plateformBottom)
+        if (speedY > 0 && old_pos.y < plateformBottom)
         {
             plateformBottom += speedY * 2;
         }
-        if (speedY < 0 && squareTop - speedY > plateformTop)
+        if (speedY < 0 && old_pos.y > plateformTop)
         {
             plateformTop += speedY * 2;
         }
@@ -1025,10 +1025,12 @@ namespace swiftness
                     }
                     else
                     {
-                        if (m_velocity.x == WALL_JUMP_SPEED)
+                        if (m_velocity.x > 0.0f)
                         {
                             m_velocity.x = 0;
-                            m_velocity.y = -50.0f * m_gravity;
+                            if (m_velocity.y == WALL_JUMP_SPEED){
+                                m_velocity.y = -50.0f * m_gravity;
+                            }
                         }
                     }
                 }
@@ -1057,10 +1059,12 @@ namespace swiftness
                     }
                     else
                     {
-                        if (m_velocity.x == -WALL_JUMP_SPEED)
+                        if (m_velocity.x < 0.0f)
                         {
                             m_velocity.x = 0;
-                            m_velocity.y = -50.0f * m_gravity;
+                            if (m_velocity.x == -WALL_JUMP_SPEED){
+                                m_velocity.y = -50.0f * m_gravity;
+                            }
                         }
                     }
                 }
@@ -1069,10 +1073,12 @@ namespace swiftness
                     m_position.y -= overlapTop;
                     if (horizontal_g)
                     {
-                        if (m_velocity.y != SPEED_SQUARE)
+                        if (m_velocity.y > 0.0f)
                         {
                             m_velocity.y = 0;
-                            m_velocity.x = -50.0f * m_gravity;
+                            if (m_velocity.y == WALL_JUMP_SPEED){
+                                m_velocity.x = -50.0f * m_gravity;
+                            }
                         }
                     }
                     else
@@ -1102,10 +1108,12 @@ namespace swiftness
                     m_position.y += overlapBottom;
                     if (horizontal_g)
                     {
-                        if (m_velocity.y != -SPEED_SQUARE)
+                        if (m_velocity.y < 0.0f)
                         {
                             m_velocity.y = 0;
-                            m_velocity.x = -50.0f * m_gravity;
+                            if (m_velocity.y == -WALL_JUMP_SPEED){
+                                m_velocity.x = -50.0f * m_gravity;
+                            }
                         }
                     }
                     else
