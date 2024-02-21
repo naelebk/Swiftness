@@ -16,7 +16,8 @@ namespace swiftness {
         credits("Credits", font),
         choose_level("Choose level", font),
         choose_custom_level("Custom level", font),
-        questionmark_b("gf", font)
+        questionmark_b("gf", font),
+        title(game.resources.getTexture("swiftness_title_3.png"))
         {
             
             setClearColor(gf::Color::Black);
@@ -123,29 +124,36 @@ namespace swiftness {
         gf::Coordinates coords(target);
         float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
         int r_size = coords.getRelativeCharacterSize(size);
+        float backgroundHeight = coords.getRelativeSize(gf::vec(0.0f, 0.20f)).height;
+        float backgroundScale = backgroundHeight / title.getSize().height;
+        gf::Sprite M_background(title);
+        M_background.setPosition(coords.getRelativePoint({0.5f, 0.15f}));
+        M_background.setAnchor(gf::Anchor::Center);
+        M_background.setScale(backgroundScale);
+        target.draw(M_background, states);
 
         choose_level.setCharacterSize(r_size);
-        choose_level.setPosition(coords.getRelativePoint({0.275f, 0.225f}));
+        choose_level.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
         choose_level.setParagraphWidth(width);
         choose_level.setPadding(padding);
 
         choose_custom_level.setCharacterSize(r_size);
-        choose_custom_level.setPosition(coords.getRelativePoint({0.275f, 0.325f}));
+        choose_custom_level.setPosition(coords.getRelativePoint({0.275f, 0.525f}));
         choose_custom_level.setParagraphWidth(width);
         choose_custom_level.setPadding(padding);
 
         credits.setCharacterSize(r_size);
-        credits.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
+        credits.setPosition(coords.getRelativePoint({0.275f, 0.625f}));
         credits.setParagraphWidth(width);
         credits.setPadding(padding);
 
         questionmark_b.setCharacterSize(r_size);
-        questionmark_b.setPosition(coords.getRelativePoint({0.275f, 0.525f}));
+        questionmark_b.setPosition(coords.getRelativePoint({0.275f, 0.725f}));
         questionmark_b.setParagraphWidth(width);
         questionmark_b.setPadding(padding);
 
         quit_b.setCharacterSize(r_size);
-        quit_b.setPosition(coords.getRelativePoint({0.275f, 0.625f}));
+        quit_b.setPosition(coords.getRelativePoint({0.275f, 0.825f}));
         quit_b.setParagraphWidth(width);
         quit_b.setPadding(padding);
 

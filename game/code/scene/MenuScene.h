@@ -80,6 +80,7 @@ namespace swiftness {
             gf::WidgetContainer widgets;
             gf::ZoomBlurSegueEffect trans;
             gf::SlideSegueEffect slide;
+            gf::Texture& title;
     };
 }
 
