@@ -79,7 +79,7 @@ namespace swiftness {
         */
         developper.setString("Developpers :\nEMBARKI Naël\nGAUTHIER Julien\nHUMBERT Théo\nReferent :\nM. Julien BERNARD\n(alias jube)");
         developper.setColor(gf::Color::Yellow);
-        developper.setPosition(coords.getRelativePoint({ 0.5f, 0.4f}));
+        developper.setPosition(coords.getRelativePoint({0.5f, 0.4f}));
         developper.setAnchor(gf::Anchor::Center);
         target.draw(developper, states);
         mainmenu.setCharacterSize(r_size);

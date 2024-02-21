@@ -126,11 +126,11 @@ namespace swiftness {
         int r_size = coords.getRelativeCharacterSize(size);
         float backgroundHeight = coords.getRelativeSize(gf::vec(0.0f, 0.20f)).height;
         float backgroundScale = backgroundHeight / title.getSize().height;
-        gf::Sprite M_background(title);
-        M_background.setPosition(coords.getRelativePoint({0.5f, 0.15f}));
-        M_background.setAnchor(gf::Anchor::Center);
-        M_background.setScale(backgroundScale);
-        target.draw(M_background, states);
+        gf::Sprite My_title(title);
+        My_title.setPosition({target.getSize().width * 0.5f, target.getSize().height * 0.15f});
+        My_title.setAnchor(gf::Anchor::Center);
+        My_title.setScale(backgroundScale);
+        target.draw(My_title, states);
 
         choose_level.setCharacterSize(r_size);
         choose_level.setPosition(coords.getRelativePoint({0.275f, 0.425f}));
