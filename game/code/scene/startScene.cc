@@ -35,10 +35,12 @@ namespace swiftness {
         gf::Coordinates coords(target);
         float backgroundHeight = coords.getRelativeSize(gf::vec(0.0f, 1.0f)).height;
         float backgroundScale = backgroundHeight / background.getSize().height;
+        float backgroundWidth = coords.getRelativeSize(gf::vec(1.0f, 0.0f)).width;
+        float backgroundScale2 = backgroundWidth / background.getSize().width;
         gf::Sprite M_background(background);
         M_background.setPosition(coords.getCenter());
         M_background.setAnchor(gf::Anchor::Center);
-        M_background.setScale(backgroundScale);
+        M_background.setScale(std::min(backgroundScale, backgroundScale2));
         target.draw(M_background, states);
         target.setView(getHudView());
     }
