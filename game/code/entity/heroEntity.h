@@ -152,6 +152,7 @@ namespace swiftness
         bool wasHorizontal;
         int nb_deaths;
         float timer;
+        bool isDead;
         std::vector<swiftness::PlateformEntity> m_plateforms;
         bool m_isFlying;
 

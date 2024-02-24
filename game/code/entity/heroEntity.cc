@@ -3,7 +3,7 @@
 namespace swiftness
 {
     Hero::Hero(gf::ResourceManager &resources, gf::Vector2f position, gf::Color4f color, float gravity)
-        : m_resources(resources), m_position(position), m_position_start(position), m_velocity(0, 0), m_size(), m_color(color), gravity(GRAVITY), m_jump(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection(DOWN), m_walljump(0.0f), m_isFlying(false), m_faceDirection(false), m_rotation(0)
+        : m_resources(resources), m_position(position), m_position_start(position), m_velocity(0, 0), m_size(), m_color(color), gravity(GRAVITY), m_jump(false), isDead(false), nb_jumps(0), m_gravity(1), horizontal_g(false), goLeft(false), goRight(false), goUp(false), goDown(false), isOver(false), nb_deaths(0), timer(0.0f), m_gravityDirection(DOWN), m_walljump(0.0f), m_isFlying(false), m_faceDirection(false), m_rotation(0)
     {
         setSize();
         std::cout << "Square size : " << m_size.width << " " << m_size.height << std::endl;
@@ -23,6 +23,7 @@ namespace swiftness
         goUp = false;
         goDown = false;
         isOver = false;
+        isDead = false;
         nb_deaths = 0;
         timer = 0.0f;
         m_gravityDirection = DOWN;
@@ -90,7 +91,7 @@ namespace swiftness
 
     void Hero::actionUpJump()
     {
-        if (!horizontal_g && !m_isFlying)
+        if (!horizontal_g && !m_isFlying && !isDead)
         {
             m_jump = canJump();
             bool walljumpRight = canWallJumpRight();
@@ -191,7 +192,7 @@ namespace swiftness
 
     void Hero::actionLeftJump()
     {
-        if (horizontal_g && !m_isFlying)
+        if (horizontal_g && !m_isFlying && !isDead)
         {
             if (m_gravity > 0)
             {
@@ -266,7 +267,7 @@ namespace swiftness
 
     void Hero::actionRightJump()
     {
-        if (horizontal_g && !m_isFlying)
+        if (horizontal_g && !m_isFlying && !isDead)
         {
             if (m_gravity < 0)
             {
@@ -446,60 +447,116 @@ namespace swiftness
     }
 
     void Hero::update(gf::Time time) {
-    float dt = time.asSeconds();
-    bool walljumpRight = canWallJumpRight();
-    bool walljumpLeft = canWallJumpLeft();
-    bool walljumpUp = canWallJumpUp();
-    bool wallJumpDown = canWallJumpDown();
-    timer += dt;
-    if (timer > 999.99f) {
-        isOver = true;
-    }
-    m_walljump -= dt;
-    if (m_walljump < 0.0f) {
-        m_walljump = 0.0f;
-    }
+        float dt = time.asSeconds();
+        if(isDead){
+            float distx=m_position_start.x-m_position.x;
+            float disty=m_position_start.y-m_position.y;
+            if(distx==0.0f){
+                if(disty<0.0f){
+                    m_position.y-=dt*SPEED_DEATH;
+                }else{
+                    m_position.y+=dt*SPEED_DEATH;
+                }
+            } else if (disty==0.0f){
+                if(distx<0.0f){
+                    m_position.x-=dt*SPEED_DEATH;
+                }else{
+                    m_position.x+=dt*SPEED_DEATH;
+                }
 
-    // Vérifiez si la gravité a changé de direction et inversez la taille si nécessaire
-    if (horizontal_g != wasHorizontal) { // `wasHorizontal` est une nouvelle variable booléenne membre de la classe
-        std::swap(m_size.width, m_size.height); // Échangez la largeur et la hauteur
-        wasHorizontal = horizontal_g; // Mettez à jour l'état précédent de la gravité
-    }
-
-    // Appliquez la gravité
-    if (!m_isFlying) {
-        if (horizontal_g) {
-            setVelocity(m_velocity + gf::Vector2f(gravity * m_gravity * dt, 0));
-            if (!goUp && m_velocity.y < 0.0f && m_velocity.y != -WALL_JUMP_SPEED) {
-                m_velocity.y += gravity * 2.5f * dt;
-                if (m_velocity.y > 0.0f) m_velocity.y = 0.0f;    
+            } else if(abs(distx)>abs(disty)){
+                if(distx<0.0f){
+                    m_position.x-=dt*SPEED_DEATH;
+                }else{
+                    m_position.x+=dt*SPEED_DEATH;
+                }
+                if(disty<0.0f){
+                    m_position.y-=dt*SPEED_DEATH*abs(disty/distx);
+                }else{
+                    m_position.y+=dt*SPEED_DEATH*abs(disty/distx);
+                }
+            }else{
+                if(distx<0.0f){
+                    m_position.x-=dt*SPEED_DEATH*abs(distx/disty);
+                }else{
+                    m_position.x+=dt*SPEED_DEATH*abs(distx/disty);
+                }
+                if(disty<0.0f){
+                    m_position.y-=dt*SPEED_DEATH;
+                }else{
+                    m_position.y+=dt*SPEED_DEATH;
+                }
             }
-            if (!goDown && m_velocity.y > 0.0f && m_velocity.y != WALL_JUMP_SPEED) {
-                m_velocity.y -= gravity * 2.5f * dt;
-                if (m_velocity.y < 0.0f) m_velocity.y = 0.0f;    
+            if(distx<0.0f && m_position.x<=m_position_start.x){
+                m_position.x=m_position_start.x;
             }
-            // Conditions pour limiter la vitesse et ajuster la gravité...
-        } else {
-            setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
-            if (!goLeft && m_velocity.x < 0.0f && m_velocity.x != -WALL_JUMP_SPEED) {
-                m_velocity.x += gravity * 2.5f * dt;
-                if (m_velocity.x > 0.0f) m_velocity.x = 0.0f;    
+            if(distx>0.0f && m_position.x>=m_position_start.x){
+                m_position.x=m_position_start.x;
             }
-            if (!goRight && m_velocity.x > 0.0f && m_velocity.x != WALL_JUMP_SPEED) {
-                m_velocity.x -= gravity * 2.5f * dt;
-                if (m_velocity.x < 0.0f) m_velocity.x = 0.0f;    
+            if(disty<0.0f && m_position.y<=m_position_start.y){
+                m_position.y=m_position_start.y;
             }
-            // Conditions pour limiter la vitesse et ajuster la gravité...
+            if(disty>0.0f && m_position.y>=m_position_start.y){
+                m_position.y=m_position_start.y;
+            }
+            if(m_position==m_position_start){
+                isDead=false;
+            }
+            return;
         }
-    }
-    // Mettez à jour la position du carré
-    auto old_pos=m_position;
-    m_position += dt * m_velocity;
+        bool walljumpRight = canWallJumpRight();
+        bool walljumpLeft = canWallJumpLeft();
+        bool walljumpUp = canWallJumpUp();
+        bool wallJumpDown = canWallJumpDown();
+        timer += dt;
+        if (timer > 999.99f) {
+            isOver = true;
+        }
+        m_walljump -= dt;
+        if (m_walljump < 0.0f) {
+            m_walljump = 0.0f;
+        }
 
-    // Vérifiez les collisions avec la plateforme
-    for (auto &plateform : m_plateforms) {
-        collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(), plateform.getColor(), walljumpLeft, walljumpRight, wallJumpDown, walljumpUp,old_pos);
-    }
+        // Vérifiez si la gravité a changé de direction et inversez la taille si nécessaire
+        if (horizontal_g != wasHorizontal) { // `wasHorizontal` est une nouvelle variable booléenne membre de la classe
+            std::swap(m_size.width, m_size.height); // Échangez la largeur et la hauteur
+            wasHorizontal = horizontal_g; // Mettez à jour l'état précédent de la gravité
+        }
+
+        // Appliquez la gravité
+        if (!m_isFlying) {
+            if (horizontal_g) {
+                setVelocity(m_velocity + gf::Vector2f(gravity * m_gravity * dt, 0));
+                if (!goUp && m_velocity.y < 0.0f && m_velocity.y != -WALL_JUMP_SPEED) {
+                    m_velocity.y += gravity * 2.5f * dt;
+                    if (m_velocity.y > 0.0f) m_velocity.y = 0.0f;    
+                }
+                if (!goDown && m_velocity.y > 0.0f && m_velocity.y != WALL_JUMP_SPEED) {
+                    m_velocity.y -= gravity * 2.5f * dt;
+                    if (m_velocity.y < 0.0f) m_velocity.y = 0.0f;    
+                }
+                // Conditions pour limiter la vitesse et ajuster la gravité...
+            } else {
+                setVelocity(m_velocity + gf::Vector2f(0, gravity * m_gravity * dt));
+                if (!goLeft && m_velocity.x < 0.0f && m_velocity.x != -WALL_JUMP_SPEED) {
+                    m_velocity.x += gravity * 2.5f * dt;
+                    if (m_velocity.x > 0.0f) m_velocity.x = 0.0f;    
+                }
+                if (!goRight && m_velocity.x > 0.0f && m_velocity.x != WALL_JUMP_SPEED) {
+                    m_velocity.x -= gravity * 2.5f * dt;
+                    if (m_velocity.x < 0.0f) m_velocity.x = 0.0f;    
+                }
+                // Conditions pour limiter la vitesse et ajuster la gravité...
+            }
+        }
+        // Mettez à jour la position du carré
+        auto old_pos=m_position;
+        m_position += dt * m_velocity;
+
+        // Vérifiez les collisions avec la plateforme
+        for (auto &plateform : m_plateforms) {
+            collideWithPlateform(plateform.getPosition(), plateform.getHeight(), plateform.getLength(), plateform.getColor(), walljumpLeft, walljumpRight, wallJumpDown, walljumpUp,old_pos);
+        }
 }
 
 
@@ -756,6 +813,9 @@ namespace swiftness
 
     void Hero::render(gf::RenderTarget &target, const gf::RenderStates &states)
     {
+        if(isDead){
+            return;
+        }
         gf::RectangleShape shape;
         if (horizontal_g)
         {
@@ -804,6 +864,9 @@ namespace swiftness
         // Supposons que la classe Square ait des membres m_position (position centrale du carré),
         // m_size (longueur d'un côté du carré), et m_velocity (vecteur de mouvement du carré)
         // Calculez les limites du carré en utilisant sa position centrale
+        if(isDead){
+            return;
+        }
         float squareLeft = m_position.x - m_size.width / 2;
         float squareRight = m_position.x + m_size.width / 2;
         float squareTop = m_position.y - m_size.height / 2;
@@ -866,7 +929,6 @@ namespace swiftness
         {
             if (color == gf::Color::Yellow)
             {
-                m_position = m_position_start;
 
                 m_faceDirection = false;
                 m_jump = 0;
@@ -876,6 +938,7 @@ namespace swiftness
                 nb_deaths += 1;
                 m_gravityDirection = DOWN;
                 horizontal_g = false;
+                isDead=true;
                 return;
             }
             // close the game

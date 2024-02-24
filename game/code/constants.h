@@ -39,6 +39,7 @@ namespace swiftness
     
     // Speed
     constexpr float SPEED = 200.0f;
+    constexpr float SPEED_DEATH = 250.0f;
     constexpr float JUMP = -250.0f;
     constexpr float WALL_JUMP_SPEED = 95.0f;
     constexpr float WALL_JUMP_HEIGHT = -200.0f;
