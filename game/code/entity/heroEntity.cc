@@ -464,22 +464,22 @@ namespace swiftness
                     m_position.x+=dt*SPEED_DEATH;
                 }
 
-            } else if(abs(distx)>abs(disty)){
+            } else if(std::abs(distx)>std::abs(disty)){
                 if(distx<0.0f){
                     m_position.x-=dt*SPEED_DEATH;
                 }else{
                     m_position.x+=dt*SPEED_DEATH;
                 }
                 if(disty<0.0f){
-                    m_position.y-=dt*SPEED_DEATH*abs(disty/distx);
+                    m_position.y-=dt*SPEED_DEATH*std::abs(disty/distx);
                 }else{
-                    m_position.y+=dt*SPEED_DEATH*abs(disty/distx);
+                    m_position.y+=dt*SPEED_DEATH*std::abs(disty/distx);
                 }
             }else{
                 if(distx<0.0f){
-                    m_position.x-=dt*SPEED_DEATH*abs(distx/disty);
+                    m_position.x-=dt*SPEED_DEATH*std::abs(distx/disty);
                 }else{
-                    m_position.x+=dt*SPEED_DEATH*abs(distx/disty);
+                    m_position.x+=dt*SPEED_DEATH*std::abs(distx/disty);
                 }
                 if(disty<0.0f){
                     m_position.y-=dt*SPEED_DEATH;

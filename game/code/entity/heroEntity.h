@@ -16,6 +16,7 @@
 #include <gf/Entity.h>
 #include <gf/Time.h>
 #include <map>
+#include <cmath>
 #include <vector>
 #include <gf/Views.h>
 #include <iostream>
