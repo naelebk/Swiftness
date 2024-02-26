@@ -3,20 +3,20 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/level_9.tmx",
+    "activeFile": "maps/level_10.tmx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
-        "tileset",
-        "Maps",
-        "maps/custom",
         "Maps/custom",
-        "tilesets",
-        "testTmxValidator",
-        "level",
+        "Tilesets",
         ".",
         "maps",
-        "levels",
-        "Tilesets"
+        "tileset",
+        "Maps",
+        "level",
+        "tilesets",
+        "maps/custom",
+        "testTmxValidator",
+        "levels"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -604,11 +604,11 @@
             }
         },
         "maps/level_10.tmx": {
-            "scale": 2.4343749999999997,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 186.90629011553276,
-                "y": 154.65982028241336
+                "x": 738,
+                "y": 406.5
             }
         },
         "maps/level_2.tmx": {
@@ -669,10 +669,10 @@
         },
         "maps/level_9.tmx": {
             "scale": 1,
-            "selectedLayer": 14,
+            "selectedLayer": 15,
             "viewCenter": {
-                "x": 516,
-                "y": 275.5
+                "x": 476,
+                "y": 207.5
             }
         },
         "maps/level_template.tmx": {
@@ -833,10 +833,11 @@
     "map.tileWidth": 16,
     "map.width": 10,
     "openFiles": [
-        "maps/level_9.tmx"
+        "maps/level_10.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
+        "maps/level_10.tmx",
         "maps/level_9.tmx",
         "maps/level_8.tmx",
         "maps/custom/custom_5.tmx",
@@ -847,8 +848,7 @@
         "maps/custom/custom_template.tmx",
         "maps/level_7.tmx",
         "maps/level_6.tmx",
-        "maps/level_5.tmx",
-        "maps/level_4.tmx"
+        "maps/level_5.tmx"
     ],
     "resizeMap.removeObjects": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
