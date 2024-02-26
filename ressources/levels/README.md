@@ -8,13 +8,13 @@
 - si ce n'est pas fait installer python3
 
 - Dans Tiled, ouvrez un projet (File>Open file or project |ctrl + o)
-- - selection le fichier ressources/Levels/switness.tiled-project
+- - selection le fichier ressources/levels/switness.tiled-project
 
 - afficher les propriété avec View>Views and Toolbars>Properties
 
 **Vous êtes maintenant prêt à construire vos niveau custom !**
-Il y a 5 niveau customisable, si vous voulez en crée plus vous pouvez copier custom_template dans un nouveau fichier.tmx et nommé le custom0X (il ne peut y avoir que 5 niveau, donc renommer un fichier en old_custom0X)
-par exemple renommé custom04 en old_custom04 et le nouveau fichier sera donc nommé custom04
+Il y a 5 niveaux customisables, si vous voulez en créer plus vous pouvez copier custom_template dans un nouveau fichier.tmx et nommez le custom0X (il ne peut y avoir que 5 niveau, donc renommer un fichier en old_custom0X)
+par exemple renommez custom04 en old_custom04 et le nouveau fichier sera donc nommé custom04
 
 ## 1 : la map
 
@@ -23,7 +23,7 @@ avant de vous attaquer à la création de votre niveau, il faut vérifier la val
 >
 > dans un terminal :
 > > si vous êtes dans le dossier custom : `python3 ../../tmxValidator.py ./nomDufichierTmxàTester`
-> > si vous êtes dans ressouces/Levels : `python3 tmxValidator.py ./Maps/custom/nomDufichierTmxàTester`
+> > si vous êtes dans ressouces/Levels : `python3 tmxValidator.py ./maps/custom/nomDufichierTmxàTester`
 >
 
 corriger les \[ERROR\] avant de commencer
