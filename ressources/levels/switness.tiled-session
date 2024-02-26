@@ -6,17 +6,17 @@
     "activeFile": "maps/level_9.tmx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
-        "tileset",
-        "Maps",
-        "maps/custom",
-        "Maps/custom",
-        "tilesets",
         "testTmxValidator",
-        "level",
-        ".",
+        "Tilesets",
         "maps",
+        "Maps",
+        "tileset",
+        "maps/custom",
+        "tilesets",
+        ".",
         "levels",
-        "Tilesets"
+        "level",
+        "Maps/custom"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -596,11 +596,11 @@
             }
         },
         "maps/level_1.tmx": {
-            "scale": 1.0869455645161288,
-            "selectedLayer": 0,
+            "scale": 5.5,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 496.80500811500127,
-                "y": 336.2633897519129
+                "x": 117.36363636363637,
+                "y": 253.90909090909093
             }
         },
         "maps/level_10.tmx": {
@@ -663,16 +663,16 @@
             "scale": 3,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 1057.3333333333333,
-                "y": 188.16666666666669
+                "x": 670.8333333333333,
+                "y": 228.16666666666669
             }
         },
         "maps/level_9.tmx": {
             "scale": 1,
-            "selectedLayer": 14,
+            "selectedLayer": 15,
             "viewCenter": {
-                "x": 516,
-                "y": 275.5
+                "x": 405.5,
+                "y": 386.5
             }
         },
         "maps/level_template.tmx": {
@@ -833,10 +833,12 @@
     "map.tileWidth": 16,
     "map.width": 10,
     "openFiles": [
-        "maps/level_9.tmx"
+        "maps/level_9.tmx",
+        "maps/level_1.tmx"
     ],
     "project": "switness.tiled-project",
     "recentFiles": [
+        "maps/level_1.tmx",
         "maps/level_9.tmx",
         "maps/level_8.tmx",
         "maps/custom/custom_5.tmx",
@@ -847,8 +849,7 @@
         "maps/custom/custom_template.tmx",
         "maps/level_7.tmx",
         "maps/level_6.tmx",
-        "maps/level_5.tmx",
-        "maps/level_4.tmx"
+        "maps/level_5.tmx"
     ],
     "resizeMap.removeObjects": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
