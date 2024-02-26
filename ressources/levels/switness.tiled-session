@@ -660,19 +660,19 @@
             }
         },
         "maps/level_8.tmx": {
-            "scale": 0.75,
+            "scale": 3,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 663.3333333333334,
-                "y": 347.33333333333326
+                "x": 1057.3333333333333,
+                "y": 188.16666666666669
             }
         },
         "maps/level_9.tmx": {
-            "scale": 0.25,
-            "selectedLayer": 15,
+            "scale": 1,
+            "selectedLayer": 14,
             "viewCenter": {
-                "x": 686,
-                "y": 658
+                "x": 516,
+                "y": 275.5
             }
         },
         "maps/level_template.tmx": {

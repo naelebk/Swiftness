@@ -305,7 +305,7 @@ namespace swiftness
             game.mainTheme.play();
             m_level.resetLevel();
             resetAllActions();
-            game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
+            game.replaceAllScenes(game.level, trans, gf::milliseconds(500));
         }
         map_width = m_level.getLevelData().getMapSize().x;
         map_height = m_level.getLevelData().getMapSize().y;
