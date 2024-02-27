@@ -278,6 +278,9 @@ namespace swiftness
             canFly = true;
             commandsChange = true;
             konami = -1;
+            game.levelTheme.stop();
+            game.Konami.setLoop(true);
+            game.Konami.play();
         }
     }
 
@@ -302,6 +305,7 @@ namespace swiftness
             commandsChange = false;
             konami = -1;
             game.levelTheme.stop();
+            game.Konami.stop();
             game.mainTheme.play();
             m_level.resetLevel();
             resetAllActions();

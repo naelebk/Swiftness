@@ -6,6 +6,7 @@ namespace swiftness
     AudioManager::AudioManager()
     : mainTheme()
     , levelTheme()
+    , konami()
     , jumpSound()
     , notifSound()
     {
@@ -13,6 +14,8 @@ namespace swiftness
         mainTheme.setLoop(true);
         levelTheme.openFromFile(LEVEL_THEME);
         levelTheme.setLoop(true);
+        konami.openFromFile(KONAMI_THEME);
+        konami.setLoop(true);
         sf::SoundBuffer jumpBuffer;
         jumpBuffer.loadFromFile(JUMP_SOUND);
         jumpSound.setBuffer(jumpBuffer);

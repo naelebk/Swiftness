@@ -48,6 +48,7 @@ namespace swiftness {
             m_level.getSquareEntity().setIsFlying(false);
             m_level.resetLevel();
             game.levelTheme.stop();
+            game.Konami.stop();
             game.mainTheme.play();
             game.replaceAllScenes(game.level, trans, gf::milliseconds(500));
         });

@@ -35,6 +35,7 @@ namespace swiftness {
         AudioManager audioManager;
         sf::Music& mainTheme;
         sf::Music& levelTheme;
+        sf::Music& Konami;
         sf::Sound& jumpSound;
         sf::Sound& notifSound;
     };

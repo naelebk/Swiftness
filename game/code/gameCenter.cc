@@ -10,12 +10,12 @@ namespace swiftness {
     , credits(*this, font)
     , level(*this, font)
     , custom(*this, font)
-    /*, s_pause(*this, font)*/ 
     , audioManager()
     , mainTheme(audioManager.getMainTheme())
     , levelTheme(audioManager.getLevelTheme())
     , jumpSound(audioManager.getJumpSound())
     , notifSound(audioManager.getNotifSound())
+    , Konami(audioManager.getKonamiTheme())
     {
         mainTheme.setLoop(true);
         mainTheme.play();

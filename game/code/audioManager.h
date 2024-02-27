@@ -19,6 +19,8 @@ namespace swiftness
         sf::Music& getMainTheme() { return mainTheme; };
 
         sf::Music& getLevelTheme() { return levelTheme; };
+        
+        sf::Music& getKonamiTheme() { return konami; };
 
         sf::Sound& getJumpSound() { return jumpSound; };
 
@@ -27,6 +29,7 @@ namespace swiftness
     private:
         sf::Music mainTheme;
         sf::Music levelTheme;
+        sf::Music konami;
         sf::Sound jumpSound;
         sf::Sound notifSound;
 

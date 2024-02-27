@@ -29,6 +29,7 @@ namespace swiftness
     // Audio
     const std::string MAIN_THEME = "../../ressources/music/MainTheme.ogg";
     const std::string LEVEL_THEME = "../../ressources/music/LevelTheme.ogg";
+    const std::string KONAMI_THEME = "../../ressources/music/konami.ogg";
     const std::string JUMP_SOUND = "../../ressources/sounds/jump.wav";
     const std::string NOTIF_SOUND = "../../ressources/sounds/notif.wav";
 
