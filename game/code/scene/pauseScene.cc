@@ -49,7 +49,7 @@ namespace swiftness {
             m_level.resetLevel();
             game.levelTheme.stop();
             game.mainTheme.play();
-            game.replaceAllScenes(game.menu, trans, gf::milliseconds(500));
+            game.replaceAllScenes(game.level, trans, gf::milliseconds(500));
         });
 
         createButtons(back_b, [&] () {
