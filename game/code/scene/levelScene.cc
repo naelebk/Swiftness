@@ -135,6 +135,10 @@ namespace swiftness
             down.setContinuous();
             left.setContinuous();
             right.setContinuous();
+            konami = konami == 10 ? -1 : konami;
+            m_level.getSquareEntity().setIsFlying(false);
+            canFly = false;
+            commandsChange = false;
         }
         if (!isActive()) return;
         if (Pause.isActive())
