@@ -84,6 +84,7 @@ namespace swiftness {
             int konami, konami2;
             bool canFly, commandsChange, m_custom;
             gf::ZoomBlurSegueEffect trans;
+            int m_time_of_konami;
     };
 }
 

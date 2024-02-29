@@ -14,7 +14,7 @@ namespace swiftness
           // , m_level.getLevelData()("custom/custom_" + std::to_string(m_levelNumber) + ".tmx")
           // , m_level.getLevelData()("level_" + std::to_string(m_levelNumber) + ".tmx")
           ,
-          m_level(game.resources, (custom ? "custom/custom_" : "level_") + std::to_string(m_levelNumber) + ".tmx"), up("up"), down("down"), left("left"), right("right"), jump("jump"), upJump("upJump"), downJump("downJump"), leftJump("leftJump"), rightJump("rightJump"), Pause("pause"), map_width(m_level.getLevelData().getMapSize().x), map_height(m_level.getLevelData().getMapSize().y), tile_width(m_level.getLevelData().getTileSize().x), tile_height(m_level.getLevelData().getTileSize().y), xcamera(m_level.getSquareEntity().getPosition().x), ycamera(m_level.getSquareEntity().getPosition().y), konami(0), konami2(0), canFly(false), commandsChange(false), s_pause(game, m_font, m_level)
+          m_level(game.resources, (custom ? "custom/custom_" : "level_") + std::to_string(m_levelNumber) + ".tmx"), up("up"), down("down"), left("left"), right("right"), jump("jump"), upJump("upJump"), downJump("downJump"), leftJump("leftJump"), rightJump("rightJump"), Pause("pause"), map_width(m_level.getLevelData().getMapSize().x), map_height(m_level.getLevelData().getMapSize().y), tile_width(m_level.getLevelData().getTileSize().x), tile_height(m_level.getLevelData().getTileSize().y), xcamera(m_level.getSquareEntity().getPosition().x), ycamera(m_level.getSquareEntity().getPosition().y), konami(0), konami2(0), canFly(false), commandsChange(false), s_pause(game, m_font, m_level), m_time_of_konami(0)
     {
         gf::Gamepad::initialize();
 
@@ -135,7 +135,7 @@ namespace swiftness
             down.setContinuous();
             left.setContinuous();
             right.setContinuous();
-            konami = konami == 10 ? -1 : konami;
+            konami = konami == 10 ? 0 : konami;
             m_level.getSquareEntity().setIsFlying(false);
             canFly = false;
             commandsChange = false;
@@ -283,7 +283,7 @@ namespace swiftness
             commandsChange = true;
             konami = -1;
             game.levelTheme.stop();
-            game.Konami.setLoop(true);
+            game.Konami.setLoop(false);
             game.Konami.play();
         }
     }
@@ -291,7 +291,15 @@ namespace swiftness
     void levelScene::doRender(gf::RenderTarget &target, const gf::RenderStates &states)
     {
         gf::ExtendView cam(m_camera, {SCREEN_WIDTH, SCREEN_HEIGHT});
-        canFly &&commandsChange ? target.clear(gf::Color::Violet/*a*/) : target.clear(gf::Color::fromRgb(0.2, 0.2, 0.2));
+        if (canFly && commandsChange) {
+            double t = m_time_of_konami % 120 / 120.0;
+            double red = 0.5 + 0.5 * std::cos(t * 2 * M_PI);
+            double green = 0.5 + 0.5 * std::cos((t + 1.0 / 3.0) * 2 * M_PI);
+            double blue = 0.5 + 0.5 * std::cos((t + 2.0 / 3.0) * 2 * M_PI);
+            target.clear(gf::Color::fromRgb(red, green, blue));
+        } else {
+            target.clear(gf::Color::fromRgb(0.2, 0.2, 0.2));
+        }
         target.setView(cam);
         swiftness::LevelRender renderLevel;
         renderLevel.renderLevel(game.resources, m_level.getLevelData(), target, m_level.getSquareEntity().getGravity());
@@ -302,6 +310,17 @@ namespace swiftness
     void levelScene::doUpdate(gf::Time time)
     {
         m_level.getSquareEntity().update(time);
+        if (canFly && commandsChange) m_time_of_konami++;
+        if (m_time_of_konami >= 5250) {
+            canFly = false;
+            commandsChange = false;
+            m_level.getSquareEntity().setIsFlying(false);
+            game.Konami.stop();
+            game.levelTheme.setLoop(true);
+            game.levelTheme.play();
+            konami = -1;
+            m_time_of_konami = 0;
+        }
         if (m_level.getSquareEntity().getLevelOver())
         {
             m_level.getSquareEntity().setIsFlying(false);
