@@ -313,30 +313,18 @@ namespace swiftness
             gf::Coordinates coords(target);
             float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
             int r_size = coords.getRelativeCharacterSize(size);
-            if (m_time_of_konami >= 5025 && m_time_of_konami < 5100) {
-                gf::Text end("", m_font, 150);
+            int remainingTime = (m_time_of_konami - 4500) / 75;
+            if (remainingTime >= 0 && remainingTime <= 9) {
+                gf::Text end("", m_font, 110 + 6 * remainingTime);
                 end.setParagraphWidth(100.0f);
-                end.setParagraphWidth(100.0f);
-                end.setString("Fin dans 3...");
-                end.setColor(gf::Color::White);
-                end.setPosition(coords.getRelativePoint({0.5f, 0.4f}));
-                end.setAnchor(gf::Anchor::Center);
-                target.draw(end, states);
-            } else if (m_time_of_konami >= 5100 && m_time_of_konami < 5175) {
-                gf::Text end("", m_font, 150);
-                end.setParagraphWidth(100.0f);
-                end.setParagraphWidth(100.0f);
-                end.setString("Fin dans 2...");
-                end.setColor(gf::Color::White);
-                end.setPosition(coords.getRelativePoint({0.5f, 0.4f}));
-                end.setAnchor(gf::Anchor::Center);
-                target.draw(end, states);
-            } else if (m_time_of_konami >= 5175 && m_time_of_konami < 5250) {
-                gf::Text end("", m_font, 150);
-                end.setParagraphWidth(100.0f);
-                end.setParagraphWidth(100.0f);
-                end.setString("Fin dans 1...");
-                end.setColor(gf::Color::White);
+                end.setString("Fin dans " + std::to_string(10 - remainingTime) + "...");
+                end.setColor(
+                    remainingTime >= 0 && remainingTime < 2 ? gf::Color::Violet :
+                    remainingTime >= 2 && remainingTime < 4 ? gf::Color::Yellow : 
+                    remainingTime >= 4 && remainingTime < 6 ? gf::Color::Orange : 
+                    remainingTime >= 6 && remainingTime <= 8 ? gf::Color::Red :
+                    gf::Color::Black
+                );
                 end.setPosition(coords.getRelativePoint({0.5f, 0.4f}));
                 end.setAnchor(gf::Anchor::Center);
                 target.draw(end, states);
