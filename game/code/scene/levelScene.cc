@@ -305,6 +305,43 @@ namespace swiftness
         renderLevel.renderLevel(game.resources, m_level.getLevelData(), target, m_level.getSquareEntity().getGravity());
         m_level.getSquareEntity().render(target, states);
         m_level.getSquareEntity().renderHUD(target, SCREEN_WIDTH, SCREEN_HEIGHT, m_camera);
+        target.setView(getHudView());
+        if (m_time_of_konami > 0) {
+            float size = 0.035f, space = 0.04f;
+            gf::Vector2f bg_size (0.55f, 0.1f); 
+            target.setView(getHudView());
+            gf::Coordinates coords(target);
+            float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
+            int r_size = coords.getRelativeCharacterSize(size);
+            if (m_time_of_konami >= 5025 && m_time_of_konami < 5100) {
+                gf::Text end("", m_font, 150);
+                end.setParagraphWidth(100.0f);
+                end.setParagraphWidth(100.0f);
+                end.setString("Fin dans 3...");
+                end.setColor(gf::Color::White);
+                end.setPosition(coords.getRelativePoint({0.5f, 0.4f}));
+                end.setAnchor(gf::Anchor::Center);
+                target.draw(end, states);
+            } else if (m_time_of_konami >= 5100 && m_time_of_konami < 5175) {
+                gf::Text end("", m_font, 150);
+                end.setParagraphWidth(100.0f);
+                end.setParagraphWidth(100.0f);
+                end.setString("Fin dans 2...");
+                end.setColor(gf::Color::White);
+                end.setPosition(coords.getRelativePoint({0.5f, 0.4f}));
+                end.setAnchor(gf::Anchor::Center);
+                target.draw(end, states);
+            } else if (m_time_of_konami >= 5175 && m_time_of_konami < 5250) {
+                gf::Text end("", m_font, 150);
+                end.setParagraphWidth(100.0f);
+                end.setParagraphWidth(100.0f);
+                end.setString("Fin dans 1...");
+                end.setColor(gf::Color::White);
+                end.setPosition(coords.getRelativePoint({0.5f, 0.4f}));
+                end.setAnchor(gf::Anchor::Center);
+                target.draw(end, states);
+            }
+        }
     }
 
     void levelScene::doUpdate(gf::Time time)
