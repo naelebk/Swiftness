@@ -313,7 +313,7 @@ namespace swiftness
             gf::Coordinates coords(target);
             float width = coords.getRelativeSize(bg_size - 0.05f).x, padding = coords.getRelativeSize({0.01f, 0.f}).x;
             int r_size = coords.getRelativeCharacterSize(size);
-            int remainingTime = (m_time_of_konami - 4500) / 75;
+            int remainingTime = (m_time_of_konami - 3600) / 60;
             if (remainingTime >= 0 && remainingTime <= 9) {
                 gf::Text end("", m_font, 110 + 6 * remainingTime);
                 end.setParagraphWidth(100.0f);
@@ -336,7 +336,7 @@ namespace swiftness
     {
         m_level.getSquareEntity().update(time);
         if (canFly && commandsChange) m_time_of_konami++;
-        if (m_time_of_konami >= 5250) {
+        if (m_time_of_konami >= 4200) {
             canFly = false;
             commandsChange = false;
             m_level.getSquareEntity().setIsFlying(false);
