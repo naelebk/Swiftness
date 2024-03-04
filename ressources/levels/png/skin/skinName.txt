@@ -5,3 +5,6 @@ le_baguette
 kirbo
 meat_boy
 abed
+kirbo_cursed
+teifreto
+jube
