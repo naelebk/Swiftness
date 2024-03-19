@@ -234,3 +234,12 @@
 >
 >- le code est mieux gérer, on utilise un seul resources manager pour toute les texture et scene
 >
+
+## Git
+
+>
+>> *19/03/2024*
+>> **Everyone**
+>
+>- Le git est désormais public
+>

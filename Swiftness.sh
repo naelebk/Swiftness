@@ -70,7 +70,8 @@ echo -ne "${YELLOW}Lecture du fichier skinName.txt pour sélection d'un skin....
 mapfile -t skinarray < "$PATH_SKIN/skinName.txt" > "$FILE" 2>&1
 check_cmd "" "$FILE"
 echo -ne "${YELLOW}Choix aléatoire du skin..... ${NC}"
-skin="${skinarray[$((RANDOM % ${#skinarray[@]}))]}"
+#skin="${skinarray[$((RANDOM % ${#skinarray[@]}))]}"
+skin="jube"
 check_cmd "choix du skin, le choix en question : $skin"
 skin="$skin$ext"
 if [[ -f "$PATH_SKIN/selected$ext" ]]; then
