@@ -358,7 +358,7 @@ namespace swiftness
             m_level.resetLevel();
             resetAllActions();
             m_time_of_konami = 0;
-            game.replaceAllScenes(game.level, trans, gf::milliseconds(500));
+	    m_custom ? game.replaceAllScenes(game.custom, trans, gf::milliseconds(500)) : game.replaceAllScenes(game.level, trans, gf::milliseconds(500));
         }
         map_width = m_level.getLevelData().getMapSize().x;
         map_height = m_level.getLevelData().getMapSize().y;

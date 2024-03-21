@@ -77,7 +77,7 @@ namespace swiftness {
         - section "musique (Julien gauthier)"
         - section "logo à mettre (gf, sfml)"
         */
-        developper.setString("Developpers :\nEMBARKI Naël\nGAUTHIER Julien\nHUMBERT Théo\nReferent :\nM. Julien BERNARD\n(alias jube)");
+        developper.setString("Developpers\n EMBARKI Naël\n GAUTHIER Julien\n HUMBERT Théo\nSpecials skins\n GAUTHIER Milo\nReferent\n M. Julien BERNARD\n(aka jube)");
         developper.setColor(gf::Color::Yellow);
         developper.setPosition(coords.getRelativePoint({0.5f, 0.4f}));
         developper.setAnchor(gf::Anchor::Center);
