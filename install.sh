@@ -138,6 +138,6 @@ super_echo YELLOW "Compilation (2/3)....."
 sudo -u "$MOI" make
 check_cmd ""
 super_echo YELLOW "Compilation (3/3)....."
-make install
+sudo -u "$MOI" make install
 check_cmd ""
 super_echo GREEN "OK tout est bon ! Vous pouvez lancer le script '$PROJET/Swiftness.sh' pour commencer à jouer."
