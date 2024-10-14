@@ -243,3 +243,12 @@
 >
 >- Le git est désormais public
 >
+
+## Autocompilation
+
+>
+>> *14/10/2024*
+>> **Naël**
+>
+>- Automatisation installation gf (si pas faite) et compilation des sources automatiques.
+>
