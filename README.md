@@ -28,8 +28,11 @@
 >
 > On a terminal, very simply : 
 >
->>
->> **\>** **chmod +x Game.sh && ./Game.sh**
+> If GamedevFramework not installed, following the operations as root :
+>> **#** **chmod +x install.sh && ./install.sh**
+>> 
+> Then, you can run the game with this script (not as root) down below :
+>> **\>** **chmod +x Swiftness.sh && ./Swiftness.sh**
 >>
 >
 
